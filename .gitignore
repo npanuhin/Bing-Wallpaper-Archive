@@ -1,0 +1,4 @@
+# Cache
+.cache/
+__pycache__/
+*.cache
