@@ -34,5 +34,5 @@ def checkUS1080pImages(remove=False):
 
 if __name__ == "__main__":
     # checkUSSourceImages()
-    checkUSSourceImages(remove=True)
-    checkUS1080pImages(remove=True)
+    checkUSSourceImages(remove=False)
+    checkUS1080pImages(remove=False)

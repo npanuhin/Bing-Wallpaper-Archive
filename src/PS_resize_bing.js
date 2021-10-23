@@ -77,5 +77,5 @@ for (var i = 0; i < input_files.length; ++i) {
     doc.saveAs(output_file, saveOptions, true, Extension.LOWERCASE);
     doc.close(SaveOptions.DONOTSAVECHANGES);
 
-    break;
+    // break;
 }
