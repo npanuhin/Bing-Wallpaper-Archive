@@ -18,12 +18,17 @@ def clearFolder(path, folders=False):
             rmtree(mkpath(path, item))
 
 
-class ImageDownloader:
+def createFolderIfAbsent(path):
+    if not os.path.isdir(mkpath(path)):
+        os.makedirs(mkpath(path))
+
+
+class FileDownloader:
     def __init__(self):
         self.h = httplib2.Http('.cache')
 
     def download(self, url, path):
-        with open(path, 'wb') as file:
+        with open(mkpath(path), 'wb') as file:
             response, content = self.h.request(url)
             file.write(content)
 
