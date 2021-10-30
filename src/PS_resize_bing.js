@@ -13,14 +13,10 @@ app.preferences.rulerUnits = Units.PIXELS;
 // ===================================================================================================
 
 function stripExtention(filename) {
-    // Split the filename at the dots
     filename = filename.split(".");
-    // If there's a dot, remove everything after the last dot
     if (filename.length > 1) {
         fileType = filename[filename.length - 1];
-        // Decrement the filename object by removing the last element (the stuff after the last .)
         filename.length--;
-        // Reconnect everything BEFORE the first .
         filename = filename.join(".");
     }
     return filename;
