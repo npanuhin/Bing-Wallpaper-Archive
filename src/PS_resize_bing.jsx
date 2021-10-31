@@ -45,7 +45,7 @@ for (var region_index = 0; region_index < REGIONS.length; ++region_index) {
 
 
     for (var i = 0; i < input_files.length; ++i) {
-        var input_file  = new File(input_files[i]),
+        var input_file = new File(input_files[i]),
             output_file = new File(output_folder + "/" + stripExtention(input_files[i].fsName.replace(/^.*[\\\/]/, '')) + ".jpg");
 
         if (output_file.exists) continue;
@@ -55,7 +55,8 @@ for (var region_index = 0; region_index < REGIONS.length; ++region_index) {
         // ===================================================================================================
 
 
-        var cur_width = doc.width, cur_height = doc.height;
+        var cur_width = doc.width,
+            cur_height = doc.height;
 
         // Test height resize
         var height_resize_new_height = target_height;
