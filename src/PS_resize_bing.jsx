@@ -82,7 +82,7 @@ for (var region_index = 0; region_index < REGIONS.length; ++region_index) {
         saveOptions.embedColorProfile = true;
         saveOptions.formatOptions = FormatOptions.OPTIMIZEDBASELINE;
         saveOptions.matte = MatteType.NONE;
-        saveOptions.quality = 12;
+        saveOptions.quality = 10;
         doc.saveAs(output_file, saveOptions, true, Extension.LOWERCASE);
         doc.close(SaveOptions.DONOTSAVECHANGES);
 
