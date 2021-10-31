@@ -3,9 +3,9 @@ import os
 
 from utils import mkpath
 
+API_PATH = mkpath("../", "api")
 
-US_SOURCE_IMAGES_PATH = mkpath("../", "api", "US", "images", "source")
-US_1080P_IMAGES_PATH = mkpath("../", "api", "US", "images", "1080p")
+REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
 
 
 def checkImage(path, remove=False):
@@ -15,25 +15,33 @@ def checkImage(path, remove=False):
         print("{} is damaged".format(path))
         if remove:
             os.remove(path)
+            print("Removed {}".format(path))
         return False
     return True
 
 
-def checkUSSourceImages(remove=False):
-    print("Checking {}".format(US_SOURCE_IMAGES_PATH))
+def checkSourceImages(region, remove=False):
+    images_path = mkpath(API_PATH, region, "images", "source")
+    print("Checking {}".format(images_path))
 
-    for file in os.listdir(US_SOURCE_IMAGES_PATH):
-        checkImage(mkpath(US_SOURCE_IMAGES_PATH, file), remove)
+    for file in os.listdir(images_path):
+        checkImage(mkpath(images_path, file), remove)
 
 
-def checkUS1080pImages(remove=False):
-    print("Checking {}".format(US_1080P_IMAGES_PATH))
+def check1080pImages(region, remove=False):
+    images_path = mkpath(API_PATH, region, "images", "1080p")
+    print("Checking {}".format(images_path))
 
-    for file in os.listdir(US_1080P_IMAGES_PATH):
-        checkImage(mkpath(US_1080P_IMAGES_PATH, file), remove)
+    for file in os.listdir(images_path):
+        checkImage(mkpath(images_path, file), remove)
+
+
+def checkAll(remove=False):
+    for region in REGIONS:
+        checkSourceImages(region, remove)
+        check1080pImages(region, remove)
+        print()
 
 
 if __name__ == "__main__":
-    # checkUSSourceImages()
-    checkUSSourceImages(remove=False)
-    checkUS1080pImages(remove=False)
+    checkAll(remove=False)
