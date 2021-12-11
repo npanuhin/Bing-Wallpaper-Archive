@@ -1,0 +1,4 @@
+httplib2
+Pillow
+lxml
+bs4

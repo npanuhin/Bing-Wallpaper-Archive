@@ -70,20 +70,6 @@ class SafeJson:
         if not allow_cache or self.cache_timer == 0:
             self.dump_cache()
 
-        # with self.thread_lock:
-        #     with open(os.path.abspath(mkpath(path)), 'w', encoding="utf-8") as file:
-        #         json_dump(data, file, *args, **kwargs)
-
-        #     # while True:
-        #     #     try:
-        #     #         os.replace(
-        #     #             mkpath(path) + ".replace",
-        #     #             mkpath(path)
-        #     #         )
-        #     #     except PermissionError:
-        #     #         continue
-        #     #     break
-
     def dump_cache(self):
         self.cache_timer = self.default_cache_timer
 

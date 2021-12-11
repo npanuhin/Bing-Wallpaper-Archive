@@ -4,7 +4,7 @@ import os
 from utils import mkpath
 
 
-US_IMAGES_PATH = mkpath("../", "api", "US", "images", "source")
+US_IMAGES_PATH = mkpath("../", "api", "US", "images")
 
 
 def printDimentions():
