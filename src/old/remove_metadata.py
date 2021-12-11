@@ -24,18 +24,13 @@ def removeMetadata(path, remove=False):
 
 def removeAll(remove=False):
     for region in REGIONS:
-        images_path = createFolderIfAbsent(mkpath(API_PATH, region, "images", "1080p"))
+        images_path = createFolderIfAbsent(mkpath(API_PATH, region, "images"))
         for file in os.listdir(images_path):
             print("Checking metadata for {}".format(mkpath(images_path, file)))
             removeMetadata(mkpath(images_path, file), remove)
 
             # exit()
             # break
-
-        images_path = createFolderIfAbsent(mkpath(API_PATH, region, "images", "source"))
-        for file in os.listdir(images_path):
-            print("Checking metadata for {}".format(mkpath(images_path, file)))
-            removeMetadata(mkpath(images_path, file), remove)
 
 
 if __name__ == "__main__":

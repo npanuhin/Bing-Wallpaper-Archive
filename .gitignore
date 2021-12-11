@@ -2,3 +2,9 @@
 .cache/
 __pycache__/
 *.cache
+
+# Keep some
+# !/src/cache/remove_metadata.cache
+
+# Executables
+/src/exiftool.exe
