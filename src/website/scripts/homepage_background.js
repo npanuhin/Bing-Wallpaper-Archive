@@ -79,12 +79,12 @@ var images = [
 
         let image = images[Math.floor(Math.random() * images.length)];
 
-        document.body.style.backgroundImage = "url(api/" + image[0] + "/images/1080p/" + image[1] + ")";
+        document.body.style.backgroundImage = "url(api/" + image[0] + "/images/" + image[1] + ")";
         
 //  }
 // );
 
 // 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
 
-// https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/api/US/images/1080p/2010-01-01.jpg?login=npanuhin&token=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
+// https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/api/US/images/2010-01-01.jpg?login=npanuhin&token=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
 // btoa
