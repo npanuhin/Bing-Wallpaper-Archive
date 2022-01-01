@@ -1,5 +1,13 @@
+#                                    ┌───────────────────────────────────────────┐
+#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
+#                                    │      Licensed under the MIT license       │
+#                                    └───────────────────────────────────────────┘
+#
+# ======================================================================================================================
+
 from threading import Thread, Lock, active_count as threading_active_count
 from json import load as json_load, dump as json_dump
+from subprocess import Popen, PIPE
 from calendar import monthrange
 from shutil import rmtree
 from time import sleep
@@ -12,7 +20,7 @@ def mkpath(*paths):
     return os.path.normpath(os.path.join(*paths))
 
 
-def clearFolder(path, folders=False):
+def clear_folder(path, folders=False):
     for item in os.listdir(mkpath(path)):
 
         if os.path.isfile(mkpath(path, item)):
@@ -22,17 +30,30 @@ def clearFolder(path, folders=False):
             rmtree(mkpath(path, item))
 
 
-def createFolderIfAbsent(path):
+def create_folder_if_absent(path):
     if not os.path.isdir(mkpath(path)):
         os.makedirs(mkpath(path))
 
 
-def addMonths(sourcedate, months):
+def add_months(sourcedate, months):
     month = sourcedate.month - 1 + months
     year = sourcedate.year + month // 12
     month = month % 12 + 1
     day = min(sourcedate.day, monthrange(year, month)[1])
     return datetime.date(year, month, day)
+
+
+def remove_metadata(path, extension="jpg"):
+    s = Popen(
+        "exiftool -all= --icc_profile:all -overwrite_original -progress -ext \"{}\" \"{}\"".format(extension, path),
+        shell=True,
+        stdout=PIPE,
+        stderr=PIPE
+    ).communicate()
+
+    s = list(map(lambda x: x.decode("cp1251"), s))
+
+    print(path, ": ", s, sep='')
 
 
 class FileDownloader:
@@ -121,5 +142,5 @@ class Threads:
             sleep(0.01)
 
 
-def prettifyDataString(string):
+def prettify_data_string(string):
     return string.replace("\r\n", '\n').replace("\n\r", '\n').replace('\xa0', ' ').strip()
