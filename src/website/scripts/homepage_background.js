@@ -1,4 +1,4 @@
-//! Copyright ©; 2019-2021 Nikita Paniukhin
+//! Copyright ©; 2019-2022 Nikita Paniukhin
 
 function urlencode(data) {
     let res = [];
