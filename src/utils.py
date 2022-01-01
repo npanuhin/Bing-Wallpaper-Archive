@@ -20,6 +20,10 @@ def mkpath(*paths):
     return os.path.normpath(os.path.join(*paths))
 
 
+def _pass(*args, **kwargs):
+    pass
+
+
 def clear_folder(path, folders=False):
     for item in os.listdir(mkpath(path)):
 
