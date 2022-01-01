@@ -1,3 +1,10 @@
+#                                    ┌───────────────────────────────────────────┐
+#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
+#                                    │      Licensed under the MIT license       │
+#                                    └───────────────────────────────────────────┘
+#
+# ======================================================================================================================
+
 from PIL import Image
 import os
 
@@ -7,7 +14,7 @@ from utils import mkpath
 US_IMAGES_PATH = mkpath("../", "api", "US", "images")
 
 
-def printDimentions():
+def print_dimentions():
     for file in os.listdir(US_IMAGES_PATH):
         image = Image.open(mkpath(US_IMAGES_PATH, file))
 
@@ -24,4 +31,4 @@ def printDimentions():
 
 
 if __name__ == "__main__":
-    printDimentions()
+    print_dimentions()

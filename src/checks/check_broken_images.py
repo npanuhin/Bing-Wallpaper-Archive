@@ -10,7 +10,7 @@ API_PATH = mkpath("../", "../", "api")
 REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
 
 
-def checkImage(path, remove=False):
+def check_image(path, remove=False):
     try:
         Image.open(path)
     except IOError:
@@ -29,7 +29,7 @@ def recursiveCheck(path, remove=False):
 
     if os.path.isdir(images_path):
         for file in os.listdir(images_path):
-            checkImage(mkpath(images_path, file), remove)
+            check_image(mkpath(images_path, file), remove)
 
 
 def checkAll(remove=False):

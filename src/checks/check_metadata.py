@@ -14,7 +14,7 @@ if not os.path.isfile(EXIFTOOL_PATH):
     EXIFTOOL_PATH = "exiftool"
 
 
-def recursiveCheck(path):
+def recursive_check(path):
     s = Popen(
         "{} -all= --icc_profile:all -overwrite_original -progress -ext jpg -r \"{}\"".format(EXIFTOOL_PATH, mkpath(path)),
         shell=True,
@@ -34,4 +34,4 @@ def recursiveCheck(path):
 
 
 if __name__ == "__main__":
-    recursiveCheck(API_PATH)
+    recursive_check(API_PATH)
