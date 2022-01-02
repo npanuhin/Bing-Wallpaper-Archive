@@ -7,6 +7,7 @@
 
 from threading import Thread, Lock, active_count as threading_active_count
 from json import load as json_load, dump as json_dump
+from posixpath import join as os_join, normpath as os_normpath
 from subprocess import Popen, PIPE
 from calendar import monthrange
 from shutil import rmtree
@@ -17,7 +18,7 @@ import os
 
 
 def mkpath(*paths):
-    return os.path.normpath(os.path.join(*paths))
+    return os_normpath(os_join(*paths))
 
 
 def _pass(*args, **kwargs):

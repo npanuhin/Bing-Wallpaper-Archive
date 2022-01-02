@@ -6,14 +6,19 @@
 # ======================================================================================================================
 
 from urllib.parse import urlsplit, urlunsplit
-from requests import get as req_get
+# from requests import get as req_get
 from traceback import print_exc
 from bs4 import BeautifulSoup
 import datetime
 import os
 
+import cloudscraper
+scraper = cloudscraper.create_scraper()
+req_get = scraper.get
+
 from utils import mkpath, create_folder_if_absent, clear_folder, FileDownloader
 from utils import Threads, _pass, add_months, prettify_data_string, SafeJson, remove_metadata
+
 
 API_PATH = mkpath("../", "api")
 
