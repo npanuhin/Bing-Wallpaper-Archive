@@ -6,9 +6,9 @@
 # ======================================================================================================================
 
 from urllib.parse import urlsplit, urlunsplit
+from requests import get as req_get
 from traceback import print_exc
 from bs4 import BeautifulSoup
-import requests
 import datetime
 import os
 
@@ -27,7 +27,7 @@ FLAG_NOTOCH, FLAG_LATEST, FLAG_UPDATE = None, None, None
 
 
 def parse_month_page(region, year, month, image_pages):
-    soup = BeautifulSoup(requests.get("https://peapix.com/bing/{}/{}/{}".format(region.lower(), year, month)).text, "lxml")
+    soup = BeautifulSoup(req_get("https://peapix.com/bing/{}/{}/{}".format(region.lower(), year, month)).text, "lxml")
 
     for image_block in soup.findAll("div", class_="image-list__container"):
         day = int(image_block.find("div", class_="image-list__stats").text.strip().split()[1])
@@ -48,7 +48,7 @@ def get_image_pages(region):
             int(os.path.basename(os.path.normpath(url)))
             for url in map(
                 lambda x: x.get("href"),
-                BeautifulSoup(requests.get("https://peapix.com/bing/{}/{}/".format(region.lower(), year)).text, "lxml").findAll("a")
+                BeautifulSoup(req_get("https://peapix.com/bing/{}/{}/".format(region.lower(), year)).text, "lxml").findAll("a")
             )
             if url and url.startswith("/bing/{}/{}/".format(region.lower(), year))
         )
@@ -63,7 +63,7 @@ def get_image_pages(region):
         int(os.path.basename(os.path.normpath(url)))
         for url in map(
             lambda x: x.get("href"),
-            BeautifulSoup(requests.get("https://peapix.com/bing/{}/".format(region.lower())).text, "lxml").findAll("a")
+            BeautifulSoup(req_get("https://peapix.com/bing/{}/".format(region.lower())).text, "lxml").findAll("a")
         )
         if url and url.startswith("/bing/{}/".format(region.lower()))
     )
@@ -95,7 +95,7 @@ def update_latest_image_pages(image_pages, region):
 def handle_image_page(api_by_date, region, image_date, image_page_url, image_action=FLAG_NOTOCH):
     print("Starting new thread: {}".format(image_page_url))
 
-    image_page = BeautifulSoup(requests.get("https://peapix.com" + image_page_url).text, "lxml")
+    image_page = BeautifulSoup(req_get("https://peapix.com" + image_page_url).text, "lxml")
 
     image_link = urlunsplit(list(urlsplit(
         image_page.find("div", id="download-modal").find("a", class_="btn").get("href")

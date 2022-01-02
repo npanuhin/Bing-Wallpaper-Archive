@@ -1,3 +1,4 @@
+requests
 httplib2
 Pillow
 lxml

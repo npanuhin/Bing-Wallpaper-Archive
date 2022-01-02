@@ -1,11 +1,13 @@
 exclude:
   - "/src/cache/"
   - "/src/checks/"
-  - "/src/*.cmd"
-  - "/src/*.py"
-  - "/src/*.jsx"
-  - "/CHNAME"
-  - "/LICENSE"
-  - "/README.md"
-  - "/requirements.txt"
+  # --------------
+  - "CHNAME"
+  - "LICENSE"
+  - "README.md"
+  - "requirements.txt"
+  # -------------------
   - ".*"
+  - "*.py"
+  - "*.cmd"
+  - "*.jsx"
