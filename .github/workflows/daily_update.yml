@@ -23,7 +23,7 @@ jobs:
       - name: Install Python's requirements
         run: pip install -r requirements.txt
 
-      - name: Download exiftool
+      - name: Download & install ExifTool
         run: |
           cd ..
           wget https://npanuhin.me/files/Image-ExifTool-12.37.tar.gz
@@ -38,6 +38,15 @@ jobs:
         working-directory: src
         run: python daily_update.py
 
+      # - name: GPG
+      #   uses: crazy-max/ghaction-import-gpg@v4
+      #   with:
+      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.PASSPHRASE }}
+      #     git_user_signingkey: true
+      #     git_commit_gpgsign: true
+      #     # git_tag_gpgsign: true
+
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
@@ -45,4 +54,5 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Images update: US to ${{ steps.date.outputs.date }}"
+          # commit_options: '-S'
           commit_author: GitHub Actions <actions@github.com>
