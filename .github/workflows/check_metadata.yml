@@ -1,12 +1,15 @@
 name: Metadata check
 
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
-  check_metadata:
-    runs-on: [ubuntu-latest]
-    steps:
+  check-metadata:
+    name: Check metadata
+    runs-on: ubuntu-latest
 
+    steps:
       - name: Clone repository
         uses: actions/checkout@v2
         with:
