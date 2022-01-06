@@ -48,9 +48,9 @@ def add_months(sourcedate, months):
     return datetime.date(year, month, day)
 
 
-def remove_metadata(path, extension="jpg"):
+def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool")):
     s = Popen(
-        "exiftool -all= --icc_profile:all -overwrite_original -progress -ext \"{}\" \"{}\"".format(extension, path),
+        "\"{}\" -all= --icc_profile:all -overwrite_original -progress -ext \"{}\" \"{}\"".format(exiftool, extension, path),
         shell=True,
         stdout=PIPE,
         stderr=PIPE

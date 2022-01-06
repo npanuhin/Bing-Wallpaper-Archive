@@ -1,22 +1,18 @@
 from subprocess import Popen, PIPE
 from sys import path as sys_path
 import re
-import os
 
 sys_path.append("../")
 from utils import mkpath
 
 
 API_PATH = mkpath("../", "../", "api")
-
-EXIFTOOL_PATH = mkpath("../", "exiftool.exe")
-if not os.path.isfile(EXIFTOOL_PATH):
-    EXIFTOOL_PATH = "exiftool"
+EXIFTOOL = mkpath("../", "exiftool", "exiftool")
 
 
 def recursive_check(path):
     s = Popen(
-        "{} -all= --icc_profile:all -overwrite_original -progress -ext jpg -r \"{}\"".format(EXIFTOOL_PATH, mkpath(path)),
+        "\"{}\" -all= --icc_profile:all -overwrite_original -progress -ext jpg -r \"{}\"".format(EXIFTOOL, mkpath(path)),
         shell=True,
         stdout=PIPE,
         stderr=PIPE
