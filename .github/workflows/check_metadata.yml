@@ -26,6 +26,7 @@ jobs:
 
       - name: Download exiftool
         run: |
+          cd ..
           wget https://npanuhin.me/files/Image-ExifTool-12.37.tar.gz
           gzip -dc Image-ExifTool-12.37.tar.gz | tar -xf -
           chmod -R 777 Image-ExifTool-12.37
