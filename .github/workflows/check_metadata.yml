@@ -24,16 +24,11 @@ jobs:
       - name: Install Python's requirements
         run: pip install -r requirements.txt
 
-      - name: Download exiftool
+      - name: Download & Install ExifTool
+        working-directory: src/exiftool
         run: |
-          cd ..
-          wget https://npanuhin.me/files/Image-ExifTool-12.37.tar.gz
-          gzip -dc Image-ExifTool-12.37.tar.gz | tar -xf -
-          chmod -R 777 Image-ExifTool-12.37
-          cd Image-ExifTool-12.37
-          perl Makefile.PL
-          make test
-          sudo make install
+          wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
+          gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
 
       - name: Check metadata
         working-directory: src/checks
