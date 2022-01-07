@@ -26,17 +26,22 @@ def check_image(path, remove=False):
 def recursiveCheck(path, remove=False):
     images_path = mkpath(path)
     print("Checking {}".format(images_path))
+    count = 0
 
     if os.path.isdir(images_path):
         for file in os.listdir(images_path):
             check_image(mkpath(images_path, file), remove)
+            count += 1
+    return count
 
 
 def checkAll(remove=False):
+    count = 0
     for region in REGIONS:
-        recursiveCheck(mkpath(API_PATH, region, "images"), remove)
+        count += recursiveCheck(mkpath(API_PATH, region, "images"), remove)
         print()
+    return count
 
 
 if __name__ == "__main__":
-    checkAll(remove=False)
+    print("Checked {} images".format(checkAll(remove=False)))
