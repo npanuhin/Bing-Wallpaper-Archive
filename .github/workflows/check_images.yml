@@ -1,12 +1,17 @@
-name: Metadata check
+name: Image check
 
 on:
   push:
+    paths:
+      - 'api/**.jpg'
+  pull_request:
+    paths:
+      - 'api/**.jpg'
   workflow_dispatch:
 
 jobs:
-  check-metadata:
-    name: Check metadata
+  image-check:
+    name: Check images
     runs-on: ubuntu-latest
 
     steps:
@@ -22,14 +27,19 @@ jobs:
           architecture: 'x64'
 
       - name: Install Python's requirements
-        run: pip install -r src/requirements/check_metadata.txt
+        run: pip install -r src/requirements/check_images.txt
 
-      - name: Download & Install ExifTool
+      - name: Download ExifTool
         working-directory: src/exiftool
         run: |
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
 
+      - name: Check broken images
+        working-directory: src/checks
+        run: python check_broken_images.py
+
       - name: Check metadata
         working-directory: src/checks
         run: python check_metadata.py
+

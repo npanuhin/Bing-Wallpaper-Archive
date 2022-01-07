@@ -19,16 +19,18 @@ jobs:
       #     token: ${{ secrets.PAT }}
       #     ssh-key: ${{ secrets.SSH_KEY }}
 
-      - name: Fetch repository name
+      - name: Fetch repository info
         id: repository
         run: |
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
-          echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
+          echo "::set-output name=ssh_url::$(echo git@github.com:${{ github.repository }}.git)"
 
 
       - name: Partially clone repository 
         run: |
-          git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
+          eval "$(ssh-agent -s)"
+          ssh-add - <<< "${{ secrets.SSH_KEY }}"
+          git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.ssh_url }}
           cd ${{ steps.repository.outputs.name }}
           git sparse-checkout set "*" "!*.jpg" "!*.mp4"
 
@@ -77,7 +79,14 @@ jobs:
         with:
           repository: ${{ steps.repository.outputs.name }}
           commit_message: "Images update: US to ${{ steps.date.outputs.date }}"
-          add_options: '--sparse'
+          # commit_options: '-S'
           commit_user_name: GitHub Actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+
+      # - name: Commit and push changes
+      #   if: steps.auto-commit-action.outputs.changes_detected == 'true'
+      #   - run: |
+      #       if ! git diff-index --quiet HEAD --; then
+              
+      #       fi
