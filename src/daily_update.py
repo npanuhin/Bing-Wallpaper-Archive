@@ -1,6 +1,6 @@
-from peapix import updateRegions, FLAG_LATEST
+from peapix import updateRegions, FLAG_LATEST, FLAG_NOTOUCH
+from json import load as json_load
 from utils import mkpath
-import os
 import re
 
 
@@ -9,10 +9,14 @@ updateRegions(
     ["US"],
     days_action=FLAG_LATEST,
     api_action=FLAG_LATEST,
-    image_action=FLAG_LATEST
+    image_action=FLAG_NOTOUCH
 )
 
-latest_image_date = os.path.splitext(os.listdir(mkpath("../", "api", "US", "images"))[-1])[0]
+
+with open(mkpath("../", "api", "US", "us.json"), 'r', encoding="utf-8") as file:
+    us_api = json_load(file)
+
+latest_image_date = us_api[-1]["date"]
 print("Updated US to", latest_image_date)
 
 

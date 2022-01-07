@@ -28,7 +28,7 @@ safe_json = SafeJson()
 # ======================================================================================================================
 
 
-FLAG_NOTOCH, FLAG_LATEST, FLAG_UPDATE = None, None, None
+FLAG_NOTOUCH, FLAG_LATEST, FLAG_UPDATE = None, None, None
 
 
 def parse_month_page(region, year, month, image_pages):
@@ -97,7 +97,7 @@ def update_latest_image_pages(image_pages, region):
         # print(sorted(image_pages))
 
 
-def handle_image_page(api_by_date, region, image_date, image_page_url, image_action=FLAG_NOTOCH):
+def handle_image_page(api_by_date, region, image_date, image_page_url, image_action=FLAG_NOTOUCH):
     print("Starting new thread: {}".format(image_page_url))
 
     image_page = BeautifulSoup(req_get("https://peapix.com" + image_page_url).text, "lxml")
@@ -159,7 +159,7 @@ def handle_image_page(api_by_date, region, image_date, image_page_url, image_act
     print("Thread finished")
 
 
-def update(region, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, image_action=FLAG_NOTOCH):
+def update(region, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_action=FLAG_NOTOUCH):
     print("Starting update {{days_action={}, api_action={}, image_action={}}} for {}".format(days_action, api_action, image_action, region))
 
     # ================================= CREATING API, FOLDERS AND FILES =================================
@@ -213,10 +213,10 @@ def update(region, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, image_action
     with Threads() as threads:
         for image_date, image_link in image_pages:
 
-            if api_action == FLAG_NOTOCH:
+            if api_action == FLAG_NOTOUCH:
                 continue
             elif api_action == FLAG_LATEST:
-                if image_date in api_by_date and (image_action == FLAG_NOTOCH or os.path.isfile(mkpath(API_PATH, api_by_date[image_date]["path"]))):
+                if image_date in api_by_date and (image_action == FLAG_NOTOUCH or os.path.isfile(mkpath(API_PATH, api_by_date[image_date]["path"]))):
                     continue
             elif api_action == FLAG_UPDATE:
                 pass
@@ -242,7 +242,7 @@ def update(region, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, image_action
     print()
 
 
-def updateRegions(regions, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, image_action=FLAG_NOTOCH):
+def updateRegions(regions, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_action=FLAG_NOTOUCH):
     _pass(clear_folder)
     for region in regions:
         # clear_folder(mkpath(API_PATH, region, "images"))
@@ -255,7 +255,7 @@ def updateRegions(regions, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, imag
 
 
 # Actions:
-FLAG_NOTOCH = 0  # FLAG_NOTOCH - Do not touch
+FLAG_NOTOUCH = 0  # FLAG_NOTOUCH - Do not touch
 FLAG_LATEST = 1  # FLAG_LATEST - Update latest (or missing images)
 FLAG_UPDATE = 2  # FLAG_UPDATE - Update all
 
@@ -266,5 +266,5 @@ if __name__ == "__main__":
         ["US"],
         days_action=FLAG_LATEST,
         api_action=FLAG_LATEST,
-        image_action=FLAG_LATEST
+        image_action=FLAG_NOTOUCH
     )
