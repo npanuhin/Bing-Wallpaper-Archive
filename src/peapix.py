@@ -243,9 +243,9 @@ def update(region, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, image_action
 
 
 def updateRegions(regions, days_action=FLAG_NOTOCH, api_action=FLAG_NOTOCH, image_action=FLAG_NOTOCH):
+    _pass(clear_folder)
     for region in regions:
         # clear_folder(mkpath(API_PATH, region, "images"))
-        _pass(clear_folder)
         update(
             region,
             days_action=days_action,
