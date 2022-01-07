@@ -6,13 +6,13 @@
 # ======================================================================================================================
 
 from threading import Thread, Lock, active_count as threading_active_count
-from json import load as json_load, dump as json_dump
 from posixpath import join as os_join, normpath as os_normpath
+from json import load as json_load, dump as json_dump
 from subprocess import Popen, PIPE
 from calendar import monthrange
+from httplib2 import Http
 from shutil import rmtree
 from time import sleep
-import httplib2
 import datetime
 import os
 
@@ -63,7 +63,7 @@ def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool
 
 class FileDownloader:
     def __init__(self):
-        self.h = httplib2.Http('.cache')
+        self.h = Http('.cache')
         self.thread_lock = Lock()
 
     def download(self, url, path):

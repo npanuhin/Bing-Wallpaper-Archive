@@ -1,0 +1,6 @@
+requests_toolbelt
+cloudscraper
+requests
+httplib2
+lxml
+bs4
