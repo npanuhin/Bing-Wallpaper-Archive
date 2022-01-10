@@ -21,9 +21,9 @@ jobs:
           ssh-key: ${{ secrets.SSH_KEY }}
 
       - name: Install Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: 3.8
           architecture: 'x64'
 
       - name: Install Python's requirements
@@ -42,4 +42,3 @@ jobs:
       - name: Check metadata
         working-directory: src/checks
         run: python check_metadata.py
-
