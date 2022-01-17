@@ -19,7 +19,7 @@ jobs:
       #     token: ${{ secrets.PAT }}
       #     ssh-key: ${{ secrets.SSH_KEY }}
 
-      - name: Fetch repository name
+      - name: Fetch repository info
         id: repository
         run: |
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
