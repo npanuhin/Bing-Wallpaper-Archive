@@ -19,7 +19,7 @@ jobs:
       #     token: ${{ secrets.PAT }}
       #     ssh-key: ${{ secrets.SSH_KEY }}
 
-      - name: Fetch repository name
+      - name: Fetch repository info
         id: repository
         run: |
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
@@ -52,7 +52,7 @@ jobs:
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
 
 
-      - name: Daily update
+      - name: Update images
         working-directory: ${{ steps.repository.outputs.name }}/src
         run: python daily_update.py
 
