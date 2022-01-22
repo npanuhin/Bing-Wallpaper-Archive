@@ -18,14 +18,16 @@ def print_dimentions():
     for file in os.listdir(US_IMAGES_PATH):
         image = Image.open(mkpath(US_IMAGES_PATH, file))
 
-        if image.size[0] / image.size[1] == 16 / 9:
-            print("16/9")
+        # print(image.size, file)
 
-        elif image.size[0] / image.size[1] == 4 / 3:
-            print("4/3")
+        # if image.size[0] / image.size[1] == 16 / 9:
+        #     print("16/9")
 
-        else:
-            print(image.size[0] / image.size[1] * 9)
+        # elif image.size[0] / image.size[1] == 4 / 3:
+        #     print("4/3")
+
+        # else:
+        #     print(image.size[0] / image.size[1] * 9)
 
         image.close()
 

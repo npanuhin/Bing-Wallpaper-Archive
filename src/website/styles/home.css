@@ -47,9 +47,20 @@ li {
 
 
 body {
-	background-size: cover;
+	/* background-size: cover; */
 	min-width: 100vw;
 	min-height: 100vh;
+}
+
+#background1, #background2 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+
+	transition: 1s opacity ease-in-out;
 }
 
 .container_wrapper {
@@ -62,11 +73,13 @@ body {
 }
 
 .container {
-	border-radius: 20px;
+	border-radius: 30px;
 
 	padding: 30px;
 
 	background-color: rgba(0, 0, 0, 0.8);
+
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .container h1, .container div, .container div a {
