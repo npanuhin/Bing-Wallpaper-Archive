@@ -69,31 +69,53 @@ function leadingZeros(n, totalDigits) {
     var pd = '';
     for (i = 0; i < (totalDigits - n.length); ++i) pd += '0'; 
     return pd + n.toString();
-} 
+}
 
 
+// =====================================================================================================================
 
-var start_date = new Date(2017, 5, 10), // 2017-05-10: high res
+var start_date = new Date(2017, 5, 10), // 2017-05-10: high res starts ~here
     end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date); // Yesterday
 
-var background1 = document.getElementById("background1");
-    background2 = document.getElementById("background2");
+var background1 = document.getElementById("background1"),
+    background2 = document.getElementById("background2"),
+    description = document.getElementById("description"),
+    description_link = description.getElementsByTagName("a")[0];
+
+var api;
 
 
 function changeBackground() {
-    var image_date = getRandomDate(start_date, end_date);
+    let image_date = getRandomDate(start_date, end_date);
 
-    let image_path = "api/US/images/" + leadingZeros(image_date.getUTCFullYear(), 4) + '-'
-                                      + leadingZeros(image_date.getUTCMonth() + 1, 2) + '-'
-                                      + leadingZeros(image_date.getUTCDate(), 2) + ".jpg";
+    let image_name = leadingZeros(image_date.getUTCFullYear(), 4) + '-'
+                   + leadingZeros(image_date.getUTCMonth() + 1, 2) + '-'
+                   + leadingZeros(image_date.getUTCDate(), 2);
 
-    // console.log(image_path);
+    // console.log(image_name);
 
     background2.style.visibility = "visible";
-    background2.src = image_path;
+    background2.src = "api/US/images/" + image_name + ".jpg";
 
     background2.onload = () => {
         background2.style.opacity = 1;
+
+        if (description.hasAttribute("firstrun")) {
+            description.removeAttribute("firstrun");
+            description.style.display = "block";
+
+            description_link.href = "api/US/images/" + image_name + ".jpg";
+            description_link.innerHTML = api[image_name];
+
+        } else {
+            description.style.opacity = 0;
+
+            setTimeout(() => {
+                description_link.href = "api/US/images/" + image_name + ".jpg";
+                description_link.innerHTML = api[image_name];
+                description.style.opacity = 1;
+            }, 600);
+        }
 
         setTimeout(() => {
             background1.src = background2.src;
@@ -106,8 +128,22 @@ function changeBackground() {
     }
 }
 
-changeBackground();
-setInterval(changeBackground, 5000);
+ajax(
+    "GET",
+    "src/website/api/US.json",
+    {},
+    success = (req) => {
+        api = JSON.parse(req.responseText);
+        // console.log(api);
+
+        changeBackground();
+        setInterval(changeBackground, 5000);
+    },
+    error = () => {
+        alert("Error: can not load /src/website/api/US.json");
+        exit();
+    }
+);
 
 // var best_images = [
 //     ["US", "2021-08-31.jpg"],

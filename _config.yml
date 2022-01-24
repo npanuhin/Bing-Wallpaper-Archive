@@ -1,12 +1,16 @@
 exclude:
   - "/src/cache/"
   - "/src/checks/"
-  # --------------
-  - "CHNAME"
-  - "LICENSE"
-  - "README.md"
-  - "requirements.txt"
-  # -------------------
+  - "/src/exiftool/"
+  - "/src/old/"
+  - "/src/requirements/"
+  - "/src/videos/"
+  # --------------------
+  - "/CHNAME"
+  - "/LICENSE"
+  - "/README.md"
+  - "/requirements.txt"
+  # --------------------
   - ".*"
   - "*.py"
   - "*.cmd"
