@@ -31,6 +31,8 @@
 html {
 	font-style: normal;
 	font-weight: normal;
+
+	background-color: #232327;
 }
 
 /* a {
@@ -73,9 +75,8 @@ body {
 }
 
 .container {
-	border-radius: 30px;
-
-	padding: 30px;
+	padding: 25px 35px;
+	border-radius: 28px;
 
 	background-color: rgba(0, 0, 0, 0.8);
 
@@ -83,15 +84,70 @@ body {
 }
 
 .container h1, .container div, .container div a {
-	color: #fff;
 	width: 100%;
+
+	color: #fff;
 	text-align: center;
 }
-
+/* 
 .container h1 {
 
 }
 
 .container div a {
 
+}
+ */
+
+#description {
+	position: fixed;
+	bottom: 10px;
+	right: 15px;
+	padding: 10px 0;
+	border-radius: 15px;
+
+	display: none;  /* Init */
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: 0.075s background-color ease-in-out, 0.55s opacity ease-in-out;
+}
+
+#description:hover {
+	background-color: rgba(0, 0, 0, 0.9);
+	box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+#description a {
+	padding: 10px 15px;
+	border-radius: 15px;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 17px;
+
+	color: #fff;
+	transition: 0.075s color ease-in-out;
+}
+
+#description:hover a {
+	color: #0A84FF;
+}
+
+#description a::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 10px;
+	left: calc(15px - 1.5px);
+	width: calc(100% - 2 * 15px + 3px);
+	height: 1px;
+
+	border-radius: 100px;
+
+	background-color: #0A84FF;
+
+	opacity: 0;
+	transition: 0.075s opacity ease-in-out;
+}
+
+#description:hover a::after {
+	opacity: 1;
 }

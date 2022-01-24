@@ -1,12 +1,19 @@
 from peapix import updateRegions, FLAG_LATEST, FLAG_NOTOUCH
-from json import load as json_load
+from json import load as json_load, dump as json_dump
 from utils import mkpath
 import re
 
 
+# REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
+REGIONS = ["US"]
+
+website_start_date = "2017-05-10"
+
+
+# ======================================================================================================================
+
 updateRegions(
-    # ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"],
-    ["US"],
+    REGIONS,
     days_action=FLAG_LATEST,
     api_action=FLAG_LATEST,
     image_action=FLAG_NOTOUCH
@@ -20,6 +27,7 @@ latest_image_date = us_api[-1]["date"]
 print("Updated US to", latest_image_date)
 
 
+# Update README
 with open(mkpath("../", "README.md"), 'r', encoding="utf-8") as file:
     readme = file.read()
 
@@ -31,3 +39,17 @@ readme = re.sub(
 
 with open(mkpath("../", "README.md"), 'w', encoding="utf-8") as file:
     file.write(readme)
+
+
+# Update website api
+for region in REGIONS:
+    with open(mkpath("../", "api", region, "{}.json".format(region)), 'r', encoding="utf-8") as file:
+        api = json_load(file)
+
+    api_for_website = {
+        item["date"]: item['title']
+        for item in api if item["date"] >= website_start_date
+    }
+
+    with open(mkpath("website", "api", "{}.json".format(region)), 'w', encoding="utf-8") as file:
+        json_dump(api_for_website, file, ensure_ascii=False, separators=(',', ':'))
