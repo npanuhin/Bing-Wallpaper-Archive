@@ -94,8 +94,8 @@ function changeBackground() {
 
     // console.log(image_name);
 
-    background2.style.visibility = "visible";
     background2.src = "api/US/images/" + image_name + ".jpg";
+    // background2.style.visibility = "visible";
 
     background2.onload = () => {
         background2.style.opacity = 1;
@@ -109,19 +109,24 @@ function changeBackground() {
 
         } else {
             description.style.opacity = 0;
+            let tmp_transition = description.style.transition ? description.style.transition : window.getComputedStyle(description).getPropertyValue("transition");
+            description.style.transition = "";
 
             setTimeout(() => {
                 description_link.href = "api/US/images/" + image_name + ".jpg";
                 description_link.innerHTML = api[image_name];
+
+                description.style.transition = tmp_transition;
+                description.offsetHeight;  // Apply styles
                 description.style.opacity = 1;
-            }, 600);
+            }, 500);
         }
 
         setTimeout(() => {
             background1.src = background2.src;
 
             background1.onload = () => {
-                background2.style.visibility = "hidden";
+                // background2.style.visibility = "hidden";
                 background2.style.opacity = 0;
             }
         }, 1200);
@@ -137,6 +142,7 @@ ajax(
         // console.log(api);
 
         changeBackground();
+        // setInterval(changeBackground, 3000);
         setInterval(changeBackground, 5000);
     },
     error = () => {

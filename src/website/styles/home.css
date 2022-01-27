@@ -108,7 +108,16 @@ body {
 
 	display: none;  /* Init */
 	background-color: rgba(0, 0, 0, 0.5);
-	transition: 0.075s background-color ease-in-out, 0.55s opacity ease-in-out;
+	transition: 0.075s background-color ease-in-out, 0.5s opacity ease-in-out;
+}
+
+@keyframes description_change {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
 }
 
 #description:hover {
