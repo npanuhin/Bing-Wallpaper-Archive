@@ -1,6 +1,6 @@
-requests_toolbelt
-cloudscraper
 requests
 httplib2
 lxml
 bs4
+requests_toolbelt
+cloudscraper
