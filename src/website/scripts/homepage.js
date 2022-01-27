@@ -130,7 +130,7 @@ function changeBackground() {
 
 ajax(
     "GET",
-    "src/website/api/US.json",
+    "src/website/api/us.json",
     {},
     success = (req) => {
         api = JSON.parse(req.responseText);
@@ -140,7 +140,7 @@ ajax(
         setInterval(changeBackground, 5000);
     },
     error = () => {
-        alert("Error: can not load /src/website/api/US.json");
+        alert("Error: can not load /src/website/api/us.json");
         exit();
     }
 );

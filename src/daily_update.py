@@ -43,7 +43,7 @@ with open(mkpath("../", "README.md"), 'w', encoding="utf-8") as file:
 
 # Update website api
 for region in REGIONS:
-    with open(mkpath("../", "api", region, "{}.json".format(region)), 'r', encoding="utf-8") as file:
+    with open(mkpath("../", "api", region, region.lower() + ".json"), 'r', encoding="utf-8") as file:
         api = json_load(file)
 
     api_for_website = {
@@ -51,5 +51,5 @@ for region in REGIONS:
         for item in api if item["date"] >= website_start_date
     }
 
-    with open(mkpath("website", "api", "{}.json".format(region)), 'w', encoding="utf-8") as file:
+    with open(mkpath("website", "api", region.lower() + ".json"), 'w', encoding="utf-8") as file:
         json_dump(api_for_website, file, ensure_ascii=False, separators=(',', ':'))
