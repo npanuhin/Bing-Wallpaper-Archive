@@ -184,11 +184,11 @@ def update(region, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_acti
     # =========================================== DAYS CACHE ============================================
 
     # Checking region cache
-    if days_action <= FLAG_LATEST and os.path.isfile(mkpath("cache", ".peapix.{}.cache".format(region.lower()))):
+    if days_action <= FLAG_LATEST and os.path.isfile(mkpath("cache", "peapix.{}.cache".format(region.lower()))):
         print("Trying to use cached api data: {}".format(region_api_data_path))
 
         try:
-            image_pages = set(map(tuple, safe_json.load(mkpath("cache", ".peapix.{}.cache".format(region.lower())))))
+            image_pages = set(map(tuple, safe_json.load(mkpath("cache", "peapix.{}.cache".format(region.lower())))))
             if days_action >= FLAG_LATEST:
                 update_latest_image_pages(image_pages, region)
         except Exception as e:
@@ -201,8 +201,8 @@ def update(region, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_acti
 
     image_pages = sorted(image_pages)
 
-    safe_json.dump(mkpath("cache", ".peapix.{}.cache".format(region.lower())), image_pages, ensure_ascii=False)
-    # safe_json.dump(mkpath("cache", ".peapix.{}.cache".format(region.lower())), image_pages, prettify=True, ensure_ascii=False)
+    safe_json.dump(mkpath("cache", "peapix.{}.cache".format(region.lower())), image_pages, ensure_ascii=False)
+    # safe_json.dump(mkpath("cache", "peapix.{}.cache".format(region.lower())), image_pages, prettify=True, ensure_ascii=False)
 
     # =================================================================================================================
 

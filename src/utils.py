@@ -63,7 +63,7 @@ def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool
 
 class FileDownloader:
     def __init__(self):
-        self.h = Http('.cache')
+        self.h = Http('cache/.http_cache')
         self.thread_lock = Lock()
 
     def download(self, url, path):
@@ -73,8 +73,8 @@ class FileDownloader:
                 file.write(content)
 
     def __del__(self):
-        if os.path.isdir('.cache'):
-            rmtree('.cache')
+        if os.path.isdir('cache/.http_cache'):
+            rmtree('cache/.http_cache')
 
 
 class SafeJson:
