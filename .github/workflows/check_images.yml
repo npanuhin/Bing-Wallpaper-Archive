@@ -2,23 +2,96 @@ name: Image check
 
 on:
   push:
-    paths:
-      - 'api/**.jpg'
+    # paths:
+    #   - 'api/**.jpg'
   pull_request:
     paths:
       - 'api/**.jpg'
   workflow_dispatch:
 
+
 jobs:
-  image-check:
-    name: Check images
+  image-check-latest:
+    name: Check images (latest commit)
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: WARNING!
+        run: echo 'Warning! This action only considers the last commit when determining which files have changed!'
+
+      - name: Fetch repository info
+        id: repository
+        run: |
+          echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
+          echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
+
+
+      - name: Partially clone repository 
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
+          cd ${{ steps.repository.outputs.name }}
+          git sparse-checkout set "*" "!*.jpg" "!*.mp4"
+
+
+      - name: Get files modified in the last commit (space-delimited)
+        id: modified_files_spaced
+        uses: Ana06/get-changed-files@v1.2
+
+      - name: Get files modified in the last commit (json)
+        id: modified_files_json
+        uses: Ana06/get-changed-files@v1.2
+        with:
+          format: 'json'
+
+      - name: Set environment variable with modified files (json) for Python
+        run: echo 'GITHUB_CHANGED_FILES=${{ steps.modified_files_json.outputs.added_modified }}' >> $GITHUB_ENV
+
+
+      - name: Checkout modified files
+        working-directory: ${{ steps.repository.outputs.name }}
+        run: git sparse-checkout add ${{ steps.modified_files_spaced.outputs.added_modified }}
+
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          architecture: 'x64'
+
+
+      - name: Install Python's requirements
+        working-directory: ${{ steps.repository.outputs.name }}/src/requirements
+        run: pip install -r check_images.txt
+
+
+      - name: Download ExifTool
+        working-directory: ${{ steps.repository.outputs.name }}/src/exiftool
+        run: |
+          wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
+          gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
+
+
+      - name: Check broken images
+        working-directory: ${{ steps.repository.outputs.name }}/src/checks
+        run: python check_broken_images.py
+
+
+      - name: Check metadata
+        working-directory: ${{ steps.repository.outputs.name }}/src/checks
+        run: python check_metadata.py
+
+
+# ======================================================================================================================
+
+  image-check-full:
+    name: Check images (full)
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
-        with:
-          ssh-key: ${{ secrets.SSH_KEY }}
 
       - name: Install Python
         uses: actions/setup-python@v2
@@ -27,7 +100,8 @@ jobs:
           architecture: 'x64'
 
       - name: Install Python's requirements
-        run: pip install -r src/requirements/check_images.txt
+        working-directory: src/requirements
+        run: pip install -r check_images.txt
 
       - name: Download ExifTool
         working-directory: src/exiftool
