@@ -2,8 +2,8 @@ name: Image check
 
 on:
   push:
-    # paths:
-    #   - 'api/**.jpg'
+    paths:
+      - 'api/**.jpg'
   pull_request:
     paths:
       - 'api/**.jpg'
@@ -86,7 +86,7 @@ jobs:
 
   image-check-full:
     name: Check images (full)
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
 
     steps:
