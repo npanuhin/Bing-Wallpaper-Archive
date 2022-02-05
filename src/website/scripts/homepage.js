@@ -102,7 +102,7 @@ function changeBackground() {
 
         if (description.hasAttribute("firstrun")) {
             description.removeAttribute("firstrun");
-            description.style.display = "block";
+            description.style.visibility = "visible";
 
             description_link.href = "api/US/images/" + image_name + ".jpg";
             description_link.innerHTML = api[image_name];
@@ -129,6 +129,10 @@ function changeBackground() {
                 // background2.style.visibility = "hidden";
                 background2.style.opacity = 0;
             }
+
+            setTimeout(changeBackground, 3000);
+            // setTimeout(changeBackground, 5000);
+
         }, 1200);
     }
 }
@@ -142,21 +146,12 @@ ajax(
         // console.log(api);
 
         changeBackground();
+
         // setInterval(changeBackground, 3000);
-        setInterval(changeBackground, 5000);
+        // setInterval(changeBackground, 5000);
     },
     error = () => {
         alert("Error: can not load /src/website/api/us.json");
         exit();
     }
 );
-
-// var best_images = [
-//     ["US", "2021-08-31.jpg"],
-//     ["US", "2021-09-09.jpg"],
-//     ["US", "2021-10-06.jpg"],
-//     ["US", "2021-10-07.jpg"],
-//     ["US", "2021-10-17.jpg"],
-//     ["US", "2021-10-19.jpg"],
-//     ["US", "2021-10-23.jpg"]
-// ];
