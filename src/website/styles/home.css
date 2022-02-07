@@ -93,6 +93,7 @@ body {
 
 
 #description {
+	display: block;
 	position: fixed;
 	right: 0;
 	bottom: 0;
@@ -102,30 +103,25 @@ body {
 
 	visibility: hidden;  /* Init */
 	background-color: rgba(0, 0, 0, 0.5);
-	transition: 0.075s background-color ease-in-out, 0.075s box-shadow ease-in-out, 0.5s opacity ease-in-out;
+	transition: 0.5s opacity ease-in-out,
+				0.1s background-color ease-in-out,
+				0.1s box-shadow ease-in-out,
+				0.1s color ease-in-out;
+
+	color: #fff;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 17px;
 }
 
 #description:hover {
 	background-color: rgba(0, 0, 0, 0.9);
 	box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
-}
 
-#description a {
-	/* padding: 10px 15px; */
-	border-radius: 15px;
-
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 17px;
-
-	color: #fff;
-	transition: 0.075s color ease-in-out;
-}
-
-#description:hover a {
 	color: #0A84FF;
 }
 
-#description a::after {
+#description::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -142,6 +138,6 @@ body {
 	transition: 0.075s opacity ease-in-out;
 }
 
-#description:hover a::after {
+#description:hover::after {
 	opacity: 1;
 }

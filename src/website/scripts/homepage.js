@@ -79,8 +79,7 @@ var start_date = new Date(2017, 5, 10), // 2017-05-10: high res starts ~here
 
 var background1 = document.getElementById("background1"),
     background2 = document.getElementById("background2"),
-    description = document.getElementById("description"),
-    description_link = description.getElementsByTagName("a")[0];
+    description = document.getElementById("description");
 
 var api;
 
@@ -104,8 +103,8 @@ function changeBackground() {
             description.removeAttribute("firstrun");
             description.style.visibility = "visible";
 
-            description_link.href = "api/US/images/" + image_name + ".jpg";
-            description_link.innerHTML = api[image_name];
+            description.href = "api/US/images/" + image_name + ".jpg";
+            description.innerHTML = api[image_name];
 
         } else {
             description.style.opacity = 0;
@@ -113,8 +112,8 @@ function changeBackground() {
             description.style.transition = "";
 
             setTimeout(() => {
-                description_link.href = "api/US/images/" + image_name + ".jpg";
-                description_link.innerHTML = api[image_name];
+                description.href = "api/US/images/" + image_name + ".jpg";
+                description.innerHTML = api[image_name];
 
                 description.style.transition = tmp_transition;
                 description.offsetHeight;  // Apply styles
