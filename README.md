@@ -10,5 +10,10 @@
 
 ### Development
 
-- [`src/exiftool.exe`](https://npanuhin.me/files/exiftool.exe) (Windows)
-- [`src/Image-ExifTool-12.38.tar.gz`](https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz) (Linux)
+-  [`src/exiftool.exe`](https://npanuhin.me/files/exiftool.exe) (Windows)
+-  [`src/Image-ExifTool-12.38.tar.gz`](https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz) (Linux)
+
+
+### TODO
+
+-  GitHub api for badges
