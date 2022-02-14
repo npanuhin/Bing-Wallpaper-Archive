@@ -54,7 +54,7 @@ jobs:
 
       - name: Update images
         working-directory: ${{ steps.repository.outputs.name }}/src
-        run: python daily_update.py
+        run: python update.py
 
 
       # - name: GPG
