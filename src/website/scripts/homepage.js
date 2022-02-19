@@ -1,5 +1,3 @@
-//! Copyright ©; 2019-2022 Nikita Paniukhin
-
 function urlencode(data) {
     let res = [];
     for (let key in data) {

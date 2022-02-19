@@ -1,10 +1,3 @@
-#                                    ┌───────────────────────────────────────────┐
-#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
-#                                    │      Licensed under the MIT license       │
-#                                    └───────────────────────────────────────────┘
-#
-# ======================================================================================================================
-
 from urllib.parse import urlsplit, urlunsplit
 # from requests import get as req_get
 from traceback import print_exc

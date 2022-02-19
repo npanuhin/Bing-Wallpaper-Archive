@@ -1,10 +1,3 @@
-#                                    ┌───────────────────────────────────────────┐
-#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
-#                                    │      Licensed under the MIT license       │
-#                                    └───────────────────────────────────────────┘
-#
-# ======================================================================================================================
-
 from json import loads as json_loads
 from sys import path as sys_path
 from PIL import Image

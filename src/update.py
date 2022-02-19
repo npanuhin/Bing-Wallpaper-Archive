@@ -1,10 +1,3 @@
-#                                    ┌───────────────────────────────────────────┐
-#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
-#                                    │      Licensed under the MIT license       │
-#                                    └───────────────────────────────────────────┘
-#
-# ======================================================================================================================
-
 from peapix import updateRegions, FLAG_LATEST, FLAG_NOTOUCH
 from json import load as json_load, dump as json_dump
 from re import sub as re_sub

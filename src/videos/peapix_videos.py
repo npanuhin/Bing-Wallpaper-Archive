@@ -1,10 +1,3 @@
-#                                    ┌───────────────────────────────────────────┐
-#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
-#                                    │      Licensed under the MIT license       │
-#                                    └───────────────────────────────────────────┘
-#
-# ======================================================================================================================
-
 from collections import defaultdict
 from bs4 import BeautifulSoup
 import requests

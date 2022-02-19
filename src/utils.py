@@ -1,10 +1,3 @@
-#                                    ┌───────────────────────────────────────────┐
-#                                    │    Copyright (c) 2022 Nikita Paniukhin    │
-#                                    │      Licensed under the MIT license       │
-#                                    └───────────────────────────────────────────┘
-#
-# ======================================================================================================================
-
 from threading import Thread, Lock, active_count as threading_active_count
 from posixpath import join as os_join, normpath as os_normpath
 from json import load as json_load, dump as json_dump
