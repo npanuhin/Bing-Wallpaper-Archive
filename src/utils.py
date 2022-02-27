@@ -3,7 +3,7 @@ from posixpath import join as os_join, normpath as os_normpath
 from json import load as json_load, dump as json_dump
 from subprocess import Popen, PIPE
 from calendar import monthrange
-from httplib2 import Http
+# from httplib2 import Http
 from shutil import rmtree
 from time import sleep
 import datetime
@@ -42,6 +42,7 @@ def add_months(sourcedate, months):
 
 
 def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool")):
+    print('Removing metadata in "{}"...'.format(path))
     s = Popen(
         "\"{}\" -all= --icc_profile:all -overwrite_original -progress -ext \"{}\" \"{}\"".format(exiftool, extension, path),
         shell=True,
@@ -51,23 +52,23 @@ def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool
 
     s = list(map(lambda x: x.decode("cp1251"), s))
 
-    print(path, ": ", s, sep='')
+    print(s)
 
 
-class FileDownloader:
-    def __init__(self):
-        self.h = Http('cache/.http_cache')
-        self.thread_lock = Lock()
+# class FileDownloader:
+#     def __init__(self):
+#         self.h = Http('cache/.http_cache')
+#         self.thread_lock = Lock()
 
-    def download(self, url, path):
-        with self.thread_lock:
-            with open(mkpath(path), 'wb') as file:
-                response, content = self.h.request(url)
-                file.write(content)
+#     def download(self, url, path):
+#         with self.thread_lock:
+#             with open(mkpath(path), 'wb') as file:
+#                 response, content = self.h.request(url)
+#                 file.write(content)
 
-    def __del__(self):
-        if os.path.isdir('cache/.http_cache'):
-            rmtree('cache/.http_cache')
+#     def __del__(self):
+#         if os.path.isdir('cache/.http_cache'):
+#             rmtree('cache/.http_cache')
 
 
 class SafeJson:
@@ -82,7 +83,8 @@ class SafeJson:
     #     '''Not working: "open" has already been deleted by the GC'''
     #     self.dump_cache()
 
-    def dump(self, path, data, allow_cache=False, prettify=False, *args, **kwargs):
+    def dump(self, path, data, allow_cache=False, ensure_ascii=False, prettify=False, *args, **kwargs):
+        kwargs["ensure_ascii"] = ensure_ascii
         self.cache[os.path.abspath(mkpath(path))] = (data, prettify, args, kwargs)
 
         self.cache_timer -= 1
