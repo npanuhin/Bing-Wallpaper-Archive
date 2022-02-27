@@ -26,13 +26,11 @@ jobs:
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
           echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
 
-
       - name: Partially clone repository 
         run: |
           git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
           cd ${{ steps.repository.outputs.name }}
           git sparse-checkout set "*" "!*.jpg" "!*.mp4"
-
 
       - name: Get files modified in the last commit (space-delimited)
         id: modified_files_spaced
@@ -47,11 +45,9 @@ jobs:
       - name: Set environment variable with modified files (json) for Python
         run: echo 'GITHUB_CHANGED_FILES=${{ steps.modified_files_json.outputs.added_modified }}' >> $GITHUB_ENV
 
-
       - name: Checkout modified files
         working-directory: ${{ steps.repository.outputs.name }}
         run: git sparse-checkout add ${{ steps.modified_files_spaced.outputs.added_modified }}
-
 
       - name: Install Python
         uses: actions/setup-python@v2
@@ -59,23 +55,27 @@ jobs:
           python-version: 3.8
           architecture: 'x64'
 
-
       - name: Install Python's requirements
         working-directory: ${{ steps.repository.outputs.name }}/src/requirements
         run: pip install -r check_images.txt
 
+      - name: Check for ExifTool in cache
+        id: exiftool-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.repository.outputs.name }}/src/exiftool/exiftool
+          key: ExifTool-${{ runner.os }}
 
       - name: Download ExifTool
+        if: steps.exiftool-cache.outputs.cache-hit != 'true'
         working-directory: ${{ steps.repository.outputs.name }}/src/exiftool
         run: |
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
 
-
       - name: Check broken images
         working-directory: ${{ steps.repository.outputs.name }}/src/checks
         run: python check_broken_images.py
-
 
       - name: Check metadata
         working-directory: ${{ steps.repository.outputs.name }}/src/checks
@@ -103,7 +103,15 @@ jobs:
         working-directory: src/requirements
         run: pip install -r check_images.txt
 
+      - name: Check for ExifTool in cache
+        id: exiftool-cache
+        uses: actions/cache@v2
+        with:
+          path: src/exiftool/exiftool
+          key: ExifTool-${{ runner.os }}
+
       - name: Download ExifTool
+        if: steps.exiftool-cache.outputs.cache-hit != 'true'
         working-directory: src/exiftool
         run: |
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
