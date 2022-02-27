@@ -62,11 +62,11 @@ function getRandomDate(from, to) {
     return new Date(random(from.getTime(), to.getTime()));
 }
 
-function leadingZeros(n, totalDigits) {
-    n = n.toString();
-    var pd = '';
-    for (i = 0; i < (totalDigits - n.length); ++i) pd += '0'; 
-    return pd + n.toString();
+function leadingZeros(s, totalDigits) {
+    s = s.toString();
+    let res = '';
+    for (i = 0; i < (totalDigits - s.length); ++i) res += '0'; 
+    return res + s.toString();
 }
 
 
@@ -85,9 +85,12 @@ var api;
 function changeBackground() {
     let image_date = getRandomDate(start_date, end_date);
 
-    let image_name = leadingZeros(image_date.getUTCFullYear(), 4) + '-'
-                   + leadingZeros(image_date.getUTCMonth() + 1, 2) + '-'
-                   + leadingZeros(image_date.getUTCDate(), 2);
+    let year = leadingZeros(image_date.getUTCFullYear(), 4),
+        month = leadingZeros(image_date.getUTCMonth() + 1, 2),
+        day = leadingZeros(image_date.getUTCDate(), 2);
+
+    let image_name = year + '-' + month + '-' + day,
+        image_short_name = year + month + day;
 
     // console.log(image_name);
 
@@ -102,7 +105,7 @@ function changeBackground() {
             description.style.visibility = "visible";
 
             description.href = "api/US/images/" + image_name + ".jpg";
-            description.innerHTML = api[image_name];
+            description.innerHTML = api[image_short_name];
 
         } else {
             description.style.opacity = 0;
@@ -111,7 +114,7 @@ function changeBackground() {
 
             setTimeout(() => {
                 description.href = "api/US/images/" + image_name + ".jpg";
-                description.innerHTML = api[image_name];
+                description.innerHTML = api[image_short_name];
 
                 description.style.transition = tmp_transition;
                 description.offsetHeight;  // Apply styles

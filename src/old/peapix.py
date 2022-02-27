@@ -235,7 +235,7 @@ def update(region, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_acti
     print()
 
 
-def updateRegions(regions, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_action=FLAG_NOTOUCH):
+def update_regions(regions, days_action=FLAG_NOTOUCH, api_action=FLAG_NOTOUCH, image_action=FLAG_NOTOUCH):
     _pass(clear_folder)
     for region in regions:
         # clear_folder(mkpath(API_PATH, region, "images"))
@@ -254,7 +254,7 @@ FLAG_UPDATE = 2  # FLAG_UPDATE - Update all
 
 
 if __name__ == "__main__":
-    updateRegions(
+    update_regions(
         # ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"],
         ["US"],
         days_action=FLAG_LATEST,

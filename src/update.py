@@ -1,25 +1,25 @@
-from peapix import updateRegions, FLAG_LATEST, FLAG_NOTOUCH
 from json import load as json_load, dump as json_dump
+from datetime import datetime
+from bing import update_all
 from utils import mkpath
 import re
 
 
 # REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
-REGIONS = ["US"]
+# en-WW
+REGIONS = ["en-US"]
 
 website_start_date = "2017-05-10"
 
 
 # =============================================== Update api and images ================================================
 
-updateRegions(
-    REGIONS,
-    days_action=FLAG_LATEST,
-    api_action=FLAG_LATEST,
-    # image_action=FLAG_LATEST
-    image_action=FLAG_NOTOUCH
+update_all(
+    # days_action=FLAG_LATEST,
+    # api_action=FLAG_LATEST,
+    # # image_action=FLAG_LATEST
+    # image_action=FLAG_NOTOUCH
 )
-
 
 with open(mkpath("../", "api", "US", "us.json"), 'r', encoding="utf-8") as file:
     us_api = json_load(file)
@@ -50,13 +50,14 @@ with open(mkpath("../", "README.md"), 'r+', encoding="utf-8") as file:
 # ================================================= Update website api =================================================
 
 for region in REGIONS:
-    with open(mkpath("../", "api", region, region.lower() + ".json"), 'r', encoding="utf-8") as file:
+    country = region[region.rfind('-') + 1:]
+    with open(mkpath("../", "api", country, country.lower() + ".json"), 'r', encoding="utf-8") as file:
         api = json_load(file)
 
     api_for_website = {
-        item["date"]: item['title']
+        datetime.strptime(item["date"], '%Y-%m-%d').strftime('%Y%m%d'): item['title']
         for item in api if item["date"] >= website_start_date
     }
 
-    with open(mkpath("website", "api", region.lower() + ".json"), 'w', encoding="utf-8") as file:
+    with open(mkpath("website", "api", country.lower() + ".json"), 'w', encoding="utf-8") as file:
         json_dump(api_for_website, file, ensure_ascii=False, separators=(',', ':'))
