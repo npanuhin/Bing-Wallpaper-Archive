@@ -25,13 +25,11 @@ jobs:
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
           echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
 
-
       - name: Partially clone repository 
         run: |
           git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
           cd ${{ steps.repository.outputs.name }}
           git sparse-checkout set "*" "!*.jpg" "!*.mp4"
-
 
       - name: Install Python
         uses: actions/setup-python@v2
@@ -39,23 +37,27 @@ jobs:
           python-version: 3.8
           architecture: 'x64'
 
-
       - name: Install Python's requirements
         working-directory: ${{ steps.repository.outputs.name }}/src/requirements
         run: pip install -r daily_update.txt
 
+      - name: Check for ExifTool in cache
+        id: exiftool-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.repository.outputs.name }}/src/exiftool/exiftool
+          key: ExifTool-${{ runner.os }}
 
       - name: Download ExifTool
+        if: steps.exiftool-cache.outputs.cache-hit != 'true'
         working-directory: ${{ steps.repository.outputs.name }}/src/exiftool
         run: |
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
 
-
       - name: Update images
         working-directory: ${{ steps.repository.outputs.name }}/src
         run: python update.py
-
 
       # - name: GPG
       #   uses: crazy-max/ghaction-import-gpg@v4
@@ -66,11 +68,9 @@ jobs:
       #     git_commit_gpgsign: true
       #     # git_tag_gpgsign: true
 
-
       - name: Fetch current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
