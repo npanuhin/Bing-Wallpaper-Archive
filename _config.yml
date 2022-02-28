@@ -9,7 +9,6 @@ exclude:
   - "/CHNAME"
   - "/LICENSE"
   - "/README.md"
-  - "/requirements.txt"
   # --------------------
   - ".*"
   - "*.py"

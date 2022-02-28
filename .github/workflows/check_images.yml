@@ -54,6 +54,8 @@ jobs:
         with:
           python-version: 3.8
           architecture: 'x64'
+          cache: 'pip'
+          cache-dependency-path: '${{ steps.repository.outputs.name }}/src/requirements/check_images.txt'
 
       - name: Install Python's requirements
         working-directory: ${{ steps.repository.outputs.name }}/src/requirements
@@ -63,7 +65,7 @@ jobs:
         id: exiftool-cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.repository.outputs.name }}/src/exiftool/exiftool
+          path: ${{ steps.repository.outputs.name }}/src/exiftool
           key: ExifTool-${{ runner.os }}
 
       - name: Download ExifTool
@@ -72,6 +74,7 @@ jobs:
         run: |
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
+          rm -f Image-ExifTool-12.38.tar.gz
 
       - name: Check broken images
         working-directory: ${{ steps.repository.outputs.name }}/src/checks
@@ -98,6 +101,8 @@ jobs:
         with:
           python-version: 3.8
           architecture: 'x64'
+          cache: 'pip'
+          cache-dependency-path: 'src/requirements/check_images.txt'
 
       - name: Install Python's requirements
         working-directory: src/requirements
@@ -107,7 +112,7 @@ jobs:
         id: exiftool-cache
         uses: actions/cache@v2
         with:
-          path: src/exiftool/exiftool
+          path: src/exiftool
           key: ExifTool-${{ runner.os }}
 
       - name: Download ExifTool
@@ -116,6 +121,7 @@ jobs:
         run: |
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
+          rm -f Image-ExifTool-12.38.tar.gz
 
       - name: Check broken images
         working-directory: src/checks
