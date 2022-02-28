@@ -2,12 +2,15 @@ from json import load as json_load, dump as json_dump
 from datetime import datetime
 from bing import update_all
 from utils import mkpath
+from os import listdir
 import re
 
 
 # REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
 # en-WW
 REGIONS = ["en-US"]
+
+API_PATH = "../api"
 
 website_start_date = "2017-05-10"
 
@@ -21,10 +24,10 @@ update_all(
     # image_action=FLAG_NOTOUCH
 )
 
-with open(mkpath("../", "api", "US", "us.json"), 'r', encoding="utf-8") as file:
+with open(mkpath(API_PATH, "US", "us.json"), 'r', encoding="utf-8") as file:
     us_api = json_load(file)
 
-latest_image_date = us_api[-1]["date"]
+latest_image_date = max(listdir(mkpath(API_PATH, "US", "images")))
 print("Updated US to", latest_image_date)
 
 # =================================================== Update README ====================================================
