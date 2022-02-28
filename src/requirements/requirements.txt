@@ -1,7 +1,2 @@
-requests_toolbelt
-cloudscraper
-requests
-httplib2
 Pillow
-lxml
-bs4
+requests
