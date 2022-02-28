@@ -79,7 +79,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           repository: ${{ steps.repository.outputs.name }}
-          commit_message: "Images update: US to ${{ steps.date.outputs.date }}"
+          commit_message: "Archive update: US to ${{ steps.date.outputs.date }}"
           add_options: '--sparse'
           commit_user_name: GitHub Actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com

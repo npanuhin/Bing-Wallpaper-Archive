@@ -1,7 +1,7 @@
 from utils import mkpath, SafeJson, remove_metadata
+from os import makedirs, path as os_path
 from requests import get as req_get
 from datetime import datetime
-from os import makedirs
 
 
 # REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
@@ -15,6 +15,20 @@ safe_json = SafeJson()
 # ======================================================================================================================
 
 
+def update_api(api, new_image_api):
+    date = new_image_api["date"]
+    if date not in api:
+        api[date] = new_image_api
+        return
+
+    for key, value in new_image_api.items():
+        if key in api[date] and api[date][key] is not None:
+            assert api[date][key] == new_image_api[key], \
+                'key "{}" is different for {}: "{}" vs "{}"'.format(key, date, api[date][key], new_image_api[key])
+
+        api[date][key] = new_image_api[key]
+
+
 def update(region):
     print("Updating {}...".format(region))
 
@@ -26,41 +40,55 @@ def update(region):
     api = {item["date"]: item for item in api}
 
     # ================= https://www.bing.com/HPImageArchive.aspx =================
-    print("Getting subtitle...")
+    print("Getting caption and image from bing.com/HPImageArchive.aspx...")
 
     data = req_get(
         "https://www.bing.com/HPImageArchive.aspx",
-        params={"format": "js", "idx": 0, "n": 100, "mkt": region}
+        params={"format": "js", "idx": 0, "n": 10, "mkt": region}
     ).json()["images"]
 
     for cur_data in data:
         date = datetime.strptime(cur_data["startdate"], '%Y%m%d').strftime('%Y-%m-%d')
 
-        new_api = {
-            "subtitle": cur_data["title"],
-            "date": date
-        }
+        path = mkpath("US", "images", date + ".jpg")
 
-        if date in api:
-            api[date].update(new_api)
-        else:
-            api[date] = new_api
+        # Downloading image
+        if not os_path.isfile(mkpath(API_PATH, path)):
+            with open(mkpath(API_PATH, path), 'wb') as file:
+                file.write(req_get("https://bing.com" + cur_data["urlbase"] + "_UHD.jpg").content)
+            remove_metadata(mkpath(API_PATH, path))
+
+        update_api(api, {
+            "caption": cur_data["title"],
+            "date": date,
+            "path": path
+        })
+
+    # ====================== https://www.bing.com/hp/api/model ======================
+    print("Getting title, caption and copyright from bing.com/hp/api/model...")
+    data = req_get("https://www.bing.com/hp/api/model", params={"mkt": region}).json()["MediaContents"]
+
+    for cur_data in data:
+        date = datetime.strptime(cur_data["Ssd"][:cur_data["Ssd"].find('_')], '%Y%m%d').strftime('%Y-%m-%d')
+
+        cur_data = cur_data["ImageContent"]
+
+        update_api(api, {
+            "title": cur_data["Title"],
+            "caption": cur_data["Headline"],
+            "copyright": cur_data["Copyright"][:-1],  # TODO: Needs a fix!
+            "date": date
+        })
 
     # ================= https://www.bing.com/hp/api/v1/imagegallery =================
-    print("Getting other info...")
+    print("Getting everyting else from bing.com/hp/api/v1/imagegallery...")
     data = req_get(
         "https://www.bing.com/hp/api/v1/imagegallery",
         params={"format": "json", "mkt": region}
-    ).json()["data"]["images"]
+    ).json()["data"]["images"][:2]
 
     for cur_data in data:
         date = datetime.strptime(cur_data["isoDate"], '%Y%m%d').strftime('%Y-%m-%d')
-
-        path = mkpath("US", "images", date + ".jpg")
-
-        with open(mkpath(API_PATH, path), 'wb') as file:
-            file.write(req_get("https://bing.com" + cur_data["imageUrls"]["landscape"]["ultraHighDef"]).content)
-        remove_metadata(mkpath(API_PATH, path))
 
         description = cur_data["description"]
         i = 2
@@ -70,19 +98,13 @@ def update(region):
 
         description = description.replace("  ", " ")  # Fix for double spaces
 
-        new_api = {
+        update_api(api, {
             "title": cur_data["title"],
-            "caption": cur_data["caption"],
+            "subtitle": cur_data["caption"],
             "copyright": cur_data["copyright"][:-1],  # TODO: Needs a fix!
             "description": description,
-            "date": date,
-            "path": path
-        }
-
-        if date in api:
-            api[date].update(new_api)
-        else:
-            api[date] = new_api
+            "date": date
+        })
 
     safe_json.dump(
         mkpath(API_PATH, country.upper(), country.lower() + ".json"),
