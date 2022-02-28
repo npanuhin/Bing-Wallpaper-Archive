@@ -27,7 +27,7 @@ update_all(
 with open(mkpath(API_PATH, "US", "us.json"), 'r', encoding="utf-8") as file:
     us_api = json_load(file)
 
-latest_image_date = max(listdir(mkpath(API_PATH, "US", "images")))
+latest_image_date = max(listdir(mkpath(API_PATH, "US", "images"))).rstrip(".jpg")
 print("Updated US to", latest_image_date)
 
 # =================================================== Update README ====================================================

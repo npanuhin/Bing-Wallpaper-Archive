@@ -30,3 +30,4 @@
 -  **"copyright" field has last character strippped (!)**
 -  GitHub api for badges (done?)
 -  `caption = subtitle`  -> `subtitle/caption = None`
+-  Videos?
