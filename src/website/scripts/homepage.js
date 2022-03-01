@@ -130,8 +130,8 @@ function changeBackground() {
                 background2.style.opacity = 0;
             }
 
-            setTimeout(changeBackground, 3000);
-            // setTimeout(changeBackground, 5000);
+            // setTimeout(changeBackground, 3000);
+            setTimeout(changeBackground, 5000);
 
         }, 1200);
     }
