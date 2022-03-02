@@ -90,22 +90,22 @@ function changeBackground() {
         day = leadingZeros(image_date.getUTCDate(), 2);
 
     let image_name = year + '-' + month + '-' + day,
-        image_short_name = year + month + day;
+        image_short_name = year + month + day,
+        image_path = "api/US/images/" + image_name + ".jpg";
 
     // console.log(image_name);
-
-    background2.src = "api/US/images/" + image_name + ".jpg";
-    // background2.style.visibility = "visible";
 
     background2.onload = () => {
         background2.style.opacity = 1;
 
         if (description.hasAttribute("firstrun")) {
             description.removeAttribute("firstrun");
-            description.style.visibility = "visible";
 
-            description.href = "api/US/images/" + image_name + ".jpg";
+            description.href = image_path;
             description.innerHTML = api[image_short_name];
+
+            description.style.visibility = "visible";
+            document.body.classList.add("shown");
 
         } else {
             description.style.opacity = 0;
@@ -113,7 +113,7 @@ function changeBackground() {
             description.style.transition = "";
 
             setTimeout(() => {
-                description.href = "api/US/images/" + image_name + ".jpg";
+                description.href = image_path;
                 description.innerHTML = api[image_short_name];
 
                 description.style.transition = tmp_transition;
@@ -123,18 +123,21 @@ function changeBackground() {
         }
 
         setTimeout(() => {
-            background1.src = background2.src;
-
             background1.onload = () => {
                 // background2.style.visibility = "hidden";
                 background2.style.opacity = 0;
             }
+
+            background1.src = image_path;
 
             // setTimeout(changeBackground, 3000);
             setTimeout(changeBackground, 5000);
 
         }, 1200);
     }
+
+    background2.src = image_path;
+    // background2.style.visibility = "visible";
 }
 
 ajax(

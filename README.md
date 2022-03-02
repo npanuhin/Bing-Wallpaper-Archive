@@ -31,3 +31,4 @@
 -  GitHub api for badges (done?)
 -  `caption = subtitle`  -> `subtitle/caption = None`
 -  Videos?
+-  Website: preload next image
