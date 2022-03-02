@@ -52,12 +52,16 @@ body {
     min-width: 100vw;
     min-height: 100vh;
 
-    animation: fadeInAnimation 0.2s ease-in 0s 1 forwards;
+    opacity: 0;
 }
 
-body.hidden {
-    animation: fadeInAnimation 0.2s ease-in 0s 1 backwards;
+body.shown {
+    animation: fadeInAnimation 0.1s ease-in 0s 1 forwards;
 }
+
+/* body.hidden {
+    animation: fadeInAnimation 0.2s ease-in 0s 1 reverse;
+} */
 
 @keyframes fadeInAnimation {
     0% {
