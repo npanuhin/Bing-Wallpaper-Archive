@@ -28,7 +28,9 @@
 ### TODO
 
 -  **"copyright" field has last character strippped (!)**
+-  **Missing images (!)** ([`src/old/find_missing.py`](src/old/find_missing.py)) UPD: probably those are videos, need check
 -  GitHub api for badges (done?)
 -  `caption = subtitle`  -> `subtitle/caption = None`
 -  Videos?
 -  Website: preload next image
+-  Add more images from 2009
