@@ -10,6 +10,8 @@ REGIONS = ["en-US"]
 
 API_PATH = mkpath("../", "api")
 
+FORCE_SAME_DATA = False
+
 safe_json = SafeJson()
 
 # ======================================================================================================================
@@ -22,7 +24,7 @@ def update_api(api, new_image_api):
         return
 
     for key, value in new_image_api.items():
-        if key in api[date] and api[date][key] is not None:
+        if FORCE_SAME_DATA and key in api[date] and api[date][key] is not None:
             assert api[date][key] == new_image_api[key], \
                 'key "{}" is different for {}: "{}" vs "{}"'.format(key, date, api[date][key], new_image_api[key])
 
@@ -76,7 +78,7 @@ def update(region):
         update_api(api, {
             "title": cur_data["Title"],
             "caption": cur_data["Headline"],
-            "copyright": cur_data["Copyright"][:-1],  # TODO: Needs a fix!
+            "copyright": cur_data["Copyright"],
             "date": date
         })
 
@@ -101,7 +103,7 @@ def update(region):
         update_api(api, {
             "title": cur_data["title"],
             "subtitle": cur_data["caption"],
-            "copyright": cur_data["copyright"][:-1],  # TODO: Needs a fix!
+            "copyright": cur_data["copyright"],
             "description": description,
             "date": date
         })
