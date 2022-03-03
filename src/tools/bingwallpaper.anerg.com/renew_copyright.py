@@ -1,7 +1,9 @@
 from requests import get as req_get
 from bs4 import BeautifulSoup
-from datetime import date  # , timedelta
-# from copy import deepcopy
+from fuzzywuzzy import fuzz
+from datetime import date
+import os
+import re
 
 from sys import path as sys_path
 sys_path.append("../../")
@@ -28,80 +30,125 @@ api = safe_json.load(mkpath(API_PATH, REGION.upper(), REGION.lower() + ".json"))
 # api = {item["date"]: item for item in api}
 # new_api = deepcopy(api)
 
-# soup = BeautifulSoup(
-#     req_get("https://bingwallpaper.anerg.com/us").text,
-#     "lxml"
-# )
-
-# with open("page.html", 'w', encoding="utf-8") as file:
-#     file.write(soup.prettify())
-
-with open("page.html", 'r', encoding="utf-8") as file:
-    soup = BeautifulSoup(file.read(), "lxml")
-
-for cur_month in month_year_iter(date(2020, 1, 1), date(2022, 4, 1)):
+cur_api_pos = 0
+for cur_month in month_year_iter(date(2010, 1, 1), date(2022, 3, 1)):
     cur_month = date(*cur_month, 1)
     cur_month_str = cur_month.strftime("%Y-%m")
+    cur_month_short_str = cur_month.strftime("%Y%m")
 
-    print("Parsing {}...".format(cur_month.strftime("%Y%m")))
-    soup = BeautifulSoup(req_get("https://bingwallpaper.anerg.com/us/" + cur_month.strftime("%Y%m")).text, "lxml")
+    print("Parsing {}...".format(cur_month_short_str))
+    cached = False
+    if os.path.exists(mkpath("cache", cur_month_short_str + ".html")):
+        with open(mkpath("cache", cur_month_short_str + ".html"), 'r', encoding="utf-8") as file:
+            html = file.read()
+            if html:
+                soup = BeautifulSoup(html, "lxml")
+                cached = True
+
+    if not cached:
+        soup = BeautifulSoup(req_get("https://bingwallpaper.anerg.com/us/" + cur_month_short_str).text, "lxml")
+
+        with open(mkpath("cache", cur_month_short_str + ".html"), 'w', encoding="utf-8") as file:
+            file.write(str(soup))
+
     soup = soup.find("body").find("div", id="jssor_1")
 
     # with open("subpage.html", 'w', encoding="utf-8") as file:
     #     file.write(soup.prettify())
 
-    for image in soup.find_all("img", {"data-u": "image"}):
-        title = image.parent.parent.find("div", class_="intro").text
+    images = soup.find_all("img", {"data-u": "image"})
+    for image_index, image in enumerate(images):
+        title = image.parent.parent.find("div", class_="intro").text.strip()
+
         # image_url = image.get("src")
         # print("https:" + image_url)
 
-        # title = title.rstrip("(Bing United States)")
-
         if title.endswith("(Bing United States)"):
-            title = title[:-len("(Bing United States)")]
+            title = title[:-len("(Bing United States)")].strip()
 
-        # if '(' in title and ')' in title:
+        title = title.replace("\\'", "'").replace('\\"', '"').replace("  ", " ")
 
-        copyright = title[title.rfind('(') + 1:title.rfind(')')]
+        match1 = re.match(
+            r"^(.+?)\s*\(\s*(©[^\)]+?)\s*\)?\s*(?:\s*©)?$",
+            title, re.IGNORECASE
+        )
+        match2 = re.match(
+            r"^(.+?)(?:\s*\-\-\s*)(?!.+(?:\s*\-\-\s*))(.+)$",
+            title, re.IGNORECASE
+        )
+        match3 = re.match(
+            r"^(.+?)(?:\s+by\s+|\s*\–\s*|\s+\-\s*|\s*\-\s+)(?!.+(?:\s+by\s+|\s*\–\s*|\s+\-\s*|\s*\-\s+))(.+)$",
+            title, re.IGNORECASE
+        )
+        match4 = re.match(
+            r"^(.+?)\s*\(\s*([^\)]+?)\s*\)?\s*(?:\s*©)?$",
+            title, re.IGNORECASE
+        )
+        match5 = re.match(
+            r"^(.+?)\s*\(\s*(.+?)\s*\)\s*(?:\s*©)?$",
+            title, re.IGNORECASE
+        )
 
-        assert len(copyright) > 0 and len(copyright) != len(title), "Can not find copyright in {}".format(title)
+        if not match1 and not match2 and match3 and (match4 or match5):
+            print("Multiple matches on \"{}\"".format(title))
 
-        title = title[:title.rfind('(')].strip()
+        if match1:
+            match = match1
+        elif match2:
+            match = match2
+        elif match3:
+            match = match3
+        elif match4:
+            match = match4
+        elif match5:
+            match = match5
+        else:
+            print("Title not parsed: \"{}\" from {}".format(title, cur_month_str))
+            continue
 
-        print((title, copyright))
+        title, copyright = match.groups()
+        # print((title, copyright))
 
-        print("Searching {}...".format(title))
-        search_result = None
-        for seach_length in range(1, len(title) + 1):
-            seach_count = 0
+        assert title and copyright, "Title or copyright is empty: ({}, {})".format(title, copyright)
 
-            for index, item in enumerate(api):
-                if item["date"].startswith(cur_month_str) and item["title"].startswith(title[:seach_length]):
-                    seach_count += 1
-                    search_result = index
+        # title = title.replace("  ", " ")
+        # copyright = copyright.replace("  ", " ")
 
-                    print(item["title"], title)
-                    print(len(item["title"]), len(title))
+        search_title = title
+        if title == "The Copper River Delta in Chugach National Forest, Alaska":
+            search_title = "The Copper River Delta in Wrangell-St. Elias National Park and Preserve, Alaska"
 
-                    if len(item["title"]) == len(title):
-                        seach_count = 1
-                        break
+        api_index = max(
+            range(max(0, cur_api_pos - 5), min(len(api), cur_api_pos + 7)),
+            key=lambda i: fuzz.partial_ratio(search_title.lower(), api[i]["title"].lower())  # partial_ratio, token_sort_ratio, WRatio
+        )
+        if fuzz.partial_ratio(search_title, api[api_index]["title"]) >= 80:
+            pass
+        else:
+            if image_index == len(images) - 1:
+                continue
+            print("Can not find title{}: (\"{}\", \"{}\") for month {}".format(
+                " (last day of month)" if image_index == len(images) - 1 else "",
+                search_title, copyright, cur_month_str
+            ))
+            print("Ratios:", [
+                fuzz.partial_ratio(search_title, api[i]["title"]) for i in range(cur_api_pos - 5, cur_api_pos + 7)
+            ])
+            continue
 
-            if seach_count <= 1:
-                break
-
-            print()
-
-        print(seach_count, seach_length)
-
-        assert seach_count == 1, "Title not found: {}".format(title)
+        cur_api_pos = api_index
 
         # print(search_result, api[search_result]["copyright"], copyright)
+        # print((copyright.lower(), api[cur_api_pos]["copyright"].lower()))
 
-        api[search_result]["copyright"] = copyright
+        if api[cur_api_pos]["copyright"] is not None and \
+                fuzz.partial_ratio(copyright.lower(), api[cur_api_pos]["copyright"].lower()) < 95:
+            print('Warning! Low partial ration for new copyright: "{}" -> "{}" ({})'.format(
+                api[cur_api_pos]["copyright"], copyright, cur_month_str
+            ))
 
-        # print(search_result, api[search_result]["copyright"], copyright)
+        api[cur_api_pos]["copyright"] = copyright
 
     # break
 
-safe_json.dump(mkpath(API_PATH, REGION.upper(), REGION.lower() + ".new.json"), api, prettify=True)
+safe_json.dump(REGION.lower() + ".new.json", api, prettify=True)

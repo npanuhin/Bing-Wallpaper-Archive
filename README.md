@@ -34,3 +34,9 @@
 -  Videos?
 -  Website: preload next image
 -  Add more images from 2009
+
+
+<!-- -  `2016-06-05` copyright: `© Heinz Wohner/Getty Images` vs `© Richard Du Toit/Minden Pictures` -->
+
+-  Multiple months are missing one image on the last day (`src/tools/bingwallpaper.anerg.com/result.txt`)
+-  Month `2016-02` has two duplicate images and is missing one image (`src/tools/bingwallpaper.anerg.com/result.txt`)
