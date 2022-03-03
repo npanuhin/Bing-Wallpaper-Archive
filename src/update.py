@@ -2,7 +2,7 @@ from json import load as json_load, dump as json_dump
 from datetime import datetime
 from bing import update_all
 from utils import mkpath
-from os import listdir
+import os
 import re
 
 
@@ -27,7 +27,7 @@ update_all(
 with open(mkpath(API_PATH, "US", "us.json"), 'r', encoding="utf-8") as file:
     us_api = json_load(file)
 
-latest_image_date = max(listdir(mkpath(API_PATH, "US", "images"))).endswith(".jpg")
+latest_image_date = os.path.splitext(max(os.listdir(mkpath(API_PATH, "US", "images"))))[0]
 print("Updated US to", latest_image_date)
 
 # =================================================== Update README ====================================================
