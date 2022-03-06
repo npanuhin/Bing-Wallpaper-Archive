@@ -5,7 +5,6 @@ on:
     - cron: "50 23 * * *"
   workflow_dispatch:
 
-permissions: write-all
 
 jobs:
   update-images:
@@ -25,7 +24,6 @@ jobs:
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
           echo "::set-output name=ssh_url::$(echo git@github.com:${{ github.repository }}.git)"
 
-
       - name: Partially clone repository 
         run: |
           eval "$(ssh-agent -s)"
@@ -34,18 +32,15 @@ jobs:
           cd ${{ steps.repository.outputs.name }}
           git sparse-checkout set "*" "!*.jpg" "!*.mp4"
 
-
       - name: Install Python
         uses: actions/setup-python@v1
         with:
           python-version: '3.8'
           architecture: 'x64'
 
-
       - name: Install Python's requirements
         working-directory: ${{ steps.repository.outputs.name }}/src/requirements
         run: pip install -r daily_update.txt
-
 
       - name: Download ExifTool
         working-directory: ${{ steps.repository.outputs.name }}/src/exiftool
@@ -53,11 +48,9 @@ jobs:
           wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
 
-
       - name: Daily update
         working-directory: ${{ steps.repository.outputs.name }}/src
         run: python daily_update.py
-
 
       # - name: GPG
       #   uses: crazy-max/ghaction-import-gpg@v4
@@ -67,7 +60,6 @@ jobs:
       #     git_user_signingkey: true
       #     git_commit_gpgsign: true
       #     # git_tag_gpgsign: true
-
 
       - name: Fetch current date
         id: date

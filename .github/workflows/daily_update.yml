@@ -5,7 +5,6 @@ on:
     - cron: "50 23 * * *"
   workflow_dispatch:
 
-permissions: write-all
 
 jobs:
   update-images:
@@ -14,7 +13,7 @@ jobs:
 
     steps:
       # - name: Clone repository
-      #   uses: actions/checkout@v2
+      #   uses: actions/checkout@v3
       #   with:
       #     token: ${{ secrets.PAT }}
       #     ssh-key: ${{ secrets.SSH_KEY }}
@@ -32,7 +31,7 @@ jobs:
           git sparse-checkout set "*" "!*.jpg" "!*.mp4"
 
       - name: Install Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
           architecture: 'x64'
