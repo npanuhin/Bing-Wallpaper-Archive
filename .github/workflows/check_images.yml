@@ -34,11 +34,11 @@ jobs:
 
       - name: Get files modified in the last commit (space-delimited)
         id: modified_files_spaced
-        uses: Ana06/get-changed-files@v1.2
+        uses: Ana06/get-changed-files@v2
 
       - name: Get files modified in the last commit (json)
         id: modified_files_json
-        uses: Ana06/get-changed-files@v1.2
+        uses: Ana06/get-changed-files@v2
         with:
           format: 'json'
 
@@ -50,7 +50,7 @@ jobs:
         run: git sparse-checkout add ${{ steps.modified_files_spaced.outputs.added_modified }}
 
       - name: Install Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
           architecture: 'x64'
@@ -94,10 +94,12 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_KEY }}
 
       - name: Install Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
           architecture: 'x64'

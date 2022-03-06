@@ -44,6 +44,7 @@ def add_months(sourcedate, months):
 def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool")):
     print('Removing metadata in "{}"...'.format(path))
     s = Popen(
+        # exiftool -all= --icc_profile:all -overwrite_original -progress -ext jpg -r "../api"  [recursive]
         "\"{}\" -all= --icc_profile:all -overwrite_original -progress -ext \"{}\" \"{}\"".format(exiftool, extension, path),
         shell=True,
         stdout=PIPE,
