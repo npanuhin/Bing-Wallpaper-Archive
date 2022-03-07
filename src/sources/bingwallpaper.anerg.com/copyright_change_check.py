@@ -15,9 +15,10 @@ old_api = safe_json.load(mkpath(API_PATH, REGION.upper(), REGION.lower() + ".jso
 new_api = safe_json.load(REGION.lower() + ".new.json")
 # new_api = safe_json.load(REGION.lower() + ".new.patched.json")
 
-assert len(old_api) == len(new_api)
+if len(old_api) != len(new_api):
+    print("Wanring! Api sizes do not match, taking first {} items:\n".format(min(len(old_api), len(new_api))))
 
-for i in range(len(new_api)):
+for i in range(min(len(old_api), len(new_api))):
     old_item = old_api[i]
     new_item = new_api[i]
 
