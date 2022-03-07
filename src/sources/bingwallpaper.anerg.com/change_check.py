@@ -18,6 +18,27 @@ new_api = safe_json.load(REGION.lower() + ".new.json")
 if len(old_api) != len(new_api):
     print("Wanring! Api sizes do not match, taking first {} items:\n".format(min(len(old_api), len(new_api))))
 
+print("Checking title...")
+for i in range(min(len(old_api), len(new_api))):
+    old_item = old_api[i]
+    new_item = new_api[i]
+
+    old_title = old_item["title"]
+    new_title = new_item["title"]
+
+    if old_title == new_title:
+        continue
+
+    if old_title is None:
+        continue
+
+    if fuzz.partial_ratio(new_title.lower(), old_title.lower()) < 100:
+        print('Warning! Low partial ration for new title: "{}" -> "{}" ({})'.format(
+            old_title, new_title, new_item["date"]
+        ))
+
+
+print("Checking copyright...")
 for i in range(min(len(old_api), len(new_api))):
     old_item = old_api[i]
     new_item = new_api[i]

@@ -66,7 +66,7 @@ for cur_month in month_year_iter(date(2010, 1, 1), date(2022, 3, 1)):
         if title.endswith("(Bing United States)"):
             title = title[:-len("(Bing United States)")].strip()
 
-        title = title.replace("\\'", "'").replace('\\"', '"').replace("  ", " ")
+        title = title.replace("\\'", "'").replace('\\"', '"').replace("  ", " ").replace(" ", " ")
 
         match1 = re.match(
             r"^(.+?)\s*\(\s*(©[^\)]+?)\s*\)?\s*(?:\s*©)?$",
@@ -147,6 +147,13 @@ for cur_month in month_year_iter(date(2010, 1, 1), date(2022, 3, 1)):
                 api[cur_api_pos]["copyright"], copyright, cur_month_str
             ))
 
+        if api[cur_api_pos]["title"] is not None and \
+                fuzz.partial_ratio(title.lower(), api[cur_api_pos]["title"].lower()) < 95:
+            print('Warning! Low partial ration for new title: "{}" -> "{}" ({})'.format(
+                api[cur_api_pos]["title"], title, cur_month_str
+            ))
+
+        api[cur_api_pos]["title"] = title
         api[cur_api_pos]["copyright"] = copyright
 
     # break
