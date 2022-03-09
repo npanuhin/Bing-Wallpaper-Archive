@@ -17,12 +17,7 @@ website_start_date = "2017-05-10"
 
 # =============================================== Update api and images ================================================
 
-update_all(
-    # days_action=FLAG_LATEST,
-    # api_action=FLAG_LATEST,
-    # # image_action=FLAG_LATEST
-    # image_action=FLAG_NOTOUCH
-)
+update_all()
 
 with open(mkpath(API_PATH, "US", "us.json"), 'r', encoding="utf-8") as file:
     us_api = json_load(file)
