@@ -1,5 +1,4 @@
 # Cache
-/src/cache/*
 __pycache__/
 
 # ExifTool

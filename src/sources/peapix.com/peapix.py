@@ -13,7 +13,7 @@ from utils import mkpath, create_folder_if_absent, clear_folder, FileDownloader
 from utils import Threads, _pass, add_months, prettify_data_string, SafeJson, remove_metadata
 
 
-API_PATH = mkpath("../", "api")
+API_PATH = mkpath("api")
 
 DOWNLOADER = FileDownloader()
 safe_json = SafeJson()
