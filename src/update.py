@@ -1,9 +1,10 @@
 from json import load as json_load, dump as json_dump
 from datetime import datetime
 from bing import update_all
-from utils import mkpath
 import os
 import re
+
+from utils import mkpath
 
 
 # REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
