@@ -4,6 +4,8 @@ from os import makedirs, path as os_path
 from requests import get as req_get
 from datetime import datetime
 
+from postprocess import postprocess_api
+
 
 # REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
 # REGIONS = ["en-ca", "fr-ca", "zh-cn", "en-cn", "fr-fr", "de-de", "en-in", "ja-jp", "en-gb", "en-us", "en-ww"]
@@ -107,6 +109,8 @@ def update(region):
             "description": description,
             "date": date
         })
+
+    api = postprocess_api(api)
 
     with open(mkpath(API_PATH, country.upper(), country.lower() + ".json"), 'w', encoding="utf-8") as file:
         json_dump(
