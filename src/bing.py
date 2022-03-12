@@ -110,21 +110,8 @@ def update(region):
             "date": date
         })
 
-    api = postprocess_api(api)
-
     with open(mkpath(API_PATH, country.upper(), country.lower() + ".json"), 'w', encoding="utf-8") as file:
-        json_dump(
-            [
-                {
-                    key: (image[key] if key in image else None)
-                    for key in (
-                        ("title", "caption", "subtitle", "copyright", "description", "date", "path")
-                    )
-                }
-                for image in sorted(api.values(), key=lambda item: item["date"])
-            ],
-            file, ensure_ascii=False, indent=4
-        )
+        json_dump(postprocess_api(list(api.values())), file, ensure_ascii=False, indent=4)
 
 
 def update_all(*args, **kwargs):
