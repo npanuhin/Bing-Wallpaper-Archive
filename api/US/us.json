@@ -40061,10 +40061,19 @@
     {
         "title": "Lanyon Quoit burial chamber, Cornwall, England",
         "caption": "It's just pi in the sky...",
-        "subtitle": null,
+        "subtitle": "Pi Day",
         "copyright": "© Guy Edwardes/Minden Pictures",
-        "description": null,
+        "description": "Did Neolithic humans build this structure to celebrate Pi Day? Not likely. Pi Day is a relatively recent phenomenon—invented by a physicist in 1988 and designated by Congress a national holiday in 2009. But it's already almost certainly the most popular holiday celebrating a mathematical constant. While Pi Day is a young tradition, the number π (pi) itself has been a fascination since antiquity, when it was first calculated as the ratio of a circle's circumference to its diameter.\nYou probably know that March 14 was chosen for Pi Day since the date expressed numerically (in month/date format) matches the number's first digits, 3.14. Aside from eating pie to celebrate, some people go to great lengths to memorize digits that go way beyond 3.141592…, which earns them bragging rights in some, um, circles. The world record is a staggering 70,000 digits after the decimal point—the remarkable feat was achieved by 21-year-old student Rajveer Meena in 2015.\nTake a moment from your Pi Day revelry to appreciate the unintentional π symbol formed by this Neolithic burial chamber in Cornwall, England. As the morning sun warms Lanyon Quoit's ancient stones, it's impossible not to wonder who built it and how, since it predates metal tools and is older than Egypt's pyramids. Theories abound, of course, but could π have been involved?",
         "date": "2022-03-14",
         "path": "US/images/2022-03-14.jpg"
+    },
+    {
+        "title": "The Roman Forum, Rome, Italy",
+        "caption": "A funny thing happened on the way to the Forum…",
+        "subtitle": null,
+        "copyright": "© Peter Zelei Images/Getty Images",
+        "description": null,
+        "date": "2022-03-15",
+        "path": "US/images/2022-03-15.jpg"
     }
 ]
