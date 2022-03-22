@@ -63,7 +63,7 @@ jobs:
 
       - name: Check for ExifTool in cache
         id: exiftool-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.repository.outputs.name }}/src/exiftool
           key: ExifTool-${{ runner.os }}
@@ -112,7 +112,7 @@ jobs:
 
       - name: Check for ExifTool in cache
         id: exiftool-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: src/exiftool
           key: ExifTool-${{ runner.os }}
