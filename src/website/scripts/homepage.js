@@ -1,59 +1,3 @@
-function urlencode(data) {
-    let res = [];
-    for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-            res.push(key + '=' + encodeURIComponent(data[key]));
-        }
-    }
-    return res.join('&');
-}
-
-function ajax(method, path, data = {}, success = () => {}, error = () => {}, complete = () => {}, headers = {}) {
-
-    let request = false;
-    if (window.XMLHttpRequest) {
-        request = new XMLHttpRequest();
-
-    } else if (window.ActiveXObject) {
-        try {
-            request = new ActiveXObject("Microsoft.XMLHTTP");
-        } catch (CatchException) {
-            request = new ActiveXObject("Msxml2.XMLHTTP");
-        }
-    }
-
-    if (!request) {
-        console.log("Can not create XMLHttpRequest");
-        return;
-    }
-
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                success(request);
-            } else {
-                error(request);
-            }
-            complete(request);
-        }
-    }
-
-    data = urlencode(data);
-
-    if (method.toLowerCase() == "get" && data.length > 0) path += "?" + data;
-
-    request.open(method, path, true);
-
-    for (let header in headers) request.setRequestHeader(header, headers[header]);
-
-    if (method.toLowerCase() == "post") {
-        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-        request.send(data);
-    } else {
-        request.send(null);
-    }
-}
-
 function random(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -69,76 +13,91 @@ function leadingZeros(s, totalDigits) {
     return res + s.toString();
 }
 
+// function reflow(element){
+//     void(element.offsetHeight);
+// }
+
+function waitFunc(func, callback, interval=20) {
+    (async() => {
+        while (!func()) await new Promise(resolve => setTimeout(resolve, interval));
+        callback();
+    })();
+}
+
+
 
 // =====================================================================================================================
 
 var start_date = new Date(2017, 5, 10), // 2017-05-10: high res starts ~here
     end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date); // Yesterday
 
-var background1 = document.getElementById("background1"),
-    background2 = document.getElementById("background2"),
-    description = document.getElementById("description");
+var background = document.getElementById("background"),
+    foreground = document.getElementById("foreground"),
+    description = document.getElementById("description"),
+    cur_image = foreground,
+    transition_delay = 1000,
+    delay = 5000;
 
 var api;
 
 
 function changeBackground() {
-    let image_date = getRandomDate(start_date, end_date);
+    var image_name, image_short_name = "", image_path;
 
-    let year = leadingZeros(image_date.getUTCFullYear(), 4),
-        month = leadingZeros(image_date.getUTCMonth() + 1, 2),
-        day = leadingZeros(image_date.getUTCDate(), 2);
+    while (!(image_short_name in api)) {
 
-    let image_name = year + '-' + month + '-' + day,
-        image_short_name = year + month + day,
+        let image_date = getRandomDate(start_date, end_date);
+
+        let year = leadingZeros(image_date.getUTCFullYear(), 4),
+            month = leadingZeros(image_date.getUTCMonth() + 1, 2),
+            day = leadingZeros(image_date.getUTCDate(), 2);
+
+        image_name = year + '-' + month + '-' + day;
+        image_short_name = year + month + day;
         image_path = "api/US/images/" + image_name + ".jpg";
-
-    // console.log(image_name);
-
-    background2.onload = () => {
-        background2.style.opacity = 1;
-
-        if (description.hasAttribute("firstrun")) {
-            description.removeAttribute("firstrun");
-
-            description.href = image_path;
-            description.innerHTML = api[image_short_name];
-
-            description.style.visibility = "visible";
-            document.body.classList.add("shown");
-
-        } else {
-            description.style.opacity = 0;
-            let tmp_transition = description.style.transition ? description.style.transition : window.getComputedStyle(description).getPropertyValue("transition");
-            description.style.transition = "";
-
-            setTimeout(() => {
-                description.href = image_path;
-                description.innerHTML = api[image_short_name];
-
-                description.style.transition = tmp_transition;
-                description.offsetHeight;  // Apply styles
-                description.style.opacity = 1;
-            }, 500);
-        }
-
-        setTimeout(() => {
-            background1.onload = () => {
-                // background2.style.visibility = "hidden";
-                background2.style.opacity = 0;
-            }
-
-            background1.src = image_path;
-
-            // setTimeout(changeBackground, 3000);
-            setTimeout(changeBackground, 5000);
-
-        }, 1200);
     }
 
-    background2.src = image_path;
-    // background2.style.visibility = "visible";
+    var image_loaded = false;
+    cur_image.onload = () => {image_loaded = true;}
+
+    setTimeout(waitFunc, (description.hasAttribute("firstrun") ? 0 : delay - transition_delay - 500),
+        () => {
+            return image_loaded;
+        }, 
+        () => {
+            foreground.style.opacity = (cur_image === foreground ? 1 : 0);
+
+            setTimeout(() => {
+                setTimeout(changeBackground);
+            }, (description.hasAttribute("firstrun") ? 0 : transition_delay) + 500);
+
+            if (description.hasAttribute("firstrun")) {
+                description.removeAttribute("firstrun");
+
+                description.textContent = api[image_short_name];
+                description.href = image_path;
+
+                document.body.classList.add("shown");
+
+            } else {
+                description.style.opacity = 0;
+
+                setTimeout(() => {
+                    description.textContent = api[image_short_name];
+                    description.href = image_path;
+                    description.style.opacity = 1;
+                }, transition_delay / 2);
+            }
+
+            cur_image = (cur_image === foreground ? background : foreground);
+        }
+    );
+
+    cur_image.src = image_path;
 }
+
+var page_loaded = false;
+window.onload = () => {page_loaded = true;}
 
 ajax(
     "GET",
@@ -146,15 +105,15 @@ ajax(
     {},
     success = (req) => {
         api = JSON.parse(req.responseText);
-        // console.log(api);
-
-        changeBackground();
-
-        // setInterval(changeBackground, 3000);
-        // setInterval(changeBackground, 5000);
+        // changeBackground();
+        waitFunc(
+            () => {
+                return page_loaded;
+            },
+            changeBackground
+        );
     },
     error = () => {
         alert("Error: can not load /src/website/api/us.json");
-        exit();
     }
 );
