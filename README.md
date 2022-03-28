@@ -30,7 +30,6 @@
 -  **Missing images (!)** ([`src/old/find_missing.py`](src/old/find_missing.py)) including `2019-06-07`  
     UPD: probably those are videos, need check
 -  Add more images from 2009
--  Website: preload next image
 -  Videos update
 
 <!-- -  `2016-06-05` copyright: `© Heinz Wohner/Getty Images` vs `© Richard Du Toit/Minden Pictures` -->
