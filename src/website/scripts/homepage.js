@@ -60,19 +60,21 @@ function changeBackground() {
     var image_loaded = false;
     cur_image.onload = () => {image_loaded = true;}
 
-    setTimeout(waitFunc, (description.hasAttribute("firstrun") ? 0 : delay - transition_delay - 500),
+    setTimeout(waitFunc, (description.classList.contains("firstrun") ? 0 : delay - transition_delay - 500),
         () => {
             return image_loaded;
         }, 
         () => {
             foreground.style.opacity = (cur_image === foreground ? 1 : 0);
 
+            cur_image = (cur_image === foreground ? background : foreground);
+
             setTimeout(() => {
                 setTimeout(changeBackground);
-            }, (description.hasAttribute("firstrun") ? 0 : transition_delay) + 500);
+            }, (description.classList.contains("firstrun") ? 0 : transition_delay) + 500);
 
-            if (description.hasAttribute("firstrun")) {
-                description.removeAttribute("firstrun");
+            if (description.classList.contains("firstrun")) {
+                description.classList.remove("firstrun");
 
                 description.textContent = api[image_short_name];
                 description.href = image_path;
@@ -88,8 +90,6 @@ function changeBackground() {
                     description.style.opacity = 1;
                 }, transition_delay / 2);
             }
-
-            cur_image = (cur_image === foreground ? background : foreground);
         }
     );
 

@@ -16,7 +16,11 @@
 
     -ms-interpolation-mode: bicubic;
     image-rendering: optimizeQuality;
-    /* backface-visibility: hidden; */
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
     /* transition-duration: 0s; */
 
     background-repeat: no-repeat;
@@ -53,16 +57,19 @@ body {
     min-height: 100vh;
 
     opacity: 0;
+
+    transition: 0.2s opacity ease-in;
 }
 
 body.shown {
-    animation: fadeInAnimation 0.1s ease-in 0s 1 forwards;
+    opacity: 1;
+    /* animation: fadeInAnimation 0.1s ease-in 0s 1 forwards; */
 }
 
 /* body.hidden {
     animation: fadeInAnimation 0.2s ease-in 0s 1 reverse;
 } */
-
+/* 
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;
@@ -71,7 +78,7 @@ body.shown {
         opacity: 1;
     }
 }
-
+ */
 #background, #foreground {
     position: fixed;
     top: 0;
