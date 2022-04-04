@@ -34,9 +34,9 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-          architecture: 'x64'
-          cache: 'pip'
-          cache-dependency-path: '${{ steps.repository.outputs.name }}/src/requirements/daily_update.txt'
+          architecture: x64
+          cache: pip
+          cache-dependency-path: ${{ steps.repository.outputs.name }}/src/requirements/daily_update.txt
 
       - name: Install Python's requirements
         working-directory: ${{ steps.repository.outputs.name }}/src/requirements
@@ -79,7 +79,7 @@ jobs:
         with:
           repository: ${{ steps.repository.outputs.name }}
           commit_message: "Archive update: US to ${{ steps.date.outputs.date }}"
-          add_options: '--sparse'
+          add_options: --sparse
           commit_user_name: GitHub Actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>

@@ -40,7 +40,7 @@ jobs:
         id: modified_files_json
         uses: Ana06/get-changed-files@v2.1.0
         with:
-          format: 'json'
+          format: json
 
       - name: Set environment variable with modified files (json) for Python
         run: echo 'GITHUB_CHANGED_FILES=${{ steps.modified_files_json.outputs.added_modified }}' >> $GITHUB_ENV
@@ -53,8 +53,8 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-          architecture: 'x64'
-          cache: 'pip'
+          architecture: x64
+          cache: pip
           cache-dependency-path: '${{ steps.repository.outputs.name }}/src/requirements/check_images.txt'
 
       - name: Install Python's requirements
@@ -102,8 +102,8 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-          architecture: 'x64'
-          cache: 'pip'
+          architecture: x64
+          cache: pip
           cache-dependency-path: 'src/requirements/check_images.txt'
 
       - name: Install Python's requirements
