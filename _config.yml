@@ -4,6 +4,7 @@ exclude:
   - "/src/exiftool/"
   - "/src/old/"
   - "/src/requirements/"
+  - "/src/sources/"
   - "/src/videos/"
   # --------------------
   - "/CHNAME"
