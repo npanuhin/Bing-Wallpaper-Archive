@@ -7,12 +7,11 @@ sys_path.append("../")
 from utils import mkpath
 
 
-API_PATH = mkpath("../../api")
 REGION = "US"
-region_path = mkpath(API_PATH, REGION.upper())
+region_path = mkpath("../../api", REGION.upper())
 images_path = mkpath(region_path, "images")
 START_DATE = datetime.strptime(os.path.splitext(os.listdir(images_path)[0])[0], "%Y-%m-%d").date()
-END_DATE = datetime.today().date()
+END_DATE = datetime.today().date() - timedelta(days=1)  # yesterday
 
 
 def daterange(start_date, end_date):
