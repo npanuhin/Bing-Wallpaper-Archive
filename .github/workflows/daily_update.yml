@@ -28,7 +28,7 @@ jobs:
         run: |
           git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
           cd ${{ steps.repository.outputs.name }}
-          git sparse-checkout set "*" "!*.jpg" "!*.mp4"
+          git sparse-checkout set --no-cone "*" "!*.jpg" "!*.mp4"
 
       - name: Install Python
         uses: actions/setup-python@v3
