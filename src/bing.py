@@ -1,8 +1,8 @@
-from json import load as json_load, dump as json_dump
 from utils import mkpath, remove_metadata
 from os import makedirs, path as os_path
 from requests import get as req_get
 from datetime import datetime
+import json
 
 from postprocess import postprocess_api
 
@@ -13,7 +13,7 @@ REGIONS = ["en-US"]
 
 API_PATH = mkpath("../", "api")
 
-FORCE_SAME_DATA = False
+FORCE_SAME_DATA = True
 
 # ======================================================================================================================
 
@@ -39,7 +39,7 @@ def update(region):
 
     country = region[region.rfind('-') + 1:]
     with open(mkpath(API_PATH, country.upper(), country.lower() + ".json"), 'r', encoding="utf-8") as file:
-        api = json_load(file)
+        api = json.load(file)
 
     api = {item["date"]: item for item in api}
 
@@ -111,7 +111,7 @@ def update(region):
         })
 
     with open(mkpath(API_PATH, country.upper(), country.lower() + ".json"), 'w', encoding="utf-8") as file:
-        json_dump(postprocess_api(list(api.values())), file, ensure_ascii=False, indent=4)
+        json.dump(postprocess_api(list(api.values())), file, ensure_ascii=False, indent=4)
 
 
 def update_all(*args, **kwargs):
