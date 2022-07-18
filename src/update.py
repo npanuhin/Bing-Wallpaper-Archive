@@ -28,28 +28,29 @@ print("Updated US to", latest_image_date)
 
 # =================================================== Update README ====================================================
 
-with open(mkpath("../", "README.md"), 'r+', encoding="utf-8") as file:
+with open(mkpath("../", "README.md"), 'r', encoding="utf-8") as file:
     readme = file.read()
-    file.seek(0)
-    readme = re.sub(
-        r"<img alt=\"Last image:.*?\" src=\".+?\">",
-        '<img alt="Last image: {}" src="https://img.shields.io/static/v1?label=Last%20image&message={}&color=informational&style=flat">'.format(
-            latest_image_date, latest_image_date
-        ),
-        readme
-    )
-    readme = re.sub(
-        r"!\[\]\(api/US/images/.+\)",
-        "![](api/US/images/{}.jpg)".format(latest_image_date),
-        readme
-    )
+
+readme = re.sub(
+    r"<img alt=\"Last image:.*?\" src=\".+?\">",
+    '<img alt="Last image: {}" src="https://img.shields.io/static/v1?label=Last%20image&message={}&color=informational&style=flat">'.format(
+        latest_image_date, latest_image_date
+    ),
+    readme
+)
+readme = re.sub(
+    r"!\[\]\(api/US/images/.+\)",
+    "![](api/US/images/{}.jpg)".format(latest_image_date),
+    readme
+)
+
+with open(mkpath("../", "README.md"), 'w', encoding="utf-8") as file:
     file.write(readme)
-    file.truncate()
 
 # ================================================= Update website api =================================================
 
 for region in REGIONS:
-    country = region[region.rfind('-') + 1:]
+    country = region.split('-')[1]
     with open(mkpath("../", "api", country, country.lower() + ".json"), 'r', encoding="utf-8") as file:
         api = json_load(file)
 

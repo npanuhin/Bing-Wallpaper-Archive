@@ -1,16 +1,20 @@
-from json import load as json_load, dump as json_dump
+import json
 
 from utils import mkpath
 
+
+# Final field order
 FIELDS = ("title", "caption", "subtitle", "copyright", "description", "date", "path")
 
 
 def postproces_item(image_api):
+    # Put fields in the correct order
     image_api = {
         key: (image_api[key] if key in image_api else None)
         for key in FIELDS
     }
 
+    # Remove duplication in `caption` <-> `subtitle`
     if image_api["caption"] == image_api["subtitle"]:
         image_api["caption"] = None
 
@@ -28,12 +32,12 @@ def postprocess_api(api):
 
 def postproces_api_file(file_path, *json_args, **json_kwargs):
     with open(mkpath(file_path), 'r', encoding="utf-8") as file:
-        api = json_load(file)
+        api = json.load(file)
 
     api = postprocess_api(api)
 
     with open(mkpath(file_path), 'w', encoding="utf-8") as file:
-        json_dump(api, file, ensure_ascii=False, indent=4)
+        json.dump(api, file, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
