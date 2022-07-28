@@ -39,8 +39,8 @@ readme = re.sub(
     readme
 )
 readme = re.sub(
-    r"!\[\]\(api/US/images/.+\)",
-    "![](api/US/images/{}.jpg)".format(latest_image_date),
+    r"!\[\]\(https://bing\.npanuhin\.me/api/US/images/.+\)",
+    "![](https://bing.npanuhin.me/api/US/images/{}.jpg)".format(latest_image_date),
     readme
 )
 
