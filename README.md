@@ -11,7 +11,7 @@
 </div>
 
 
-![](https://bing.npanuhin.me/api/US/images/2022-08-12.jpg)
+[![](api/US/images/2022-08-12.jpg)](https://bing.npanuhin.me/api/US/images/2022-08-12.jpg)
 
 
 ### Development
