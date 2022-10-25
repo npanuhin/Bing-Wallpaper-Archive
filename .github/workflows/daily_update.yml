@@ -34,7 +34,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-          architecture: x64
           cache: pip
           cache-dependency-path: ${{ steps.repository.outputs.name }}/src/requirements/daily_update.txt
 
