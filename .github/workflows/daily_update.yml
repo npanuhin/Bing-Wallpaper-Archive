@@ -69,7 +69,7 @@ jobs:
       #     # git_tag_gpgsign: true
 
       - name: Fetch current date
-        run: echo "date=yellow" >> $GITHUB_ENV
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
