@@ -11,7 +11,7 @@
 </div>
 
 
-[![](api/US/images/2022-11-16.jpg)](https://bing.npanuhin.me/api/US/images/2022-11-16.jpg)
+[![](api/US/images/2022-11-16.jpg)](https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/2022-11-16.jpg)
 
 
 ### Development
@@ -27,7 +27,7 @@
 
 ### TODO
 
--  **Missing images (!)** ([`src/old/find_missing.py`](src/old/find_missing.py)) including `2019-06-07`  
+-  **Missing images (!)** ([`src/old/find_missing.py`](src/old/find_missing.py)) including `2019-06-07`
     UPD: probably those are videos, need check
 -  Add more images from 2009
 -  Videos update

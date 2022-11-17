@@ -26,14 +26,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # - name: Install Python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: 3.11
-
-      # - name: Clone repository
-      #   uses: actions/checkout@v3
-
       - name: Fetch repository info
         id: repository
         run: |
@@ -48,13 +40,6 @@ jobs:
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v2
-
-      # - name: Assemble static website
-      #   run: python .github/assemble_static_website.py
-
-      - name: Check file tree
-        working-directory: ${{ steps.repository.outputs.name }}
-        run: tree -a
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

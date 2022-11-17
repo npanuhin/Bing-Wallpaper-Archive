@@ -39,8 +39,8 @@ readme = re.sub(
     readme
 )
 readme = re.sub(
-    r"\[!\[\]\(api/US/images/(.+\.jpg)\)]\(https://bing\.npanuhin\.me/api/US/images/\1\)",
-    "[![](api/US/images/{}.jpg)](https://bing.npanuhin.me/api/US/images/{}.jpg)".format(latest_image_date, latest_image_date),
+    r"\[!\[\]\(api/US/images/(.+\.jpg)\)]\(https://raw\.githubusercontent\.com/npanuhin/bing-wallpaper-archive/master/api/US/images/\1\)",
+    "[![](api/US/images/{}.jpg)](https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/{}.jpg)".format(latest_image_date, latest_image_date),
     readme
 )
 
