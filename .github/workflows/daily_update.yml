@@ -10,7 +10,6 @@ jobs:
   update-images:
     name: Update images
     runs-on: ubuntu-latest
-
     steps:
       # - name: Clone repository
       #   uses: actions/checkout@v3
