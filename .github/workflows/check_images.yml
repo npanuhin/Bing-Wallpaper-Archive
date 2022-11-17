@@ -3,10 +3,10 @@ name: Image check
 on:
   push:
     paths:
-      - 'api/**.jpg'
+      - api/**.jpg
   pull_request:
     paths:
-      - 'api/**.jpg'
+      - api/**.jpg
   workflow_dispatch:
 
 
@@ -26,7 +26,7 @@ jobs:
           echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
           echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
 
-      - name: Partially clone repository 
+      - name: Partially clone repository
         run: |
           git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
           cd ${{ steps.repository.outputs.name }}
@@ -52,9 +52,9 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: 3.11
           cache: pip
-          cache-dependency-path: '${{ steps.repository.outputs.name }}/src/requirements/check_images.txt'
+          cache-dependency-path: ${{ steps.repository.outputs.name }}/src/requirements/check_images.txt
 
       - name: Install Python's requirements
         working-directory: ${{ steps.repository.outputs.name }}/src/requirements
@@ -100,9 +100,9 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: 3.11
           cache: pip
-          cache-dependency-path: 'src/requirements/check_images.txt'
+          cache-dependency-path: src/requirements/check_images.txt
 
       - name: Install Python's requirements
         working-directory: src/requirements
