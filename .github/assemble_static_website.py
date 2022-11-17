@@ -5,9 +5,7 @@ import shutil
 import os
 
 include = [
-    "api/",
-    "src/website/",
-    "index.html"
+    "src/website/"
 ]
 
 

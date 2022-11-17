@@ -9,7 +9,7 @@ function getRandomDate(from, to) {
 function leadingZeros(s, totalDigits) {
     s = s.toString();
     let res = '';
-    for (i = 0; i < (totalDigits - s.length); ++i) res += '0'; 
+    for (i = 0; i < (totalDigits - s.length); ++i) res += '0';
     return res + s.toString();
 }
 
@@ -28,8 +28,11 @@ function waitFunc(func, callback, interval=20) {
 
 // =====================================================================================================================
 
-var start_date = new Date(2017, 5, 10), // 2017-05-10: high res starts ~here
-    end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date); // Yesterday
+const api_filepath = "api/us.json",
+      image_url_prefix = "https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/";
+
+const start_date = new Date(2017, 5, 10), // 2017-05-10: high resolution images start around here
+      end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date); // Yesterday
 
 var background = document.getElementById("background"),
     foreground = document.getElementById("foreground"),
@@ -54,7 +57,7 @@ function changeBackground() {
 
         image_name = year + '-' + month + '-' + day;
         image_short_name = year + month + day;
-        image_path = "api/US/images/" + image_name + ".jpg";
+        image_path = image_url_prefix + image_name + ".jpg";
     }
 
     var image_loaded = false;
@@ -63,7 +66,7 @@ function changeBackground() {
     setTimeout(waitFunc, (description.classList.contains("firstrun") ? 0 : delay - transition_delay - 500),
         () => {
             return image_loaded;
-        }, 
+        },
         () => {
             foreground.style.opacity = (cur_image === foreground ? 1 : 0);
 
@@ -101,7 +104,7 @@ window.onload = () => {page_loaded = true;}
 
 ajax(
     "GET",
-    "src/website/api/us.json",
+    api_filepath,
     {},
     success = (req) => {
         api = JSON.parse(req.responseText);
@@ -114,6 +117,6 @@ ajax(
         );
     },
     error = () => {
-        alert("Error: can not load /src/website/api/us.json");
+        alert(`Error: can not load API file (${api_filepath})`);
     }
 );

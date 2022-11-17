@@ -2,9 +2,9 @@
 name: Website deployment
 
 on:
-  workflow_run:
-    workflows: ["Daily update"]
-    types: ["completed"]
+  push:
+    paths:
+      - src/website/**
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -26,27 +26,40 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
+      # - name: Install Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: 3.11
 
-      - name: Clone repository
-        uses: actions/checkout@v3
+      # - name: Clone repository
+      #   uses: actions/checkout@v3
+
+      - name: Fetch repository info
+        id: repository
+        run: |
+          echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
+          echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
+
+      - name: Partially clone repository
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
+          cd ${{ steps.repository.outputs.name }}
+          git sparse-checkout set --no-cone "src/website/"
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v2
 
-      - name: Assemble static website
-        run: python .github/assemble_static_website.py
+      # - name: Assemble static website
+      #   run: python .github/assemble_static_website.py
 
       - name: Check file tree
+        working-directory: ${{ steps.repository.outputs.name }}
         run: tree -a
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.'
+          path: ${{ steps.repository.outputs.name }}/src/website
 
       - name: Deploy to GitHub Pages
         id: deployment
