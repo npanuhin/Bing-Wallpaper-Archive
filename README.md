@@ -11,8 +11,7 @@
 </div>
 
 
-[![](api/US/images/2022-11-16.jpg)](https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/2022-11-16.jpg)
-
+[![](api/US/images/2022-11-16.jpg)](https://github.com/npanuhin/bing-wallpaper-archive/blob/master/api/US/images/2022-11-16.jpg?raw=true)
 
 ### Development
 
