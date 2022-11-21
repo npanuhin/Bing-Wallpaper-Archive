@@ -10,8 +10,9 @@
 <!-- <img alt="Updated on: 2022-01-05" src="https://img.shields.io/static/v1?label=Updated%20on&message=2022-01-05&color=informational&link=https://github.com/npanuhin/bing-wallpaper-archive/actions/workflows/daily_update.yml&link=https://github.com/npanuhin/bing-wallpaper-archive/raw/master/api/US/images/2022-01-05.jpg"> -->
 </div>
 
+<!-- !Today's image -->
+[![](api/US/images/2022-11-20.jpg)](https://npanuhin.me/tools/show_bing_image?url=https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/2022-11-20.jpg)
 
-[![](api/US/images/2022-11-20.jpg)](https://github.com/npanuhin/bing-wallpaper-archive/blob/master/api/US/images/2022-11-20.jpg?raw=true)
 
 ### Development
 

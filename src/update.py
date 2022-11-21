@@ -41,9 +41,9 @@ readme = re.sub(
     readme
 )
 readme = re.sub(
-    r"(\[!\[\]\(api/US/images/)(.+)(\.jpg\)]\(https://github\.com/npanuhin/bing-wallpaper-archive/blob/master/api/US/images/)\2(.jpg\?raw=true\))",
-    fr"\g<1>{latest_image_date}\g<3>{latest_image_date}\g<4>",
-    readme
+    r"(^<!-- !Today's image -->$)\n.+\n",
+    fr"\1\n[![](api/US/images/{latest_image_date}.jpg)](https://npanuhin.me/tools/show_bing_image?url=https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/{latest_image_date}.jpg)\n",
+    readme, flags=re.MULTILINE
 )
 
 with open(mkpath("../README.md"), 'w', encoding="utf-8") as file:

@@ -1,0 +1,75 @@
+<!--! Copyright ©; 2019-2022 Nikita Paniukhin -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/home.css">
+    <title>Opening image...</title>
+</head>
+
+<body>
+    <!-- <image id="image_to_load" hidden> -->
+    <script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let api_filepath = params.api,
+        image_url = "https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/" + api_filepath;
+
+    // console.log(api_filepath);
+
+    function toDataURL(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                callback(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
+    toDataURL(image_url, function(dataUrl) {
+        console.log(dataUrl);
+
+        const base64ImageData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
+        const contentType = 'image/png';
+
+        const byteCharacters = atob(base64ImageData.substr(`data:${contentType};base64,`.length));
+        const byteArrays = [];
+
+        for (let offset = 0; offset < byteCharacters.length; offset += 1024) {
+            const slice = byteCharacters.slice(offset, offset + 1024);
+
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+        const blob = new Blob(byteArrays, {type: contentType});
+        const blobUrl = URL.createObjectURL(blob);
+
+        console.log(blobUrl);
+
+        window.open(blobUrl, '_blank');
+    });
+
+
+    // let image_obj = document.getElementById("image_to_load");
+    // image_obj.onload = () => {
+    //     // console.log("loaded");
+
+    // }
+    // image_obj.src = image_url;
+    </script>
+</body>
+
+</html>
