@@ -42347,10 +42347,19 @@
     {
         "title": "Sunflower",
         "caption": "Nature, art, and...math?",
-        "subtitle": null,
+        "subtitle": "Fibonacci Day",
         "copyright": "© Dileep Chandran/Alamy",
-        "description": null,
+        "description": "The sunflower is an eye-catcher, growing to the sky and brightly singing of summer no matter the time of year. Helianthus annuus is native to the Americas, and its flowering head is actually made up of more tiny flowers that mature into seeds (and, of course, get eaten around the world). But did you know that sunflowers also bring one of nature's mathematical wonders to life?\nThe gorgeous sunflower displays its seeds in two spirals that twist and curve in opposite directions, fanning out from the center to the golden petals. If you mapped either of those spirals on a graph, they would closely follow the Fibonacci sequence (1, 1, 2, 3, 5, 8, 13, 21…), where you add a number to the one before it to get the next number. While the famous spiral formula is attributed to Fibonacci, the 13th-century Italian math whiz, scholars in India described the sequence centuries before him—and they probably weren't the first to figure it out either. But regardless of the origin story, each November 23 (11/23…get it?) we celebrate the infinite series known as the Fibonacci sequence.",
         "date": "2022-11-23",
         "path": "US/images/2022-11-23.jpg"
+    },
+    {
+        "title": "Cranberry bog",
+        "caption": "A crimson quagmire",
+        "subtitle": null,
+        "copyright": "© SHSPhotography/Getty Images",
+        "description": null,
+        "date": "2022-11-24",
+        "path": "US/images/2022-11-24.jpg"
     }
 ]
