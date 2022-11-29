@@ -5,13 +5,13 @@
         <img alt="" src="https://github.com/npanuhin/bing-wallpaper-archive/actions/workflows/check_images.yml/badge.svg?event=push">
     </a>
     <a href="https://github.com/npanuhin/bing-wallpaper-archive/actions/workflows/daily_update.yml">
-        <img alt="Last image: 2022-11-28" src="https://img.shields.io/static/v1?label=Last+image&message=2022-11-28&color=informational&style=flat">
+        <img alt="Last image: 2022-11-29" src="https://img.shields.io/static/v1?label=Last+image&message=2022-11-29&color=informational&style=flat">
     </a>
 <!-- <img alt="Updated on: 2022-01-05" src="https://img.shields.io/static/v1?label=Updated%20on&message=2022-01-05&color=informational&link=https://github.com/npanuhin/bing-wallpaper-archive/actions/workflows/daily_update.yml&link=https://github.com/npanuhin/bing-wallpaper-archive/raw/master/api/US/images/2022-01-05.jpg"> -->
 </div>
 
 <!-- !Today's image -->
-[![](api/US/images/2022-11-28.jpg)](https://npanuhin.me/tools/show_bing_image?url=https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/2022-11-28.jpg)
+[![](api/US/images/2022-11-29.jpg)](https://npanuhin.me/tools/show_bing_image?url=https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/2022-11-29.jpg)
 
 
 ### Development
