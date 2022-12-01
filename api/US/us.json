@@ -42410,10 +42410,19 @@
     {
         "title": "The Old Town of Rovinj, Croatia",
         "caption": "Jewel of the Adriatic",
-        "subtitle": null,
+        "subtitle": "Old Town of Rovinj, Croatia",
         "copyright": "© trabantos/Shutterstock",
-        "description": null,
+        "description": "Beautiful, historic Rovinj dips into the Adriatic like a toe testing the water. The 200-foot-tall bell tower of the Church of St. Euphemia overlooks Rovinj's historic center. The church, which was built in the early 1700s over the remains of older Christian holy structures, acts as a beacon that welcomes home the town's fleet of fishing boats each evening.\nMore than 2,000 years old, Rovinj was once an island—it wasn't connected to the mainland until 1763, when the narrow channel was filled in. Today the city's economy comes from tourism, and the romantic cobblestone streets are home to numerous bars, restaurants, and museums. It's on the UNESCO list of World Heritage Sites and is one of the most popular tourist destinations in Istria.",
         "date": "2022-11-30",
         "path": "US/images/2022-11-30.jpg"
+    },
+    {
+        "title": "Paradise Harbour, Antarctica",
+        "caption": "The other continent down under",
+        "subtitle": null,
+        "copyright": "© SinghaphanAllB/Getty Images",
+        "description": null,
+        "date": "2022-12-01",
+        "path": "US/images/2022-12-01.jpg"
     }
 ]
