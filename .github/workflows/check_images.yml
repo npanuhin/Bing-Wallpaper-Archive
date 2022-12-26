@@ -34,11 +34,11 @@ jobs:
 
       - name: Get files modified in the last commit (space-delimited)
         id: modified_files_spaced
-        uses: Ana06/get-changed-files@v2.1.0
+        uses: Ana06/get-changed-files@v2.2.0
 
       - name: Get files modified in the last commit (json)
         id: modified_files_json
-        uses: Ana06/get-changed-files@v2.1.0
+        uses: Ana06/get-changed-files@v2.2.0
         with:
           format: json
 
