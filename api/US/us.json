@@ -42725,10 +42725,19 @@
     {
         "title": "Earth as seen from the International Space Station",
         "caption": "So close, yet so far",
-        "subtitle": null,
+        "subtitle": "Earth at Perihelion",
         "copyright": "© JSC/NASA",
-        "description": null,
+        "description": "We've reached perihelion! Two weeks after winter solstice the Earth's orbit is closer to the sun than at any other time of year—a result of the Earth's elliptical orbit. You may think, 'If we're so close to the sun, why can't I feel the heat?' Well, that's because we're only receiving about 7% more solar energy than normal, which doesn't really have much impact on the weather.",
         "date": "2023-01-04",
         "path": "US/images/2023-01-04.jpg"
+    },
+    {
+        "title": "Harbin International Ice and Snow Sculpture Festival, Harbin, China",
+        "caption": "City of ice",
+        "subtitle": null,
+        "copyright": "© STR/AFP via Getty Images",
+        "description": null,
+        "date": "2023-01-05",
+        "path": "US/images/2023-01-05.jpg"
     }
 ]
