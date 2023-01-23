@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - api/**.jpg
+      - .github/workflows/**
   pull_request:
     paths:
       - api/**.jpg
+      - .github/workflows/**
   workflow_dispatch:
 
 
