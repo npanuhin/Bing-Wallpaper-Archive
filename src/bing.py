@@ -70,7 +70,7 @@ def update(region):
 
     # ====================== https://www.bing.com/hp/api/model ======================
     print("Getting title, caption and copyright from bing.com/hp/api/model...")
-    data = req_get("https://www.bing.com/hp/api/model", params={"mkt": region}).json()["MediaContents"]
+    data = req_get("https://www.bing.com/hp/api/model", cookies={"_UR": "cdxOff=1", "_EDGE_S": "mkt=en-US"}).json()["MediaContents"]
 
     for image_data in data:
         date = datetime.strptime(image_data["Ssd"][:image_data["Ssd"].find('_')], '%Y%m%d').strftime('%Y-%m-%d')
@@ -89,7 +89,7 @@ def update(region):
     data = req_get(
         "https://www.bing.com/hp/api/v1/imagegallery",
         params={"format": "json", "mkt": region}
-    ).json()["data"]["images"][:2]
+    ).json()["data"]["images"]
 
     for image_data in data:
         date = datetime.strptime(image_data["isoDate"], '%Y%m%d').strftime('%Y-%m-%d')
