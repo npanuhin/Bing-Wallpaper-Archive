@@ -26,10 +26,14 @@ def update_api(api, new_image_api):
 
     for key, value in new_image_api.items():
         if FORCE_SAME_DATA and key in api[date] and api[date][key] is not None:
-            assert api[date][key] == new_image_api[key], \
-                'key "{}" is different for {}: "{}" vs "{}"'.format(key, date, api[date][key], new_image_api[key])
+            if api[date][key] != value:
+                value = value.replace("’", "'")
+                api[date][key] = api[date][key].replace("’", "'")
+            if key != "description":
+                assert api[date][key] == value, \
+                    'key "{}" is different for {}: "{}" vs "{}"'.format(key, date, api[date][key], value)
 
-        api[date][key] = new_image_api[key]
+        api[date][key] = value
 
 
 def update(region):
@@ -43,7 +47,7 @@ def update(region):
 
     api = {item["date"]: item for item in api}
 
-    # ================= https://www.bing.com/HPImageArchive.aspx =================
+    # =================== https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=10&mkt={en-US} ====================
     print("Getting caption and image from bing.com/HPImageArchive.aspx...")
 
     data = req_get(
@@ -68,9 +72,12 @@ def update(region):
             "path": path
         })
 
-    # ====================== https://www.bing.com/hp/api/model ======================
+    # ======================== https://www.bing.com/hp/api/model?_UR=cdxOff=1&_EDGE_S=mkt=en-US ========================
     print("Getting title, caption and copyright from bing.com/hp/api/model...")
-    data = req_get("https://www.bing.com/hp/api/model", cookies={"_UR": "cdxOff=1", "_EDGE_S": "mkt=en-US"}).json()["MediaContents"]
+    data = req_get(
+        "https://www.bing.com/hp/api/model",
+        cookies={"_UR": "cdxOff=1", "_EDGE_S": "mkt=en-US"}
+    ).json()["MediaContents"]
 
     for image_data in data:
         date = datetime.strptime(image_data["Ssd"][:image_data["Ssd"].find('_')], '%Y%m%d').strftime('%Y-%m-%d')
@@ -84,7 +91,7 @@ def update(region):
             "date": date
         })
 
-    # ================= https://www.bing.com/hp/api/v1/imagegallery =================
+    # ======================= https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US ========================
     print("Getting everyting else from bing.com/hp/api/v1/imagegallery...")
     data = req_get(
         "https://www.bing.com/hp/api/v1/imagegallery",
