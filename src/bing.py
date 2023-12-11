@@ -11,7 +11,7 @@ from postprocess import postprocess_api
 # REGIONS = ["en-ca", "fr-ca", "zh-cn", "en-cn", "fr-fr", "de-de", "en-in", "ja-jp", "en-gb", "en-us", "en-ww"]
 REGIONS = ["en-US"]
 
-API_PATH = mkpath("../", "api")
+API_PATH = "../api"
 
 FORCE_SAME_DATA = True
 
