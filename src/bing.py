@@ -1,130 +1,171 @@
-from utils import mkpath, remove_metadata
-from os import makedirs, path as os_path
-from requests import get as req_get
 from datetime import datetime
-import json
+import os
+
+import requests
 
 from postprocess import postprocess_api
+from Region import Region
+from utils import mkpath, remove_metadata
 
 
-# REGIONS = ["AU", "CA", "CN", "DE", "FR", "IN", "JP", "ES", "GB", "US"]
-# REGIONS = ["en-ca", "fr-ca", "zh-cn", "en-cn", "fr-fr", "de-de", "en-in", "ja-jp", "en-gb", "en-us", "en-ww"]
-REGIONS = ["en-US"]
+# REGIONS = ['AU', 'CA', 'CN', 'DE', 'FR', 'IN', 'JP', 'ES', 'GB', 'US']
+# REGIONS = ['en-ca', 'fr-ca', 'zh-cn', 'en-cn', 'fr-fr', 'de-de', 'en-in', 'ja-jp', 'en-gb', 'en-us', 'en-ww']
+REGIONS = list(map(Region, ['en-US']))
 
-API_PATH = "../api"
-
-FORCE_SAME_DATA = True
+API_HOME = '../api'
 
 # ======================================================================================================================
 
 
-def update_api(api, new_image_api):
-    date = new_image_api["date"]
-    if date not in api:
-        api[date] = new_image_api
+def extract_base_url(image_url: str) -> str:
+    # '/th?id=OHR.MountainDayChina_EN-US0394775210_1920x1080.webp'
+    if '_1920x1080' in image_url:
+        return image_url.split('_1920x1080')[0]
+    if '_UHD' in image_url:
+        return image_url.split('_UHD')[0]
+    raise ValueError(f'Can not extract base url from {image_url}')
+
+
+def get_uhd_url(base_url: str) -> str:
+    # '/th?id=OHR.MountainDayChina_EN-US0394775210_UHD.jpg'
+    return f'https://bing.com{base_url}_UHD.jpg'
+
+
+def update_api(api_by_date: dict[str, dict], new_image_api: dict):
+    date = new_image_api['date']
+    before = api_by_date.get(date)
+    if before is None:
+        api_by_date[date] = new_image_api
         return
 
-    for key, value in new_image_api.items():
-        if FORCE_SAME_DATA and key in api[date] and api[date][key] is not None:
-            if api[date][key] != value:
-                value = value.replace("’", "'")
-                api[date][key] = api[date][key].replace("’", "'")
-            if key != "description":
-                assert api[date][key] == value, \
-                    'key "{}" is different for {}: "{}" vs "{}"'.format(key, date, api[date][key], value)
+    for key, new_value in new_image_api.items():
+        if before.get(key) is None:
+            before[key] = new_value
+            continue
 
-        api[date][key] = value
+        if before[key] == new_value:
+            continue
+
+        if key == 'description':
+            if len(new_value) < len(before[key]):
+                assert before[key].startswith(new_value)
+            else:
+                assert new_value.startswith(before[key])
+                print(f'Rewriting description for {date}: {len(before[key])} -> {len(new_value)}')
+                before[key] = new_value
+            continue
+
+        # new_value = new_value.replace('’', "'")
+        # before[key] = before[key].replace('’', "'")
+
+        raise ValueError(f'key "{key}" is different for {date}:\n"{before[key]}"\nvs\n"{new_value}"')
 
 
-def update(region):
-    print("Updating {}...".format(region))
+def update(region: Region):
+    print(f'Updating {region}...')
 
-    makedirs(mkpath(API_PATH, "US", "images"), exist_ok=True)
+    common_params = {'mkt': region.mkt, 'setlang': region.lang, 'cc': region.country}
 
-    country = region[region.rfind('-') + 1:]
-    with open(mkpath(API_PATH, country.upper(), country.lower() + ".json"), 'r', encoding="utf-8") as file:
-        api = json.load(file)
+    # os.makedirs(region.images_path, exist_ok=True)
 
-    api = {item["date"]: item for item in api}
+    api_by_date = {item['date']: item for item in region.read_api()}
 
-    # =================== https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=10&mkt={en-US} ====================
-    print("Getting caption and image from bing.com/HPImageArchive.aspx...")
+    # ------------------------------------------------------------------------------------------------------------------
+    # https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=100&mkt=en-US&setlang=en&cc=US
+    print('Getting caption, image and image url from bing.com/HPImageArchive.aspx...')
+    # TODO: extract title and copyright
 
-    data = req_get(
-        "https://www.bing.com/HPImageArchive.aspx",
-        params={"format": "js", "idx": 0, "n": 10, "mkt": region}
-    ).json()["images"]
+    data = requests.get(
+        'https://www.bing.com/HPImageArchive.aspx',
+        params={'format': 'js', 'idx': 0, 'n': 10, **common_params}
+    ).json()['images']
 
     for image_data in data:
-        date = datetime.strptime(image_data["startdate"], '%Y%m%d').strftime('%Y-%m-%d')
+        date = datetime.strptime(image_data['startdate'], '%Y%m%d').strftime('%Y-%m-%d')
 
-        path = mkpath("US", "images", date + ".jpg")
+        image_url = get_uhd_url(image_data['urlbase'])
 
-        # Downloading image
-        if not os_path.isfile(mkpath(API_PATH, path)):
-            with open(mkpath(API_PATH, path), 'wb') as file:
-                file.write(req_get("https://bing.com" + image_data["urlbase"] + "_UHD.jpg").content)
-            remove_metadata(mkpath(API_PATH, path))
-
-        update_api(api, {
-            "caption": image_data["title"],
-            "date": date,
-            "path": path
+        update_api(api_by_date, {
+            'date': date,
+            'caption': image_data['title'],
+            'url': image_url
         })
 
-    # ======================== https://www.bing.com/hp/api/model?_UR=cdxOff=1&_EDGE_S=mkt=en-US ========================
-    print("Getting title, caption and copyright from bing.com/hp/api/model...")
-    data = req_get(
-        "https://www.bing.com/hp/api/model",
-        cookies={"_UR": "cdxOff=1", "_EDGE_S": "mkt=en-US"}
-    ).json()["MediaContents"]
+    # ------------------------------------------------------------------------------------------------------------------
+    # https://www.bing.com/hp/api/model?mkt=en-US&setlang=en&cc=US
+    print('Getting title, caption, copyright, description and image url from bing.com/hp/api/model...')
+
+    data = requests.get(
+        'https://www.bing.com/hp/api/model',
+        params=common_params
+    ).json()['MediaContents']
 
     for image_data in data:
-        date = datetime.strptime(image_data["Ssd"][:image_data["Ssd"].find('_')], '%Y%m%d').strftime('%Y-%m-%d')
+        date = datetime.strptime(image_data['Ssd'].split('_')[0], '%Y%m%d').strftime('%Y-%m-%d')  # TODO: Timezone?
 
-        image_data = image_data["ImageContent"]
+        image_data = image_data['ImageContent']
+        image_url = get_uhd_url(extract_base_url(image_data['Image']['Url']))
 
-        update_api(api, {
-            "title": image_data["Title"],
-            "caption": image_data["Headline"],
-            "copyright": image_data["Copyright"],
-            "date": date
+        update_api(api_by_date, {
+            'date': date,
+            'title': image_data['Title'],
+            'caption': image_data['Headline'],
+            'copyright': image_data['Copyright'],
+            'description': image_data['Description'],
+            'url': image_url
         })
 
-    # ======================= https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US ========================
-    print("Getting everyting else from bing.com/hp/api/v1/imagegallery...")
-    data = req_get(
-        "https://www.bing.com/hp/api/v1/imagegallery",
-        params={"format": "json", "mkt": region}
-    ).json()["data"]["images"]
+    # ------------------------------------------------------------------------------------------------------------------
+    # https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US&setlang=en&cc=US
+    print('Getting title, subtitle, copyright, description and image url from bing.com/hp/api/v1/imagegallery...')
+    data = requests.get(
+        'https://www.bing.com/hp/api/v1/imagegallery',
+        params={'format': 'json', **common_params}
+    ).json()['data']['images']
 
     for image_data in data:
-        date = datetime.strptime(image_data["isoDate"], '%Y%m%d').strftime('%Y-%m-%d')
+        date = datetime.strptime(image_data['isoDate'], '%Y%m%d').strftime('%Y-%m-%d')
 
-        description = image_data["description"]
+        description = image_data['description']
         i = 2
-        while "descriptionPara" + str(i) in image_data and image_data["descriptionPara" + str(i)]:
-            description += '\n' + image_data["descriptionPara" + str(i)]
+        while image_data.get(f'descriptionPara{i}'):
+            description += '\n' + image_data[f'descriptionPara{i}']
             i += 1
+        description = description.replace('  ', ' ')  # Fix for double spaces
 
-        description = description.replace("  ", " ")  # Fix for double spaces
+        image_url = get_uhd_url(extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef']))
 
-        update_api(api, {
-            "title": image_data["title"],
-            "subtitle": image_data["caption"],
-            "copyright": image_data["copyright"],
-            "description": description,
-            "date": date
+        update_api(api_by_date, {
+            'date': date,
+            'title': image_data['title'],
+            'subtitle': image_data['caption'],
+            'copyright': image_data['copyright'],
+            'description': description,
+            'url': image_url
         })
 
-    with open(mkpath(API_PATH, country.upper(), country.lower() + ".json"), 'w', encoding="utf-8") as file:
-        json.dump(postprocess_api(list(api.values())), file, ensure_ascii=False, indent=4)
+    # ------------------------------------------------------------------------------------------------------------------
+    print('Downloading image...')
+
+    filename = date + '.jpg'
+    image_path = mkpath(region.images_path, filename)
+
+    if not os.path.isfile(image_path):
+        with open(image_path, 'wb') as file:
+            file.write(requests.get(image_url).content)
+        remove_metadata(image_path)
+
+    # ------------------------------------------------------------------------------------------------------------------
+
+    region.write_api(
+        postprocess_api(list(api_by_date.values()))
+    )
 
 
-def update_all(*args, **kwargs):
+def update_all():
     for region in REGIONS:
-        update(region, *args, **kwargs)
+        update(region)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     update_all()
