@@ -70,6 +70,8 @@ def update(region: Region):
 
     api_by_date = {item['date']: item for item in region.read_api()}
 
+    to_download = set()
+
     # ------------------------------------------------------------------------------------------------------------------
     # https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=100&mkt=en-US&setlang=en&cc=US
     print('Getting caption, image and image url from bing.com/HPImageArchive.aspx...')
@@ -84,6 +86,7 @@ def update(region: Region):
         date = datetime.strptime(image_data['startdate'], '%Y%m%d').strftime('%Y-%m-%d')
 
         image_url = get_uhd_url(image_data['urlbase'])
+        to_download.add(date)
 
         update_api(api_by_date, {
             'date': date,
@@ -105,6 +108,7 @@ def update(region: Region):
 
         image_data = image_data['ImageContent']
         image_url = get_uhd_url(extract_base_url(image_data['Image']['Url']))
+        to_download.add(date)
 
         update_api(api_by_date, {
             'date': date,
@@ -134,6 +138,7 @@ def update(region: Region):
         description = description.replace('  ', ' ')  # Fix for double spaces
 
         image_url = get_uhd_url(extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef']))
+        to_download.add(date)
 
         update_api(api_by_date, {
             'date': date,
@@ -147,13 +152,14 @@ def update(region: Region):
     # ------------------------------------------------------------------------------------------------------------------
     print('Downloading image...')
 
-    filename = date + '.jpg'
-    image_path = mkpath(region.images_path, filename)
+    for date in to_download:
+        filename = date + '.jpg'
+        image_path = mkpath(region.images_path, filename)
 
-    if not os.path.isfile(image_path):
-        with open(image_path, 'wb') as file:
-            file.write(requests.get(image_url).content)
-        remove_metadata(image_path)
+        if not os.path.isfile(image_path):
+            with open(image_path, 'wb') as file:
+                file.write(requests.get(api_by_date[date]['url']).content)
+            remove_metadata(image_path)
 
     # ------------------------------------------------------------------------------------------------------------------
 

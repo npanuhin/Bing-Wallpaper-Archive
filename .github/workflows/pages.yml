@@ -1,7 +1,10 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Website deployment
+name: Deploy static content to Pages
 
 on:
+  # Runs on pushes targeting the default branch
+  # push:
+  #   branches: ["master"]
   push:
     paths:
       - src/website/**
@@ -16,7 +19,7 @@ permissions:
 # Allow one concurrent deployment
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
