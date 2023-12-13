@@ -48,7 +48,7 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
 
         if key == 'description':
             if len(new_value) < len(before[key]):
-                assert before[key].startswith(new_value)
+                assert before[key].startswith(new_value), f'\n"{new_value}"\nvs\n"{before[key]}"'
             else:
                 assert new_value.startswith(before[key])
                 print(f'Rewriting description for {date}: {len(before[key])} -> {len(new_value)}')
@@ -110,12 +110,15 @@ def update(region: Region):
         image_url = get_uhd_url(extract_base_url(image_data['Image']['Url']))
         to_download.add(date)
 
+        description = image_data['Description']
+        description = description.replace('  ', ' ')  # Fix for double spaces
+
         update_api(api_by_date, {
             'date': date,
             'title': image_data['Title'],
             'caption': image_data['Headline'],
             'copyright': image_data['Copyright'],
-            'description': image_data['Description'],
+            'description': description,
             'url': image_url
         })
 
