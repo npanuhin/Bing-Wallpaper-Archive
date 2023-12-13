@@ -1,16 +1,27 @@
 name: Image check
 
 on:
-  push:
-    paths:
-      - api/**.jpg
-      - .github/workflows/**
-  pull_request:
-    paths:
-      - api/**.jpg
-      - .github/workflows/**
+  # push:
+  #   paths:
+  #     - api/**.jpg
+  #     - .github/workflows/**
+  # pull_request:
+  #   paths:
+  #     - api/**.jpg
+  #     - .github/workflows/**
+
+  workflow_run:
+    workflows: ["Daily update"]
+    types:
+      - completed
+
+  # TODO: Remove images and check only api when api file is changed (in parallel)
+
   workflow_dispatch:
 
+concurrency:
+  group: "all"
+  cancel-in-progress: false
 
 jobs:
   image-check-latest:

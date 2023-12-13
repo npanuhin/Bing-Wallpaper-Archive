@@ -5,6 +5,9 @@ on:
     - cron: '50 23 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: "all"
+  cancel-in-progress: false
 
 jobs:
   update-images:
