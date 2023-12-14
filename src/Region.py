@@ -20,7 +20,7 @@ class Region:
 
     @property
     def mkt(self):
-        return f'{self.lang}-{self.country}'
+        return f'{self.lang}-{self.country.upper()}'
 
     def read_api(self) -> str:
         with open(self.api_path, 'r', encoding='utf-8') as file:
