@@ -6,6 +6,7 @@ import requests
 from postprocess import postprocess_api
 from Region import Region
 from utils import mkpath, remove_metadata
+import gcloud
 
 
 # REGIONS = ['AU', 'CA', 'CN', 'DE', 'FR', 'IN', 'JP', 'ES', 'GB', 'US']
@@ -153,15 +154,23 @@ def update(region: Region):
         })
 
     # ------------------------------------------------------------------------------------------------------------------
-    print('Downloading image...')
+    print('Downloading images and uploading to Google Cloud...')
 
     for date in to_download:
         filename = date + '.jpg'
         image_path = mkpath(region.images_path, filename)
 
+        fresh_download = False
         if not os.path.isfile(image_path):
+            fresh_download = True
             with open(image_path, 'wb') as file:
                 file.write(requests.get(api_by_date[date]['url']).content)
+
+        gcloud_path = mkpath(region.relative_images_path, filename)
+        gcloud.upload_file(image_path, gcloud_path)
+        api_by_date[date]['url'] = gcloud.get_url(gcloud_path)
+
+        if fresh_download:
             remove_metadata(image_path)
 
     # ------------------------------------------------------------------------------------------------------------------

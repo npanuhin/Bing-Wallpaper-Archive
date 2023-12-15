@@ -6,16 +6,16 @@ def mkpath(*paths):
     return os_normpath(os_join(*paths))
 
 
-def remove_metadata(path, extension="jpg", exiftool=mkpath("exiftool", "exiftool")):
-    print('Removing metadata in "{}"...'.format(path))
+def remove_metadata(path, extension='jpg', exiftool='exiftool/exiftool'):
+    print(f'Removing metadata in "{path}"...')
     s = Popen(
         # exiftool -all= --icc_profile:all -overwrite_original -progress -ext jpg -r "../api"  [recursive]
-        "\"{}\" -all= --icc_profile:all -overwrite_original -progress -ext \"{}\" \"{}\"".format(exiftool, extension, path),
+        f'"{exiftool}" -all= --icc_profile:all -overwrite_original -progress -ext "{extension}" "{path}"',
         shell=True,
         stdout=PIPE,
         stderr=PIPE
     ).communicate()
 
-    s = list(map(lambda x: x.decode("cp1251"), s))
+    s = [item.decode('cp1251') for item in s]
 
     print(s)

@@ -37,11 +37,10 @@ jobs:
         with:
           python-version: 3.11
           cache: pip
-          cache-dependency-path: ${{ steps.repository.outputs.name }}/src/requirements/daily_update.txt
 
       - name: Install Python's requirements
-        working-directory: ${{ steps.repository.outputs.name }}/src/requirements
-        run: pip install -r daily_update.txt
+        working-directory: ${{ steps.repository.outputs.name }}/src
+        run: pip install -r requirements.txt
 
       - name: Check for ExifTool in cache
         id: exiftool-cache
@@ -58,27 +57,20 @@ jobs:
           gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
           rm -f Image-ExifTool-12.38.tar.gz
 
-      - name: Update images
+      - name: Google Cloud Authentication
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
+
+      - name: Update archive
         working-directory: ${{ steps.repository.outputs.name }}/src
         run: python update.py
-
-      # - name: GPG
-      #   uses: crazy-max/ghaction-import-gpg@v4
-      #   with:
-      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-      #     passphrase: ${{ secrets.PASSPHRASE }}
-      #     git_user_signingkey: true
-      #     git_commit_gpgsign: true
-      #     # git_tag_gpgsign: true
-
-      - name: Fetch current date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           repository: ${{ steps.repository.outputs.name }}
-          commit_message: "Archive update: US to ${{ env.date }}"
+          commit_message: "Archive update"
           add_options: --sparse
           commit_user_name: GitHub Actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com

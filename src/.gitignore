@@ -2,7 +2,7 @@
 __pycache__/
 
 # ExifTool
-/src/exiftool/*
+exiftool/*
 
 # Keep .gitkeep
 !.gitkeep
