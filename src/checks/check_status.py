@@ -2,11 +2,7 @@ from datetime import datetime, timedelta
 import sys
 
 sys.path.append('../')
-from Region import Region
-
-Region.API_HOME = '../../api'
-
-from bing import REGIONS
+from Region import REGIONS  # noqa: E402
 
 
 def daterange(start_date, end_date):
@@ -33,7 +29,8 @@ def print_status():
                 missing_dates.append(date)
 
         if missing_dates:
-            print(f'{region.mkt} is missing {date}')
+            for missing_date in missing_dates:
+                print(f'{region.mkt} is missing {missing_date}')
 
         # Check how many images are missing URL
         without_url = [item for item in api if not item['url']]

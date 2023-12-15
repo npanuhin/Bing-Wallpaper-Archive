@@ -1,23 +1,35 @@
-from google.cloud import storage
 import json
+import os
+
+from google.cloud import storage
+
+from utils import mkpath
 
 
-with open('gcloud_conf.json', 'r', encoding='utf-8') as file:
+with open(mkpath(os.path.dirname(__file__), 'gcloud_conf.json'), 'r', encoding='utf-8') as file:
     GCLOUD_CONF = json.load(file)
 
 
-def upload_file(file_path: str, bucket_path: str):
-    storage_client = storage.Client(project=GCLOUD_CONF['project_id'])
+class GCloud:
+    API_URL = 'https://storage.googleapis.com'
 
-    bucket = storage_client.get_bucket(GCLOUD_CONF['bucket_name'])  # your bucket name
+    def __init__(self):
+        self.storage_client = storage.Client(project=GCLOUD_CONF['project_id'])
+        self.bucket = self.storage_client.get_bucket(GCLOUD_CONF['bucket_name'])
 
-    blob = bucket.blob(bucket_path)
-    blob.upload_from_filename(file_path)
+    def upload_file(self, file_path: str, bucket_path: str, skip_exists: bool = True):
+        blob = self.bucket.blob(bucket_path)
+        if skip_exists and blob.exists():
+            print(f'Google Cloud: Skipping update of {bucket_path} because it already exists')
+            return
+        blob.upload_from_filename(file_path)
+        print(f'Google Cloud: File {file_path} uploaded to {bucket_path}')
 
 
-def get_url(bucket_path: str):
-    return f'https://storage.googleapis.com/{GCLOUD_CONF["bucket_name"]}/{bucket_path}'
+def gcloud_url(bucket_path: str):
+    return f'{GCloud.API_URL}/{GCLOUD_CONF["bucket_name"]}/{bucket_path}'
 
 
 if __name__ == '__main__':
-    upload_file('../api/US/images/2023-12-08.jpg', '2023-12-08.jpg')
+    gcloud = GCloud()
+    gcloud.upload_file('../api/US/images/2023-12-08.jpg', '2023-12-08.jpg')

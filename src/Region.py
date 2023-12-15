@@ -5,11 +5,9 @@ from utils import mkpath
 
 
 class Region:
-    API_HOME = '../api'
-
     def __init__(self, region):
         self.lang, self.country = map(str.lower, region.split('-'))
-        self.path = mkpath(Region.API_HOME, self.country.upper())
+        self.path = mkpath(os.path.dirname(__file__), '../api', self.country.upper())
         self.api_path = mkpath(self.path, self.country.lower() + '.json')
         self.images_path = mkpath(self.path, 'images')
 
@@ -32,3 +30,8 @@ class Region:
 
     def __repr__(self):
         return f'Region({self.mkt})'
+
+
+# REGIONS = ['AU', 'CA', 'CN', 'DE', 'FR', 'IN', 'JP', 'ES', 'GB', 'US']
+# REGIONS = ['en-ca', 'fr-ca', 'zh-cn', 'en-cn', 'fr-fr', 'de-de', 'en-in', 'ja-jp', 'en-gb', 'en-us', 'en-ww']
+REGIONS = list(map(Region, ['en-US']))

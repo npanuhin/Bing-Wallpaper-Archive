@@ -1,9 +1,14 @@
-from posixpath import join as os_join, normpath as os_normpath
 from subprocess import Popen, PIPE
+import pathlib
+import os
 
 
 def mkpath(*paths):
-    return os_normpath(os_join(*paths))
+    return os.path.normpath(os.path.join(*paths))
+
+
+def posixpath(path: str) -> str:
+    return pathlib.Path(path).as_posix()
 
 
 def remove_metadata(path, extension='jpg', exiftool='exiftool/exiftool'):
