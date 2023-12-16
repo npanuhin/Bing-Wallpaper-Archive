@@ -42,21 +42,6 @@ jobs:
         working-directory: ${{ steps.repository.outputs.name }}/src
         run: pip install -r requirements.txt
 
-      - name: Check for ExifTool in cache
-        id: exiftool-cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.repository.outputs.name }}/src/exiftool
-          key: ExifTool-${{ runner.os }}
-
-      - name: Download ExifTool
-        if: steps.exiftool-cache.outputs.cache-hit != 'true'
-        working-directory: ${{ steps.repository.outputs.name }}/src/exiftool
-        run: |
-          wget https://npanuhin.me/files/Image-ExifTool-12.38.tar.gz
-          gzip -dc Image-ExifTool-12.38.tar.gz | tar -xf - --strip-components=1
-          rm -f Image-ExifTool-12.38.tar.gz
-
       - name: Google Cloud Authentication
         uses: 'google-github-actions/auth@v2'
         with:

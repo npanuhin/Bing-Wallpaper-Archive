@@ -1,8 +1,2 @@
 # Cache
 __pycache__/
-
-# ExifTool
-exiftool/*
-
-# Keep .gitkeep
-!.gitkeep

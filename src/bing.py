@@ -3,10 +3,10 @@ import os
 
 import requests
 
-from utils import mkpath, remove_metadata, posixpath
+from utils import mkpath, posixpath
 from postprocess import postprocess_api
-from gcloud import GCloud, gcloud_url
 from Region import Region, REGIONS
+from gcloud import GCloud
 
 
 gcloud = GCloud()
@@ -44,6 +44,7 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
             continue
 
         if key == 'url' and before[key].startswith(GCloud.API_URL):
+            before[key] = new_value
             continue
 
         if key == 'description':
@@ -155,22 +156,15 @@ def update(region: Region):
     # ------------------------------------------------------------------------------------------------------------------
     print('Downloading images and uploading to Google Cloud...')
 
-    for date in to_download:
+    for date in sorted(to_download):
         filename = date + '.jpg'
         image_path = mkpath(region.images_path, filename)
 
-        fresh_download = False
-        if not os.path.isfile(image_path):
-            fresh_download = True
-            with open(image_path, 'wb') as file:
-                file.write(requests.get(api_by_date[date]['url']).content)
+        with open(image_path, 'wb') as file:
+            file.write(requests.get(api_by_date[date]['url']).content)
 
         gcloud_path = posixpath(mkpath(region.relative_images_path, filename))
-        gcloud.upload_file(image_path, gcloud_path)
-        api_by_date[date]['url'] = gcloud_url(gcloud_path)
-
-        if fresh_download:
-            remove_metadata(image_path)
+        api_by_date[date]['url'] = gcloud.upload_file(image_path, gcloud_path, skip_exists=True)
 
     # ------------------------------------------------------------------------------------------------------------------
 
