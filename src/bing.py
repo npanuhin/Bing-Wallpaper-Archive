@@ -158,12 +158,12 @@ def update(region: Region):
     for date in sorted(to_download):
         filename = date + '.jpg'
         image_path = mkpath(region.images_path, filename)
+        api_by_date[date]['path'] = posixpath(mkpath(region.relative_images_path, filename))
 
         with open(image_path, 'wb') as file:
             file.write(requests.get(api_by_date[date]['url']).content)
 
-        gcloud_path = posixpath(mkpath(region.relative_images_path, filename))
-        api_by_date[date]['url'] = gcloud.upload_file(image_path, gcloud_path, skip_exists=True)
+        api_by_date[date]['url'] = gcloud.upload_file(image_path, api_by_date[date]['path'], skip_exists=True)
 
     # ------------------------------------------------------------------------------------------------------------------
 
