@@ -26,7 +26,7 @@ class Region:
 
     def write_api(self, api):  # TODO
         with open(self.api_path, 'w', encoding='utf-8') as file:
-            json.dump(api, file, ensure_ascii=False, indent=4)
+            json.dump(api, file, ensure_ascii=False, indent='\t')
 
     def __repr__(self):
         return f'Region({self.mkt})'
