@@ -32,6 +32,11 @@ def print_status():
             for missing_date in missing_dates:
                 print(f'{region.mkt} is missing {missing_date}')
 
+        # Check how many images are missing Bing URL
+        without_url = [item for item in api if not item['bing_url']]
+        if without_url:
+            print(f'\n{region.mkt} has {print_percentage(len(without_url), len(api))} images without URL')
+
         # Check how many images are missing URL
         without_url = [item for item in api if not item['url']]
         if without_url:

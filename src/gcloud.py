@@ -33,7 +33,7 @@ class GCloud:
         return gcloud_url(bucket_path)
 
 
-def exists_blob(self, blob: storage.Blob):
+def exists_blob(blob: storage.Blob):
     return blob.exists()
 
 

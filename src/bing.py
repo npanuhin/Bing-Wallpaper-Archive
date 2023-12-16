@@ -42,10 +42,6 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
         if before[key] == new_value:
             continue
 
-        if key == 'url' and before[key].startswith(GCloud.API_URL):
-            before[key] = new_value
-            continue
-
         if key == 'description':
             if len(new_value) < len(before[key]):
                 assert before[key].startswith(new_value), f'\n"{new_value}"\nvs\n"{before[key]}"'
@@ -91,7 +87,7 @@ def update(region: Region):
         update_api(api_by_date, {
             'date': date,
             'caption': image_data['title'],
-            'url': image_url
+            'bing_url': image_url
         })
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -119,7 +115,7 @@ def update(region: Region):
             'caption': image_data['Headline'],
             'copyright': image_data['Copyright'],
             'description': description,
-            'url': image_url
+            'bing_url': image_url
         })
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -149,7 +145,7 @@ def update(region: Region):
             'subtitle': image_data['caption'],
             'copyright': image_data['copyright'],
             'description': description,
-            'url': image_url
+            'bing_url': image_url
         })
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -161,7 +157,7 @@ def update(region: Region):
         api_by_date[date]['path'] = posixpath(mkpath(region.relative_images_path, filename))
 
         with open(image_path, 'wb') as file:
-            file.write(requests.get(api_by_date[date]['url']).content)
+            file.write(requests.get(api_by_date[date]['bing_url']).content)
 
         api_by_date[date]['url'] = gcloud.upload_file(image_path, api_by_date[date]['path'], skip_exists=True)
 

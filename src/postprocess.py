@@ -9,6 +9,7 @@ FIELD_ORDER = (
     'description',
     'date',
     'path',
+    'bing_url',
     'url'
 )
 
@@ -20,9 +21,11 @@ def postproces_item(image_api: dict) -> dict:
         for key in FIELD_ORDER
     }
 
-    # Remove duplication of `caption` and `subtitle`
-    if image_api['caption'] == image_api['subtitle']:
-        image_api['caption'] = None
+    # Alert duplication of `caption` and `subtitle`
+    if image_api['caption'] is not None and image_api['subtitle'] is not None:
+        if image_api['caption'] == image_api['subtitle']:
+            # image_api['caption'] = None
+            raise AssertionError(f'caption == subtitle for {image_api["date"]}')
 
     return image_api
 
