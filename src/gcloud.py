@@ -17,9 +17,13 @@ class GCloud:
         self.storage_client = storage.Client(project=GCLOUD_CONF['project_id'])
         self.bucket = self.storage_client.get_bucket(GCLOUD_CONF['bucket_name'])
 
+    def exists(self, bucket_path: str):
+        blob = self.bucket.blob(bucket_path)
+        return exists_blob(blob)
+
     def upload_file(self, file_path: str, bucket_path: str, skip_exists: bool = False):
         blob = self.bucket.blob(bucket_path)
-        if skip_exists and blob.exists():
+        if skip_exists and exists_blob(blob):
             print(f'Google Cloud: Skipping update of {bucket_path} because it already exists')
             return gcloud_url(bucket_path)
 
@@ -27,6 +31,10 @@ class GCloud:
         print(f'Google Cloud: File {file_path} uploaded to {bucket_path}')
 
         return gcloud_url(bucket_path)
+
+
+def exists_blob(self, blob: storage.Blob):
+    return blob.exists()
 
 
 def gcloud_url(bucket_path: str):
