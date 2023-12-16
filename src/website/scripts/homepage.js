@@ -28,7 +28,7 @@ function waitFunc(func, callback, interval=20) {
 
 // =====================================================================================================================
 
-const api_filepath = "dist/us.json",
+const api_filepath = "api/us.json",
       image_url_prefix = "https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/";
 
 const start_date = new Date(2017, 5, 10), // 2017-05-10: high resolution images start around here
