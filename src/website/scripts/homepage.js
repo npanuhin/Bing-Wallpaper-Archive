@@ -29,7 +29,7 @@ function waitFunc(func, callback, interval=20) {
 // =====================================================================================================================
 
 const api_filepath = "api/us.json",
-      image_url_prefix = "https://raw.githubusercontent.com/npanuhin/bing-wallpaper-archive/master/api/US/images/";
+      image_url_prefix = "https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/images/";
 
 const start_date = new Date(2017, 5, 10), // 2017-05-10: high resolution images start around here
       end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date); // Yesterday

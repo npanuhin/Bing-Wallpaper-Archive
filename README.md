@@ -23,7 +23,7 @@ Stages (roughly in order of importance):
 - [x] Finally remove all images from this repo and reduce the size of repo (+ number of commits in repo)
 - [ ] Write a comprehensive README
 - [ ] Enable other countries
-- [ ] Improve website
+- [ ] Improve website + add protection for GCloud (because 5s per image ~= 500'000 images per month if sombody decides to leave the page open for so long xd)
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
