@@ -9,12 +9,8 @@ class Region:
         self.lang, self.country = map(str.lower, region.split('-'))
         self.path = mkpath(os.path.dirname(__file__), '../api', self.country.upper())
         self.api_path = mkpath(self.path, self.country.lower() + '.json')
-        self.images_path = mkpath(self.path, 'images')
 
-        os.makedirs(self.images_path, exist_ok=True)
-
-        self.relative_path = self.country.upper()
-        self.relative_images_path = mkpath(self.relative_path, 'images')
+        self.gcloud_images_path = mkpath(self.country.upper(), 'images')
 
     @property
     def mkt(self):

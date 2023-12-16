@@ -20,7 +20,7 @@ Stages (roughly in order of importance):
 - [x] Upload alll images to storage
 - [x] Replace spaces by `\t` in api to reduce space
 - [ ] Fix metadata for all images (currently done: ?/?)
-- [ ] Finally remove all images from this repo and reduce the size of repo (+ number of commits in repo)
+- [x] Finally remove all images from this repo and reduce the size of repo (+ number of commits in repo)
 - [ ] Write a comprehensive README
 - [ ] Enable other countries
 - [ ] Improve website

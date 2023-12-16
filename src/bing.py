@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 import requests
 
@@ -61,8 +62,6 @@ def update(region: Region):
     print(f'Updating {region}...')
 
     common_params = {'mkt': region.mkt, 'setlang': region.lang, 'cc': region.country}
-
-    # os.makedirs(region.images_path, exist_ok=True)
 
     api_by_date = {item['date']: item for item in region.read_api()}
 
@@ -151,15 +150,22 @@ def update(region: Region):
     # ------------------------------------------------------------------------------------------------------------------
     print('Downloading images and uploading to Google Cloud...')
 
+    os.makedirs('_temp', exist_ok=True)
+
     for date in sorted(to_download):
         filename = date + '.jpg'
-        image_path = mkpath(region.images_path, filename)
-        api_by_date[date]['path'] = posixpath(mkpath(region.relative_images_path, filename))
+        image_path = mkpath('_temp', filename)
 
         with open(image_path, 'wb') as file:
             file.write(requests.get(api_by_date[date]['bing_url']).content)
 
-        api_by_date[date]['url'] = gcloud.upload_file(image_path, api_by_date[date]['path'], skip_exists=True)
+        api_by_date[date]['url'] = gcloud.upload_file(
+            image_path, posixpath(mkpath(region.gcloud_images_path, filename)), skip_exists=True
+        )
+
+        os.remove(image_path)
+
+    os.rmdir('_temp')
 
     # ------------------------------------------------------------------------------------------------------------------
 
