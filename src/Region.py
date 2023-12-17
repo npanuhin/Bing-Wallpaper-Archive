@@ -8,11 +8,11 @@ class Region:
     def __init__(self, region):
         self.lang, self.country = map(str.lower, region.split('-'))
         self.path = mkpath(os.path.dirname(__file__), '../api', self.country.upper())
-        self.api_path = mkpath(self.path, self.country.lower() + '.json')
+        self.api_path = mkpath(self.path, self.lang.lower() + '.json')
 
         os.makedirs(self.path, exist_ok=True)
 
-        self.gcloud_images_path = mkpath(self.country.upper(), 'images')
+        self.gcloud_images_path = mkpath(self.country.upper(), self.lang.lower())
 
     @property
     def mkt(self):
