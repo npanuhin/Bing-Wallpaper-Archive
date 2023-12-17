@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/images/2023-12-16.jpg">
-        <img id="last_image" title="Guild houses of Grand-Place, Brussels, Belgium" alt="Guild houses of Grand-Place, Brussels, Belgium" src="https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/images/2023-12-16.jpg">
-        <img id="last_image_badge" alt="Last image: 2023-12-16" src="https://img.shields.io/badge/Last_image-2023--12--16-informational?style=flat">
+    <a id="last_image_link" href="https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/images/2023-12-17.jpg">
+        <img id="last_image" title="Bohemian waxwings perched on a branch, Canada" alt="Bohemian waxwings perched on a branch, Canada" src="https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/images/2023-12-17.jpg">
+        <img id="last_image_badge" alt="Last image: 2023-12-17" src="https://img.shields.io/badge/Last_image-2023--12--17-informational?style=flat">
     </a>
 </div>
 
