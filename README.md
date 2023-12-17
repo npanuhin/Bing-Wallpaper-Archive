@@ -21,6 +21,7 @@ Stages (roughly in order of importance):
 - [x] Replace spaces by `\t` in api to reduce space
 - [ ] Fix metadata for all images (currently done: ?/?)
 - [x] Finally remove all images from this repo and reduce the size of repo (+ number of commits in repo)
+- [x] Remove `path` key
 - [ ] Write a comprehensive README
 - [ ] Enable other countries
 - [ ] Improve website + add protection for GCloud (because 5s per image ~= 500'000 images per month if sombody decides to leave the page open for so long xd)
@@ -31,24 +32,29 @@ Stages (roughly in order of importance):
 
 ### Usage
 
-All information is stored in "API files"[^1] in the <code><a href="api">api/</a>{country}</code> directories
+All information is stored in "API files"[^1]. They can be obtained by sending a GET request to the following URL:
 
-The following countries are currently available: <a href="api/US"><code>US</code></a>
+```ruby
+https://bing.npanuhin.me/{country}/{language}.json
+https://bing.npanuhin.me/{country}/{language}.min.json  # For minified version
+```
+
+The following countries and languages are currently available: <a href="https://bing.npanuhin.me/US/en.json"><code>US/en</code></a>
 
 One API file consists of an array of image data:
 ```jsonc
 [
     // Types and descriptions:
     {
-        "title": "{Title}" | null,
-        "caption": "{Caption}" | null,
-        "subtitle": "{Subtitle}" | null,
-        "copyright": "{Copyright}" | null,
-        "description": "{Description}" | null,
-        "date": "{Date in %Y-%m-%d format with leading zeros}",
-        "path": "{Path to image in this repo: {country}/images/{date}.jpg}",  // To be removed in v2
-        "bing_url": "{URL of image on Microsoft servers}" | null,
-        "url": "{URL of image in storage}" | null  // After v2 this field will be required (no null)
+        "title": "Title" | null,
+        "caption": "Caption" | null,
+        "subtitle": "Subtitle" | null,
+        "copyright": "Copyright" | null,
+        "description": "Description" | null,
+        "date": "Date in %Y-%m-%d format with leading zeros",
+        "path": "Path to image in this repo: {country}/{language}/{date}.jpg",  // To be removed in v2
+        "bing_url": "Bing URL" | null,
+        "url": "Storage URL: https:/{storage_url}/{country}/{language}/{date}.jpg" | null  // After v2 this field will be required (no null)
     },
     // Example:
     {
@@ -58,9 +64,9 @@ One API file consists of an array of image data:
         "copyright": "npanuhin/Bing Wallpaper Archive ©",
         "description": "Example description\nThat can span multiple lines",
         "date": "2009-06-03",
-        "path": "US/images/2009-06-03.jpg",
+        "path": "US/en/2009-06-03.jpg",
         "bing_url": null,
-        "url": "https://{storage_url}/US/images/2009-06-03.jpg"
+        "url": "https://{storage_url}/US/en/2009-06-03.jpg"
     },
 ]
 ```
@@ -70,10 +76,10 @@ One API file consists of an array of image data:
 - The `bing_url` field contains the original image URL from Bing (Microsoft) servers. Unfortunately, it is not possible to retrieve images from more than a couple of years ago from these URLs (they all point to the same dummy image)
 
 > [!NOTE]
-> API files tend to be quite large (a couple of MB)
+> API files tend to be quite large (a couple of MB). Use a minimified version in production environments
 
 > [!TIP]
-> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me on GCloud Storage).
+> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me on Google Cloud Storage).
 >
 > <a name="sometext"></a>If you need to make frequent requests to the API files, I recommend downloading and caching them locally (they are updated only once a day). The same applies to the images (although this will be quite difficult to implement)
 >

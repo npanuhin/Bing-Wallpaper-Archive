@@ -8,7 +8,6 @@ FIELD_ORDER = (
     'copyright',
     'description',
     'date',
-    'path',
     'bing_url',
     'url'
 )
