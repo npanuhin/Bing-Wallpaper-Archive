@@ -94,3 +94,9 @@ One API file consists of an array of image data:
 
 
 [^1]: These files are not a typical [API](https://en.wikipedia.org/wiki/API), but they are used to retrieve all valuable information. In some sence they are the Interface of my Application (though not really a Programming Interface)
+
+### Copyright
+
+All images are property of their respective owners (Microsoft, Getty Images, etc.), see the `copyright` field for more details.
+
+Microsoft's official statement regarding wallpaper downloads is: "**Use of this image is restricted to wallpaper only.**"

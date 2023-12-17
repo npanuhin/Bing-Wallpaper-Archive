@@ -172,6 +172,7 @@ def update(region: Region):
     region.write_api(
         postprocess_api(list(api_by_date.values()))
     )
+    print()
 
 
 def update_all():
