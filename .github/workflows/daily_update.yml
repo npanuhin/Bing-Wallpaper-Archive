@@ -15,10 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # - name: Clone repository
-      #   uses: actions/checkout@v3
-      #   with:
-      #     token: ${{ secrets.PAT }}
-      #     ssh-key: ${{ secrets.SSH_KEY }}
+      #   uses: actions/checkout@v4
 
       - name: Fetch repository info
         id: repository

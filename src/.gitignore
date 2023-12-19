@@ -1,2 +1,5 @@
 # Cache
 __pycache__/
+
+# Website generated files
+website/api

@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -26,8 +26,7 @@ jobs:
           cache-dependency-path: '.github/flake8.requirements.txt'
 
       - name: Install dependencies
-        run: |
-          pip install -U -r ".github/flake8.requirements.txt"
+        run: pip install -r ".github/flake8.requirements.txt"
 
       - name: Lint with flake8
         run: flake8 --show-source --statistics

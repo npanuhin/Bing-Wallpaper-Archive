@@ -5,14 +5,12 @@ from utils import mkpath
 
 
 class Region:
-    def __init__(self, region):
+    def __init__(self, region: str):
         self.lang, self.country = map(str.lower, region.split('-'))
         self.path = mkpath(os.path.dirname(__file__), '../api', self.country.upper())
         self.api_path = mkpath(self.path, self.lang.lower() + '.json')
 
         os.makedirs(self.path, exist_ok=True)
-
-        self.gcloud_images_path = mkpath(self.country.upper(), self.lang.lower())
 
     @property
     def mkt(self):
@@ -25,9 +23,19 @@ class Region:
         with open(self.api_path, 'r', encoding='utf-8') as file:
             return json.load(file)
 
-    def write_api(self, api):  # TODO
-        with open(self.api_path, 'w', encoding='utf-8') as file:
-            json.dump(api, file, ensure_ascii=False, indent='\t')
+    def write_api(self, api: list[dict], output_path=None, *args, **kwargs):
+        if output_path is None:
+            output_path = self.api_path
+
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+        kwargs = {
+            'ensure_ascii': False,
+            'indent': '\t',
+        } | kwargs
+
+        with open(output_path, 'w', encoding='utf-8') as file:
+            json.dump(api, file, *args, **kwargs)
 
     def __repr__(self):
         return f'Region({self.mkt})'

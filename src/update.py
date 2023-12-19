@@ -1,8 +1,6 @@
-from datetime import datetime
-import json
 import re
 
-from bing import update_all, REGIONS
+from bing import update_all
 from Region import Region
 
 
@@ -49,19 +47,3 @@ readme = re.sub(
 
 with open('../README.md', 'w', encoding='utf-8') as file:
     file.write(readme)
-
-# ------------------------------------------------- Update website api -------------------------------------------------
-
-for region in REGIONS:
-    api = region.read_api()
-
-    api_for_website = {
-        datetime.strptime(item['date'], '%Y-%m-%d').strftime('%Y%m%d'): item['title']
-        for item in api
-        if item['date'] >= WEBSITE_START_DATE
-    }
-
-    with open(f'website/api/{region.country}.json', 'w', encoding='utf-8') as file:
-        json.dump(api_for_website, file, ensure_ascii=False, separators=(',', ':'))
-
-    print(f'Updated website api for {region.country.upper()}')

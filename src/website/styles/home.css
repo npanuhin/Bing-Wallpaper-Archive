@@ -118,7 +118,7 @@ body.shown {
 }
 
 
-#description {
+#title {
     display: block;
     position: fixed;
     right: 0;
@@ -139,14 +139,14 @@ body.shown {
     font-size: 17px;
 }
 
-#description:hover {
+#title:hover {
     background-color: rgba(0, 0, 0, 0.9);
     box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
 
     color: #0A84FF;
 }
 
-#description::after {
+#title::after {
     content: "";
     display: block;
     position: absolute;
@@ -163,6 +163,6 @@ body.shown {
     transition: 0.075s opacity ease-in-out;
 }
 
-#description:hover::after {
+#title:hover::after {
     opacity: 1;
 }

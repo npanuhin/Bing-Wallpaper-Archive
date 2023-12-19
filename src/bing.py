@@ -160,7 +160,7 @@ def update(region: Region):
             file.write(requests.get(api_by_date[date]['bing_url']).content)
 
         api_by_date[date]['url'] = gcloud.upload_file(
-            image_path, posixpath(mkpath(region.gcloud_images_path, filename)), skip_exists=True
+            image_path, posixpath(mkpath(region.country.upper(), region.lang.lower(), filename)), skip_exists=True
         )
 
         os.remove(image_path)
