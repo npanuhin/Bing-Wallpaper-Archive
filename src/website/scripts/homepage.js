@@ -10,11 +10,15 @@ const background = document.getElementById("background"),
     foreground = document.getElementById("foreground"),
     title = document.getElementById("title"),
     transition_delay = 1000,
-    delay = 5000;
+    delay = 5000,
+    hold_delay = 3000;
 
 var cur_image = foreground;
 
 var api;
+
+var first_image_loaded = false,
+    hold = false;
 
 
 // =====================================================================================================================
@@ -45,7 +49,7 @@ function date2str(date) {
 // }
 
 // function wait_func(func, callback, interval = 20) {
-//     (async () => {
+//     (async _ => {
 //         while (!func()) await new Promise(resolve => setTimeout(resolve, interval));
 //         callback();
 //     })();
@@ -90,6 +94,21 @@ function fetchYear(year, callback, alert_error = false) {
 
 // =====================================================================================================================
 
+let hold_release_timeout;
+
+title.addEventListener('mouseenter', _ => {
+    clearTimeout(hold_release_timeout);
+    hold = true;
+    // console.log("Hold activated");
+});
+title.addEventListener('mouseleave', _ => {
+    clearTimeout(hold_release_timeout);
+    hold_release_timeout = setTimeout(_ => {
+        hold = false;
+    }, hold_delay);
+    // console.log(`Hold will be deactivated in ${hold_delay / 1000}s`);
+});
+
 function changeBackground() {
     const chosen_image = api[Math.floor(Math.random() * api.length)];
 
@@ -98,10 +117,10 @@ function changeBackground() {
 
     cur_image.src = image_path;
 
-    setTimeout(() => {
+    setTimeout(_ => {
         waitFor(
-            () => cur_image.complete,
-        ).then(() => {
+            _ => cur_image.complete && !hold,
+        ).then(_ => {
             foreground.style.opacity = (cur_image === foreground ? 1 : 0);
 
             cur_image = (cur_image === foreground ? background : foreground);
@@ -112,7 +131,7 @@ function changeBackground() {
 
                 title.style.opacity = 0;
 
-                setTimeout(() => {
+                setTimeout(_ => {
                     title.textContent = image_title;
                     title.href = image_path;
                     title.style.opacity = 1;
@@ -122,6 +141,7 @@ function changeBackground() {
                 title.textContent = image_title;
                 title.href = image_path;
                 document.body.classList.add("shown");
+                first_image_loaded = true;
             }
 
         });
@@ -134,17 +154,24 @@ fetchYear(previous_year, year_api => {
 
     // changeBackground();
     waitFor(
-        () => document.readyState == "complete"
+        _ => document.readyState === "complete"
     ).then(changeBackground);
 
-    for (let year = start_date.getFullYear(); year <= end_date.getFullYear(); ++year) {
-        if (year === previous_year) continue;
-        console.log("Loaded year:", year);
+    waitFor(
+        _ => first_image_loaded
+    ).then(_ => {''
+        console.log("Loading other years:");
 
-        fetchYear(year, year_api => {
-            year_api.forEach(item => {
-                if (item["date"] >= date2str(start_date)) api.push(item);
+        for (let year = start_date.getFullYear(); year <= end_date.getFullYear(); ++year) {
+            if (year === previous_year) continue;
+            console.log("Loaded year:", year);
+
+            fetchYear(year, year_api => {
+                year_api.forEach(item => {
+                    if (item["date"] >= date2str(start_date)) api.push(item);
+                });
             });
-        });
-    }
+        }
+
+    });
 }, alert_error = true);
