@@ -27,6 +27,7 @@ Stages (roughly in order of importance):
 - [ ] Enable other countries
 - [x] Rewrite website
 - [x] Website: hold current image when hovering over title
+- [ ] Website: fade-in not body but all elements
 - [ ] Add protection for GCloud (because 5s per image ~= 500'000 images per month if sombody decides to leave the page open for so long xd)
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
