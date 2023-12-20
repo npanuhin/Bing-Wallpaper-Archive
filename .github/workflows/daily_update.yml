@@ -14,20 +14,8 @@ jobs:
     name: Update images
     runs-on: ubuntu-latest
     steps:
-      # - name: Clone repository
-      #   uses: actions/checkout@v4
-
-      - name: Fetch repository info
-        id: repository
-        run: |
-          echo "::set-output name=name::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
-          echo "::set-output name=url::$(echo https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git)"
-
-      - name: Partially clone repository
-        run: |
-          git clone --depth 1 --filter=blob:none --sparse ${{ steps.repository.outputs.url }}
-          cd ${{ steps.repository.outputs.name }}
-          git sparse-checkout set --no-cone "*" "!*.jpg" "!*.mp4"
+      - name: Clone repository
+        uses: actions/checkout@v4
 
       - name: Install Python
         uses: actions/setup-python@v3
@@ -36,7 +24,7 @@ jobs:
           cache: pip
 
       - name: Install Python's requirements
-        working-directory: ${{ steps.repository.outputs.name }}/src
+        working-directory: src
         run: pip install -r requirements.txt
 
       - name: Google Cloud Authentication
@@ -45,15 +33,12 @@ jobs:
           credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
 
       - name: Update archive
-        working-directory: ${{ steps.repository.outputs.name }}/src
+        working-directory: src
         run: python update.py
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          repository: ${{ steps.repository.outputs.name }}
           commit_message: "Archive update"
-          add_options: --sparse
           commit_user_name: GitHub Actions
-          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
-          commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          # commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>

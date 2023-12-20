@@ -139,7 +139,7 @@ fetchYear(previous_year, year_api => {
 
     for (let year = start_date.getFullYear(); year <= end_date.getFullYear(); ++year) {
         if (year === previous_year) continue;
-        console.log("Loaded year:", previous_year);
+        console.log("Loaded year:", year);
 
         fetchYear(year, year_api => {
             year_api.forEach(item => {
