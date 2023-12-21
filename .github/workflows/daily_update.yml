@@ -28,13 +28,16 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Google Cloud Authentication
-        uses: 'google-github-actions/auth@v2'
+        uses: google-github-actions/auth@v2
         with:
           credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
 
       - name: Update archive
         working-directory: src
         run: python update.py
+
+      - name: Remove GCloud credentials
+        run: rm -f $GOOGLE_GHA_CREDS_PATH
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
