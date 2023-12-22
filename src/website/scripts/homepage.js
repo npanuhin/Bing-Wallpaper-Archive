@@ -1,5 +1,4 @@
-const api_path = "api/US/en.json",
-	year_api_path = (year) => `api/US/en.${year}.json`,
+const year_api_path = year => `US/en.${year}.json`,
 	image_url_prefix = "https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/en/";
 
 const start_date = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
@@ -11,7 +10,7 @@ const background = document.getElementById("background"),
 	title = document.getElementById("title"),
 	// timer = document.getElementById("timer"),
 	timer_path = document.getElementById("timer_path"),
-	transition_delay_initial = 200,  // Initial delay before showing first image
+	transition_delay_initial = 200, // Initial delay before showing first image
 	transition_delay_true = 1000,
 	delay = 5000,
 	hold_delay = 3000;
@@ -109,7 +108,7 @@ title.addEventListener('mouseenter', _ => {
 	hold = true;
 	// console.log("Hold activated");
 
-	timer_path.getAnimations().map((animation) => {
+	timer_path.getAnimations().map(animation => {
 		animation.pause();
 		// if (animation.currentTime > timer_duration - hold_delay) {
 		animation.currentTime = timer_duration - hold_delay;
@@ -123,7 +122,7 @@ title.addEventListener('mouseleave', _ => {
 	}, hold_delay);
 	// console.log(`Hold will be deactivated in ${hold_delay / 1000}s`);
 
-	timer_path.getAnimations().map((animation) => animation.play());
+	timer_path.getAnimations().map(animation => animation.play());
 });
 
 function changeBackground() {
@@ -184,10 +183,10 @@ fetchYear(previous_year, year_api => {
 	console.log("Loaded year:", previous_year);
 	api = year_api;
 
-	// changeBackground();
-	waitFor(
-		_ => document.readyState === "complete"
-	).then(changeBackground);
+	changeBackground();
+	// waitFor(
+	// 	_ => document.readyState === "complete"
+	// ).then(changeBackground);
 
 	waitFor(
 		_ => first_image_loaded

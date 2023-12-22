@@ -7,6 +7,84 @@
     </a>
 </div>
 
+### Usage
+
+All information is stored in "API files"[^1]. They can be obtained by sending a GET request to the following URL:
+
+```ruby
+https://bing.npanuhin.me/{country}/{language}.json
+```
+<!-- https://bing.npanuhin.me/{country}/{language}.url.json  # Only dates and urls (format description below) -->
+
+The following countries and languages are currently available: <a href="https://bing.npanuhin.me/US/en.json"><code>US/en</code></a>
+
+One API file consists of an array of image data[^2]:
+```jsonc
+[
+    // Types and descriptions:
+    {
+        "title": "Title" | null,
+        "caption": "Caption" | null,
+        "subtitle": "Subtitle" | null,
+        "copyright": "Copyright" | null,
+        "description": "Description" | null,
+        "date": "Date in %Y-%m-%d format with leading zeros",
+        "bing_url": "Bing URL" | null,
+        "url": "Storage URL: https:/{storage_url}/{country}/{language}/{date}.jpg"
+    },
+    // Example:
+    {
+        "title": "Example title",
+        "caption": "Example caption",
+        "subtitle": "Example subtitle",
+        "copyright": "npanuhin/Bing Wallpaper Archive ©",
+        "description": "Example description\nThat can span multiple lines",
+        "date": "2009-06-03",
+        "bing_url": null,
+        "url": "https://{storage_url}/US/en/2009-06-03.jpg"
+    },
+]
+```
+
+- Images are sorted by `date` in ascending order (oldest first, newest last)
+
+- The `bing_url` field contains the original image URL from Bing (Microsoft) servers. Unfortunately, it is not possible to retrieve images from more than a couple of years ago from these URLs (they all point to the same dummy image)
+
+<!-- URL API files are minified and contain only `date` field as key and `url` field as value (to save space as much as possible):
+```jsonc
+{"2009-06-03":"https://{storage_url}/US/en/2009-06-03.jpg","...":"...",}
+``` -->
+
+> [!NOTE]
+> API files tend to be quite large (a couple of MB)
+
+> [!TIP]
+> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image).
+>
+> If you still need image titles, descriptions, etc., but want to save bandwidth, you can get API files for specific years:
+> ```ruby
+> https://bing.npanuhin.me/{country}/{language}.{year}.json
+> ```
+> For example: <a href="https://bing.npanuhin.me/US/en.2021.json"><code>US/en.2021</code></a><br>  <!-- TODO add examples fro other languages -->
+> These files are minified and typically have a size of 100-500 KB
+
+
+<!-- >
+> **Pro tip**:  
+> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
+
+
+<!-- If you don't need image titles, descriptions, etc., you can use the URL API file, which is *only about 13% the size* of the full API file: -->
+<!-- > [!TIP]
+> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
+
+> [!Important]
+> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me on Google Cloud Storage).
+>
+> If you need to make frequent requests to the API files, I recommend downloading and caching them locally (they are updated only once a day). The same applies to the images (although this will be quite difficult to implement).
+>
+> Your understanding and cooperation are greatly appreciated 🙂
+
 
 ### Version 2 roadmap
 
@@ -27,91 +105,12 @@ Stages (roughly in order of importance):
 - [ ] Enable other countries
 - [x] Rewrite website
 - [x] Website: hold current image when hovering over title
+- [ ] Website: Maybe show last image as the first one + preload it sooner than JS script would do it
 - [ ] Website: fade-in not body but all elements
 - [ ] Add protection for GCloud (because 5s per image ~= 500'000 images per month if sombody decides to leave the page open for so long xd)
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
-
-
-### Usage
-
-All information is stored in "API files"[^1]. They can be obtained by sending a GET request to the following URL:
-
-```ruby
-https://bing.npanuhin.me/{country}/{language}.json
-```
-<!-- https://bing.npanuhin.me/{country}/{language}.url.json  # Only dates and urls (format description below) -->
-
-The following countries and languages are currently available: <a href="https://bing.npanuhin.me/US/en.json"><code>US/en</code></a>
-
-One API file consists of an array of image data:
-```jsonc
-[
-    // Types and descriptions:
-    {
-        "title": "Title" | null,
-        "caption": "Caption" | null,
-        "subtitle": "Subtitle" | null,
-        "copyright": "Copyright" | null,
-        "description": "Description" | null,
-        "date": "Date in %Y-%m-%d format with leading zeros",
-        "path": "Path to image in this repo: {country}/{language}/{date}.jpg",  // To be removed in v2
-        "bing_url": "Bing URL" | null,
-        "url": "Storage URL: https:/{storage_url}/{country}/{language}/{date}.jpg" | null  // After v2 this field will be required (no null)
-    },
-    // Example:
-    {
-        "title": "Example title",
-        "caption": "Example caption",
-        "subtitle": "Example subtitle",
-        "copyright": "npanuhin/Bing Wallpaper Archive ©",
-        "description": "Example description\nThat can span multiple lines",
-        "date": "2009-06-03",
-        "path": "US/en/2009-06-03.jpg",
-        "bing_url": null,
-        "url": "https://{storage_url}/US/en/2009-06-03.jpg"
-    },
-]
-```
-
-- Images are sorted by `date` in ascending order (oldest first, newest last)
-
-- The `bing_url` field contains the original image URL from Bing (Microsoft) servers. Unfortunately, it is not possible to retrieve images from more than a couple of years ago from these URLs (they all point to the same dummy image)
-
-<!-- URL API files are minified and contain only `date` field as key and `url` field as value (to save space as much as possible):
-```jsonc
-{"2009-06-03":"https://{storage_url}/US/en/2009-06-03.jpg","...":"...",}
-``` -->
-
-> [!NOTE]
-> API files tend to be quite large (a couple of MB)
-
-> [!TIP]
-> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image)
->
-> If you still need image titles, descriptions, etc., but want to save bandwidth, you can get API files for specific years:
-> ```ruby
-> https://bing.npanuhin.me/{country}/{language}.{year}.json
-> ```
-> These files are minified and typically have a size of 100-500 KB
-
-
-<!-- >
-> **Pro tip**:  
-> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
-
-
-<!-- If you don't need image titles, descriptions, etc., you can use the URL API file, which is *only about 13% the size* of the full API file: -->
-<!-- > [!TIP]
-> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
-
-> [!Important]
-> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me on Google Cloud Storage).
->
-> <a name="sometext"></a>If you need to make frequent requests to the API files, I recommend downloading and caching them locally (they are updated only once a day). The same applies to the images (although this will be quite difficult to implement)
->
-> Your understanding and cooperation are greatly appreciated 🙂
 
 
 ### TODO
@@ -128,6 +127,8 @@ One API file consists of an array of image data:
 
 
 [^1]: These files are not a typical [API](https://en.wikipedia.org/wiki/API), but they are used to retrieve all valuable information. In some sence they are the Interface of my Application (though not really a Programming Interface)
+
+[^2]: Although the `title` field is optional, de facto every image has a proper title and this also applies to new images
 
 ### Copyright
 

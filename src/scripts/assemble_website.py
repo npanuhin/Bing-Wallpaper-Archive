@@ -13,17 +13,17 @@ def main():
     for region in REGIONS:
         api = region.read_api()
 
-        webiste_directory = mkpath(WEBSITE_ROOT, 'api', region.country.upper())
+        website_directory = mkpath(WEBSITE_ROOT, region.country.upper())
 
-        os.makedirs(webiste_directory, exist_ok=True)
+        os.makedirs(website_directory, exist_ok=True)
 
-        for file in os.listdir(webiste_directory):
-            os.remove(mkpath(webiste_directory, file))
+        for file in os.listdir(website_directory):
+            os.remove(mkpath(website_directory, file))
 
-        region.write_api(api, mkpath(webiste_directory, region.lang.lower() + '.json'))
+        region.write_api(api, mkpath(website_directory, region.lang.lower() + '.json'))
         # region.write_api(
         #     api,
-        #     mkpath(webiste_directory, region.lang.lower() + '.min.json'),
+        #     mkpath(website_directory, region.lang.lower() + '.min.json'),
         #     indent=None, separators=(',', ':')
         # )
 
@@ -31,7 +31,7 @@ def main():
 
         # region.write_api(
         #     only_urls,
-        #     mkpath(webiste_directory, region.lang.lower() + '.url.json'),
+        #     mkpath(website_directory, region.lang.lower() + '.url.json'),
         #     indent=None, separators=(',', ':')
         # )
 
@@ -42,7 +42,7 @@ def main():
             year_api = [image for image in api if image['date'].startswith(str(year))]
             region.write_api(
                 year_api,
-                mkpath(webiste_directory, region.lang.lower() + f'.{year}.json'),
+                mkpath(website_directory, region.lang.lower() + f'.{year}.json'),
                 indent=None, separators=(',', ':')
             )
 
