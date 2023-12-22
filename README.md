@@ -65,7 +65,7 @@ One API file consists of an array of image data[^2]:
 > ```ruby
 > https://bing.npanuhin.me/{country}/{language}.{year}.json
 > ```
-> For example: <a href="https://bing.npanuhin.me/US/en.2021.json"><code>US/en.2021</code></a><br>  <!-- TODO add examples fro other languages -->
+> For example: <a href="https://bing.npanuhin.me/US/en.2021.json"><code>US/en.2021</code></a><br>  <!-- TODO add examples for other languages -->
 > These files are minified and typically have a size of 100-500 KB
 
 
@@ -88,26 +88,26 @@ One API file consists of an array of image data[^2]:
 
 ### Version 2 roadmap
 
-After two years, I decided to rewrite the entire project and fix numerous issues including storage capacity and metadata.
+After two years, I decided to rewrite the entire project and to fix numerous issues, including storage capacity and metadata.
 
 Stages (roughly in order of importance):
 
 - [x] Proper everyday image retrieval from three sources
 - [x] Uploading images to external storage (chose Google Cloud for now)
 - [x] Removing metadata nonsense — images should be preserved in their original form
-- [x] Upload alll images to storage
-- [x] Replace spaces by `\t` in api to reduce space
+- [x] Upload all images to storage
+- [x] Replace spaces by `\t` in API to reduce space
 - [ ] Fix metadata for all images (currently done: ?/?)
 - [x] Finally remove all images from this repo and reduce the size of repo (+ number of commits in repo)
-- [x] Remove `path` key
+- [x] Remove the `path` key
 - [x] Generate API only for website and not store it in Git repo (+ minified)
 - [ ] Write a comprehensive README
 - [ ] Enable other countries
 - [x] Rewrite website
 - [x] Website: hold current image when hovering over title
-- [ ] Website: Maybe show last image as the first one + preload it sooner than JS script would do it
-- [ ] Website: fade-in not body but all elements
-- [ ] Add protection for GCloud (because 5s per image ~= 500'000 images per month if sombody decides to leave the page open for so long xd)
+- [ ] Website: Maybe show the last image as the first one + preload it sooner than JS script would do it
+- [ ] Website: fade-in not just body but all elements
+- [ ] Add protection for GCloud (because 5s per image ~= 500'000 images per month if somebody decides to leave the page open for so long xd)
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
@@ -126,9 +126,9 @@ Stages (roughly in order of importance):
 - Month `2016-02` has two duplicate images and is missing one image
 
 
-[^1]: These files are not a typical [API](https://en.wikipedia.org/wiki/API), but they are used to retrieve all valuable information. In some sence they are the Interface of my Application (though not really a Programming Interface)
+[^1]: These files are not a typical [API](https://en.wikipedia.org/wiki/API), but they are used to retrieve all valuable information. In some sense they are the Interface of my Application (though not really a Programming Interface)
 
-[^2]: Although the `title` field is optional, de facto every image has a proper title and this also applies to new images
+[^2]: Although the `title` field is optional, de facto every image has a proper title, and this also applies to new images
 
 ### Copyright
 
