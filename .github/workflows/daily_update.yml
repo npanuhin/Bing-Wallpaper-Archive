@@ -5,8 +5,10 @@ on:
     - cron: '50 23 * * *'
   workflow_dispatch:
 
+permissions: {}  # Using PAT
+
 concurrency:
-  group: "all"
+  group: "daily_update"
   cancel-in-progress: false
 
 jobs:
@@ -16,6 +18,8 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
 
       - name: Install Python
         uses: actions/setup-python@v3
@@ -44,4 +48,4 @@ jobs:
         with:
           commit_message: "Archive update"
           commit_user_name: GitHub Actions
-          # commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>

@@ -9,6 +9,9 @@ on:
       - '**.py'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   linter:
     name: Lint code
