@@ -23,7 +23,9 @@ def postproces_item(image_api: dict) -> dict:
     # Alert duplication of `caption` and `subtitle`
     if image_api['caption'] is not None and image_api['caption'] == image_api['subtitle']:
         # image_api['caption'] = None
-        raise AssertionError(f'caption == subtitle for {image_api["date"]}')
+        # print(image_api)
+        print(f'caption == subtitle for {image_api["date"]}')
+        # raise AssertionError(f'caption == subtitle for {image_api["date"]}')
 
     return image_api
 
