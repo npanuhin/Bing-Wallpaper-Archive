@@ -3,6 +3,7 @@ import os
 
 from google.cloud import storage
 
+from images import compare_image_pixels
 from utils import mkpath
 
 
@@ -32,6 +33,18 @@ class GCloud:
 
         return gcloud_url(bucket_path)
 
+    def compare_images(self, file_path: str, bucket_path: str) -> bool:
+        blob = self.bucket.blob(bucket_path)
+        if not exists_blob(blob):
+            raise ValueError(f'Google Cloud: Image {bucket_path} does not exist, cannot compare')
+
+        blob.download_to_filename('_temp.jpg')
+
+        identical = compare_image_pixels(file_path, '_temp.jpg')
+
+        os.remove('_temp.jpg')
+        return identical
+
 
 def exists_blob(blob: storage.Blob):
     return blob.exists()
@@ -43,4 +56,5 @@ def gcloud_url(bucket_path: str):
 
 if __name__ == '__main__':
     gcloud = GCloud()
-    gcloud.upload_file('../api/US/images/2023-12-08.jpg', '2023-12-08.jpg')
+    # gcloud.upload_file('../api/US/images/2023-12-08.jpg', '2023-12-08.jpg')
+    print(gcloud.compare_images('b5ef1f21782d1e99e81c31e01a0e9ef5.jpg', 'US/en/2018-10-14.jpg'))

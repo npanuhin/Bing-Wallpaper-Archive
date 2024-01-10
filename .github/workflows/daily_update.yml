@@ -2,7 +2,7 @@ name: Daily update
 
 on:
   schedule:
-    - cron: '32 1 * * *'  # 1:32 AM UTC
+    - cron: '2 8 * * *'  # 8:02 UTC
   workflow_dispatch:
 
 permissions: {}  # Using PAT

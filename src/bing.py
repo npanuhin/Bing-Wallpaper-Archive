@@ -74,7 +74,7 @@ def update(region: Region):
 
     data = requests.get(
         'https://www.bing.com/HPImageArchive.aspx',
-        params={'format': 'js', 'idx': 0, 'n': 10, **common_params}
+        params={'format': 'js', 'idx': 0, 'n': 10} | common_params
     ).json()['images']
 
     for image_data in data:
@@ -122,7 +122,7 @@ def update(region: Region):
     print('Getting title, subtitle, copyright, description and image url from bing.com/hp/api/v1/imagegallery...')
     data = requests.get(
         'https://www.bing.com/hp/api/v1/imagegallery',
-        params={'format': 'json', **common_params}
+        params={'format': 'json'} | common_params
     ).json()['data']['images']
 
     for image_data in data:

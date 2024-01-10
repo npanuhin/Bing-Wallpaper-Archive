@@ -126,12 +126,13 @@ Stages (roughly in order of importance):
 - Month `2016-02` has two duplicate images and is missing one image
 
 
-[^1]: These files are not a typical [API](https://en.wikipedia.org/wiki/API), but they are used to retrieve all valuable information. In some sense they are the Interface of my Application (though not really a Programming Interface)
-
-[^2]: Although the `title` field is optional, de facto every image has a proper title, and this also applies to new images
-
 ### Copyright
 
 All images are property of their respective owners (Microsoft, Getty Images, etc.), see the `copyright` field for more details.
 
 Microsoft's official statement regarding wallpaper downloads is: "**Use of this image is restricted to wallpaper only.**"
+
+
+[^1]: These files are not a typical [API](https://en.wikipedia.org/wiki/API), but they are used to retrieve all valuable information. In some sense they are the Interface of my Application (though not really a Programming Interface)
+
+[^2]: Although the `title` field is optional, de facto every image has a proper title, and this also applies to new images
