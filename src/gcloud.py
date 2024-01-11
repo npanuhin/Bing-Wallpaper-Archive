@@ -56,5 +56,5 @@ def gcloud_url(bucket_path: str):
 
 if __name__ == '__main__':
     gcloud = GCloud()
-    # gcloud.upload_file('../api/US/images/2023-12-08.jpg', '2023-12-08.jpg')
+    # print(gcloud.upload_file('../api/US/images/2023-12-08.jpg', '2023-12-08.jpg'))
     print(gcloud.compare_images('b5ef1f21782d1e99e81c31e01a0e9ef5.jpg', 'US/en/2018-10-14.jpg'))

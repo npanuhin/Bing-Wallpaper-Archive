@@ -3,9 +3,9 @@ import os
 
 import requests
 
-from utils import mkpath, posixpath
 from postprocess import postprocess_api
-from Region import Region, REGIONS
+from utils import mkpath, posixpath
+from Region import REGIONS, Region
 from gcloud import GCloud
 
 

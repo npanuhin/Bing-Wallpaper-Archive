@@ -1,4 +1,5 @@
 from hashlib import sha256
+
 from PIL import Image
 
 
