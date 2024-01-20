@@ -31,17 +31,13 @@ jobs:
         working-directory: src
         run: pip install -r requirements.txt
 
-      - name: Google Cloud Authentication
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
-
       - name: Update archive
         working-directory: src
         run: python update.py
-
-      - name: Remove GCloud credentials
-        run: rm -f $GOOGLE_GHA_CREDS_PATH
+        env:
+          CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
+          CLOUDFLARE_AWS_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_AWS_ACCESS_KEY_ID }}'
+          CLOUDFLARE_AWS_SECRET_ACCESS_KEY: '${{ secrets.CLOUDFLARE_AWS_SECRET_ACCESS_KEY }}'
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5

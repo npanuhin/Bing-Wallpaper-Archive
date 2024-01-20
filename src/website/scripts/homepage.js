@@ -139,7 +139,6 @@ function changeBackground() {
 		).then(_ => {
 
 			// Restart timer animation
-			console.log("Starting");
 			setTimeout(_ => {
 				timer_path.classList.remove("play");
 				setTimeout(_ => {

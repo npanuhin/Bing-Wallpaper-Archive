@@ -30,7 +30,7 @@ One API file consists of an array of image data[^2]:
         "description": "Description" | null,
         "date": "Date in %Y-%m-%d format with leading zeros",
         "bing_url": "Bing URL" | null,
-        "url": "Storage URL: https:/{storage_url}/{country}/{language}/{date}.jpg"
+        "url": "Storage URL: https://bing.npanuhin.me/{country}/{language}/{date}.jpg"
     },
     // Example:
     {
@@ -41,7 +41,7 @@ One API file consists of an array of image data[^2]:
         "description": "Example description\nThat can span multiple lines",
         "date": "2009-06-03",
         "bing_url": null,
-        "url": "https://{storage_url}/US/en/2009-06-03.jpg"
+        "url": "https://bing.npanuhin.me/US/en/2009-06-03.jpg"
     },
 ]
 ```
@@ -52,7 +52,7 @@ One API file consists of an array of image data[^2]:
 
 <!-- URL API files are minified and contain only `date` field as key and `url` field as value (to save space as much as possible):
 ```jsonc
-{"2009-06-03":"https://{storage_url}/US/en/2009-06-03.jpg","...":"...",}
+{"2009-06-03":"https://bing.npanuhin.me/US/en/2009-06-03.jpg","...":"...",}
 ``` -->
 
 > [!NOTE]
@@ -79,7 +79,7 @@ One API file consists of an array of image data[^2]:
 > If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
 
 > [!Important]
-> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me on Google Cloud Storage).
+> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me).
 >
 > If you need to make frequent requests to the API files, I recommend downloading and caching them locally (they are updated only once a day). The same applies to the images (although this will be quite difficult to implement).
 >
@@ -93,7 +93,7 @@ After two years, I decided to rewrite the entire project and to fix numerous iss
 Stages (roughly in order of importance):
 
 - [x] Proper everyday image retrieval from three sources
-- [x] Uploading images to external storage (chose Google Cloud for now)
+- [x] Uploading images to external storage (chose ~~Google Cloud Storage~~ Cloudflare R2 for now)
 - [x] Removing metadata nonsense — images should be preserved in their original form
 - [x] Upload all images to storage
 - [x] Replace spaces by `\t` in API to reduce space
@@ -107,7 +107,7 @@ Stages (roughly in order of importance):
 - [x] Website: hold current image when hovering over title
 - [ ] Website: Maybe show the last image as the first one + preload it sooner than JS script would do it
 - [ ] Website: fade-in not just body but all elements
-- [ ] Add protection for GCloud (because 5s per image ~= 500'000 images per month if somebody decides to leave the page open for so long xd)
+- [ ] ~~Add protection for GCloud (because 5s per image \~= 500'000 images per month if somebody decides to leave the page open for so long xd)~~ Switched to Cloudflare R2
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
