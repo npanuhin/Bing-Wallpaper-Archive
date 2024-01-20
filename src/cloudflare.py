@@ -48,7 +48,7 @@ class CloudflareR2:
 
     def upload_file(self, file_path: str, bucket_path: str, skip_exists: bool = False):
         if skip_exists and self.exists(bucket_path):
-            print(f'Cloudflare R2: Skipping update of {bucket_path} because it already exists')
+            print(f'Cloudflare R2: Skipping upload of {bucket_path} because it already exists')
             return r2_url(bucket_path)
 
         self.client.upload_file(file_path, R2_CONFIG['bucket_name'], bucket_path)

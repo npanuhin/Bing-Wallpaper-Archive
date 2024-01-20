@@ -6,10 +6,10 @@ import requests
 from postprocess import postprocess_api
 from utils import mkpath, posixpath
 from Region import REGIONS, Region
-from gcloud import GCloud
+from cloudflare import CloudflareR2
 
 
-gcloud = GCloud()
+storage = CloudflareR2()
 
 # ======================================================================================================================
 
@@ -148,7 +148,7 @@ def update(region: Region):
         })
 
     # ------------------------------------------------------------------------------------------------------------------
-    print('Downloading images and uploading to Google Cloud...')
+    print('Downloading images and uploading to Storage...')
 
     os.makedirs('_temp', exist_ok=True)
 
@@ -159,7 +159,7 @@ def update(region: Region):
         with open(image_path, 'wb') as file:
             file.write(requests.get(api_by_date[date]['bing_url']).content)
 
-        api_by_date[date]['url'] = gcloud.upload_file(
+        api_by_date[date]['url'] = storage.upload_file(
             image_path, posixpath(mkpath(region.country.upper(), region.lang.lower(), filename)), skip_exists=True
         )
 

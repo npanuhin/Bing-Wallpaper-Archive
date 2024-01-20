@@ -11,7 +11,7 @@
 
 All information is stored in "API files"[^1]. They can be obtained by sending a GET request to the following URL:
 
-```ruby
+```haskell
 https://bing.npanuhin.me/{country}/{language}.json
 ```
 <!-- https://bing.npanuhin.me/{country}/{language}.url.json  # Only dates and urls (format description below) -->
@@ -62,7 +62,7 @@ One API file consists of an array of image data[^2]:
 > If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image).
 >
 > If you still need image titles, descriptions, etc., but want to save bandwidth, you can get API files for specific years:
-> ```ruby
+> ```haskell
 > https://bing.npanuhin.me/{country}/{language}.{year}.json
 > ```
 > For example: <a href="https://bing.npanuhin.me/US/en.2021.json"><code>US/en.2021</code></a><br>  <!-- TODO add examples for other languages -->

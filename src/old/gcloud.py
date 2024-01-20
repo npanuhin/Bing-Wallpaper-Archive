@@ -25,7 +25,7 @@ class GCloud:
     def upload_file(self, file_path: str, bucket_path: str, skip_exists: bool = False):
         blob = self.bucket.blob(bucket_path)
         if skip_exists and exists_blob(blob):
-            print(f'Google Cloud: Skipping update of {bucket_path} because it already exists')
+            print(f'Google Cloud: Skipping upload of {bucket_path} because it already exists')
             return gcloud_url(bucket_path)
 
         blob.upload_from_filename(file_path)
