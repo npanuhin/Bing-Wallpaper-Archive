@@ -5,3 +5,6 @@ __pycache__/
 website/*
 !website/scripts/
 !website/styles/
+
+# Configuration files with tokens
+configs/*token.json
