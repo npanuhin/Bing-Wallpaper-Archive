@@ -8,3 +8,6 @@ website/*
 
 # Configuration files with tokens
 configs/*token.json
+
+# Temporary files
+_temp/

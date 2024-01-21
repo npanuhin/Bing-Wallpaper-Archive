@@ -5,7 +5,7 @@ sys.path.append('../')
 from cloudflare import CloudflareR2  # noqa: E402
 
 
-def bulk_upload(root_path):
+def main(root_path):
     storage = CloudflareR2()
 
     for root, dirs, files in os.walk(root_path):
@@ -16,4 +16,4 @@ def bulk_upload(root_path):
 
 
 if __name__ == '__main__':
-    bulk_upload('../tmp/npanuhin-bing-wallpaper-archive')
+    main('../tmp/npanuhin-bing-wallpaper-archive')

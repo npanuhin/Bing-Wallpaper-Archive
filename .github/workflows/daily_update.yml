@@ -15,6 +15,7 @@ jobs:
   update-images:
     name: Update images
     runs-on: ubuntu-latest
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -22,7 +23,7 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       - name: Install Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
           cache: pip
