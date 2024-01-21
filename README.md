@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/en/2024-01-20.jpg">
-        <img id="last_image" title="Macaroni penguins, Drake Passage, Chile" alt="Macaroni penguins, Drake Passage, Chile" src="https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/en/2024-01-20.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-01-20" src="https://img.shields.io/badge/Last_image-2024--01--20-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-02-14.jpg">
+        <img id="last_image" title="Red-crowned crane bowing to his mate in Hokkaido, Japan" alt="Red-crowned crane bowing to his mate in Hokkaido, Japan" src="https://bing.npanuhin.me/US/en/2024-02-14.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-02-14" src="https://img.shields.io/badge/Last_image-2024--02--14-informational?style=flat">
     </a>
 </div>
 
