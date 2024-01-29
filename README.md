@@ -78,7 +78,7 @@ One API file consists of an array of image data[^2]:
 <!-- > [!TIP]
 > If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
 
-> [!Important]
+> [!IMPORTANT]
 > Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me).
 >
 > If you need to make frequent requests to the API files, I recommend downloading and caching them locally (they are updated only once a day). The same applies to the images (although this will be quite difficult to implement).

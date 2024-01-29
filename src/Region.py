@@ -47,6 +47,12 @@ class Region:
 # Germany: de-DE | India: en-IN | Japan: ja-JP | United Kingdom: en-GB | United States: en-US | International: en-WW (?)
 # Spain: es-ES
 
+# Other information:
+# `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR` (sometimes),
+# `pt-BR` and `zh-CN`
+
+# + ROW
+
 # Update times:
 # GB: 0:00 UTC
 # CA: 5:00 UTC
