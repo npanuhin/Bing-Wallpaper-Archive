@@ -41,8 +41,8 @@ One API file consists of an array of image data[^2]:
         "description": "Example description\nThat can span multiple lines",
         "date": "2009-06-03",
         "bing_url": null,
-        "url": "https://bing.npanuhin.me/US/en/2009-06-03.jpg"
-    },
+        "url": "https://bing.npanuhin.me/US/en/2024-01-16.jpg"
+    }
 ]
 ```
 
