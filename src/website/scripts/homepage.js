@@ -1,5 +1,4 @@
-const year_api_path = year => `US/en.${year}.json`,
-	image_url_prefix = "https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/en/";
+const year_api_path = year => `US/en.${year}.json`;
 
 const start_date = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
 	end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
@@ -128,10 +127,7 @@ title.addEventListener('mouseleave', _ => {
 function changeBackground() {
 	const chosen_image = api[Math.floor(Math.random() * api.length)];
 
-	const image_path = image_url_prefix + chosen_image["date"] + ".jpg";
-	const image_title = chosen_image["title"];
-
-	cur_image.src = image_path;
+	cur_image.src = chosen_image["url"];
 
 	setTimeout(_ => {
 		waitFor(
@@ -158,14 +154,14 @@ function changeBackground() {
 				title.style.opacity = 0;
 
 				setTimeout(_ => {
-					title.textContent = image_title;
-					title.href = image_path;
+					title.textContent = chosen_image["title"];
+					title.href = chosen_image["url"];
 					title.style.opacity = 1;
 				}, transition_delay / 2);
 
 			} else {
-				title.textContent = image_title;
-				title.href = image_path;
+				title.textContent = chosen_image["title"];
+				title.href = chosen_image["url"];
 				document.body.classList.add("shown");
 				first_image_loaded = true;
 
@@ -190,7 +186,6 @@ fetchYear(previous_year, year_api => {
 	waitFor(
 		_ => first_image_loaded
 	).then(_ => {
-		''
 		console.log("Loading other years:");
 
 		for (let year = start_date.getFullYear(); year <= end_date.getFullYear(); ++year) {
