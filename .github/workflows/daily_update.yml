@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_PAT }}
+          fetch-depth: 2
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -40,9 +41,25 @@ jobs:
           CLOUDFLARE_AWS_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_AWS_ACCESS_KEY_ID }}'
           CLOUDFLARE_AWS_SECRET_ACCESS_KEY: '${{ secrets.CLOUDFLARE_AWS_SECRET_ACCESS_KEY }}'
 
-      - name: Commit and push changes
+      - name: Check previous commit
+        id: previous_commit
+        run: echo "PREVIOUS_COMMIT_AUHOUR=$(git log -1 --pretty=%an)" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push changes (amend previous update)
+        if: ${{ steps.previous_commit.outputs.PREVIOUS_COMMIT_AUHOUR == 'GitHub Actions' }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Archive update"
+          commit_message: Archive update
+          commit_user_name: GitHub Actions
+          commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          commit_options: --amend --no-edit
+          push_options: --force
+          skip_fetch: true
+
+      - name: Commit and push changes
+        if: ${{ steps.previous_commit.outputs.PREVIOUS_COMMIT_AUHOUR != 'GitHub Actions' }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Archive update
           commit_user_name: GitHub Actions
           commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
