@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-02-14.jpg">
-        <img id="last_image" title="Red-crowned crane bowing to his mate in Hokkaido, Japan" alt="Red-crowned crane bowing to his mate in Hokkaido, Japan" src="https://bing.npanuhin.me/US/en/2024-02-14.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-02-14" src="https://img.shields.io/badge/Last_image-2024--02--14-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-02-16.jpg">
+        <img id="last_image" title="Female pyrrhuloxia perched on cactus plant, Texas" alt="Female pyrrhuloxia perched on cactus plant, Texas" src="https://bing.npanuhin.me/US/en/2024-02-16.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-02-16" src="https://img.shields.io/badge/Last_image-2024--02--16-informational?style=flat">
     </a>
 </div>
 
