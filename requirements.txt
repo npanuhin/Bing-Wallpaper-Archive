@@ -1,3 +1,5 @@
+requests_toolbelt
+cloudscraper
 requests
 httplib2
 Pillow

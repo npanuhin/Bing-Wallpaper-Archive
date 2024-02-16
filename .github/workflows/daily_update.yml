@@ -1,14 +1,18 @@
-name: Metadata check
+name: Daily update
 
-on: push
+on:
+  schedule:
+    - cron: "50 23 * * *"
 
 jobs:
-  check_metadata:
+  update_images:
     runs-on: [ubuntu-latest]
     steps:
 
       - name: Clone repository
         uses: actions/checkout@master
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Install Python
         uses: actions/setup-python@v1
@@ -21,6 +25,7 @@ jobs:
 
       - name: Download exiftool
         run: |
+          cd ..
           wget https://npanuhin.me/files/Image-ExifTool-12.37.tar.gz
           gzip -dc Image-ExifTool-12.37.tar.gz | tar -xf -
           chmod -R 777 Image-ExifTool-12.37
@@ -29,6 +34,14 @@ jobs:
           make test
           sudo make install
 
-      - name: Check metadata
-        working-directory: src/checks
-        run: python check_metadata.py
+      - name: Daily update
+        working-directory: src
+        run: python daily_update.py
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Images update: US to ${{ steps.date.outputs.date }}"

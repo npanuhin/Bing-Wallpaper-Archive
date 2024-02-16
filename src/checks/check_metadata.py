@@ -22,11 +22,11 @@ def recursive_check(path):
         stderr=PIPE
     ).communicate()
 
-    changed = int(re.search(
-        r"(\d+)\s+image\s*files\s*updated",
-        ''.join(map(lambda x: x.decode("cp1251"), s)),
-        re.IGNORECASE
-    ).group(1))
+    s = ''.join(map(lambda x: x.decode("cp1251"), s))
+
+    print(s)
+
+    changed = int(re.search(r"(\d+)\s+image\s*files\s*updated", s, re.IGNORECASE).group(1))
 
     assert changed == 0, "{} images have metadata".format(changed)
 

@@ -2,8 +2,6 @@ name: Broken images check
 
 on: push
 
-permissions: read-all
-
 jobs:
   check_broken_images:
     runs-on: [ubuntu-latest]
