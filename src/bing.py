@@ -45,7 +45,7 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
 
         if key == 'description':
             if len(new_value) < len(before[key]):
-                assert before[key].startswith(new_value), f'\n"{new_value}"\nvs\n"{before[key]}"'
+                assert before[key].startswith(new_value), f'\n"{before[key]}"\nvs\n"{new_value}"'
             else:
                 assert new_value.startswith(before[key])
                 print(f'Rewriting description for {date}: {len(before[key])} -> {len(new_value)}')
