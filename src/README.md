@@ -3,9 +3,9 @@
 Token should be placed into the <code><a href="configs">configs</a>/cloudflare_token.json</code> file:
 ```json
 {
-    "ACCOUNT_ID": "<--->",
-    "AWS_ACCESS_KEY_ID": "<--->",
-    "AWS_SECRET_ACCESS_KEY": "<--->"
+    "CLOUDFLARE_ACCOUNT_ID": "<--->",
+    "CLOUDFLARE_AWS_ACCESS_KEY_ID": "<--->",
+    "CLOUDFLARE_AWS_SECRET_ACCESS_KEY": "<--->"
 }
 ```
 

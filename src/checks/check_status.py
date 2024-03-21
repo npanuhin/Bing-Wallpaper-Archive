@@ -35,12 +35,20 @@ def check_status():
         # Check how many images are missing Bing URL
         without_url = [item for item in api if not item['bing_url']]
         if without_url:
-            print(f'\n{region.mkt} has {print_percentage(len(without_url), len(api))} images without URL')
+            print(f'\n{region.mkt} has {print_percentage(len(without_url), len(api))} images without Bing URL')
 
         # Check how many images are missing URL
         without_url = [item for item in api if not item['url']]
         if without_url:
             print(f'\n{region.mkt} has {print_percentage(len(without_url), len(api))} images without URL')
+
+        # Check that no urls overlap
+        urls = [item['url'] for item in api]
+        if len(urls) != len(set(urls)):
+            print(f'\n{region.mkt} has duplicate urls:')
+            for url in urls:
+                if urls.count(url) > 1:
+                    print(url)
 
 
 if __name__ == '__main__':
