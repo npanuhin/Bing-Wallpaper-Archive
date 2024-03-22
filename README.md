@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-03-21.jpg">
-        <img id="last_image" title="Bwindi Impenetrable National Forest, Uganda" alt="Bwindi Impenetrable National Forest, Uganda" src="https://bing.npanuhin.me/US/en/2024-03-21.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-03-21" src="https://img.shields.io/badge/Last_image-2024--03--21-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-03-25.jpg">
+        <img id="last_image" title="Celebrating Holi in Mathura, Uttar Pradesh, India" alt="Celebrating Holi in Mathura, Uttar Pradesh, India" src="https://bing.npanuhin.me/US/en/2024-03-25.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-03-25" src="https://img.shields.io/badge/Last_image-2024--03--25-informational?style=flat">
     </a>
 </div>
 
