@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-03-25.jpg">
-        <img id="last_image" title="Celebrating Holi in Mathura, Uttar Pradesh, India" alt="Celebrating Holi in Mathura, Uttar Pradesh, India" src="https://bing.npanuhin.me/US/en/2024-03-25.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-03-25" src="https://img.shields.io/badge/Last_image-2024--03--25-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-08.jpg">
+        <img id="last_image" title="Total solar eclipse photographed from Madras, Oregon on August 21, 2017" alt="Total solar eclipse photographed from Madras, Oregon on August 21, 2017" src="https://bing.npanuhin.me/US/en/2024-04-08.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-04-08" src="https://img.shields.io/badge/Last_image-2024--04--08-informational?style=flat">
     </a>
 </div>
 
