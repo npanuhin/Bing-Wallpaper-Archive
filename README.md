@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-03-25.jpg">
-        <img id="last_image" title="Celebrating Holi in Mathura, Uttar Pradesh, India" alt="Celebrating Holi in Mathura, Uttar Pradesh, India" src="https://bing.npanuhin.me/US/en/2024-03-25.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-03-25" src="https://img.shields.io/badge/Last_image-2024--03--25-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-03-28.jpg">
+        <img id="last_image" title="Cherry blossoms in Shanghai, China" alt="Cherry blossoms in Shanghai, China" src="https://bing.npanuhin.me/US/en/2024-03-28.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-03-28" src="https://img.shields.io/badge/Last_image-2024--03--28-informational?style=flat">
     </a>
 </div>
 
