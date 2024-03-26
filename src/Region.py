@@ -1,20 +1,42 @@
+from urllib.parse import urlparse, parse_qs
 import json
 import os
+import re
 
 from utils import mkpath
 
 
-class Region:
+RE_FLAGS = re.IGNORECASE | re.VERBOSE
+
+
+class Market:
     def __init__(self, region: str):
-        self.lang, self.country = map(str.lower, region.split('-'))
-        self.path = mkpath(os.path.dirname(__file__), '../api', self.country.upper())
-        self.api_path = mkpath(self.path, self.lang.lower() + '.json')
+        if region == 'ROW':
+            self.lang = 'en'
+            self.country = 'ROW'
+        else:
+            self.lang, self.country = region.split('-')
+            self.lang = self.lang.lower()
+            self.country = self.country.upper()
+
+    def __repr__(self):
+        return str(self)
+
+    def __str__(self):
+        return self.country if self.country == 'ROW' else f'{self.lang}-{self.country}'
+
+    def __eq__(self, other):
+        return isinstance(other, Market) and self.lang == other.lang and self.country == other.country
+
+
+class Region(Market):
+    def __init__(self, mkt: str):
+        super().__init__(mkt)
+
+        self.path = mkpath(os.path.dirname(__file__), '../api', self.country)
+        self.api_path = mkpath(self.path, self.lang + '.json')
 
         os.makedirs(self.path, exist_ok=True)
-
-    @property
-    def mkt(self):
-        return f'{self.lang}-{self.country.upper()}'
 
     def read_api(self) -> str:
         if not os.path.exists(self.api_path):
@@ -38,34 +60,44 @@ class Region:
             json.dump(api, file, *args, **kwargs)
 
     def __repr__(self):
-        return f'Region({self.mkt})'
+        return f'Region({str(self)})'
+
+
+def extract_mkt(url: str) -> Market:
+    # https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg
+    name = parse_qs(urlparse(url).query)['id'][0]
+
+    match = re.fullmatch(r'OHR\..+_([^\d]+)\d+.*', name, RE_FLAGS)
+    assert match
+    return Market(match.group(1))
 
 
 # ------------------------------------------------------- Regions ------------------------------------------------------
+# See src/scripts/get_regions.py for more information
 
-# Canada - English: en-CA | Canada - French: fr-CA | China: zh-CN | China - English: en-CN | France: fr-FR
-# Germany: de-DE | India: en-IN | Japan: ja-JP | United Kingdom: en-GB | United States: en-US | International: en-WW (?)
-# Spain: es-ES
-
-# Other information:
-# `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR` (sometimes),
-# `pt-BR` and `zh-CN`
-
-# + ROW
-
-# Update times:
-# GB: 0:00 UTC
-# CA: 5:00 UTC
-# US: 8:00 UTC
-# CN: 16:00 UTC
-# JP: 15:00 UTC
-# IN: 18:30 UTC
-# DE: 23:00 UTC
-# FR: 23:00 UTC
-# ES: 23:00 UTC
-
-# REGIONS = ['AU', 'CA', 'CN', 'DE', 'FR', 'IN', 'JP', 'ES', 'GB', 'US']
-# REGIONS = ['en-CA', 'fr-CA', 'zh-CN', 'en-CN', 'fr-FR', 'de-DE', 'en-IN', 'ja-JP', 'en-GB', 'en-US']
 REGIONS = ['en-US']
+# REGIONS = [
+#     'ROW',
+#     'pt-BR',
+#     'en-CA',
+#     'fr-CA',
+#     'fr-FR',
+#     'de-DE',
+#     'en-IN',
+#     'it-IT',
+#     'ja-JP',
+#     'zh-CN',
+#     'es-ES',
+#     'en-GB',
+#     'en-US'
+# ]
 
 REGIONS = list(map(Region, REGIONS))
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+if __name__ == '__main__':
+    assert extract_mkt('https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg') == Market('en-US')
+    assert extract_mkt(
+        'https://bing.com/th?id=OHR.WhiteEyes_ROW2172958331_1920x1200.jpg&rf=LaDigue_1920x1200.jpg'
+    ) == Market('ROW')

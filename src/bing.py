@@ -61,7 +61,7 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
 def update(region: Region):
     print(f'Updating {region}...')
 
-    common_params = {'mkt': region.mkt, 'setlang': region.lang, 'cc': region.country}
+    common_params = {'mkt': str(region), 'setlang': region.lang, 'cc': region.country}
 
     api_by_date = {item['date']: item for item in region.read_api()}
 
