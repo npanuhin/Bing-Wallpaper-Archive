@@ -14,7 +14,7 @@ def print_percentage(a, b):
     return f'{a / b * 100:.2f}% ({a}/{b})'
 
 
-def check_status():
+def run_checks():
     for region in REGIONS:
         api = region.read_api()
 
@@ -52,4 +52,4 @@ def check_status():
 
 
 if __name__ == '__main__':
-    check_status()
+    run_checks()

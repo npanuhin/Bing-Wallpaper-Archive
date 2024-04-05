@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 
 sys.path.append('../')
-from Region import Market, extract_mkt  # noqa
+from Region import Market, extract_mkt, REGIONS  # noqa
 
 
 # All regions list:
@@ -84,4 +84,14 @@ def get_regions() -> list[Market]:
 
 
 if __name__ == "__main__":
-    print(list(map(str, get_regions())))  # Can be copied to src/Region.py
+    regions = get_regions()
+    print(list(map(str, regions)))  # Can be copied to src/Region.py
+    print()
+
+    if regions == REGIONS:
+        print('Regions are up-to-date')
+    else:
+        print('WARNING! Regions are outdated')
+        print('Please update src/Region.py')
+        print('Old regions:', REGIONS)
+        print('New regions:', regions)

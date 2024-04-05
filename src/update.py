@@ -7,13 +7,13 @@ from Region import Region
 WEBSITE_START_DATE = '2017-05-10'
 
 
-# ------------------------------------------------ Update api and images -----------------------------------------------
+# ----------------------------------------------- Update api and images ------------------------------------------------
 
 update_all()
 
 print('Update finished\n')
 
-# ----------------------------------------------- Fetch last image in US -----------------------------------------------
+# --------------------------------------------- Fetch last image in en-US ----------------------------------------------
 
 us_api = Region('en-US').read_api()
 
@@ -21,7 +21,7 @@ latest_image = max(us_api, key=lambda item: item['date'])
 
 print(f'Last US image: {latest_image["date"]}')
 
-# ---------------------------------------------------- Update README ---------------------------------------------------
+# --------------------------------------------------- Update README ----------------------------------------------------
 
 with open('../README.md', 'r', encoding='utf-8') as file:
     readme = file.read()

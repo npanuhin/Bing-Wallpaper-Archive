@@ -15,7 +15,7 @@ def check_url(url):
         print('✓', end='')
 
 
-def check_storage():
+def check_storage_presence():
     threads = []
 
     for region in REGIONS:
@@ -33,4 +33,4 @@ def check_storage():
 
 
 if __name__ == '__main__':
-    check_storage()
+    check_storage_presence()
