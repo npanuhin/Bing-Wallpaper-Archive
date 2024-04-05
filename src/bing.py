@@ -1,12 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 import requests
 
+from Region import REGIONS, Region, extract_mkt
 from postprocess import postprocess_api
-from utils import mkpath, posixpath
-from Region import REGIONS, Region
 from cloudflare import CloudflareR2
+from utils import mkpath, posixpath
 
 
 storage = CloudflareR2()
@@ -23,9 +23,23 @@ def extract_base_url(image_url: str) -> str:
     raise ValueError(f'Can not extract base url from {image_url}')
 
 
-def get_uhd_url(base_url: str) -> str:
+def get_uhd_url(region: Region, base_url: str) -> str:
     # '/th?id=OHR.MountainDayChina_EN-US0394775210_UHD.jpg'
-    return f'https://bing.com{base_url}_UHD.jpg'
+    url = f'https://bing.com{base_url}_UHD.jpg'
+    market = extract_mkt(url)
+    assert market == region, f'Region mismatch: {market}, but should be {region}'
+    return url
+
+
+def parse_date(date_string: str) -> datetime.date:
+    for fmt in ('%Y%m%d_%H%M', '%Y%m%d%H%M', '%Y%m%d'):
+        try:
+            parsed = datetime.strptime(date_string, fmt)
+        except ValueError:
+            continue
+
+        # Add one day if time is after 15:00
+        return parsed.date() + timedelta(days=int(parsed.hour >= 15))
 
 
 def update_api(api_by_date: dict[str, dict], new_image_api: dict):
@@ -37,7 +51,6 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
 
     for key, new_value in new_image_api.items():
         if before.get(key) is None:
-            before[key] = new_value
             continue
 
         if before[key] == new_value:
@@ -52,16 +65,20 @@ def update_api(api_by_date: dict[str, dict], new_image_api: dict):
                 before[key] = new_value
             continue
 
-        # new_value = new_value.replace('’', "'")
-        # before[key] = before[key].replace('’', "'")
+        if key in ('title', 'caption'):
+            new_value = new_value.replace('’', "'")
+            before[key] = before[key].replace('’', "'")
+
+        if before[key] == new_value:
+            continue
 
         raise ValueError(f'key "{key}" is different for {date}:\n"{before[key]}"\nvs\n"{new_value}"')
 
 
 def update(region: Region):
-    print(f'Updating {region}...')
+    print(f'Updating {repr(region)}...')
 
-    common_params = {'mkt': str(region), 'setlang': region.lang, 'cc': region.country}
+    common_params = {'mkt': region, 'setlang': region.lang, 'cc': region.country}
 
     api_by_date = {item['date']: item for item in region.read_api()}
 
@@ -78,9 +95,9 @@ def update(region: Region):
     ).json()['images']
 
     for image_data in data:
-        date = datetime.strptime(image_data['startdate'], '%Y%m%d').strftime('%Y-%m-%d')
+        date = parse_date(image_data['fullstartdate']).strftime('%Y-%m-%d')
 
-        image_url = get_uhd_url(image_data['urlbase'])
+        image_url = get_uhd_url(region, image_data['urlbase'])
         to_download.add(date)
 
         update_api(api_by_date, {
@@ -99,10 +116,10 @@ def update(region: Region):
     ).json()['MediaContents']
 
     for image_data in data:
-        date = datetime.strptime(image_data['Ssd'].split('_')[0], '%Y%m%d').strftime('%Y-%m-%d')  # TODO: Timezone?
+        date = parse_date(image_data['Ssd']).strftime('%Y-%m-%d')
 
         image_data = image_data['ImageContent']
-        image_url = get_uhd_url(extract_base_url(image_data['Image']['Url']))
+        image_url = get_uhd_url(region, extract_base_url(image_data['Image']['Url']))
         to_download.add(date)
 
         description = image_data['Description']
@@ -126,7 +143,7 @@ def update(region: Region):
     ).json()['data']['images']
 
     for image_data in data:
-        date = datetime.strptime(image_data['isoDate'], '%Y%m%d').strftime('%Y-%m-%d')
+        date = parse_date(image_data['isoDate']).strftime('%Y-%m-%d')
 
         description = image_data['description']
         i = 2
@@ -135,7 +152,7 @@ def update(region: Region):
             i += 1
         description = description.replace('  ', ' ')  # Fix for double spaces
 
-        image_url = get_uhd_url(extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef']))
+        image_url = get_uhd_url(region, extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef']))
         to_download.add(date)
 
         update_api(api_by_date, {
@@ -160,7 +177,9 @@ def update(region: Region):
             file.write(requests.get(api_by_date[date]['bing_url']).content)
 
         api_by_date[date]['url'] = storage.upload_file(
-            image_path, posixpath(mkpath(region.country.upper(), region.lang.lower(), filename)), skip_exists=True
+            image_path,
+            posixpath(mkpath(region.api_country.upper(), region.api_lang.lower(), filename)),
+            skip_exists=True
         )
 
         os.remove(image_path)

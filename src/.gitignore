@@ -11,3 +11,6 @@ configs/*token.json
 
 # Temporary files
 _temp/
+debug/*
+
+!.gitkeep

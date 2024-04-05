@@ -48,7 +48,7 @@ from Region import Market, extract_mkt, REGIONS  # noqa
 # ko-KR           - no (sometimes?)
 # pt-BR (Brazil)  - yes
 
-# ROW   (International | "Rest Of the World") - yes [will use "ru-RU" for now, with assert to "ROW" URL]
+# ROW   (International | "Rest Of the World") - yes [will use "en-RU" for now, with assert to "ROW" URL]
 
 
 # Brute-force checking all regions from the market list:

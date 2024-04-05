@@ -21,6 +21,10 @@ def main():
             os.remove(mkpath(website_directory, file))
 
         region.write_api(api, mkpath(website_directory, region.lang.lower() + '.json'))
+
+        if not api:
+            continue
+
         # region.write_api(
         #     api,
         #     mkpath(website_directory, region.lang.lower() + '.min.json'),
