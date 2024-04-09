@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-08.jpg">
-        <img id="last_image" title="Total solar eclipse photographed from Madras, Oregon on August 21, 2017" alt="Total solar eclipse photographed from Madras, Oregon on August 21, 2017" src="https://bing.npanuhin.me/US/en/2024-04-08.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-04-08" src="https://img.shields.io/badge/Last_image-2024--04--08-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-09.jpg">
+        <img id="last_image" title="Tulip fields in spring, Skagit Valley, Washington" alt="Tulip fields in spring, Skagit Valley, Washington" src="https://bing.npanuhin.me/US/en/2024-04-09.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-04-09" src="https://img.shields.io/badge/Last_image-2024--04--09-informational?style=flat">
     </a>
 </div>
 
