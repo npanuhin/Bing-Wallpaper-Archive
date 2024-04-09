@@ -6,7 +6,7 @@ from PIL import Image
 CHUNKSIZE = 2 ** 20 * 10  # 10 MB
 
 
-def get_hash(path: str):
+def get_hash(path: str) -> str:
     result = sha256()
     with open(path, 'rb') as file:
         while chunk := file.read(CHUNKSIZE):

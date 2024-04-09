@@ -3,22 +3,27 @@ import os
 
 sys.path.append('../')
 from Region import REGIONS  # noqa: E402
-from utils import mkpath  # noqa: E402
+from utils import SRC, mkpath  # noqa: E402
 
 
-WEBSITE_ROOT = '../website'
+WEBSITE_ROOT = mkpath(SRC, 'website')
+
+
+def clean():
+    for region in REGIONS:
+        website_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
+
+        if os.path.isdir(website_directory):
+            for file in os.listdir(website_directory):
+                os.remove(mkpath(website_directory, file))
 
 
 def main():
     for region in REGIONS:
-        api = region.read_api()
-
         website_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
-
         os.makedirs(website_directory, exist_ok=True)
 
-        for file in os.listdir(website_directory):
-            os.remove(mkpath(website_directory, file))
+        api = region.read_api()
 
         region.write_api(api, mkpath(website_directory, region.api_lang.lower() + '.json'))
 
@@ -52,4 +57,5 @@ def main():
 
 
 if __name__ == '__main__':
+    clean()
     main()

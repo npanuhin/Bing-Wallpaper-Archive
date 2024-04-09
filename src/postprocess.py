@@ -1,4 +1,4 @@
-from Region import Region
+from Region import Api, ApiEntry, REGIONS, Region
 
 
 FIELD_ORDER = (
@@ -13,7 +13,7 @@ FIELD_ORDER = (
 )
 
 
-def postproces_item(image_api: dict) -> dict:
+def postproces_item(image_api: ApiEntry) -> ApiEntry:
     # Put fields in the correct order and fill blanks
     image_api = {
         key: (image_api[key] if key in image_api else None)
@@ -30,7 +30,7 @@ def postproces_item(image_api: dict) -> dict:
     return image_api
 
 
-def postprocess_api(api: list[dict]) -> list[dict]:
+def postprocess_api(api: Api) -> Api:
     for i, item in enumerate(api):
         api[i] = postproces_item(item)
 
@@ -41,9 +41,10 @@ def postprocess_api(api: list[dict]) -> list[dict]:
 
 def postproces_region(region: Region):
     print(f'Postprocessing {region}...')
-    api = region.read_api()
-    region.write_api(postprocess_api(api))
+    region.write_api(postprocess_api(region.read_api()))
 
 
 if __name__ == '__main__':
-    postproces_region(Region('en-US'))
+    for region in REGIONS:
+        postproces_region(region)
+        print()
