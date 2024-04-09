@@ -3,7 +3,7 @@ import os
 
 import requests
 
-from Region import REGIONS, Region, extract_mkt
+from Region import ApiEntry, REGIONS, Region, extract_mkt
 from postprocess import postprocess_api
 from cloudflare import CloudflareR2
 from utils import mkpath, posixpath
@@ -42,37 +42,39 @@ def parse_date(date_string: str) -> datetime.date:
         return parsed.date() + timedelta(days=int(parsed.hour >= 15))
 
 
-def update_api(api_by_date: dict[str, dict], new_image_api: dict):
+def compare_values(key: str, old_value: str | None, new_value: str) -> str:
+    if old_value is None:
+        return new_value
+
+    if old_value == new_value:
+        return old_value
+
+    if key == 'description':
+        if len(new_value) < len(old_value):
+            assert old_value.startswith(new_value), f'\n"{old_value}"\nvs\n"{new_value}"'
+            return old_value
+        else:
+            assert new_value.startswith(old_value)
+            print(f'Rewriting description: {len(old_value)} -> {len(new_value)}')
+            return new_value
+
+    if key in ('title', 'caption'):
+        new_value = new_value.replace('’', "'")
+        if old_value == new_value:
+            return old_value
+
+    raise ValueError(f'key "{key}" is different:\n"{old_value}"\nvs\n"{new_value}"')
+
+
+def update_api(api_by_date: dict[str, ApiEntry], new_image_api: ApiEntry):
     date = new_image_api['date']
-    before = api_by_date.get(date)
-    if before is None:
+    item = api_by_date.get(date)
+    if item is None:
         api_by_date[date] = new_image_api
         return
 
     for key, new_value in new_image_api.items():
-        if before.get(key) is None:
-            continue
-
-        if before[key] == new_value:
-            continue
-
-        if key == 'description':
-            if len(new_value) < len(before[key]):
-                assert before[key].startswith(new_value), f'\n"{before[key]}"\nvs\n"{new_value}"'
-            else:
-                assert new_value.startswith(before[key])
-                print(f'Rewriting description for {date}: {len(before[key])} -> {len(new_value)}')
-                before[key] = new_value
-            continue
-
-        if key in ('title', 'caption'):
-            new_value = new_value.replace('’', "'")
-            before[key] = before[key].replace('’', "'")
-
-        if before[key] == new_value:
-            continue
-
-        raise ValueError(f'key "{key}" is different for {date}:\n"{before[key]}"\nvs\n"{new_value}"')
+        item[key] = compare_values(key, item.get(key), new_value)
 
 
 def update(region: Region):

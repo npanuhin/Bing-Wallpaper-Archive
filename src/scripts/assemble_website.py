@@ -13,21 +13,21 @@ def main():
     for region in REGIONS:
         api = region.read_api()
 
-        website_directory = mkpath(WEBSITE_ROOT, region.country.upper())
+        website_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
 
         os.makedirs(website_directory, exist_ok=True)
 
         for file in os.listdir(website_directory):
             os.remove(mkpath(website_directory, file))
 
-        region.write_api(api, mkpath(website_directory, region.lang.lower() + '.json'))
+        region.write_api(api, mkpath(website_directory, region.api_lang.lower() + '.json'))
 
         if not api:
             continue
 
         # region.write_api(
         #     api,
-        #     mkpath(website_directory, region.lang.lower() + '.min.json'),
+        #     mkpath(website_directory, region.api_lang.lower() + '.min.json'),
         #     indent=None, separators=(',', ':')
         # )
 
@@ -35,7 +35,7 @@ def main():
 
         # region.write_api(
         #     only_urls,
-        #     mkpath(website_directory, region.lang.lower() + '.url.json'),
+        #     mkpath(website_directory, region.api_lang.lower() + '.url.json'),
         #     indent=None, separators=(',', ':')
         # )
 
@@ -46,7 +46,7 @@ def main():
             year_api = [image for image in api if image['date'].startswith(str(year))]
             region.write_api(
                 year_api,
-                mkpath(website_directory, region.lang.lower() + f'.{year}.json'),
+                mkpath(website_directory, region.api_lang.lower() + f'.{year}.json'),
                 indent=None, separators=(',', ':')
             )
 

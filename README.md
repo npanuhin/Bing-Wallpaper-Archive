@@ -20,64 +20,69 @@ The following countries and languages are currently available:
 <table>
     <thead>
         <tr>
-            <th width="9.091%">United States</th>
-            <th width="9.091%">United Kingdom</th>
-            <th width="9.091%">Canada</th>
-            <th width="9.091%">France</th>
-            <th width="9.091%">Germany</th>
-            <th width="9.091%">Italy</th>
-            <th width="9.091%">Spain</th>
-            <th width="9.091%">India</th>
-            <th width="9.091%">China</th>
-            <th width="9.091%">Japan</th>
-            <th width="9.091%">Brazil</th>
+            <th width="500px">United States</th>
+            <th width="500px">Canada (English)</th>
+            <th width="500px">Italy</th>
+            <th width="500px">Spain</th>
+            <th width="500px">France</th>
+            <th width="500px">Germany</th>
         </tr>
     </thead>
-    <tr>
-        <td align="center" title="United States: in English">
-            <a href="https://bing.npanuhin.me/US/en.json"><code>US/en</code></a>
-        </td>
-        <td align="center" title="United Kingdom: in English">
-            <a href="https://bing.npanuhin.me/GB/en.json"><code>GB/en</code></a>
-        </td>
-        <td align="center">
-            <a title="Canada: in English" href="https://bing.npanuhin.me/CA/en.json"><code>CA/en</code></a>
-            <br>
-            <a title="Canada: in French" href="https://bing.npanuhin.me/CA/fr.json"><code>CA/fr</code></a>
-        </td>
-        <td align="center" title="France: in French">
-            <a href="https://bing.npanuhin.me/FR/fr.json"><code>FR/fr</code></a>
-        </td>
-        <td align="center" title="Germany: in German">
-            <a href="https://bing.npanuhin.me/DE/de.json"><code>DE/de</code></a>
-        </td>
-        <td align="center" title="Italy: in Italian">
-            <a href="https://bing.npanuhin.me/IT/it.json"><code>IT/it</code></a>
-        </td>
-        <td align="center" title="Spain: in Spanish">
-            <a href="https://bing.npanuhin.me/ES/es.json"><code>ES/es</code></a>
-        </td>
-        <td align="center" title="India: in English">
-            <a href="https://bing.npanuhin.me/IN/en.json"><code>IN/en</code></a>
-        </td>
-        <td align="center" title="China: in Chinese">
-            <a href="https://bing.npanuhin.me/CN/zh.json"><code>CN/zh</code></a>
-        </td>
-        <td align="center" title="Japan: in Japanese">
-            <a href="https://bing.npanuhin.me/JP/ja.json"><code>JP/ja</code></a>
-        </td>
-        <td align="center" title="Brazil: in Portuguese">
-            <a href="https://bing.npanuhin.me/BR/pt.json"><code>BR/pt</code></a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="11" align="center" title="Rest of The World: in English">
-            <b>Rest of The World:</b>   <a href="https://bing.npanuhin.me/ROW/en.json"><code>ROW/en</code></a>
-        </td>
-        <!-- <td colspan="7" align="center" title="Rest of The World: in English">
-            <a href="https://bing.npanuhin.me/ROW/en.json"><code>ROW/en</code></a>
-        </td> -->
-    </tr>
+    <tbody>
+        <tr>
+            <td align="center" title="United States: in English">
+                <a href="https://bing.npanuhin.me/US/en.json"><code>US/en</code></a>
+            </td>
+            <td align="center" title="Canada: in English">
+                <a href="https://bing.npanuhin.me/CA/en.json"><code>CA/en</code></a>
+            </td>
+            <td align="center" title="Italy: in Italian">
+                <a href="https://bing.npanuhin.me/IT/it.json"><code>IT/it</code></a>
+            </td>
+            <td align="center" title="Spain: in Spanish">
+                <a href="https://bing.npanuhin.me/ES/es.json"><code>ES/es</code></a>
+            </td>
+            <td align="center" title="France: in French">
+                <a href="https://bing.npanuhin.me/FR/fr.json"><code>FR/fr</code></a>
+            </td>
+            <td align="center" title="Germany: in German">
+                <a href="https://bing.npanuhin.me/DE/de.json"><code>DE/de</code></a>
+            </td>
+        </tr>
+        <tr>
+            <th>United Kingdom</th>
+            <th>Canada (French)</th>
+            <th>India</th>
+            <th>China</th>
+            <th>Japan</th>
+            <th>Brazil</th>
+        </tr>
+        <tr>
+            <td align="center" title="United Kingdom: in English">
+                <a href="https://bing.npanuhin.me/GB/en.json"><code>GB/en</code></a>
+            </td>
+            <td align="center" title="Canada: in French">
+                <a href="https://bing.npanuhin.me/CA/fr.json"><code>CA/fr</code></a>
+            </td>
+            <td align="center" title="India: in English">
+                <a href="https://bing.npanuhin.me/IN/en.json"><code>IN/en</code></a>
+            </td>
+            <td align="center" title="China: in Chinese">
+                <a href="https://bing.npanuhin.me/CN/zh.json"><code>CN/zh</code></a>
+            </td>
+            <td align="center" title="Japan: in Japanese">
+                <a href="https://bing.npanuhin.me/JP/ja.json"><code>JP/ja</code></a>
+            </td>
+            <td align="center" title="Brazil: in Portuguese">
+                <a href="https://bing.npanuhin.me/BR/pt.json"><code>BR/pt</code></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="center" title="Rest of The World: in English">
+                <b>Rest of The World:</b>   <a href="https://bing.npanuhin.me/ROW/en.json"><code>ROW/en</code></a> 
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 
