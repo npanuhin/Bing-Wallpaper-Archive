@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-09.jpg">
-        <img id="last_image" title="Tulip fields in spring, Skagit Valley, Washington" alt="Tulip fields in spring, Skagit Valley, Washington" src="https://bing.npanuhin.me/US/en/2024-04-09.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-04-09" src="https://img.shields.io/badge/Last_image-2024--04--09-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-15.jpg">
+        <img id="last_image" title="The RedBall Project art installation, Centraal Station, Antwerp, Belgium" alt="The RedBall Project art installation, Centraal Station, Antwerp, Belgium" src="https://bing.npanuhin.me/US/en/2024-04-15.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-04-15" src="https://img.shields.io/badge/Last_image-2024--04--15-informational?style=flat">
     </a>
 </div>
 
