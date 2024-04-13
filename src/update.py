@@ -4,9 +4,6 @@ from bing import update_all
 from Region import Region
 
 
-WEBSITE_START_DATE = '2017-05-10'
-
-
 # ----------------------------------------------- Update api and images ------------------------------------------------
 
 update_all()

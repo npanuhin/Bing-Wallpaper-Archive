@@ -1,41 +1,121 @@
-const year_api_path = year => `US/en.${year}.json`;
+// ===================================================== SETTINGS ======================================================
+const
+	REGIONS = [
+		'pt-BR',
+		'en-CA',
+		'fr-CA',
+		'fr-FR',
+		'de-DE',
+		'en-IN',
+		'it-IT',
+		'ja-JP',
+		'zh-CN',
+		'es-ES',
+		'en-GB',
+		'en-US'
+	],
+	HOMEPAGE_REGION = 'en-US',
+	YEAR_API_PATH = (country, lang, year) => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
+	START_DATE = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
 
-const start_date = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
-	end_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
-	previous_year = end_date.getFullYear() - 1; // Previous year to avoid having only one image on January 1st
-
-const background = document.getElementById("background"),
-	foreground = document.getElementById("foreground"),
-	title = document.getElementById("title"),
-	// timer = document.getElementById("timer"),
-	timer_path = document.getElementById("timer_path"),
-	transition_delay_initial = 200, // Initial delay before showing first image
-	transition_delay_true = 1000,
-	delay = 5000,
-	hold_delay = 3000;
-
-const timer_duration = delay - transition_delay_true;
-timer_path.style.animationDuration = `${(timer_duration) / 1000}s`;
-
-var transition_delay = transition_delay_initial
-
-var cur_image = foreground;
-
-var api;
-
-var first_image_loaded = false,
-	hold = false;
-
+	HOMEPAGE_DELAY = 5000; // Delay between homepage images, doess not include transition time
 
 // =====================================================================================================================
 
-function random(min, max) {
-	return Math.random() * (max - min) + min;
+const
+	YESTERDAY = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
+	PREVIOUS_YEAR = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
+
+	homepage_background = document.getElementById("background"),
+	homepage_foreground = document.getElementById("foreground");
+// timer_path = document.getElementById("timer_path"),
+// title = document.getElementById("title"),
+
+// transition_delay_initial = 200, // Initial delay before showing first image
+// transition_delay_true = 1000,
+// delay = 5000,
+// hold_delay = 3000,
+// timer_duration = delay - transition_delay_true,
+
+// homepage_image_transition_duration = parseFloat(getComputedStyle(homepage_foreground)["transitionDuration"]);
+
+// timer_path.style.animationDuration = `${(timer_duration) / 1000}s`;
+
+// var hold = false;
+
+var cur_image = foreground, // Either background or foreground: image shown at the moment
+	next_image = background;
+
+// =====================================================================================================================
+
+
+class Region {
+	constructor(region) {
+		[this.lang, this.country] = region.split('-');
+		this.images = new Map();
+		this.dates = [];
+	}
+
+	add(date, item) {
+		if (!this.images.has(date)) {
+			this.dates.push(date);
+		}
+		this.images.set(date, item);
+	}
+
+	addAll(items) {
+		items.forEach(item => this.add(item["date"], item));
+	}
+
+	get(date) {
+		return this.images.get(date);
+	}
+
+	getRandom() {
+		return this.images.get(this.dates[Math.floor(Math.random() * this.dates.length)]);
+	}
+
+	fetchYear(year, callback = function() {}, alert_error = false) {
+		let api_path = YEAR_API_PATH(this.country, this.lang, year);
+		fetch(api_path, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				mode: "same-origin"
+			})
+			.then(response => {
+				if (response.ok) {
+					console.log(`Loaded year: ${year}`);
+					return response.json();
+				} else {
+					throw new Error(`Error: can not load API file: ${api_path}`);
+				}
+			})
+			.then(data => {
+				this.addAll(data);
+				callback();
+			})
+			.catch(error => {
+				console.log(error);
+				if (alert_error) alert(`Error: can not load API file: ${api_path}`);
+			});
+	}
+
 }
 
-function randomDate(from, to) {
-	return new Date(random(from.getTime(), to.getTime()));
-}
+const api = new Map();
+REGIONS.forEach(region => api.set(region, new Region(region)));
+
+// =====================================================================================================================
+
+// function random(min, max) {
+// 	return Math.random() * (max - min) + min;
+// }
+
+// function randomDate(from, to) {
+// 	return new Date(random(from.getTime(), to.getTime()));
+// }
 
 function leadingZeros(s, totalDigits) {
 	s = s.toString();
@@ -50,9 +130,9 @@ function date2str(date) {
 		"-" + leadingZeros(date.getDate(), 2);
 }
 
-function reflow(element) {
-	void(element.offsetHeight);
-}
+// function reflow(element) {
+// 	void(element.offsetHeight);
+// }
 
 // function wait_func(func, callback, interval = 20) {
 //     (async _ => {
@@ -61,7 +141,7 @@ function reflow(element) {
 //     })();
 // }
 
-function waitFor(conditionFunction, interval = 20) {
+function waitFor(conditionFunction, interval = 50) {
 	const poll = resolve => {
 		if (conditionFunction()) resolve();
 		else setTimeout(_ => poll(resolve), interval);
@@ -69,135 +149,91 @@ function waitFor(conditionFunction, interval = 20) {
 	return new Promise(poll);
 }
 
-function fetchYear(year, callback, alert_error = false) {
-	fetch(year_api_path(year), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			mode: "same-origin"
-		})
-		.then(response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error(`Error: can not load API file: ${year_api_path(year)}`);
-			}
-		})
-		.then(data => {
-			// let result = {};
-			// data.forEach(image => {
-			//     result[image["date"]] = image;
-			// });
-			callback(data);
-		})
-		.catch(error => {
-			console.log(error);
-			if (alert_error) alert(`Error: can not load API file for year ${year}`);
-		});
+function waitAnimations(element, property, value) {
+	return new Promise(resolve => {
+		element.style[property] = value;
+		const transitionEnded = animation => {
+			if (animation.propertyName !== property) return;
+			element.removeEventListener('transitionend', transitionEnded);
+			resolve();
+		}
+		element.addEventListener('transitionend', transitionEnded);
+	});
 }
 
+function wait(delay) {
+	return new Promise(resolve => setTimeout(resolve, delay));
+}
 
 // =====================================================================================================================
 
-let hold_release_timeout;
+// let hold_release_timeout;
 
-title.addEventListener('mouseenter', _ => {
-	clearTimeout(hold_release_timeout);
-	hold = true;
-	// console.log("Hold activated");
+// title.addEventListener('mouseenter', _ => {
+// 	clearTimeout(hold_release_timeout);
+// 	hold = true;
+// 	// console.log("Hold activated");
 
-	timer_path.getAnimations().map(animation => {
-		animation.pause();
-		// if (animation.currentTime > timer_duration - hold_delay) {
-		animation.currentTime = timer_duration - hold_delay;
-		// }
-	});
-});
-title.addEventListener('mouseleave', _ => {
-	clearTimeout(hold_release_timeout);
-	hold_release_timeout = setTimeout(_ => {
-		hold = false;
-	}, hold_delay);
-	// console.log(`Hold will be deactivated in ${hold_delay / 1000}s`);
+// 	timer_path.getAnimations().map(animation => {
+// 		animation.pause();
+// 		// if (animation.currentTime > timer_duration - hold_delay) {
+// 		animation.currentTime = timer_duration - hold_delay;
+// 		// }
+// 	});
+// });
+// title.addEventListener('mouseleave', _ => {
+// 	clearTimeout(hold_release_timeout);
+// 	hold_release_timeout = setTimeout(_ => {
+// 		hold = false;
+// 	}, hold_delay);
+// 	// console.log(`Hold will be deactivated in ${hold_delay / 1000}s`);
 
-	timer_path.getAnimations().map(animation => animation.play());
-});
+// 	timer_path.getAnimations().map(animation => animation.play());
+// });
 
-function changeBackground() {
-	const chosen_image = api[Math.floor(Math.random() * api.length)];
+function changeHomepageImage() {
+	const chosen_image = api.get(HOMEPAGE_REGION).getRandom();
+	// console.log(chosen_image);
 
-	cur_image.src = chosen_image["url"];
+	next_image.src = chosen_image["url"];
 
-	setTimeout(_ => {
-		waitFor(
-			_ => cur_image.complete && !hold,
-		).then(_ => {
+	wait(HOMEPAGE_DELAY).then(_ => {
+		waitFor(_ => next_image.complete).then(_ => {
 
 			// Restart timer animation
-			setTimeout(_ => {
-				timer_path.classList.remove("play");
-				setTimeout(_ => {
-					timer_path.classList.add("play");
-				}, transition_delay / 2);
-			}, transition_delay / 2);
+			// setTimeout(_ => {
+			// 	timer_path.classList.remove("play");
+			// 	setTimeout(_ => {
+			// 		timer_path.classList.add("play");
+			// 	}, transition_delay / 2);
+			// }, transition_delay / 2);
 
-			// Showing new image
-			foreground.style.opacity = (cur_image === foreground ? 1 : 0);
+			waitAnimations(foreground, "opacity", (next_image === foreground ? 1 : 0))
+				.then(_ => {
+					[cur_image, next_image] = [next_image, cur_image]; // Swap images
+					changeHomepageImage();
+				});
 
-			cur_image = (cur_image === foreground ? background : foreground);
-
-			setTimeout(changeBackground, transition_delay + 50); // 50 just to be safe that animation has finished
-
-			if (document.body.classList.contains("shown")) {
-
-				title.style.opacity = 0;
-
-				setTimeout(_ => {
-					title.textContent = chosen_image["title"];
-					title.href = chosen_image["url"];
-					title.style.opacity = 1;
-				}, transition_delay / 2);
-
-			} else {
-				title.textContent = chosen_image["title"];
+			waitAnimations(title, "opacity", 0).then(_ => {
+				title.getElementsByClassName("text")[0].textContent = chosen_image["title"];
 				title.href = chosen_image["url"];
-				document.body.classList.add("shown");
-				first_image_loaded = true;
-
-				setTimeout(_ => {
-					transition_delay = transition_delay_true;
-				}, transition_delay / 2);
-			}
-
+				title.style.opacity = 1;
+			});
 		});
-	}, (document.body.classList.contains("shown") ? delay - transition_delay - 50 : 0));
+	});
 }
 
-fetchYear(previous_year, year_api => {
-	console.log("Loaded year:", previous_year);
-	api = year_api;
+window.addEventListener('load', _ => {
+	document.body.classList.add("shown");
+});
 
-	changeBackground();
-	// waitFor(
-	// 	_ => document.readyState === "complete"
-	// ).then(changeBackground);
+api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
 
-	waitFor(
-		_ => first_image_loaded
-	).then(_ => {
-		console.log("Loading other years:");
+	waitFor(_ => document.body.classList.contains("shown")).then(changeHomepageImage);
 
-		for (let year = start_date.getFullYear(); year <= end_date.getFullYear(); ++year) {
-			if (year === previous_year) continue;
-			console.log("Loaded year:", year);
+	for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
+		if (year === PREVIOUS_YEAR) continue;
 
-			fetchYear(year, year_api => {
-				year_api.forEach(item => {
-					if (item["date"] >= date2str(start_date)) api.push(item);
-				});
-			});
-		}
-
-	});
+		api.get(HOMEPAGE_REGION).fetchYear(year);
+	}
 }, alert_error = true);

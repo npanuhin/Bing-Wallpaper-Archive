@@ -134,7 +134,7 @@ One API file consists of an array of image data[^2]:
 > https://bing.npanuhin.me/{country}/{language}.{year}.json
 > ```
 > For example: <a href="https://bing.npanuhin.me/US/en.2021.json"><code>US/en.2021</code></a> or <a href="https://bing.npanuhin.me/ROW/en.2024.json"><code>ROW/en.2024</code></a><br>
-> These files are minified and typically have a size of 100-500 KB
+> These files are minified and typically have a size of 100-500 KB. If 404 is returned, then we don't have any images for that year
 
 
 <!-- >

@@ -85,7 +85,6 @@ def extract_mkt(url: str) -> Market:
 
 # REGIONS = ['en-US']
 REGIONS = [
-    'ROW',
     'pt-BR',
     'en-CA',
     'fr-CA',
@@ -100,7 +99,9 @@ REGIONS = [
     'en-US'
 ]
 
-REGIONS = list(map(Region, REGIONS))
+ROW = Region('ROW')
+
+REGIONS = [ROW] + list(map(Region, REGIONS))
 
 # ----------------------------------------------------------------------------------------------------------------------
 

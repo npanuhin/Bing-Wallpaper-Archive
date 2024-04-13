@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate website
         working-directory: src/scripts
-        run: python assemble_website.py
+        run: python build_website.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,10 +1,11 @@
 # Cache
 __pycache__/
 
-# API-files generated for website
+# Generated website
 website/*
 !website/scripts/
 !website/styles/
+!website/index.source.html
 
 # Configuration files with tokens
 configs/*token.json
