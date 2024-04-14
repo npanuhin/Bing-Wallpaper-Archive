@@ -27,9 +27,10 @@ const
 	PREVIOUS_YEAR = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
 
 	homepage_background = document.getElementById("background"),
-	homepage_foreground = document.getElementById("foreground");
+	homepage_foreground = document.getElementById("foreground"),
 // timer_path = document.getElementById("timer_path"),
-// title = document.getElementById("title"),
+	title = document.getElementById("title"),
+	title_texts = document.querySelectorAll("#title span");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
 // transition_delay_true = 1000,
@@ -215,7 +216,7 @@ function changeHomepageImage() {
 				});
 
 			waitAnimations(title, "opacity", 0).then(_ => {
-				title.getElementsByClassName("text")[0].textContent = chosen_image["title"];
+				title_texts.forEach(span => span.textContent = chosen_image["title"]);
 				title.href = chosen_image["url"];
 				title.style.opacity = 1;
 			});

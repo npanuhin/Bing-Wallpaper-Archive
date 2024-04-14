@@ -23,7 +23,16 @@
 		</div>
 	</div>
 
-	<a id="title" target="_blank" href="{starting_image}"><div class="underline"></div><div class="text">{starting_title}</div></a>
+	<!-- <a id="title" target="_blank" href="{starting_image}"><div class="underline"></div><div class="text">{starting_title}</div></a> -->
+	<a id="title" target="_blank" href="{starting_image}">
+		<div>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -19 11 20">
+				<path d="M 0 0 C 11 0 10 -19 10 -19 L 11 -19 L 11 1 L 0 1 Z"/>
+			</svg>
+			<div><span>{starting_title}</span></div>
+		</div>
+		<span>{starting_title}</span>
+	</a>
 
 	<script src="scripts/homepage.js" defer></script>
 </body>

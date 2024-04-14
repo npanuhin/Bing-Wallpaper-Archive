@@ -87,6 +87,8 @@ body.shown {
 	transition: 1s opacity ease-in-out;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 .container_wrapper {
 	position: absolute;
 	top: 50%;
@@ -112,86 +114,76 @@ body.shown {
 	text-align: center;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 #title {
 	display: block;
 	position: fixed;
 	right: 0;
 	bottom: 0;
-	margin: 10px 15px;
-	padding: 10px 15px;
-	border-radius: 15px;
+	/* margin: 10px 15px; */
+	/* height: 20px; */
+	/* padding: 10px 13px 8px 15px; */
 
-	background-color: rgba(16, 16, 16, 0.5);
-	transition: 0.5s opacity ease-in-out,
-				0.075s background-color ease-in-out,
-				0.075s box-shadow ease-in-out;
+	/* background-color: rgba(16, 16, 16, 0.5); */
+	transition: 0.5s opacity ease-in-out;
+
+	--total-height: calc(20px + 10px + 8px);  /* height + padding-up + padding-down = 38px */
+
+	border-top-left-radius: 15px 19px;
 }
 
-#title:hover {
-	background-color: rgb(16, 16, 16);
-	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
-
-	/* color: #0A84FF; */
+#title > div {
+	border-top-left-radius: 15px 19px;
 }
 
-#title div.underline {
-	--block-offset: 15px;
-	--beyond-text: 1.5px;
-	--total-offset: calc(var(--block-offset) - var(--beyond-text));
+#title > div > svg {
+	pointer-events: none;
+}
 
-	display: block;
+#title > div > svg > path {
+	pointer-events: auto;
+}
+
+#title > span, #title > div > div {
 	position: absolute;
-	bottom: 10px;
-	left: var(--total-offset);
-	width: calc(100% - 2 * var(--total-offset));
-	height: 1px;
-
-	border-radius: 100px;
-
-	/* background-color: #0A84FF; */
-	background-color: #fff;
-
-	opacity: 0;
-	transition: 0.075s opacity ease-in-out;
-
-	z-index: 10;
-}
-
-#title:hover div.underline {
-	opacity: 1;
-}
-
-#title div.text {
-	position: relative;
-
+	bottom: 0;
+	right: 0;
 	color: #fff;
-
-	z-index: 100;
-
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 17px;
 
-	transition: 0.075s text-shadow ease-in-out;
+	/* height: 20px; */
+	padding: 10px 13px 8px 15px;
+	border-top-left-radius: 15px 19px;
 }
 
-#title:hover div.text {
-	--background-color: rgb(16, 16, 16);
+#title > div > div {
+	position: relative;
+	background-color: rgba(16, 16, 16);
+}
+
+#title > div > svg {
+	position: relative;
+	display: block;
+	font-size: 0;
+
+	position: absolute;
+	bottom: -1px;
+	left: -10px;
+	width: 11px;
+	height: 19px;
+
+	fill: rgba(16, 16, 16);
+}
+
+#title > div {
+	opacity: 0.5;
+	transition: 0.075s opacity ease-in-out;
+}
+
+#title:hover > div {
 	opacity: 1;
-	text-shadow:
-		-3px   0.5px 0.2px var(--background-color),
-		-2.5px 0.5px 0.2px var(--background-color),
-		-2px   0.5px 0.2px var(--background-color),
-		-1.5px 0.5px 0.2px var(--background-color),
-		-1px   0.5px 0.2px var(--background-color),
-		-0.5px 0.5px 0.2px var(--background-color),
-		0px    0.5px 0.2px var(--background-color),
-		0.5px  0.5px 0.2px var(--background-color),
-		1px    0.5px 0.2px var(--background-color),
-		1.5px  0.5px 0.2px var(--background-color),
-		2px    0.5px 0.2px var(--background-color),
-		2.5px  0.5px 0.2px var(--background-color),
-		3px    0.5px 0.2px var(--background-color);
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
