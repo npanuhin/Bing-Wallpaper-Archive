@@ -18,7 +18,10 @@ const
 	YEAR_API_PATH = (country, lang, year) => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
 	START_DATE = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
 
-	HOMEPAGE_DELAY = 5000; // Delay between homepage images, doess not include transition time
+	HOMEPAGE_DELAY = 5000, // Delay between homepage images, doess not include transition time
+
+	SCROLL_THRESHOLD = 66, // Scroll to the top if less than this value
+	SCROLL_DELAY = 2000; // Delay before automatic scroll
 
 // =====================================================================================================================
 
@@ -28,8 +31,9 @@ const
 
 	homepage_background = document.getElementById("background"),
 	homepage_foreground = document.getElementById("foreground"),
-// timer_path = document.getElementById("timer_path"),
+	// timer_path = document.getElementById("timer_path"),
 	title = document.getElementById("title"),
+	title_background = document.querySelector("#title > div"),
 	title_texts = document.querySelectorAll("#title span");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
@@ -238,3 +242,27 @@ api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
 		api.get(HOMEPAGE_REGION).fetchYear(year);
 	}
 }, alert_error = true);
+
+
+let auto_scroll_timeout;
+
+window.addEventListener("scroll", _ => {
+	clearTimeout(auto_scroll_timeout);
+	let scroll = window.scrollY;
+
+	if (scroll > 0) {
+		title_background.style.opacity = 1;
+	} else {
+		title_background.style.opacity = "";
+	}
+
+	if (scroll < 66) {
+		auto_scroll_timeout = setTimeout(_ => {
+			window.scroll({
+				top: 0,
+				left: 0,
+				behavior: "smooth"
+			});
+		}, SCROLL_DELAY);
+	}
+});
