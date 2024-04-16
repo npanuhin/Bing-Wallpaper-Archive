@@ -51,8 +51,7 @@ const
 var cur_image = foreground, // Either background or foreground: image shown at the moment
 	next_image = background;
 
-// =====================================================================================================================
-
+// ==================================================== Api storage ====================================================
 
 class Region {
 	constructor(region) {
@@ -146,6 +145,29 @@ function date2str(date) {
 //     })();
 // }
 
+// =============================================== Waiting functionality ===============================================
+
+// var Timer = function(delay, callback) {
+//     var timerId, start, remaining = delay;
+
+//     this.pause = function() {
+//         clearTimeout(timerId);
+//         timerId = null;
+//         remaining -= Date.now() - start;
+//     };
+
+//     this.resume = function() {
+//         if (timerId) {
+//             return;
+//         }
+
+//         start = Date.now();
+//         timerId = setTimeout(callback, remaining);
+//     };
+
+//     this.resume();
+// };
+
 function waitFor(conditionFunction, interval = 50) {
 	const poll = resolve => {
 		if (conditionFunction()) resolve();
@@ -196,33 +218,37 @@ function wait(delay) {
 // 	timer_path.getAnimations().map(animation => animation.play());
 // });
 
-function changeHomepageImage() {
+let homepage_change_timer;
+
+function changeHomepage() {
 	const chosen_image = api.get(HOMEPAGE_REGION).getRandom();
 	// console.log(chosen_image);
 
 	next_image.src = chosen_image["url"];
 
-	wait(HOMEPAGE_DELAY).then(_ => {
-		waitFor(_ => next_image.complete).then(_ => {
+	waitFor(_ => !document.hidden).then(_ => {
+		wait(HOMEPAGE_DELAY).then(_ => {
+			waitFor(_ => next_image.complete).then(_ => {
 
-			// Restart timer animation
-			// setTimeout(_ => {
-			// 	timer_path.classList.remove("play");
-			// 	setTimeout(_ => {
-			// 		timer_path.classList.add("play");
-			// 	}, transition_delay / 2);
-			// }, transition_delay / 2);
+				// Restart timer animation
+				// setTimeout(_ => {
+				// 	timer_path.classList.remove("play");
+				// 	setTimeout(_ => {
+				// 		timer_path.classList.add("play");
+				// 	}, transition_delay / 2);
+				// }, transition_delay / 2);
 
-			waitAnimations(foreground, "opacity", (next_image === foreground ? 1 : 0))
-				.then(_ => {
-					[cur_image, next_image] = [next_image, cur_image]; // Swap images
-					changeHomepageImage();
+				waitAnimations(foreground, "opacity", (next_image === foreground ? 1 : 0))
+					.then(_ => {
+						[cur_image, next_image] = [next_image, cur_image]; // Swap images
+						changeHomepage();
+					});
+
+				waitAnimations(title, "opacity", 0).then(_ => {
+					title_texts.forEach(span => span.textContent = chosen_image["title"]);
+					title.href = chosen_image["url"];
+					title.style.opacity = 1;
 				});
-
-			waitAnimations(title, "opacity", 0).then(_ => {
-				title_texts.forEach(span => span.textContent = chosen_image["title"]);
-				title.href = chosen_image["url"];
-				title.style.opacity = 1;
 			});
 		});
 	});
@@ -234,7 +260,7 @@ window.addEventListener('load', _ => {
 
 api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
 
-	waitFor(_ => document.body.classList.contains("shown")).then(changeHomepageImage);
+	waitFor(_ => document.body.classList.contains("shown")).then(changeHomepage);
 
 	for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
 		if (year === PREVIOUS_YEAR) continue;
@@ -243,6 +269,8 @@ api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
 	}
 }, alert_error = true);
 
+
+// ================================================ Automatic scrolling ================================================
 
 let auto_scroll_timeout;
 
