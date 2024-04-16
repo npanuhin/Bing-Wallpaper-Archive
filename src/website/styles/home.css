@@ -145,12 +145,6 @@ body.shown {
 	transition: 0.5s opacity ease-in-out;
 
 	--total-height: calc(20px + 10px + 8px);  /* height + padding-up + padding-down = 38px */
-
-	border-top-left-radius: 15px 19px;
-}
-
-#title > div {
-	border-top-left-radius: 15px 19px;
 }
 
 #title > div > svg {
@@ -171,7 +165,6 @@ body.shown {
 
 	/* height: 20px; */
 	padding: 10px 13px 8px 15px;
-	border-top-left-radius: 15px 19px;
 }
 
 #title > div > div {
@@ -191,6 +184,20 @@ body.shown {
 	height: 19px;
 
 	fill: var(--color-background-black);
+}
+
+#title,
+#title > div,
+#title > div > div,
+#title > span {
+	border-top-left-radius: 15px 19px;
+}
+
+#title.fullwidth,
+#title.fullwidth > div,
+#title.fullwidth > div > div,
+#title.fullwidth > span {
+	border-top-left-radius: 0px;
 }
 
 #title > div {

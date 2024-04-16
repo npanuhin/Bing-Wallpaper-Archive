@@ -247,6 +247,9 @@ function changeHomepage() {
 				waitAnimations(title, "opacity", 0).then(_ => {
 					title_texts.forEach(span => span.textContent = chosen_image["title"]);
 					title.href = chosen_image["url"];
+
+					title.classList.toggle("fullwidth", title.getBoundingClientRect().left == 0);
+
 					title.style.opacity = 1;
 				});
 			});
