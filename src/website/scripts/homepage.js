@@ -12,7 +12,8 @@ const
 		'zh-CN',
 		'es-ES',
 		'en-GB',
-		'en-US'
+		'en-US',
+		'en-ROW'
 	],
 	HOMEPAGE_REGION = 'en-US',
 	YEAR_API_PATH = (country, lang, year) => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
@@ -33,7 +34,7 @@ const
 	homepage_foreground = document.getElementById("foreground"),
 	// timer_path = document.getElementById("timer_path"),
 	title = document.getElementById("title"),
-	title_background = document.querySelector("#title > div"),
+	title_background = document.getElementById("title_background"),
 	title_texts = document.querySelectorAll("#title span");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
@@ -226,7 +227,8 @@ function changeHomepage() {
 
 	next_image.src = chosen_image["url"];
 
-	waitFor(_ => !document.hidden).then(_ => {
+	waitFor(_ => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
+		console.log("Changing image soon");
 		wait(HOMEPAGE_DELAY).then(_ => {
 			waitFor(_ => next_image.complete).then(_ => {
 
@@ -281,13 +283,9 @@ window.addEventListener("scroll", _ => {
 	clearTimeout(auto_scroll_timeout);
 	let scroll = window.scrollY;
 
-	if (scroll > 0) {
-		title_background.style.opacity = 1;
-	} else {
-		title_background.style.opacity = "";
-	}
+	title_background.classList.toggle("always_visible", scroll > 0);
 
-	if (scroll < 66) {
+	if (scroll < window.innerHeight / 2) {
 		auto_scroll_timeout = setTimeout(_ => {
 			window.scroll({
 				top: 0,
@@ -295,5 +293,25 @@ window.addEventListener("scroll", _ => {
 				behavior: "smooth"
 			});
 		}, SCROLL_DELAY);
+
+	} else if (scroll < window.innerHeight) {
+		auto_scroll_timeout = setTimeout(_ => {
+			window.scroll({
+				top: window.innerHeight,
+				left: 0,
+				behavior: "smooth"
+			});
+		}, SCROLL_DELAY);
+	}
+});
+
+// ================================================== Market selector ==================================================
+
+
+window.addEventListener("hashchange", _ => {
+	let market = window.location.hash.slice(1);
+	if (!REGIONS.includes(market)) {
+		console.log(`Invalid market specified in URL hash: ${market}`);
+		market = HOMEPAGE_REGION;
 	}
 });

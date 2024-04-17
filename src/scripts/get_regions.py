@@ -85,7 +85,7 @@ def get_regions() -> list[Market]:
 
 if __name__ == "__main__":
     regions = get_regions()
-    print(list(map(str, regions)))  # Can be copied to src/Region.py
+    print(list(map(str, regions)))  # Can be copied to src/Region.py and website's html
     print()
 
     if regions == REGIONS:

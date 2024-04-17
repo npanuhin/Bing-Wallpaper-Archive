@@ -1,5 +1,13 @@
 :root {
 	--color-background-black: rgb(16, 16, 16);
+
+	--background-color: #10161f;
+	--background-color-secondary: #1d2633;
+	--background-color-light: #2d3748;
+	--background-color-superlight: #5c6679;
+
+	--main-color: #e2e8f0;
+	--light-color: #fff;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -147,15 +155,16 @@ body.shown {
 	--total-height: calc(20px + 10px + 8px);  /* height + padding-up + padding-down = 38px */
 }
 
-#title > div > svg {
+#title_background > svg {
 	pointer-events: none;
 }
 
-#title > div > svg > path {
+#title_background > svg > path {
 	pointer-events: auto;
 }
 
-#title > span, #title > div > div {
+#title > span,
+#title_background > div {
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -167,12 +176,12 @@ body.shown {
 	padding: 10px 13px 8px 15px;
 }
 
-#title > div > div {
+#title_background > div {
 	position: relative;
 	background-color: var(--color-background-black);
 }
 
-#title > div > svg {
+#title_background > svg {
 	position: relative;
 	display: block;
 	font-size: 0;
@@ -187,8 +196,8 @@ body.shown {
 }
 
 #title,
-#title > div,
-#title > div > div,
+#title_background,
+#title_background > div,
 #title > span {
 	border-top-left-radius: 15px 19px;
 }
@@ -200,13 +209,38 @@ body.shown {
 	border-top-left-radius: 0px;
 }
 
-#title > div {
+#title_background {
 	opacity: 0.5;
 	transition: 0.075s opacity ease-in-out;
 }
 
 #title:hover > div {
 	opacity: 1;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+#title_background > div {
+	transition: 0.075s background-color ease-in-out;
+}
+
+#title_background > svg {
+	transition: 0.075s fill ease-in-out;
+}
+
+#title_background.always_visible {
+	transition: 0.2s opacity ease-in-out;
+	opacity: 1;
+}
+
+#title_background.always_visible > div {
+	transition: 0.2s background-color ease-in-out;
+	background-color: var(--background-color-secondary);
+}
+
+#title_background.always_visible > svg {
+	transition: 0.2s fill ease-in-out;
+	fill: var(--background-color-secondary);
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -264,14 +298,19 @@ body.shown {
 
 .content {
 	position: relative;
+	background-color: var(--background-color);
+
+	min-height: 100vh;
 }
 
 .header {
 	position: relative;
 	/* width: 100%; */
-	background-color: var(--color-background-black);
+	/* background-color: var(--color-background-black); */
+	background-color: var(--background-color-secondary);
 
-	padding: 15px;
+	padding: 20px 0 20px 0;
+	margin-bottom: 10px;
 
 	text-align: center;
 }
@@ -281,5 +320,94 @@ body.shown {
 
 	color: #fff;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 30px;
+	font-size: 32px;
+	line-height: 36px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* .navigation {
+	display: flex;
+
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+
+	padding: 0 80px;
+}
+
+.navigation a {
+	position: relative;
+	display: flex;
+
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+
+	margin: 8px 10px;
+	padding: 8px 15px;
+
+	font-family: Arial, Helvetica, sans-serif;
+	color: #e2e8f0;
+	font-size: 14px;
+
+	text-align: center;
+
+	line-height: 22px;
+
+	background-color: var(--background-color-secondary);
+	border-radius: 8px;
+
+	transition: 0.06s background-color ease-in-out;
+}
+
+.navigation a:last-child {
+	flex-basis: 100%;
+}
+
+.navigation a:hover {
+	background-color: var(--background-color-light);
+} */
+
+.navigation {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	box-sizing: border-box;
+	overflow-y: auto;
+
+	padding: 10px 10px;
+
+	width: 200px;
+}
+
+.navigation a {
+	display: block;
+
+	margin-bottom: 9px;
+	padding: 10px 15px;
+
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--main-color);
+	font-size: 16px;
+
+	background-color: var(--background-color-secondary);
+	border-radius: 8px;
+
+	transition:
+		0.06s background-color ease-in-out,
+		0.06s color ease-in-out;
+}
+
+.navigation a:last-child {
+	margin-bottom: 0;
+}
+
+.navigation a.active {
+	background-color: var(--background-color-light);
+}
+
+.navigation a:hover {
+	background-color: var(--background-color-superlight);
+	color: var(--light-color);
 }
