@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-16.jpg">
-        <img id="last_image" title="Union Square in lower Manhattan at twilight, New York" alt="Union Square in lower Manhattan at twilight, New York" src="https://bing.npanuhin.me/US/en/2024-04-16.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-04-16" src="https://img.shields.io/badge/Last_image-2024--04--16-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-19.jpg">
+        <img id="last_image" title="The Ring of Brodgar, Orkney, Scotland" alt="The Ring of Brodgar, Orkney, Scotland" src="https://bing.npanuhin.me/US/en/2024-04-19.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-04-19" src="https://img.shields.io/badge/Last_image-2024--04--19-informational?style=flat">
     </a>
 </div>
 
