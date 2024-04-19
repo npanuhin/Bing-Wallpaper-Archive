@@ -35,7 +35,11 @@ const
 	// timer_path = document.getElementById("timer_path"),
 	title = document.getElementById("title"),
 	title_background = document.getElementById("title_background"),
-	title_texts = document.querySelectorAll("#title span");
+	title_texts = document.querySelectorAll("#title span"),
+
+	content_area = document.getElementById("content"),
+	market_selectors = document.querySelectorAll("#navigation a"),
+	market_selector_block = document.getElementById("navigation");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
 // transition_delay_true = 1000,
@@ -177,7 +181,7 @@ function waitFor(conditionFunction, interval = 50) {
 	return new Promise(poll);
 }
 
-function waitAnimations(element, property, value) {
+function waitAnimations(element, property, value) { // TODO rewrite + remove .style
 	return new Promise(resolve => {
 		element.style[property] = value;
 		const transitionEnded = animation => {
@@ -275,17 +279,106 @@ api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
 }, alert_error = true);
 
 
-// ================================================ Automatic scrolling ================================================
+// ===================================================== Scrolling =====================================================
 
 let auto_scroll_timeout;
+let last_scroll = window.scrollY;
 
-window.addEventListener("scroll", _ => {
+const NAVIGATION_STATUS = {
+	MAX_TOP: 0,
+	FIXED_TOP: 1,
+	FIXED_BOTTOM: 2,
+	FLOATING: 3
+};
+
+let navigation_status = NAVIGATION_STATUS.MAX_TOP;
+
+function handle_scroll() {
 	clearTimeout(auto_scroll_timeout);
 	let scroll = window.scrollY;
 
+	// -------------------------------- Title background --------------------------------
+
 	title_background.classList.toggle("always_visible", scroll > 0);
 
-	if (scroll < window.innerHeight / 2) {
+	// -------------------------------- Sticky navigation -------------------------------
+
+	let navigation_block_pos = market_selector_block.getBoundingClientRect();
+	let relative_pos = navigation_block_pos.top - content_area.getBoundingClientRect().top;
+
+	let new_position = "", new_top = "";
+	let old_status = null, new_status = navigation_status;
+
+	while (old_status != new_status) {
+		old_status = new_status;
+
+		if (scroll >= last_scroll) { // Scrolling down
+			switch (old_status) {
+				case NAVIGATION_STATUS.MAX_TOP:
+				case NAVIGATION_STATUS.FLOATING:
+					if (navigation_block_pos.top <= 86 && navigation_block_pos.bottom <= window.innerHeight) {
+						// console.log("Changing navbar to FIXED_BOTTOM:",  Math.min(86, window.innerHeight - navigation_block_pos.height) + "px");
+						new_status = NAVIGATION_STATUS.FIXED_BOTTOM;
+						new_position = "fixed";
+						new_top = Math.min(86, window.innerHeight - navigation_block_pos.height) + "px";
+					}
+					break;
+
+				case NAVIGATION_STATUS.FIXED_TOP:
+					// console.log("Changing navbar to FLOATING:", relative_pos + "px");
+					new_status = NAVIGATION_STATUS.FLOATING;
+					new_position = "absolute";
+					new_top = relative_pos + "px";
+					break;
+			}
+
+		} else { // Scrolling up
+			switch (old_status) {
+				case NAVIGATION_STATUS.FIXED_TOP:
+					if (relative_pos <= 86) {
+						// console.log("Changing navbar to MAX_TOP:", "86px");
+						new_status = NAVIGATION_STATUS.MAX_TOP;
+						new_position = "absolute";
+						new_top = "86px";
+					}
+					break;
+
+				case NAVIGATION_STATUS.FIXED_BOTTOM:
+					// console.log("Changing navbar to FLOATING:", relative_pos + "px");
+					new_status = NAVIGATION_STATUS.FLOATING;
+					new_position = "absolute";
+					new_top = relative_pos + "px";
+					break;
+
+				case NAVIGATION_STATUS.FLOATING:
+					if (navigation_block_pos.top >= 86) {
+						// console.log("Changing navbar to FIXED_TOP:", "86px");
+						new_status = NAVIGATION_STATUS.FIXED_TOP;
+						new_position = "fixed";
+						new_top = "86px";
+					}
+					break;
+			}
+		}
+	}
+
+	if (new_status != navigation_status) {
+		if (market_selector_block.style.position != new_position) {
+			// console.log("Changing position to", new_position);
+			market_selector_block.style.position = new_position;
+		}
+		if (market_selector_block.style.top != new_top) {
+			// console.log("Changing top to", new_top);
+			market_selector_block.style.top = new_top;
+		}
+	}
+
+	navigation_status = new_status;
+	last_scroll = scroll;
+
+	// ----------------------------------- Autoscroll -----------------------------------
+
+	if (scroll * 2 < window.innerHeight) {
 		auto_scroll_timeout = setTimeout(_ => {
 			window.scroll({
 				top: 0,
@@ -303,15 +396,27 @@ window.addEventListener("scroll", _ => {
 			});
 		}, SCROLL_DELAY);
 	}
-});
+}
+
+window.addEventListener("scroll", handle_scroll);
+window.addEventListener("resize", handle_scroll);
 
 // ================================================== Market selector ==================================================
 
+
+function change_market(market = HOMEPAGE_REGION) {
+	market_selectors.forEach(selector => {
+		selector.classList.toggle("active", selector.getAttribute("data-mkt") == market);
+	});
+}
+
+change_market();
 
 window.addEventListener("hashchange", _ => {
 	let market = window.location.hash.slice(1);
 	if (!REGIONS.includes(market)) {
 		console.log(`Invalid market specified in URL hash: ${market}`);
-		market = HOMEPAGE_REGION;
+	} else {
+		change_market(market);
 	}
 });
