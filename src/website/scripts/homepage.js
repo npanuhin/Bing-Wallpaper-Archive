@@ -39,7 +39,8 @@ const
 
 	content_area = document.getElementById("content"),
 	market_selectors = document.querySelectorAll("#navigation a"),
-	market_selector_block = document.getElementById("navigation");
+	market_selector_block = document.getElementById("navigation"),
+	market_selector_toggle = document.getElementById("navigation_menu");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
 // transition_delay_true = 1000,
@@ -306,8 +307,10 @@ function handle_scroll() {
 	let navigation_block_pos = market_selector_block.getBoundingClientRect();
 	let relative_pos = navigation_block_pos.top - content_area.getBoundingClientRect().top;
 
-	let new_position = "", new_top = "";
-	let old_status = null, new_status = navigation_status;
+	let new_position = "",
+		new_top = "";
+	let old_status = null,
+		new_status = navigation_status;
 
 	while (old_status != new_status) {
 		old_status = new_status;
@@ -420,3 +423,22 @@ window.addEventListener("hashchange", _ => {
 		change_market(market);
 	}
 });
+
+// =============================================== Market selector panel ===============================================
+
+market_selector_toggle.addEventListener('change', function () {
+	market_selector_block.classList.toggle("hidden", !this.checked);
+});
+
+function toggle_market_selector() {
+	if (window.innerWidth <= 950) {
+		market_selector_toggle.checked = false;
+	} else {
+		market_selector_toggle.checked = true;
+	}
+	market_selector_block.classList.toggle("hidden", !market_selector_toggle.checked);
+}
+
+toggle_market_selector();
+
+window.addEventListener("resize", toggle_market_selector);

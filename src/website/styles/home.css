@@ -134,7 +134,7 @@ body.shown {
 	width: 100%;
 	text-align: center;
 
-	color: #fff;
+	color: var(--light-color);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 32px;
 }
@@ -168,7 +168,7 @@ body.shown {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	color: #fff;
+	color: var(--light-color);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 17px;
 
@@ -321,10 +321,95 @@ body.shown {
 #header h1 {
 	display: inline-block;
 
-	color: #fff;
+	color: var(--light-color);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 32px;
 	line-height: 36px;
+
+	transition: 0.5s padding-left ease-in-out;
+}
+
+#navigation_menu {
+	display: none;
+	visibility: hidden;
+	position: absolute;
+}
+
+.navigation_menu_label {
+	display: none;
+
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 25px;
+	width: 26px;
+	height: 26px;
+	cursor: pointer;
+}
+
+.navigation_menu_label > span,
+.navigation_menu_label > span::before,
+.navigation_menu_label > span::after {
+	display: block;
+	position: absolute;
+	width: 26px;
+	height: 2px;
+	border-radius: 1px;
+	/* pointer-events: none; */
+
+	background-color: var(--main-color);
+
+	transition:
+		0.075s background-color ease-in-out,
+		0.2s transform ease-in-out;
+}
+
+.navigation_menu_label > span::before {
+	content: '';
+	top: -8px;
+}
+
+.navigation_menu_label > span::after {
+	content: '';
+	top: 8px;
+}
+
+.navigation_menu_label:hover > span,
+.navigation_menu_label:hover > span::before,
+.navigation_menu_label:hover > span::after {
+	background-color: var(--light-color);
+}
+
+#navigation_menu:checked ~ .navigation_menu_label > span {
+	transform: rotate(45deg);
+}
+#navigation_menu:checked ~ .navigation_menu_label > span::before {
+	transform: translateY(8px) rotate(0);
+}
+#navigation_menu:checked ~ .navigation_menu_label > span::after {
+	transform: translateY(-8px) rotate(90deg);
+}
+
+@media (max-width: 533.33px) {
+	#header h1 {
+		font-size: 6vw;
+		/* line-height: 6.75vw; */
+	}
+}
+
+@media (max-width: 950px) {
+	#header h1 {
+		padding-left: 50px;
+	}
+
+	#navigation_menu {
+		display: block;
+	}
+
+	.navigation_menu_label {
+		display: flex;
+	}
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -381,12 +466,16 @@ body.shown {
 	box-sizing: border-box;
 	/* overflow-y: auto; */
 	scrollbar-width: thin;
-
 	padding: 10px 10px 10px 10px;
 
 	max-width: max-content;
-
 	z-index: 1;
+
+	transition: 0.3s transform ease-in-out;
+}
+
+#navigation.hidden {
+	transform: translateX(-100%);
 }
 
 #navigation a {
