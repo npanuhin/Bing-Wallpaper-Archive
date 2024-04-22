@@ -30,17 +30,17 @@ const
 	YESTERDAY = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
 	PREVIOUS_YEAR = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
 
-	homepage_background = document.getElementById("background"),
-	homepage_foreground = document.getElementById("foreground"),
-	// timer_path = document.getElementById("timer_path"),
-	title = document.getElementById("title"),
-	title_background = document.getElementById("title_background"),
+	homepage_background = document.querySelector("#background"),
+	homepage_foreground = document.querySelector("#foreground"),
+	// timer_path = document.querySelector("#timer_path"),
+	title = document.querySelector("#title"),
+	title_background = document.querySelector("#title_background"),
 	title_texts = document.querySelectorAll("#title span"),
 
-	content_area = document.getElementById("content"),
-	market_selectors = document.querySelectorAll("#navigation a"),
-	market_selector_block = document.getElementById("navigation"),
-	market_selector_toggle = document.getElementById("navigation_menu");
+	content_area = document.querySelector("#content"),
+	markets = document.querySelector("#markets"),
+	markets_items = document.querySelectorAll("#markets a"),
+	markets_toggle = document.querySelector("#markets_menu");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
 // transition_delay_true = 1000,
@@ -54,8 +54,8 @@ const
 
 // var hold = false;
 
-var cur_image = foreground, // Either background or foreground: image shown at the moment
-	next_image = background;
+var cur_homepage = foreground, // Either background or foreground: image shown at the moment
+	next_homepage = background;
 
 // ==================================================== Api storage ====================================================
 
@@ -230,12 +230,12 @@ function changeHomepage() {
 	const chosen_image = api.get(HOMEPAGE_REGION).getRandom();
 	// console.log(chosen_image);
 
-	next_image.src = chosen_image["url"];
+	next_homepage.src = chosen_image["url"];
 
 	waitFor(_ => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
 		console.log("Changing image soon");
 		wait(HOMEPAGE_DELAY).then(_ => {
-			waitFor(_ => next_image.complete).then(_ => {
+			waitFor(_ => next_homepage.complete).then(_ => {
 
 				// Restart timer animation
 				// setTimeout(_ => {
@@ -245,9 +245,9 @@ function changeHomepage() {
 				// 	}, transition_delay / 2);
 				// }, transition_delay / 2);
 
-				waitAnimations(foreground, "opacity", (next_image === foreground ? 1 : 0))
+				waitAnimations(foreground, "opacity", (next_homepage === foreground ? 1 : 0))
 					.then(_ => {
-						[cur_image, next_image] = [next_image, cur_image]; // Swap images
+						[cur_homepage, next_homepage] = [next_homepage, cur_homepage]; // Swap images
 						changeHomepage();
 					});
 
@@ -304,7 +304,7 @@ function handle_scroll() {
 
 	// -------------------------------- Sticky navigation -------------------------------
 
-	let navigation_block_pos = market_selector_block.getBoundingClientRect();
+	let navigation_block_pos = markets.getBoundingClientRect();
 	let relative_pos = navigation_block_pos.top - content_area.getBoundingClientRect().top;
 
 	let new_position = "",
@@ -366,13 +366,13 @@ function handle_scroll() {
 	}
 
 	if (new_status != navigation_status) {
-		if (market_selector_block.style.position != new_position) {
+		if (markets.style.position != new_position) {
 			// console.log("Changing position to", new_position);
-			market_selector_block.style.position = new_position;
+			markets.style.position = new_position;
 		}
-		if (market_selector_block.style.top != new_top) {
+		if (markets.style.top != new_top) {
 			// console.log("Changing top to", new_top);
-			market_selector_block.style.top = new_top;
+			markets.style.top = new_top;
 		}
 	}
 
@@ -404,11 +404,11 @@ function handle_scroll() {
 window.addEventListener("scroll", handle_scroll);
 window.addEventListener("resize", handle_scroll);
 
-// ================================================== Market selector ==================================================
+// ====================================================== Markets ======================================================
 
 
 function change_market(market = HOMEPAGE_REGION) {
-	market_selectors.forEach(selector => {
+	markets_items.forEach(selector => {
 		selector.classList.toggle("active", selector.getAttribute("data-mkt") == market);
 	});
 }
@@ -424,19 +424,19 @@ window.addEventListener("hashchange", _ => {
 	}
 });
 
-// =============================================== Market selector panel ===============================================
+// ================================================== Market selector ==================================================
 
-market_selector_toggle.addEventListener('change', function () {
-	market_selector_block.classList.toggle("hidden", !this.checked);
+markets_toggle.addEventListener('change', function () {
+	markets.classList.toggle("hidden", !this.checked);
 });
 
 function toggle_market_selector() {
 	if (window.innerWidth <= 950) {
-		market_selector_toggle.checked = false;
+		markets_toggle.checked = false;
 	} else {
-		market_selector_toggle.checked = true;
+		markets_toggle.checked = true;
 	}
-	market_selector_block.classList.toggle("hidden", !market_selector_toggle.checked);
+	markets.classList.toggle("hidden", !markets_toggle.checked);
 }
 
 toggle_market_selector();
