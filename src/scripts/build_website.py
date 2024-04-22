@@ -40,7 +40,8 @@ def build():
     with open(mkpath(WEBSITE_ROOT, 'index.source.html'), 'r', encoding='utf-8') as file:
         html = file.read().format(
             starting_image=ROW.read_api()[-1]['url'],
-            starting_title=ROW.read_api()[-1]['title']
+            starting_title=ROW.read_api()[-1]['title'],
+            starting_description=ROW.read_api()[-1]['description']
         )
 
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:

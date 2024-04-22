@@ -38,9 +38,15 @@ const
 	title_texts = document.querySelectorAll("#title span"),
 
 	content_area = document.querySelector("#content"),
+
+	markets_wrapper = document.querySelector("#markets_wrapper"),
 	markets = document.querySelector("#markets"),
 	markets_items = document.querySelectorAll("#markets a"),
-	markets_toggle = document.querySelector("#markets_menu");
+	markets_toggle = document.querySelector("#markets_menu"),
+
+	cur_image = document.querySelector("#cur_image"),
+	cur_image_title = document.querySelector("#cur_image_title"),
+	cur_image_description = document.querySelector("#cur_image_description");
 
 // transition_delay_initial = 200, // Initial delay before showing first image
 // transition_delay_true = 1000,
@@ -231,6 +237,8 @@ function changeHomepage() {
 	// console.log(chosen_image);
 
 	next_homepage.src = chosen_image["url"];
+	next_homepage.alt = chosen_image["title"];
+	next_homepage.title = chosen_image["title"];
 
 	waitFor(_ => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
 		console.log("Changing image soon");
@@ -263,10 +271,6 @@ function changeHomepage() {
 		});
 	});
 }
-
-window.addEventListener('load', _ => {
-	document.body.classList.add("shown");
-});
 
 api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
 
@@ -426,19 +430,27 @@ window.addEventListener("hashchange", _ => {
 
 // ================================================== Market selector ==================================================
 
-markets_toggle.addEventListener('change', function () {
-	markets.classList.toggle("hidden", !this.checked);
-});
-
 function toggle_market_selector() {
+	markets.classList.toggle("hidden", !markets_toggle.checked);
+	markets_wrapper.classList.toggle("hidden", !markets_toggle.checked);
+}
+
+function toggle_market_selector_by_screen_size() {
 	if (window.innerWidth <= 950) {
 		markets_toggle.checked = false;
 	} else {
 		markets_toggle.checked = true;
 	}
-	markets.classList.toggle("hidden", !markets_toggle.checked);
+	toggle_market_selector();
 }
 
-toggle_market_selector();
+markets_toggle.addEventListener('change', toggle_market_selector);
+window.addEventListener("resize", toggle_market_selector_by_screen_size);
+toggle_market_selector_by_screen_size();
 
-window.addEventListener("resize", toggle_market_selector);
+
+// ================================================= Page fully loaded =================================================
+
+window.addEventListener('load', _ => {
+	document.body.classList.add("shown");
+});
