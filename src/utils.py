@@ -24,3 +24,7 @@ def debug(name: str, obj: Any):
 
 def debug_json(name: str, obj: tuple | list | dict):
     debug(name, json.dumps(obj, ensure_ascii=False, indent=4))
+
+
+def warn(message: str):
+    print(f'\n⚠ Warning ⚠\n{message}\n')

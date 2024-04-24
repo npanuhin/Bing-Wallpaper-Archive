@@ -1,12 +1,13 @@
 from datetime import datetime, timedelta
+from shutil import rmtree
 import os
 
 import requests
 
 from Region import ApiEntry, REGIONS, Region, extract_mkt
+from utils import mkpath, posixpath, warn
 from postprocess import postprocess_api
 from cloudflare import CloudflareR2
-from utils import mkpath, posixpath
 
 
 storage = CloudflareR2()
@@ -32,9 +33,9 @@ def get_uhd_url(region: Region, base_url: str) -> str:
 
 
 def parse_date(date_string: str) -> datetime.date:
-    for fmt in ('%Y%m%d_%H%M', '%Y%m%d%H%M', '%Y%m%d'):
+    for datetime_format in ('%Y%m%d_%H%M', '%Y%m%d%H%M', '%Y%m%d'):
         try:
-            parsed = datetime.strptime(date_string, fmt)
+            parsed = datetime.strptime(date_string, datetime_format)
         except ValueError:
             continue
 
@@ -42,39 +43,54 @@ def parse_date(date_string: str) -> datetime.date:
         return parsed.date() + timedelta(days=int(parsed.hour >= 15))
 
 
-def compare_values(key: str, old_value: str | None, new_value: str) -> str:
-    if old_value is None:
-        return new_value
+def compare_values(entry: ApiEntry, key: str, new_value: str) -> bool:
+    if key not in entry:
+        entry[key] = new_value
+        return True
 
-    if old_value == new_value:
-        return old_value
+    if entry[key] == new_value:
+        return False
 
     if key == 'description':
-        if len(new_value) < len(old_value):
-            assert old_value.startswith(new_value), f'\n"{old_value}"\nvs\n"{new_value}"'
-            return old_value
-        else:
-            assert new_value.startswith(old_value)
-            print(f'Rewriting description: {len(old_value)} -> {len(new_value)}')
-            return new_value
+        if len(new_value) > len(entry[key]) or not entry[key].startswith(new_value):
+            warn(f"""
+                Rewriting description for {entry['date']}: {len(entry[key])} -> {len(new_value)}
+                {entry[key]}
+                vs
+                {new_value}
+            """)
+            entry[key] = new_value
+            return True
+
+        return False
 
     if key in ('title', 'caption'):
         new_value = new_value.replace('’', "'")
-        if old_value == new_value:
-            return old_value
+        if entry[key] == new_value:
+            return False
 
-    raise ValueError(f'key "{key}" is different:\n"{old_value}"\nvs\n"{new_value}"')
+    warn(f'Rewriting key `{key}` for {entry['date']}:\n{entry[key]}\nvs\n{new_value}')
+    entry[key] = new_value
+    return True
 
 
-def update_api(api_by_date: dict[str, ApiEntry], new_image_api: ApiEntry):
+def update_api(api_by_date: dict[str, ApiEntry], new_image_api: ApiEntry) -> bool:
     date = new_image_api['date']
-    item = api_by_date.get(date)
-    if item is None:
+    if date not in api_by_date:
         api_by_date[date] = new_image_api
-        return
+        return True
 
-    for key, new_value in new_image_api.items():
-        item[key] = compare_values(key, item.get(key), new_value)
+    entry = api_by_date.get(date)
+
+    if 'bing_url' in new_image_api and entry['bing_url'] != new_image_api['bing_url']:
+        warn(f'Rewriting `bing_url` for {date}: "{entry['bing_url']}" -> "{new_image_api['bing_url']}"')
+        api_by_date[date] = new_image_api
+        return True
+
+    return any(tuple(
+        compare_values(entry, key, new_value)
+        for key, new_value in new_image_api.items()
+    ))
 
 
 def update(region: Region):
@@ -100,13 +116,13 @@ def update(region: Region):
         date = parse_date(image_data['fullstartdate']).strftime('%Y-%m-%d')
 
         image_url = get_uhd_url(region, image_data['urlbase'])
-        to_download.add(date)
 
-        update_api(api_by_date, {
+        if update_api(api_by_date, {
             'date': date,
             'caption': image_data['title'],
             'bing_url': image_url
-        })
+        }):
+            to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
     # https://www.bing.com/hp/api/model?mkt=en-US&setlang=en&cc=US
@@ -122,19 +138,19 @@ def update(region: Region):
 
         image_data = image_data['ImageContent']
         image_url = get_uhd_url(region, extract_base_url(image_data['Image']['Url']))
-        to_download.add(date)
 
         description = image_data['Description']
         description = description.replace('  ', ' ')  # Fix for double spaces
 
-        update_api(api_by_date, {
+        if update_api(api_by_date, {
             'date': date,
             'title': image_data['Title'],
             'caption': image_data['Headline'],
             'copyright': image_data['Copyright'],
             'description': description,
             'bing_url': image_url
-        })
+        }):
+            to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
     # https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US&setlang=en&cc=US
@@ -155,16 +171,16 @@ def update(region: Region):
         description = description.replace('  ', ' ')  # Fix for double spaces
 
         image_url = get_uhd_url(region, extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef']))
-        to_download.add(date)
 
-        update_api(api_by_date, {
+        if update_api(api_by_date, {
             'date': date,
             'title': image_data['title'],
             'subtitle': image_data['caption'],
             'copyright': image_data['copyright'],
             'description': description,
             'bing_url': image_url
-        })
+        }):
+            to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
     print('Downloading images and uploading to Storage...')
@@ -181,12 +197,12 @@ def update(region: Region):
         api_by_date[date]['url'] = storage.upload_file(
             image_path,
             posixpath(mkpath(region.api_country.upper(), region.api_lang.lower(), filename)),
-            skip_exists=True
+            skip_exists=False
         )
 
         os.remove(image_path)
 
-    os.rmdir('_temp')
+    rmtree('_temp')
 
     # ------------------------------------------------------------------------------------------------------------------
 
