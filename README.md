@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-23.jpg">
-        <img id="last_image" title="Library of Trinity College Dublin, Ireland" alt="Library of Trinity College Dublin, Ireland" src="https://bing.npanuhin.me/US/en/2024-04-23.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-04-23" src="https://img.shields.io/badge/Last_image-2024--04--23-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-10-10.jpg">
+        <img id="last_image" title="Kochia, Ibaraki prefecture, Japan" alt="Kochia, Ibaraki prefecture, Japan" src="https://bing.npanuhin.me/US/en/2024-10-10.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-10-10" src="https://img.shields.io/badge/Last_image-2024--10--10-informational?style=flat">
     </a>
 </div>
 
