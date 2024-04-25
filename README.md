@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-23.jpg">
-        <img id="last_image" title="Library of Trinity College Dublin, Ireland" alt="Library of Trinity College Dublin, Ireland" src="https://bing.npanuhin.me/US/en/2024-04-23.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-04-23" src="https://img.shields.io/badge/Last_image-2024--04--23-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-12-09.jpg">
+        <img id="last_image" title="Guanacos, Torres del Paine National Park, Chile" alt="Guanacos, Torres del Paine National Park, Chile" src="https://bing.npanuhin.me/US/en/2024-12-09.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-12-09" src="https://img.shields.io/badge/Last_image-2024--12--09-informational?style=flat">
     </a>
 </div>
 
