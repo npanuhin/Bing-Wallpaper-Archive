@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-04-23.jpg">
-        <img id="last_image" title="Library of Trinity College Dublin, Ireland" alt="Library of Trinity College Dublin, Ireland" src="https://bing.npanuhin.me/US/en/2024-04-23.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-04-23" src="https://img.shields.io/badge/Last_image-2024--04--23-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-11-01.jpg">
+        <img id="last_image" title="Pueblo ruins, Hovenweep National Monument, Utah" alt="Pueblo ruins, Hovenweep National Monument, Utah" src="https://bing.npanuhin.me/US/en/2024-11-01.jpg">
+        <img id="last_image_badge" alt="Last image: 2024-11-01" src="https://img.shields.io/badge/Last_image-2024--11--01-informational?style=flat">
     </a>
 </div>
 
