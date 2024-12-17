@@ -183,6 +183,7 @@ Stages (roughly in order of importance):
 
 ### TODO
 
+- Ability to download full acrhive from Cloudflare R2 as `.zip`
 - **Missing images (!)** (`src/check_status.py` shows 4 images)
     UPD: probably those are videos, need to check
 - Add more images from 2009

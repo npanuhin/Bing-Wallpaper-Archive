@@ -114,6 +114,8 @@ def r2_url(bucket_path: str) -> str:
     return R2_CONFIG['url_base'] + bucket_path
 
 
+# ---------------------------------------------------- Development -----------------------------------------------------
+
 if __name__ == '__main__':
     storage = CloudflareR2()
     # print(storage.upload_file('../api/US/en.json', 'test/US/en.json', False))

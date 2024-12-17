@@ -4,7 +4,7 @@ import os
 
 import requests
 
-from Region import ApiEntry, REGIONS, Region, extract_mkt
+from Region import Region, ApiEntry, REGIONS, extract_mkt
 from utils import mkpath, posixpath, warn
 from postprocess import postprocess_api
 from cloudflare import CloudflareR2
@@ -216,6 +216,8 @@ def update_all():
     for region in REGIONS:
         update(region)
 
+
+# ---------------------------------------------------- Development -----------------------------------------------------
 
 if __name__ == '__main__':
     update_all()

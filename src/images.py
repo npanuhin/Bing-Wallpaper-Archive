@@ -30,6 +30,8 @@ def compare_image_pixels(path: bytes, path2: bytes) -> bool:
     return Image.open(path).tobytes() == Image.open(path2).tobytes()
 
 
+# ---------------------------------------------------- Development -----------------------------------------------------
+
 if __name__ == '__main__':
     hashes = {}  # noqa
     hashes['2023-12-26'] = get_hash('2023-12-26.jpg')

@@ -41,7 +41,7 @@ jobs:
           CLOUDFLARE_AWS_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_AWS_ACCESS_KEY_ID }}'
           CLOUDFLARE_AWS_SECRET_ACCESS_KEY: '${{ secrets.CLOUDFLARE_AWS_SECRET_ACCESS_KEY }}'
 
-      - name: Check previous commit
+      - name: Get previous commit author
         id: previous_commit
         run: echo "PREVIOUS_COMMIT_AUHOUR=$(git log -1 --pretty=%an)" >> "$GITHUB_OUTPUT"
 
