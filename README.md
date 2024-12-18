@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2024-12-17.jpg">
-        <img id="last_image" title="Traditional red fishermen's cabins on the shore of Reinefjorden, Norway" alt="Traditional red fishermen's cabins on the shore of Reinefjorden, Norway" src="https://bing.npanuhin.me/US/en/2024-12-17.jpg">
-        <img id="last_image_badge" alt="Last image: 2024-12-17" src="https://img.shields.io/badge/Last_image-2024--12--17-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-04-19.jpg">
+        <img id="last_image" title="Zion National Park, Utah" alt="Zion National Park, Utah" src="https://bing.npanuhin.me/US/en/2025-04-19.jpg">
+        <img id="last_image_badge" alt="Last image: 2025-04-19" src="https://img.shields.io/badge/Last_image-2025--04--19-informational?style=flat">
     </a>
 </div>
 
