@@ -160,6 +160,7 @@ After two years, I decided to rewrite the entire project and to fix numerous iss
 
 Stages (roughly in order of importance):
 
+- [ ] ! Fix `en` not working for Canada (urgent)
 - [x] Proper everyday image retrieval from three sources
 - [x] Uploading images to external storage (chose ~~Google Cloud Storage~~ Cloudflare R2 for now)
 - [x] Removing metadata nonsense — images should be preserved in their original form
