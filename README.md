@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-04-22.jpg">
-        <img id="last_image" title="Grand Prismatic Spring, Yellowstone National Park, Wyoming" alt="Grand Prismatic Spring, Yellowstone National Park, Wyoming" src="https://bing.npanuhin.me/US/en/2025-04-22.jpg">
-        <img id="last_image_badge" alt="Last image: 2025-04-22" src="https://img.shields.io/badge/Last_image-2025--04--22-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-06-07.jpg">
+        <img id="last_image" title="Summit of Pine Mountain, Angeles National Forest, California" alt="Summit of Pine Mountain, Angeles National Forest, California" src="https://bing.npanuhin.me/US/en/2025-06-07.jpg">
+        <img id="last_image_badge" alt="Last image: 2025-06-07" src="https://img.shields.io/badge/Last_image-2025--06--07-informational?style=flat">
     </a>
 </div>
 
