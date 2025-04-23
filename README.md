@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-04-22.jpg">
-        <img id="last_image" title="Grand Prismatic Spring, Yellowstone National Park, Wyoming" alt="Grand Prismatic Spring, Yellowstone National Park, Wyoming" src="https://bing.npanuhin.me/US/en/2025-04-22.jpg">
-        <img id="last_image_badge" alt="Last image: 2025-04-22" src="https://img.shields.io/badge/Last_image-2025--04--22-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-09-06.jpg">
+        <img id="last_image" title="Rufous hummingbird, Golden Gate Park, San Francisco, California" alt="Rufous hummingbird, Golden Gate Park, San Francisco, California" src="https://bing.npanuhin.me/US/en/2025-09-06.jpg">
+        <img id="last_image_badge" alt="Last image: 2025-09-06" src="https://img.shields.io/badge/Last_image-2025--09--06-informational?style=flat">
     </a>
 </div>
 
