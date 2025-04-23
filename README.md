@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-04-22.jpg">
-        <img id="last_image" title="Grand Prismatic Spring, Yellowstone National Park, Wyoming" alt="Grand Prismatic Spring, Yellowstone National Park, Wyoming" src="https://bing.npanuhin.me/US/en/2025-04-22.jpg">
-        <img id="last_image_badge" alt="Last image: 2025-04-22" src="https://img.shields.io/badge/Last_image-2025--04--22-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-05-17.jpg">
+        <img id="last_image" title="A delta in the Venetian Lagoon, Italy" alt="A delta in the Venetian Lagoon, Italy" src="https://bing.npanuhin.me/US/en/2025-05-17.jpg">
+        <img id="last_image_badge" alt="Last image: 2025-05-17" src="https://img.shields.io/badge/Last_image-2025--05--17-informational?style=flat">
     </a>
 </div>
 
