@@ -2,10 +2,14 @@
 __pycache__/
 
 # Generated website
-website/*
-!website/scripts/
-!website/styles/
-!website/index.source.html
+website/content/*
+!website/content/scripts/
+!website/content/styles/
+!website/content/index.source.html
+
+# Node.js
+website/node_modules/
+website/package-lock.json
 
 # Configuration files with tokens
 configs/*token.json
