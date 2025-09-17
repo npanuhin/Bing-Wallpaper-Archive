@@ -7,7 +7,7 @@ from Region import REGIONS, ROW  # noqa: E402
 from utils import SRC, mkpath  # noqa: E402
 
 
-WEBSITE_ROOT = mkpath(SRC, 'website')
+WEBSITE_ROOT = mkpath(SRC, 'website/root/_website')
 
 
 def build():

@@ -1,49 +1,42 @@
-name: Deploy static content to Pages
+name: Build & deploy website to Cloudflare
 
 on:
   push:
     branches: ["master"]
-    # paths:
-    #   - src/website/**
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "website"
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-and-deploy:
+    name: Build & deploy website
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.12
+          python-version: 3.13
           # No pip cache, since no modules are installed
 
       - name: Generate website
         working-directory: src/scripts
         run: python build_website.py
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy website
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: 'src/website'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          wranglerVersion: "latest"
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: src/website
