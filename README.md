@@ -1,9 +1,9 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-09-17.jpg">
-        <img id="last_image" title="Young bull moose in Denali National Park, Alaska" alt="Young bull moose in Denali National Park, Alaska" src="https://bing.npanuhin.me/US/en/2025-09-17.jpg">
-        <img id="last_image_badge" alt="Last image: 2025-09-17" src="https://img.shields.io/badge/Last_image-2025--09--17-informational?style=flat">
+    <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-10-04.jpg">
+        <img id="last_image" title="ISS main solar arrays seen from SpaceX Crew Dragon Endeavour" alt="ISS main solar arrays seen from SpaceX Crew Dragon Endeavour" src="https://bing.npanuhin.me/US/en/2025-10-04.jpg">
+        <img id="last_image_badge" alt="Last image: 2025-10-04" src="https://img.shields.io/badge/Last_image-2025--10--04-informational?style=flat">
     </a>
 </div>
 
