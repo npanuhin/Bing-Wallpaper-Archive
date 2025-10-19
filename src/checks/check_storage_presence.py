@@ -22,7 +22,7 @@ def check_storage_presence():
         api = region.read_api()
 
         for item in api:
-            url = item['url']
+            url = item.url
 
             thread = Thread(target=check_url, args=(url,))
             thread.start()

@@ -3,7 +3,7 @@
 <div align="center">
     <a id="last_image_link" href="https://bing.npanuhin.me/US/en/2025-10-19.jpg">
         <img id="last_image" title="Apples ready for harvest, Minnesota" alt="Apples ready for harvest, Minnesota" src="https://bing.npanuhin.me/US/en/2025-10-19.jpg">
-        <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat">
+        <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
     </a>
 </div>
 
@@ -14,7 +14,6 @@ All information is stored in "API files"[^1]. They can be obtained by sending a 
 ```haskell
 https://bing.npanuhin.me/{country}/{language}.json
 ```
-<!-- https://bing.npanuhin.me/{country}/{language}.url.json  # Only dates and urls (format description below) -->
 
 The following countries and languages are currently available:
 <table>
@@ -118,13 +117,10 @@ One API file consists of an array of image data[^2]:
 
 - The `bing_url` field contains the original image URL from Bing (Microsoft) servers. Unfortunately, it is not possible to retrieve images from more than a couple of years ago from these URLs (they all point to the same dummy image)
 
-<!-- URL API files are minified and contain only `date` field as key and `url` field as value (to save space as much as possible):
-```jsonc
-{"2009-06-03":"https://bing.npanuhin.me/US/en/2009-06-03.jpg","...":"...",}
-``` -->
 
 > [!NOTE]
 > API files tend to be quite large (a couple of MB)
+
 
 > [!TIP]
 > If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image).
@@ -137,21 +133,9 @@ One API file consists of an array of image data[^2]:
 > These files are minified and typically have a size of 100-500 KB. If 404 is returned, then we don't have any images for that year
 
 
-<!-- >
-> **Pro tip**:  
-> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
-
-
-<!-- If you don't need image titles, descriptions, etc., you can use the URL API file, which is *only about 13% the size* of the full API file: -->
-<!-- > [!TIP]
-> If you only need images, **you can skip loading the API files altogether**! Simply make a request to the storage URL using the format specified above (if 404 is returned, then sadly we don't have this image) -->
-
 > [!IMPORTANT]
-> Feel free to use the API files and images, but please **avoid sending frequent requests** (for images this would incur additional costs for me).
->
-> If you need to make frequent requests to the API files, I recommend downloading and caching them locally (they are updated only once a day). The same applies to the images (although this will be quite difficult to implement).
->
-> Your understanding and cooperation are greatly appreciated 🙂
+> You can freely access the API files without any frequency or volume limitations.
+> As for the images, please download them in reasonable amounts — for example, no more than one full archive per day.
 
 
 ### Version 2 roadmap

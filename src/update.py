@@ -1,8 +1,7 @@
 import re
 
 from bing import update_all
-from Region import Region
-
+from Region import ROW
 
 # ----------------------------------------------- Update api and images ------------------------------------------------
 
@@ -12,11 +11,11 @@ print('Update finished\n')
 
 # --------------------------------------------- Fetch last image in en-US ----------------------------------------------
 
-us_api = Region('en-US').read_api()
+row_api = ROW.read_api()
 
-latest_image = max(us_api, key=lambda item: item['date'])
+latest_image = max(row_api, key=lambda entry: entry.date)
 
-print(f'Last US image: {latest_image["date"]}')
+print(f'Last ROW image: {latest_image.date}')
 
 # --------------------------------------------------- Update README ----------------------------------------------------
 
@@ -25,22 +24,23 @@ with open('../README.md', 'r', encoding='utf-8') as file:
 
 readme = re.sub(
     r'<a id="last_image_link" href=".*?">',
-    f'<a id="last_image_link" href="{latest_image["url"]}">',
+    f'<a id="last_image_link" href="{latest_image.url}">',
     readme
 )
 
 readme = re.sub(
     r'<img id="last_image" title=".*?" alt=".*?" src=".*?">',
-    f'<img id="last_image" title="{latest_image["title"]}" alt="{latest_image["title"]}" src="{latest_image["url"]}">',
+    f'<img id="last_image" title="{latest_image.title}" alt="{latest_image.title}" src="{latest_image.url}">',
     readme
 )
 
-readme = re.sub(
-    r'<img id="last_image_badge" alt=".*?" src=".*?">',
-    f'<img id="last_image_badge" alt="Last image: {latest_image["date"]}" src='
-    f'"https://img.shields.io/badge/Last_image-{latest_image["date"].replace("-", "--")}-informational?style=flat">',
-    readme
-)
+# badge_formatted_date = latest_image.date.strftime(DATE_FORMAT).replace("-", "--")
+# readme = re.sub(
+#     r'<img id="last_image_badge" alt=".*?" src=".*?">',
+#     f'<img id="last_image_badge" alt="Last image: {latest_image.date}" src='
+#     f'"https://img.shields.io/badge/Last_image-{badge_formatted_date}-informational?style=flat">',
+#     readme
+# )
 
 with open('../README.md', 'w', encoding='utf-8') as file:
     file.write(readme)

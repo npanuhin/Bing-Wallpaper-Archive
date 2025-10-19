@@ -1,37 +1,32 @@
 from urllib.parse import urlparse, parse_qs
+from dataclasses import asdict
+import datetime
 import json
 import os
 import re
 
+from structures import ApiEntry, _REGIONS, _ROW, DATE_FORMAT
+
 from utils import API_HOME, mkpath
 
 
-type ApiEntry = dict[str, str | None]
-type Api = list[ApiEntry]
-
-
-RE_FLAGS = re.IGNORECASE | re.VERBOSE
-
-
 class Market:
-    def __init__(self, mkt: str):
-        if mkt == 'ROW':
-            self.api_lang = 'en'
+    def __init__(self, market_id: str):
+        if market_id == 'ROW':
+            self.lang = self.api_lang = 'en'
             self.api_country = 'ROW'
+            self.country = 'RU'
         else:
-            lang, country = mkt.split('-')
-            self.api_lang = lang.lower()
-            self.api_country = country.upper()
-
-        self.lang = self.api_lang
-        self.country = 'RU' if self.api_country == 'ROW' else self.api_country
+            lang, country = market_id.split('-')
+            self.lang = self.api_lang = lang.lower()
+            self.country = self.api_country = country.upper()
 
     def __str__(self):
         return f'{self.lang}-{self.country}'
 
     def __repr__(self):
         if self.api_country == 'ROW':
-            return f'ROW [{str(self)}]'
+            return f'ROW [{self}]'
         return str(self)
 
     def __eq__(self, other):
@@ -39,25 +34,29 @@ class Market:
 
 
 class Region(Market):
-    def __init__(self, mkt: str):
-        super().__init__(mkt)
+    def __init__(self, market_id: str):
+        super().__init__(market_id)
 
-        self.path = mkpath(API_HOME, self.api_country)
-        self.api_path = mkpath(self.path, self.api_lang + '.json')
+        self.root_path = mkpath(API_HOME, self.api_country)
+        self.api_path = mkpath(self.root_path, self.api_lang + '.json')
 
-        os.makedirs(self.path, exist_ok=True)
+        os.makedirs(self.root_path, exist_ok=True)
 
-    def read_api(self, path: str | None = None) -> Api:
-        if path is None:
-            path = self.api_path
-
-        if not os.path.exists(path):
+    def read_api(self) -> list[ApiEntry]:
+        if not os.path.isfile(self.api_path):
             return []
 
-        with open(path, 'r', encoding='utf-8') as file:
-            return json.load(file)
+        with open(self.api_path, 'r', encoding='utf-8') as file:
+            return [
+                ApiEntry(
+                    **parsed_json | {
+                        'date': datetime.datetime.strptime(parsed_json['date'], DATE_FORMAT).date()
+                    }
+                )
+                for parsed_json in json.load(file)
+            ]
 
-    def write_api(self, api: Api, output_path: str | None = None, *args, **kwargs):
+    def write_api(self, api: list[ApiEntry], output_path: str | None = None, *args, **kwargs):
         if output_path is None:
             output_path = self.api_path
 
@@ -66,48 +65,30 @@ class Region(Market):
         kwargs = {
             'ensure_ascii': False,
             'indent': '\t',
+            'default': lambda item: item.isoformat() if isinstance(item, datetime.date) else None,
         } | kwargs
 
         with open(output_path, 'w', encoding='utf-8') as file:
-            json.dump(api, file, *args, **kwargs)
+            json.dump([asdict(entry) for entry in api], file, *args, **kwargs)
 
 
-def extract_mkt(url: str) -> Market | None:
+def extract_market_from_url(url: str) -> Market | None:
     # https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg
     name = parse_qs(urlparse(url).query)['id'][0]
 
-    match = re.fullmatch(r'OHR\..+_(\D+)\d+.*', name, RE_FLAGS)
+    match = re.fullmatch(r'OHR\..+_(\D+)\d+.*', name, re.IGNORECASE | re.VERBOSE)
     return None if match is None else Market(match.group(1))
 
 
-# ------------------------------------------------------- Regions ------------------------------------------------------
-# See src/scripts/get_regions.py for more information
+ROW = Region(_ROW)
+REGIONS = [ROW] + list(map(Region, _REGIONS))
 
-# REGIONS = ['en-US']
-REGIONS = [
-    'pt-BR',
-    'en-CA',
-    'fr-CA',
-    'fr-FR',
-    'de-DE',
-    'en-IN',
-    'it-IT',
-    'ja-JP',
-    'zh-CN',
-    'es-ES',
-    'en-GB',
-    'en-US'
-]
-
-ROW = Region('ROW')
-
-REGIONS = [ROW] + list(map(Region, REGIONS))
-
-# ----------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    assert extract_mkt('https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg') == Market('en-US')
-    assert extract_mkt(
+    assert extract_market_from_url(
+        'https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg'
+    ) == Market('en-US')
+    assert extract_market_from_url(
         'https://bing.com/th?id=OHR.WhiteEyes_ROW2172958331_1920x1200.jpg&rf=LaDigue_1920x1200.jpg'
     ) == Market('ROW')
 

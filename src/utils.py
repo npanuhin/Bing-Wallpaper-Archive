@@ -1,10 +1,10 @@
-from typing import Any
-import pathlib
-import json
+from pathlib import Path
 import os
 
+import requests
 
-def mkpath(*paths):
+
+def mkpath(*paths: str):
     return os.path.normpath(os.path.join(*paths))
 
 
@@ -14,17 +14,15 @@ API_HOME = mkpath(HOME, 'api')
 
 
 def posixpath(path: str) -> str:
-    return pathlib.Path(path).as_posix()
-
-
-def debug(name: str, obj: Any):
-    with open(mkpath(SRC, 'debug', f'{name}.txt'), 'w', encoding='utf-8') as file:
-        file.write(str(obj))
-
-
-def debug_json(name: str, obj: tuple | list | dict):
-    debug(name, json.dumps(obj, ensure_ascii=False, indent=4))
-
+    return Path(path).as_posix()
 
 def warn(message: str):
     print(f'\n⚠ Warning ⚠\n{message}\n')
+
+def fetch_json(url: str, *args, **kwargs):
+    r = requests.get(url, *args, **kwargs)
+    try:
+        return r.json()
+    except Exception:
+        warn(f'Failed to fetch JSON from {r.url}')
+        raise

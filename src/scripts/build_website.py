@@ -3,14 +3,14 @@ import sys
 import os
 
 sys.path.append('../')
-from Region import REGIONS, ROW  # noqa: E402
-from utils import SRC, mkpath  # noqa: E402
+from Region import REGIONS, ROW
+from utils import SRC, mkpath
 
 
 WEBSITE_ROOT = mkpath(SRC, 'website/root/_website')
 
 
-def build():
+def build_website():
     for region in REGIONS:
         region_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
         api = region.read_api()
@@ -21,27 +21,29 @@ def build():
 
         os.makedirs(region_directory, exist_ok=True)
 
-        # Add APIs
+        # Add API
         region.write_api(api, mkpath(region_directory, region.api_lang.lower() + '.json'))
 
         if api:
             # Split by year
-            min_year = int(min(image['date'] for image in api).split('-')[0])
-            max_year = int(max(image['date'] for image in api).split('-')[0])
+            min_year = min(image.date for image in api).year
+            max_year = max(image.date for image in api).year
+
             for year in range(min_year, max_year + 1):
-                year_api = [image for image in api if image['date'].startswith(str(year))]
+                api_for_year = [image for image in api if image.date.year == year]
                 region.write_api(
-                    year_api,
+                    api_for_year,
                     mkpath(region_directory, region.api_lang.lower() + f'.{year}.json'),
-                    indent=None, separators=(',', ':')
+                    indent=None, separators=(',', ':')  # Compact JSON
                 )
 
-    # Place starting image
+    # Place the starting image
+    initial_image_data = ROW.read_api()[-1]
     with open(mkpath(WEBSITE_ROOT, 'index.source.html'), 'r', encoding='utf-8') as file:
         html = file.read().format(
-            starting_image=ROW.read_api()[-1]['url'],
-            starting_title=ROW.read_api()[-1]['title'],
-            starting_description=ROW.read_api()[-1]['description']
+            initial_title=initial_image_data.title,
+            initial_image_url=initial_image_data.url,
+            initial_description=initial_image_data.description
         )
 
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
@@ -49,4 +51,4 @@ def build():
 
 
 if __name__ == '__main__':
-    build()
+    build_website()

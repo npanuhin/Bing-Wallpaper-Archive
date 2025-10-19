@@ -1,3 +1,5 @@
+from typing import Any
+
 from threading import Thread, Lock
 import json
 import os
@@ -17,7 +19,7 @@ with open(mkpath(os.path.dirname(__file__), 'configs/cloudflare.json'), 'r', enc
 PRINT_LOCK = Lock()
 
 
-def print_async(*args, **kwargs):
+def print_async(*args: Any, **kwargs: Any):
     with PRINT_LOCK:
         print(*args, **kwargs)
 
@@ -25,24 +27,24 @@ def print_async(*args, **kwargs):
 class CloudflareR2:
     def __init__(self):
         if os.path.isfile(TOKEN_PATH):
-            with open(TOKEN_PATH) as file:
-                cloudflare_token = json.load(file)
-            self.ACCOUNT_ID = cloudflare_token['CLOUDFLARE_ACCOUNT_ID']
-            self.AWS_ACCESS_KEY_ID = cloudflare_token['CLOUDFLARE_AWS_ACCESS_KEY_ID']
-            self.AWS_SECRET_ACCESS_KEY = cloudflare_token['CLOUDFLARE_AWS_SECRET_ACCESS_KEY']
+            with open(TOKEN_PATH) as token_file:
+                cloudflare_token = json.load(token_file)
+            ACCOUNT_ID = cloudflare_token['CLOUDFLARE_ACCOUNT_ID']
+            ACCESS_KEY_ID = cloudflare_token['CLOUDFLARE_ACCESS_KEY_ID']
+            SECRET_ACCESS_KEY = cloudflare_token['CLOUDFLARE_SECRET_ACCESS_KEY']
         else:
-            self.ACCOUNT_ID = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
-            self.AWS_ACCESS_KEY_ID = os.environ.get('CLOUDFLARE_AWS_ACCESS_KEY_ID')
-            self.AWS_SECRET_ACCESS_KEY = os.environ.get('CLOUDFLARE_AWS_SECRET_ACCESS_KEY')
+            ACCOUNT_ID = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
+            ACCESS_KEY_ID = os.environ.get('CLOUDFLARE_ACCESS_KEY_ID')
+            SECRET_ACCESS_KEY = os.environ.get('CLOUDFLARE_SECRET_ACCESS_KEY')
 
-        if None in (self.ACCOUNT_ID, self.AWS_ACCESS_KEY_ID, self.AWS_SECRET_ACCESS_KEY):
-            raise Exception('Cloudflare token not found, more info in README')
+        if None in (ACCOUNT_ID, ACCESS_KEY_ID, SECRET_ACCESS_KEY):
+            raise Exception('Cloudflare token not found, please read src/README')
 
         self.client = boto3.client(
             service_name='s3',
-            endpoint_url=f'https://{self.ACCOUNT_ID}.r2.cloudflarestorage.com',
-            aws_access_key_id=self.AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=self.AWS_SECRET_ACCESS_KEY
+            endpoint_url=f'https://{ACCOUNT_ID}.r2.cloudflarestorage.com',
+            aws_access_key_id=ACCESS_KEY_ID,
+            aws_secret_access_key=SECRET_ACCESS_KEY
         )
 
     # ----------------------------------------------- Working with files -----------------------------------------------

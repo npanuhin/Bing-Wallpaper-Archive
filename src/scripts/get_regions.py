@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 import requests
 
 sys.path.append('../')
-from Region import Market, extract_mkt, REGIONS
+from Region import REGIONS, Market, extract_market_from_url
+from utils import warn
 
 
 # All regions list:
@@ -48,7 +49,7 @@ from Region import Market, extract_mkt, REGIONS
 # ko-KR           - no (sometimes?)
 # pt-BR (Brazil)  - yes
 
-# ROW   (International | "Rest Of the World") - yes [will use "en-RU" for now, with assert to "ROW" URL]
+# ROW (International | "Rest Of the World") - yes [will use "en-RU" for now, with assert to "ROW" URL]
 
 
 # Brute-force checking all regions from the market list:
@@ -77,7 +78,7 @@ def get_regions() -> list[Market]:
 
         url = 'https://bing.com' + data[0]['urlbase']
 
-        if extract_mkt(url) == market:
+        if extract_market_from_url(url) == market:
             result.append(market)
 
     return result
@@ -85,13 +86,12 @@ def get_regions() -> list[Market]:
 
 if __name__ == '__main__':
     regions = get_regions()
-    print(list(map(str, regions)))  # Can be copied to src/Region.py and website's html
+    print(list(map(str, regions)))  # Can be copied to src/Region.py and website's HTML/JS
     print()
 
     if regions == REGIONS:
-        print('Regions are up-to-date')
+        print('✅ Regions are up-to-date')
     else:
-        print('WARNING! Regions are outdated')
-        print('Please update src/Region.py')
+        warn('Regions are outdated. Please update src/Region.py')
         print('Old regions:', REGIONS)
         print('New regions:', regions)
