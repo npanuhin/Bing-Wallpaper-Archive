@@ -4,7 +4,7 @@ import sys
 import requests
 
 sys.path.append('../')
-from Region import REGIONS  # noqa: E402
+from Region import REGIONS
 
 
 def check_url(url):

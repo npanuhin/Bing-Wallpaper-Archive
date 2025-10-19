@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 
 sys.path.append('../')
-from Region import Market, extract_mkt, REGIONS  # noqa
+from Region import Market, extract_mkt, REGIONS
 
 
 # All regions list:
@@ -83,7 +83,7 @@ def get_regions() -> list[Market]:
     return result
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     regions = get_regions()
     print(list(map(str, regions)))  # Can be copied to src/Region.py and website's html
     print()

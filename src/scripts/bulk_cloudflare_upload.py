@@ -2,7 +2,7 @@ import sys
 import os
 
 sys.path.append('../')
-from cloudflare import CloudflareR2  # noqa: E402
+from cloudflare import CloudflareR2
 
 
 def main(root_path):

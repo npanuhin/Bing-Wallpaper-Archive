@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import sys
 
 sys.path.append('../')
-from Region import REGIONS  # noqa: E402
+from Region import REGIONS
 
 
 def daterange(start_date, end_date):
@@ -19,12 +19,12 @@ def run_checks():
         api = region.read_api()
 
         # Check that all dates are present
-        start_date = datetime.strptime(api[0]['date'], "%Y-%m-%d").date()
-        end_date = datetime.strptime(api[-1]['date'], "%Y-%m-%d").date()
+        start_date = datetime.strptime(api[0]['date'], '%Y-%m-%d').date()
+        end_date = datetime.strptime(api[-1]['date'], '%Y-%m-%d').date()
         existing_dates = [item['date'] for item in api]
         missing_dates = []
         for date in daterange(start_date, end_date):
-            date = date.strftime("%Y-%m-%d")
+            date = date.strftime('%Y-%m-%d')
             if date not in existing_dates:
                 missing_dates.append(date)
 

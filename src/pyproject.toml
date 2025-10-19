@@ -1,0 +1,21 @@
+[tool.ruff]
+exclude = ["old/"]
+line-length = 120
+
+[tool.ruff.lint]
+ignore = [
+    "D1",
+    "D203",
+    "D212"
+]
+select = [
+    "D",
+    "E",
+    "F",
+    "Q",
+    "W",
+]
+flake8-quotes.inline-quotes = "single"
+
+[tool.pyrefly]
+project-excludes = ["old/"]

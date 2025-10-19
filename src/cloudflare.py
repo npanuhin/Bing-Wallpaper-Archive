@@ -30,7 +30,6 @@ class CloudflareR2:
             self.ACCOUNT_ID = cloudflare_token['CLOUDFLARE_ACCOUNT_ID']
             self.AWS_ACCESS_KEY_ID = cloudflare_token['CLOUDFLARE_AWS_ACCESS_KEY_ID']
             self.AWS_SECRET_ACCESS_KEY = cloudflare_token['CLOUDFLARE_AWS_SECRET_ACCESS_KEY']
-
         else:
             self.ACCOUNT_ID = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
             self.AWS_ACCESS_KEY_ID = os.environ.get('CLOUDFLARE_AWS_ACCESS_KEY_ID')

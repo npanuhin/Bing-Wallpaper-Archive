@@ -1,7 +1,7 @@
 import sys
 
 sys.path.append('../')
-from Region import REGIONS  # noqa: E402
+from Region import REGIONS
 
 
 def main():

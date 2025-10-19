@@ -1,4 +1,4 @@
-name: Code linting
+name: Code Quality
 
 on:
   push:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   lint:
-    name: Lint code
+    name: Check Python code
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +24,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: 3.13
+          python-version: 3.14
           cache: pip
-          cache-dependency-path: '.github/flake8.requirements.txt'
 
       - name: Install dependencies
-        run: pip install -r ".github/flake8.requirements.txt"
+        run: pip install ruff pyrefly
 
-      - name: Lint with flake8
-        run: flake8 --show-source --statistics
+      - name: Check with ruff
+        working-directory: src
+        run: ruff check --output-format=github
+
+      - name: Check with pyrefly
+        working-directory: src
+        run: pyrefly check
