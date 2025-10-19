@@ -9,75 +9,77 @@
 </head>
 
 <body>
-	<div class="homepage">
-		<img id="background">
-		<img id="foreground" src="{starting_image}" alt="{starting_title}" title="{starting_title}">  <!-- opacity change -->
 
-		<svg id="timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-			<circle id="timer_path" cx="50" cy="50" r="35" pathLength="100"></circle>
-		</svg>
+<div class="homepage">
+	<img id="background">
+	<img id="foreground" src="{starting_image}" alt="{starting_title}" title="{starting_title}">  <!-- opacity change -->
 
-		<div class="container_wrapper">
-			<div class="container">
-				<h1>Bing Wallpaper Archive</h1>
-				<!-- <div><a href="">Explore</a></p> -->
-			</div>
-		</div>
+	<svg id="timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+		<circle id="timer_path" cx="50" cy="50" r="35" pathLength="100"></circle>
+	</svg>
 
-		<a id="title" target="_blank" href="{starting_image}">
-			<div id="title_background">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -19 11 20">
-					<path d="M 0 0 C 11 0 10 -19 10 -19 L 11 -19 L 11 1 L 0 1 Z"/>
-				</svg>
-				<div><span>{starting_title}</span></div>
-			</div>
-			<span>{starting_title}</span>
-		</a>
-	</div>
-
-	<div id="content">
-		<div id="header">
-			<input id="markets_menu" type="checkbox"/>
-			<label class="markets_menu_label" for="markets_menu">
-				<span></span>
-			</label>
+	<div class="container_wrapper">
+		<div class="container">
 			<h1>Bing Wallpaper Archive</h1>
-		</div>
-
-		<div id="content_inner">
-			<div id="markets_wrapper">
-				<div id="markets" style="position: absolute; top: 86px">
-					<a data-mkt="en-US" href="#en-US"><span>United States</span></a>
-					<a data-mkt="en-GB" href="#en-GB"><span>United Kingdom</span></a>
-					<a data-mkt="en-CA" href="#en-CA"><span>Canada (English)</span></a>
-					<a data-mkt="fr-CA" href="#fr-CA"><span>Canada (French)</span></a>
-					<a data-mkt="it-IT" href="#it-IT"><span>Italy</span></a>
-					<a data-mkt="es-ES" href="#es-ES"><span>Spain</span></a>
-					<a data-mkt="fr-FR" href="#fr-FR"><span>France</span></a>
-					<a data-mkt="de-DE" href="#de-DE"><span>Germany</span></a>
-					<a data-mkt="en-IN" href="#en-IN"><span>India</span></a>
-					<a data-mkt="zh-CN" href="#zh-CN"><span>China</span></a>
-					<a data-mkt="ja-JP" href="#ja-JP"><span>Japan</span></a>
-					<a data-mkt="pt-BR" href="#pt-BR"><span>Brazil</span></a>
-					<a data-mkt="en-ROW" href="#en-ROW"><span>International</span></a>
-				</div>
-			</div>
-
-			<div id="cur_image">
-				<img src="{starting_image}" alt="{starting_title}" title="{starting_title}">
-			</div>
-
-			<div id="cur_image_info">
-				<h2 id="cur_image_title">{starting_title}</h2>
-				<p id="cur_image_description">{starting_description}</p>
-			</div>
-
-			<div id="date_selector">
-			</div>
+			<!-- <div><a href="">Explore</a></p> -->
 		</div>
 	</div>
 
-	<script src="scripts/homepage.js" defer></script>
+	<a id="title" target="_blank" href="{starting_image}">
+		<div id="title_background">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -19 11 20">
+				<path d="M 0 0 C 11 0 10 -19 10 -19 L 11 -19 L 11 1 L 0 1 Z"/>
+			</svg>
+			<div><span>{starting_title}</span></div>
+		</div>
+		<span>{starting_title}</span>
+	</a>
+</div>
+
+<div id="content">
+	<div id="header">
+		<input id="markets_menu" type="checkbox"/>
+		<label class="markets_menu_label" for="markets_menu">
+			<span></span>
+		</label>
+		<h1>Bing Wallpaper Archive</h1>
+	</div>
+
+	<div id="content_inner">
+		<div id="markets_wrapper">
+			<div id="markets" style="position: absolute; top: 86px">
+				<a data-mkt="en-US" href="#en-US"><span>United States</span></a>
+				<a data-mkt="en-GB" href="#en-GB"><span>United Kingdom</span></a>
+				<a data-mkt="en-CA" href="#en-CA"><span>Canada (English)</span></a>
+				<a data-mkt="fr-CA" href="#fr-CA"><span>Canada (French)</span></a>
+				<a data-mkt="it-IT" href="#it-IT"><span>Italy</span></a>
+				<a data-mkt="es-ES" href="#es-ES"><span>Spain</span></a>
+				<a data-mkt="fr-FR" href="#fr-FR"><span>France</span></a>
+				<a data-mkt="de-DE" href="#de-DE"><span>Germany</span></a>
+				<a data-mkt="en-IN" href="#en-IN"><span>India</span></a>
+				<a data-mkt="zh-CN" href="#zh-CN"><span>China</span></a>
+				<a data-mkt="ja-JP" href="#ja-JP"><span>Japan</span></a>
+				<a data-mkt="pt-BR" href="#pt-BR"><span>Brazil</span></a>
+				<a data-mkt="en-ROW" href="#en-ROW"><span>International</span></a>
+			</div>
+		</div>
+
+		<div id="cur_image">
+			<img src="{starting_image}" alt="{starting_title}" title="{starting_title}">
+		</div>
+
+		<div id="cur_image_info">
+			<h2 id="cur_image_title">{starting_title}</h2>
+			<p id="cur_image_description">{starting_description}</p>
+		</div>
+
+		<div id="date_selector">
+		</div>
+	</div>
+</div>
+
+<script src="scripts/homepage.js" defer></script>
+
 </body>
 
 </html>

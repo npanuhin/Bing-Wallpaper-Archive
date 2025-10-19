@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta
 from shutil import rmtree
+import datetime
 import os
 
 import requests
@@ -35,12 +35,12 @@ def get_uhd_url(region: Region, base_url: str) -> str:
 def parse_date(date_string: str) -> datetime.date:
     for datetime_format in ('%Y%m%d_%H%M', '%Y%m%d%H%M', '%Y%m%d'):
         try:
-            parsed = datetime.strptime(date_string, datetime_format)
+            parsed = datetime.datetime.strptime(date_string, datetime_format)
         except ValueError:
             continue
 
         # Add one day if time is after 15:00
-        return parsed.date() + timedelta(days=int(parsed.hour >= 15))
+        return parsed.date() + datetime.timedelta(days=int(parsed.hour >= 15))
 
 
 def compare_values(entry: ApiEntry, key: str, new_value: str) -> bool:

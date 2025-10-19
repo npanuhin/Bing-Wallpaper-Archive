@@ -1,13 +1,13 @@
 :root {
 	--color-background-black: rgb(16, 16, 16);
 
-	--background-color: #10161f;
-	--background-color-secondary: #1d2633;
-	--background-color-light: #3e4756;
-	--background-color-superlight: #5c6679;
+	--background-color: #10161F;
+	--background-color-secondary: #1D2633;
+	--background-color-light: #3E4756;
+	--background-color-superlight: #5C6679;
 
-	--main-color: #e2e8f0;
-	--light-color: #fff;
+	--main-color: #E2E8F0;
+	--light-color: #FFF;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -153,7 +153,7 @@ body:not(.shown) * {
 	/* background-color: rgba(16, 16, 16, 0.5); */
 	transition: 0.5s opacity ease-in-out;
 
-	--total-height: calc(20px + 10px + 8px);  /* height + padding-up + padding-down = 38px */
+	--total-height: calc(20px + 10px + 8px); /* height + padding-up + padding-down = 38px */
 }
 
 #title_background > svg {
@@ -388,9 +388,11 @@ body:not(.shown) * {
 #markets_menu:checked ~ .markets_menu_label > span {
 	transform: rotate(45deg);
 }
+
 #markets_menu:checked ~ .markets_menu_label > span::before {
 	transform: translateY(8px) rotate(0);
 }
+
 #markets_menu:checked ~ .markets_menu_label > span::after {
 	transform: translateY(-8px) rotate(90deg);
 }
@@ -451,8 +453,7 @@ body:not(.shown) * {
 	padding: 14px 37px 14px 15px;
 	border-radius: 8px;
 
-	transition:
-		0.06s background-color ease-in-out;
+	transition: 0.06s background-color ease-in-out;
 
 	border-bottom: 1px solid;
 	border-image: linear-gradient(to right, transparent 0%, var(--background-color-light) 20% 80%, transparent 100%) 100% 0;

@@ -91,15 +91,15 @@ class Region {
 		return this.images.get(this.dates[Math.floor(Math.random() * this.dates.length)]);
 	}
 
-	fetchYear(year, callback = function() {}, alert_error = false) {
+	fetchYear(year, callback = function () {}, alert_error = false) {
 		let api_path = YEAR_API_PATH(this.country, this.lang, year);
 		fetch(api_path, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				mode: "same-origin"
-			})
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			mode: "same-origin"
+		})
 			.then(response => {
 				if (response.ok) {
 					console.log(`Loaded year: ${year}`);

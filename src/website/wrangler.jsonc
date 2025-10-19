@@ -3,10 +3,10 @@
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "bing-wallpaper-archive",
-	"compatibility_date": "2025-09-13",
-	"assets": {
-		"directory": "./root"
-	},
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bing-wallpaper-archive",
+  "compatibility_date": "2025-09-13",
+  "assets": {
+    "directory": "./root"
+  }
 }

@@ -72,12 +72,12 @@ class Region(Market):
             json.dump(api, file, *args, **kwargs)
 
 
-def extract_mkt(url: str) -> Market:
+def extract_mkt(url: str) -> Market | None:
     # https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg
     name = parse_qs(urlparse(url).query)['id'][0]
 
-    match = re.fullmatch(r'OHR\..+_([^\d]+)\d+.*', name, RE_FLAGS)
-    return Market(match.group(1))
+    match = re.fullmatch(r'OHR\..+_(\D+)\d+.*', name, RE_FLAGS)
+    return None if match is None else Market(match.group(1))
 
 
 # ------------------------------------------------------- Regions ------------------------------------------------------
