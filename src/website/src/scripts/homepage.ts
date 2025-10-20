@@ -1,6 +1,6 @@
 // ===================================================== SETTINGS ======================================================
 const
-	REGIONS = [
+	REGIONS: string[] = [
 		'pt-BR',
 		'en-CA',
 		'fr-CA',
@@ -15,40 +15,48 @@ const
 		'en-US',
 		'en-ROW'
 	],
-	HOMEPAGE_REGION = 'en-US',
-	YEAR_API_PATH = (country, lang, year) => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
-	START_DATE = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
+	HOMEPAGE_REGION: string = 'en-US',
+	YEAR_API_PATH = (country: string, lang: string, year: number): string => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
+	START_DATE: Date = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
 
-	HOMEPAGE_DELAY = 5000, // Delay between homepage images, doess not include transition time
+	HOMEPAGE_DELAY: number = 5000, // Delay between homepage images does not include transition time
 
-	SCROLL_THRESHOLD = 66, // Scroll to the top if less than this value
-	SCROLL_DELAY = 2000; // Delay before automatic scroll
+	SCROLL_THRESHOLD: number = 66, // Scroll to the top if less than this value
+	SCROLL_DELAY: number = 2000; // Delay before automatic scroll
 
 // =====================================================================================================================
 
+interface ImageEntry {
+	date: string;
+	url: string;
+	title: string;
+
+	[key: string]: any;
+}
+
 const
-	YESTERDAY = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
-	PREVIOUS_YEAR = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
+	YESTERDAY: Date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
+	PREVIOUS_YEAR: number = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
 
-	homepage_background = document.querySelector("#background"),
-	homepage_foreground = document.querySelector("#foreground"),
+	homepage_background = document.querySelector<HTMLImageElement>("#background")!,
+	homepage_foreground = document.querySelector<HTMLImageElement>("#foreground")!,
 	// timer_path = document.querySelector("#timer_path"),
-	title = document.querySelector("#title"),
-	title_background = document.querySelector("#title_background"),
-	title_texts = document.querySelectorAll("#title span"),
+	title = document.querySelector<HTMLAnchorElement>("#title")!,
+	title_background = document.querySelector<HTMLElement>("#title_background")!,
+	title_texts = document.querySelectorAll<HTMLSpanElement>("#title span"),
 
-	content_area = document.querySelector("#content"),
+	content_area = document.querySelector<HTMLElement>("#content")!,
 
-	markets_wrapper = document.querySelector("#markets_wrapper"),
-	markets = document.querySelector("#markets"),
-	markets_items = document.querySelectorAll("#markets a"),
-	markets_toggle = document.querySelector("#markets_menu"),
+	markets_wrapper = document.querySelector<HTMLElement>("#markets_wrapper")!,
+	markets = document.querySelector<HTMLElement>("#markets")!,
+	markets_items = document.querySelectorAll<HTMLAnchorElement>("#markets a"),
+	markets_toggle = document.querySelector<HTMLInputElement>("#markets_menu")!,
 
-	cur_image = document.querySelector("#cur_image"),
-	cur_image_title = document.querySelector("#cur_image_title"),
-	cur_image_description = document.querySelector("#cur_image_description");
+	cur_image = document.querySelector<HTMLElement>("#cur_image")!,
+	cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!,
+	cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!;
 
-// transition_delay_initial = 200, // Initial delay before showing first image
+// transition_delay_initial = 200, // Initial delay before showing the first image
 // transition_delay_true = 1000,
 // delay = 5000,
 // hold_delay = 3000,
@@ -58,40 +66,45 @@ const
 
 // timer_path.style.animationDuration = `${(timer_duration) / 1000}s`;
 
-// var hold = false;
+// let hold = false;
 
-var cur_homepage = foreground, // Either background or foreground: image shown at the moment
-	next_homepage = background;
+let cur_homepage: HTMLImageElement | null = homepage_foreground, // Either background or foreground: image shown at the moment
+	next_homepage: HTMLImageElement | null = homepage_background;
 
 // ==================================================== Api storage ====================================================
 
 class Region {
-	constructor(region) {
+	lang: string;
+	country: string;
+	images: Map<string, ImageEntry>;
+	dates: string[];
+
+	constructor(region: string) {
 		[this.lang, this.country] = region.split('-');
-		this.images = new Map();
+		this.images = new Map<string, ImageEntry>();
 		this.dates = [];
 	}
 
-	add(date, item) {
+	add(date: string, item: ImageEntry) {
 		if (!this.images.has(date)) {
 			this.dates.push(date);
 		}
 		this.images.set(date, item);
 	}
 
-	addAll(items) {
+	addAll(items: ImageEntry[]) {
 		items.forEach(item => this.add(item["date"], item));
 	}
 
-	get(date) {
+	get(date: string): ImageEntry | undefined {
 		return this.images.get(date);
 	}
 
-	getRandom() {
+	getRandom(): ImageEntry | undefined {
 		return this.images.get(this.dates[Math.floor(Math.random() * this.dates.length)]);
 	}
 
-	fetchYear(year, callback = function () {}, alert_error = false) {
+	fetchYear(year: number, callback: () => void = function () {}, alert_error: boolean = false) {
 		let api_path = YEAR_API_PATH(this.country, this.lang, year);
 		fetch(api_path, {
 			method: "GET",
@@ -108,7 +121,7 @@ class Region {
 					throw new Error(`Error: can not load API file: ${api_path}`);
 				}
 			})
-			.then(data => {
+			.then((data: ImageEntry[]) => {
 				this.addAll(data);
 				callback();
 			})
@@ -120,7 +133,7 @@ class Region {
 
 }
 
-const api = new Map();
+const api = new Map<string, Region>();
 REGIONS.forEach(region => api.set(region, new Region(region)));
 
 // =====================================================================================================================
@@ -130,17 +143,17 @@ REGIONS.forEach(region => api.set(region, new Region(region)));
 // }
 
 // function randomDate(from, to) {
-// 	return new Date(random(from.getTime(), to.getTime()));
+// 	return new Date (random(from.getTime(), to.getTime()));
 // }
 
-function leadingZeros(s, totalDigits) {
+function leadingZeros(s: string | number, totalDigits: number): string {
 	s = s.toString();
 	let res = "";
-	for (i = 0; i < (totalDigits - s.length); ++i) res += "0";
+	for (let i = 0; i < (totalDigits - s.length); ++i) res += "0";
 	return res + s.toString();
 }
 
-function date2str(date) {
+function date2str(date: Date): string {
 	return leadingZeros(date.getFullYear(), 4) +
 		"-" + leadingZeros(date.getMonth() + 1, 2) +
 		"-" + leadingZeros(date.getDate(), 2);
@@ -159,8 +172,8 @@ function date2str(date) {
 
 // =============================================== Waiting functionality ===============================================
 
-// var Timer = function(delay, callback) {
-//     var timerId, start, remaining = delay;
+// const Timer = function(delay, callback) {
+//     let timerId, start, remaining = delay;
 
 //     this.pause = function() {
 //         clearTimeout(timerId);
@@ -180,18 +193,18 @@ function date2str(date) {
 //     this.resume();
 // };
 
-function waitFor(conditionFunction, interval = 50) {
-	const poll = resolve => {
+function waitFor(conditionFunction: () => boolean, interval: number = 50): Promise<void> {
+	const poll = (resolve: (value: void | PromiseLike<void>) => void) => {
 		if (conditionFunction()) resolve();
-		else setTimeout(_ => poll(resolve), interval);
+		else setTimeout(() => poll(resolve), interval);
 	}
 	return new Promise(poll);
 }
 
-function waitAnimations(element, property, value) { // TODO rewrite + remove .style
+function waitAnimations(element: HTMLElement, property: string, value: string | number): Promise<void> { // TODO rewrite + remove .style
 	return new Promise(resolve => {
-		element.style[property] = value;
-		const transitionEnded = animation => {
+		(element.style as any)[property] = value;
+		const transitionEnded = (animation: TransitionEvent) => {
 			if (animation.propertyName !== property) return;
 			element.removeEventListener('transitionend', transitionEnded);
 			resolve();
@@ -200,7 +213,7 @@ function waitAnimations(element, property, value) { // TODO rewrite + remove .st
 	});
 }
 
-function wait(delay) {
+function wait(delay: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, delay));
 }
 
@@ -230,20 +243,20 @@ function wait(delay) {
 // 	timer_path.getAnimations().map(animation => animation.play());
 // });
 
-let homepage_change_timer;
+let homepage_change_timer: any;
 
 function changeHomepage() {
-	const chosen_image = api.get(HOMEPAGE_REGION).getRandom();
+	const chosen_image = api.get(HOMEPAGE_REGION)!.getRandom()!;
 	// console.log(chosen_image);
 
-	next_homepage.src = chosen_image["url"];
-	next_homepage.alt = chosen_image["title"];
-	next_homepage.title = chosen_image["title"];
+	next_homepage!.src = chosen_image["url"];
+	next_homepage!.alt = chosen_image["title"];
+	next_homepage!.title = chosen_image["title"];
 
-	waitFor(_ => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
+	waitFor(() => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
 		console.log("Changing image soon");
 		wait(HOMEPAGE_DELAY).then(_ => {
-			waitFor(_ => next_homepage.complete).then(_ => {
+			waitFor(() => next_homepage!.complete).then(_ => {
 
 				// Restart timer animation
 				// setTimeout(_ => {
@@ -253,7 +266,7 @@ function changeHomepage() {
 				// 	}, transition_delay / 2);
 				// }, transition_delay / 2);
 
-				waitAnimations(foreground, "opacity", (next_homepage === foreground ? 1 : 0))
+				waitAnimations(homepage_foreground, "opacity", (next_homepage === homepage_foreground ? 1 : 0))
 					.then(_ => {
 						[cur_homepage, next_homepage] = [next_homepage, cur_homepage]; // Swap images
 						changeHomepage();
@@ -265,38 +278,38 @@ function changeHomepage() {
 
 					title.classList.toggle("fullwidth", title.getBoundingClientRect().left == 0);
 
-					title.style.opacity = 1;
+					title.style.opacity = '1';
 				});
 			});
 		});
 	});
 }
 
-api.get(HOMEPAGE_REGION).fetchYear(PREVIOUS_YEAR, () => {
+api.get(HOMEPAGE_REGION)!.fetchYear(PREVIOUS_YEAR, () => {
 
-	waitFor(_ => document.body.classList.contains("shown")).then(changeHomepage);
+	waitFor(() => document.body.classList.contains("shown")).then(changeHomepage);
 
 	for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
 		if (year === PREVIOUS_YEAR) continue;
 
-		api.get(HOMEPAGE_REGION).fetchYear(year);
+		api.get(HOMEPAGE_REGION)!.fetchYear(year);
 	}
-}, alert_error = true);
+}, true);
 
 
 // ===================================================== Scrolling =====================================================
 
-let auto_scroll_timeout;
-let last_scroll = window.scrollY;
+let auto_scroll_timeout: any;
+let last_scroll: number = window.scrollY;
 
-const NAVIGATION_STATUS = {
-	MAX_TOP: 0,
-	FIXED_TOP: 1,
-	FIXED_BOTTOM: 2,
-	FLOATING: 3
-};
+enum NAVIGATION_STATUS {
+	MAX_TOP,
+	FIXED_TOP,
+	FIXED_BOTTOM,
+	FLOATING
+}
 
-let navigation_status = NAVIGATION_STATUS.MAX_TOP;
+let navigation_status: NAVIGATION_STATUS = NAVIGATION_STATUS.MAX_TOP;
 
 function handle_scroll() {
 	clearTimeout(auto_scroll_timeout);
@@ -311,10 +324,10 @@ function handle_scroll() {
 	let navigation_block_pos = markets.getBoundingClientRect();
 	let relative_pos = navigation_block_pos.top - content_area.getBoundingClientRect().top;
 
-	let new_position = "",
-		new_top = "";
-	let old_status = null,
-		new_status = navigation_status;
+	let new_position: string = "",
+		new_top: string = "";
+	let old_status: NAVIGATION_STATUS | null = null,
+		new_status: NAVIGATION_STATUS = navigation_status;
 
 	while (old_status != new_status) {
 		old_status = new_status;
@@ -324,7 +337,7 @@ function handle_scroll() {
 				case NAVIGATION_STATUS.MAX_TOP:
 				case NAVIGATION_STATUS.FLOATING:
 					if (navigation_block_pos.top <= 86 && navigation_block_pos.bottom <= window.innerHeight) {
-						// console.log("Changing navbar to FIXED_BOTTOM:",  Math.min(86, window.innerHeight - navigation_block_pos.height) + "px");
+						// console.log("Changing navbar to FIXED_BOTTOM:", Math.min(86, window.innerHeight - navigation_block_pos.height) + "px");
 						new_status = NAVIGATION_STATUS.FIXED_BOTTOM;
 						new_position = "fixed";
 						new_top = Math.min(86, window.innerHeight - navigation_block_pos.height) + "px";
@@ -386,7 +399,7 @@ function handle_scroll() {
 	// ----------------------------------- Autoscroll -----------------------------------
 
 	if (scroll * 2 < window.innerHeight) {
-		auto_scroll_timeout = setTimeout(_ => {
+		auto_scroll_timeout = setTimeout(() => {
 			window.scroll({
 				top: 0,
 				left: 0,
@@ -395,7 +408,7 @@ function handle_scroll() {
 		}, SCROLL_DELAY);
 
 	} else if (scroll < window.innerHeight) {
-		auto_scroll_timeout = setTimeout(_ => {
+		auto_scroll_timeout = setTimeout(() => {
 			window.scroll({
 				top: window.innerHeight,
 				left: 0,
@@ -411,7 +424,7 @@ window.addEventListener("resize", handle_scroll);
 // ====================================================== Markets ======================================================
 
 
-function change_market(market = HOMEPAGE_REGION) {
+function change_market(market: string = HOMEPAGE_REGION) {
 	markets_items.forEach(selector => {
 		selector.classList.toggle("active", selector.getAttribute("data-mkt") == market);
 	});
@@ -419,9 +432,9 @@ function change_market(market = HOMEPAGE_REGION) {
 
 change_market();
 
-window.addEventListener("hashchange", _ => {
+window.addEventListener("hashchange", () => {
 	let market = window.location.hash.slice(1);
-	if (!REGIONS.includes(market)) {
+	if (REGIONS.indexOf(market) === -1) {
 		console.log(`Invalid market specified in URL hash: ${market}`);
 	} else {
 		change_market(market);
@@ -436,11 +449,7 @@ function toggle_market_selector() {
 }
 
 function toggle_market_selector_by_screen_size() {
-	if (window.innerWidth <= 950) {
-		markets_toggle.checked = false;
-	} else {
-		markets_toggle.checked = true;
-	}
+	markets_toggle.checked = window.innerWidth > 950;
 	toggle_market_selector();
 }
 
@@ -451,6 +460,6 @@ toggle_market_selector_by_screen_size();
 
 // ================================================= Page fully loaded =================================================
 
-window.addEventListener('load', _ => {
+window.addEventListener('load', () => {
 	document.body.classList.add("shown");
 });
