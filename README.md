@@ -143,6 +143,7 @@ One API file consists of an array of image data[^2]:
 Roughly in order of importance:
 
 - [ ] ! Fix `en` not working for Canada (urgent)
+- [ ] ! Fix `CA/en` second day not having `title`
 - [ ] Cache `wrangler` (website deployment)
 - [x] Proper everyday image retrieval from three sources
 - [x] Uploading images to external storage (chose ~~Google Cloud Storage~~ Cloudflare R2 for now)
