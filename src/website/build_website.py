@@ -4,10 +4,10 @@ import os
 
 sys.path.append('../')
 from Region import REGIONS, ROW
-from utils import SRC, mkpath
+from utils import mkpath, WEBSITE_CONTENT_PATH
 
 
-WEBSITE_ROOT = mkpath(SRC, 'website/root/_website')
+WEBSITE_ROOT = mkpath(WEBSITE_CONTENT_PATH, '_website')
 
 
 def build_website():

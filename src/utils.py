@@ -8,9 +8,11 @@ def mkpath(*paths: str):
     return os.path.normpath(os.path.join(*paths))
 
 
-SRC = mkpath(os.path.dirname(__file__))
-HOME = mkpath(SRC, '../')
-API_HOME = mkpath(HOME, 'api')
+SRC_PATH = mkpath(os.path.dirname(__file__))
+ROOT_PATH = mkpath(SRC_PATH, '../')
+API_PATH = mkpath(ROOT_PATH, 'api')
+CONFIGS_PATH = mkpath(SRC_PATH, 'configs')
+WEBSITE_CONTENT_PATH = mkpath(SRC_PATH, 'website', 'root')
 
 
 def posixpath(path: str) -> str:

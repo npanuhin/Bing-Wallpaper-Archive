@@ -7,7 +7,7 @@ import re
 
 from structures import ApiEntry, _REGIONS, _ROW, DATE_FORMAT
 
-from utils import API_HOME, mkpath
+from utils import API_PATH, mkpath
 
 
 class Market:
@@ -37,7 +37,7 @@ class Region(Market):
     def __init__(self, market_id: str):
         super().__init__(market_id)
 
-        self.root_path = mkpath(API_HOME, self.api_country)
+        self.root_path = mkpath(API_PATH, self.api_country)
         self.api_path = mkpath(self.root_path, self.api_lang + '.json')
 
         os.makedirs(self.root_path, exist_ok=True)

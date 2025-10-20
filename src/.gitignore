@@ -3,9 +3,9 @@ __pycache__/
 
 # Generated website
 website/root/_website/*
+!website/root/_website/index.source.html
 !website/root/_website/scripts/
 !website/root/_website/styles/
-!website/root/_website/index.source.html
 
 # Node.js
 website/node_modules/
@@ -19,6 +19,6 @@ configs/*token.json
 
 # Temporary files
 _temp/
-debug/*
+./*.txt
 
 !.gitkeep

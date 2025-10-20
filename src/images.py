@@ -34,7 +34,7 @@ def compare_image_pixels(path: bytes, path2: bytes) -> bool:
 
 if __name__ == '__main__':
     hashes = {
-        '2023-12-26': get_hash('2023-12-26.jpg')
+        # '2023-12-26': get_hash('2023-12-26.jpg')
     }
 
     with open('output.txt', 'w') as file:

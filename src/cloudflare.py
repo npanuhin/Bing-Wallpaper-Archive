@@ -7,12 +7,12 @@ import os
 from botocore.exceptions import ClientError
 import boto3
 
-from utils import mkpath
+from utils import mkpath, SRC_PATH
 
 
-TOKEN_PATH = mkpath(os.path.dirname(__file__), 'configs/cloudflare_token.json')
+TOKEN_PATH = mkpath(SRC_PATH, 'configs/cloudflare_token.json')
 
-with open(mkpath(os.path.dirname(__file__), 'configs/cloudflare.json'), 'r', encoding='utf-8') as file:
+with open(mkpath(SRC_PATH, 'configs/cloudflare.json'), 'r', encoding='utf-8') as file:
     R2_CONFIG = json.load(file)
 
 
