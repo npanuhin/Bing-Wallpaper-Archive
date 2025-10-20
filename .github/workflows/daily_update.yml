@@ -5,8 +5,7 @@ on:
     - cron: '2 8 * * *'  # 8:02 UTC
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}  # Using PAT
 
 concurrency:
   group: "daily_update"
@@ -21,6 +20,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v5
         with:
+          token: ${{ secrets.GH_PAT }}
           fetch-depth: 2
 
       - name: Install Python
