@@ -4,20 +4,28 @@ import os
 
 sys.path.append('../')
 from Region import REGIONS, ROW
-from utils import mkpath, WEBSITE_CONTENT_PATH
+from utils import mkpath, WEBSITE_PATH
 
 
-WEBSITE_ROOT = mkpath(WEBSITE_CONTENT_PATH, '_website')
+WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')
+WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
 
 
 def build_website():
+    # Clean output folder
+    if os.path.isdir(WEBSITE_ROOT):
+        shutil.rmtree(WEBSITE_ROOT)
+
+    # Copy static files
+    shutil.copytree(
+        WEBSITE_SOURCES_ROOT,
+        WEBSITE_ROOT,
+        ignore=shutil.ignore_patterns('*.ts', '*.source.*')
+    )
+
     for region in REGIONS:
         region_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
         api = region.read_api()
-
-        # Clean folder
-        if os.path.isdir(region_directory):
-            shutil.rmtree(region_directory)
 
         os.makedirs(region_directory, exist_ok=True)
 
@@ -39,7 +47,7 @@ def build_website():
 
     # Place the starting image
     initial_image_data = ROW.read_api()[-1]
-    with open(mkpath(WEBSITE_ROOT, 'index.source.html'), 'r', encoding='utf-8') as file:
+    with open(mkpath(WEBSITE_SOURCES_ROOT, 'index.source.html'), 'r', encoding='utf-8') as file:
         html = file.read().format(
             initial_title=initial_image_data.title,
             initial_image_url=initial_image_data.url,

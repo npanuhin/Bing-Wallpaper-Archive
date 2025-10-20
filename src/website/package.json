@@ -3,8 +3,14 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
+		"deploy": "npm run build && wrangler deploy",
 		"dev": "wrangler dev",
-		"start": "wrangler dev"
+		"start": "wrangler dev",
+		"build:ts": "tsc",
+		"build": "python build_website.py && npm run build:ts",
+		"type-check": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.3"
 	}
 }

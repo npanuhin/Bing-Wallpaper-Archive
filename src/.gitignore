@@ -2,14 +2,10 @@
 __pycache__/
 
 # Generated website
-website/root/_website/*
-!website/root/_website/index.source.html
-!website/root/_website/scripts/
-!website/root/_website/styles/
+website/root/*
 
 # Node.js
 website/node_modules/
-website/package-lock.json
 
 # Cloudflare
 website/.wrangler/

@@ -12,7 +12,7 @@ SRC_PATH = mkpath(os.path.dirname(__file__))
 ROOT_PATH = mkpath(SRC_PATH, '../')
 API_PATH = mkpath(ROOT_PATH, 'api')
 CONFIGS_PATH = mkpath(SRC_PATH, 'configs')
-WEBSITE_CONTENT_PATH = mkpath(SRC_PATH, 'website', 'root')
+WEBSITE_PATH = mkpath(SRC_PATH, 'website')
 
 
 def posixpath(path: str) -> str:
