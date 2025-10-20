@@ -28,7 +28,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install ruff pyrefly
+        working-directory: src
+        run: |
+          pip install -r requirements.txt
+          pip install ruff pyrefly
 
       - name: Check with ruff
         working-directory: src

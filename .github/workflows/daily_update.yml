@@ -29,7 +29,7 @@ jobs:
           python-version: 3.14
           cache: pip
 
-      - name: Install Python's requirements
+      - name: Install dependencies
         working-directory: src
         run: pip install -r requirements.txt
 
@@ -38,8 +38,8 @@ jobs:
         run: python update.py
         env:
           CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
-          CLOUDFLARE_AWS_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_AWS_ACCESS_KEY_ID }}'
-          CLOUDFLARE_AWS_SECRET_ACCESS_KEY: '${{ secrets.CLOUDFLARE_AWS_SECRET_ACCESS_KEY }}'
+          CLOUDFLARE_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}'
+          CLOUDFLARE_SECRET_ACCESS_KEY: '${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}'
 
       - name: Get previous commit author
         id: previous_commit

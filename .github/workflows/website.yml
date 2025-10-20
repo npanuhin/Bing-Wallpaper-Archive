@@ -15,19 +15,21 @@ concurrency:
 jobs:
   build-and-deploy:
     name: Build & deploy website
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Clone repository
         uses: actions/checkout@v5
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: 3.14
-          # No pip cache, since no modules are installed
+          cache: pip
+
+      - name: Install dependencies
+        working-directory: src
+        run: pip install -r requirements.txt
 
       - name: Generate website
         working-directory: src/scripts
@@ -37,6 +39,6 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "latest"
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: src/website

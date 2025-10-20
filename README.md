@@ -134,17 +134,16 @@ One API file consists of an array of image data[^2]:
 
 
 > [!IMPORTANT]
-> You can freely access the API files without any frequency or volume limitations.
+> You can freely access the API files without any frequency or volume limitations.<br>
 > As for the images, please download them in reasonable amounts — for example, no more than one full archive per day.
 
 
-### Version 2 roadmap
+### TODO
 
-After two years, I decided to rewrite the entire project and to fix numerous issues, including storage capacity and metadata.
-
-Stages (roughly in order of importance):
+Roughly in order of importance:
 
 - [ ] ! Fix `en` not working for Canada (urgent)
+- [ ] Cache `wrangler` (website deployment)
 - [x] Proper everyday image retrieval from three sources
 - [x] Uploading images to external storage (chose ~~Google Cloud Storage~~ Cloudflare R2 for now)
 - [x] Removing metadata nonsense — images should be preserved in their original form
@@ -165,8 +164,6 @@ Stages (roughly in order of importance):
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
 
-
-### TODO
 
 - Ability to download full acrhive from Cloudflare R2 as `.zip`
 - **Missing images (!)** (`src/check_status.py` shows 4 images)

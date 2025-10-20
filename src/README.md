@@ -9,7 +9,7 @@ Token should be placed into the <code><a href="configs">configs</a>/cloudflare_t
 }
 ```
 
-Alternatively, you can set the environment variables `ACCOUNT_ID`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+Alternatively, you can set the environment variables `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ACCESS_KEY_ID` and `CLOUDFLARE_SECRET_ACCESS_KEY`.
 
 ## Development information
 
