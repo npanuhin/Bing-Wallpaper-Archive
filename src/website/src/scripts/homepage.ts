@@ -19,10 +19,9 @@ const
 	YEAR_API_PATH = (country: string, lang: string, year: number): string => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
 	START_DATE: Date = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
 
-	HOMEPAGE_DELAY: number = 5000, // Delay between homepage images does not include transition time
+	HOMEPAGE_DELAY: number = 5000, // Delay between homepage images. Does not include transition time
 
-	SCROLL_THRESHOLD: number = 66, // Scroll to the top if less than this value
-	SCROLL_DELAY: number = 2000; // Delay before automatic scroll
+	AUTOSCROLL_DELAY: number = 2000; // Delay before automatic scroll
 
 // =====================================================================================================================
 
@@ -38,23 +37,23 @@ const
 	YESTERDAY: Date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
 	PREVIOUS_YEAR: number = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
 
-	homepage_background = document.querySelector<HTMLImageElement>("#background")!,
-	homepage_foreground = document.querySelector<HTMLImageElement>("#foreground")!,
+	homepageBackground = document.querySelector<HTMLImageElement>("#background")!,
+	homepageForeground = document.querySelector<HTMLImageElement>("#foreground")!,
 	// timer_path = document.querySelector("#timer_path"),
 	title = document.querySelector<HTMLAnchorElement>("#title")!,
-	title_background = document.querySelector<HTMLElement>("#title_background")!,
-	title_texts = document.querySelectorAll<HTMLSpanElement>("#title span"),
+	titleBackground = document.querySelector<HTMLElement>("#title_background")!,
+	titleTexts = document.querySelectorAll<HTMLSpanElement>("#title span"),
 
-	content_area = document.querySelector<HTMLElement>("#content")!,
+	contentArea = document.querySelector<HTMLElement>("#content")!,
 
-	markets_wrapper = document.querySelector<HTMLElement>("#markets_wrapper")!,
+	marketsWrapper = document.querySelector<HTMLElement>("#markets_wrapper")!,
 	markets = document.querySelector<HTMLElement>("#markets")!,
-	markets_items = document.querySelectorAll<HTMLAnchorElement>("#markets a"),
-	markets_toggle = document.querySelector<HTMLInputElement>("#markets_menu")!,
+	marketsItems = document.querySelectorAll<HTMLAnchorElement>("#markets a"),
+	marketsToggle = document.querySelector<HTMLInputElement>("#markets_menu")!;
 
-	cur_image = document.querySelector<HTMLElement>("#cur_image")!,
-	cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!,
-	cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!;
+	// cur_image = document.querySelector<HTMLElement>("#cur_image")!,
+	// cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!,
+	// cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!;
 
 // transition_delay_initial = 200, // Initial delay before showing the first image
 // transition_delay_true = 1000,
@@ -68,8 +67,8 @@ const
 
 // let hold = false;
 
-let cur_homepage: HTMLImageElement | null = homepage_foreground, // Either background or foreground: image shown at the moment
-	next_homepage: HTMLImageElement | null = homepage_background;
+let curHomepage: HTMLImageElement = homepageForeground, // Either background or foreground: image shown at the moment
+	nextHomepage: HTMLImageElement = homepageBackground;
 
 // ==================================================== Api storage ====================================================
 
@@ -104,9 +103,9 @@ class Region {
 		return this.images.get(this.dates[Math.floor(Math.random() * this.dates.length)]);
 	}
 
-	fetchYear(year: number, callback: () => void = function () {}, alert_error: boolean = false) {
-		let api_path = YEAR_API_PATH(this.country, this.lang, year);
-		fetch(api_path, {
+	fetchYear(year: number, callback: () => void = function () {}, alertError: boolean = false) {
+		let apiPath = YEAR_API_PATH(this.country, this.lang, year);
+		fetch(apiPath, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json"
@@ -118,7 +117,7 @@ class Region {
 					console.log(`Loaded year: ${year}`);
 					return response.json();
 				} else {
-					throw new Error(`Error: can not load API file: ${api_path}`);
+					throw new Error(`Error: can not load API file: ${apiPath}`);
 				}
 			})
 			.then((data: ImageEntry[]) => {
@@ -127,14 +126,14 @@ class Region {
 			})
 			.catch(error => {
 				console.log(error);
-				if (alert_error) alert(`Error: can not load API file: ${api_path}`);
+				if (alertError) alert(`Error: can not load API file: ${apiPath}`);
 			});
 	}
 
 }
 
-const api = new Map<string, Region>();
-REGIONS.forEach(region => api.set(region, new Region(region)));
+const apiByRegion = new Map<string, Region>();
+REGIONS.forEach(region => apiByRegion.set(region, new Region(region)));
 
 // =====================================================================================================================
 
@@ -146,18 +145,18 @@ REGIONS.forEach(region => api.set(region, new Region(region)));
 // 	return new Date (random(from.getTime(), to.getTime()));
 // }
 
-function leadingZeros(s: string | number, totalDigits: number): string {
-	s = s.toString();
-	let res = "";
-	for (let i = 0; i < (totalDigits - s.length); ++i) res += "0";
-	return res + s.toString();
-}
+// function leadingZeros(s: string | number, totalDigits: number): string {
+// 	s = s.toString();
+// 	let res = "";
+// 	for (let i = 0; i < (totalDigits - s.length); ++i) res += "0";
+// 	return res + s.toString();
+// }
 
-function date2str(date: Date): string {
-	return leadingZeros(date.getFullYear(), 4) +
-		"-" + leadingZeros(date.getMonth() + 1, 2) +
-		"-" + leadingZeros(date.getDate(), 2);
-}
+// function date2str(date: Date): string {
+// 	return leadingZeros(date.getFullYear(), 4) +
+// 		"-" + leadingZeros(date.getMonth() + 1, 2) +
+// 		"-" + leadingZeros(date.getDate(), 2);
+// }
 
 // function reflow(element) {
 // 	void(element.offsetHeight);
@@ -243,20 +242,20 @@ function wait(delay: number): Promise<void> {
 // 	timer_path.getAnimations().map(animation => animation.play());
 // });
 
-let homepage_change_timer: any;
+// let homepageChangeTimer: any;
 
 function changeHomepage() {
-	const chosen_image = api.get(HOMEPAGE_REGION)!.getRandom()!;
+	const chosenImage = apiByRegion.get(HOMEPAGE_REGION)!.getRandom()!;
 	// console.log(chosen_image);
 
-	next_homepage!.src = chosen_image["url"];
-	next_homepage!.alt = chosen_image["title"];
-	next_homepage!.title = chosen_image["title"];
+	nextHomepage.src = chosenImage["url"];
+	nextHomepage.alt = chosenImage["title"];
+	nextHomepage.title = chosenImage["title"];
 
 	waitFor(() => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
 		console.log("Changing image soon");
 		wait(HOMEPAGE_DELAY).then(_ => {
-			waitFor(() => next_homepage!.complete).then(_ => {
+			waitFor(() => nextHomepage.complete).then(_ => {
 
 				// Restart timer animation
 				// setTimeout(_ => {
@@ -266,15 +265,15 @@ function changeHomepage() {
 				// 	}, transition_delay / 2);
 				// }, transition_delay / 2);
 
-				waitAnimations(homepage_foreground, "opacity", (next_homepage === homepage_foreground ? 1 : 0))
+				waitAnimations(homepageForeground, "opacity", (nextHomepage === homepageForeground ? 1 : 0))
 					.then(_ => {
-						[cur_homepage, next_homepage] = [next_homepage, cur_homepage]; // Swap images
+						[curHomepage, nextHomepage] = [nextHomepage, curHomepage]; // Swap images
 						changeHomepage();
 					});
 
 				waitAnimations(title, "opacity", 0).then(_ => {
-					title_texts.forEach(span => span.textContent = chosen_image["title"]);
-					title.href = chosen_image["url"];
+					titleTexts.forEach(span => span.textContent = chosenImage["title"]);
+					title.href = chosenImage["url"];
 
 					title.classList.toggle("fullwidth", title.getBoundingClientRect().left == 0);
 
@@ -285,177 +284,177 @@ function changeHomepage() {
 	});
 }
 
-api.get(HOMEPAGE_REGION)!.fetchYear(PREVIOUS_YEAR, () => {
+apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(PREVIOUS_YEAR, () => {
 
 	waitFor(() => document.body.classList.contains("shown")).then(changeHomepage);
 
 	for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
 		if (year === PREVIOUS_YEAR) continue;
 
-		api.get(HOMEPAGE_REGION)!.fetchYear(year);
+		apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(year);
 	}
 }, true);
 
 
 // ===================================================== Scrolling =====================================================
 
-let auto_scroll_timeout: any;
-let last_scroll: number = window.scrollY;
+let autoScrollTimeout: any;
+let lastScroll: number = window.scrollY;
 
-enum NAVIGATION_STATUS {
+enum NavigationStatus {
 	MAX_TOP,
 	FIXED_TOP,
 	FIXED_BOTTOM,
 	FLOATING
 }
 
-let navigation_status: NAVIGATION_STATUS = NAVIGATION_STATUS.MAX_TOP;
+let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP;
 
-function handle_scroll() {
-	clearTimeout(auto_scroll_timeout);
+function handleScroll() {
+	clearTimeout(autoScrollTimeout);
 	let scroll = window.scrollY;
 
-	// -------------------------------- Title background --------------------------------
+	// ---------- Title background ----------
 
-	title_background.classList.toggle("always_visible", scroll > 0);
+	titleBackground.classList.toggle("always_visible", scroll > 0);
 
-	// -------------------------------- Sticky navigation -------------------------------
+	// ---------- Sticky navigation ----------
 
-	let navigation_block_pos = markets.getBoundingClientRect();
-	let relative_pos = navigation_block_pos.top - content_area.getBoundingClientRect().top;
+	let navigationBlockPos = markets.getBoundingClientRect();
+	let relativePos = navigationBlockPos.top - contentArea.getBoundingClientRect().top;
 
-	let new_position: string = "",
-		new_top: string = "";
-	let old_status: NAVIGATION_STATUS | null = null,
-		new_status: NAVIGATION_STATUS = navigation_status;
+	let newPosition: string = "",
+		newTop: string = "";
+	let oldStatus: NavigationStatus | null = null,
+		newStatus: NavigationStatus = navigationStatus;
 
-	while (old_status != new_status) {
-		old_status = new_status;
+	while (oldStatus != newStatus) {
+		oldStatus = newStatus;
 
-		if (scroll >= last_scroll) { // Scrolling down
-			switch (old_status) {
-				case NAVIGATION_STATUS.MAX_TOP:
-				case NAVIGATION_STATUS.FLOATING:
-					if (navigation_block_pos.top <= 86 && navigation_block_pos.bottom <= window.innerHeight) {
+		if (scroll >= lastScroll) { // Scrolling down
+			switch (oldStatus) {
+				case NavigationStatus.MAX_TOP:
+				case NavigationStatus.FLOATING:
+					if (navigationBlockPos.top <= 86 && navigationBlockPos.bottom <= window.innerHeight) {
 						// console.log("Changing navbar to FIXED_BOTTOM:", Math.min(86, window.innerHeight - navigation_block_pos.height) + "px");
-						new_status = NAVIGATION_STATUS.FIXED_BOTTOM;
-						new_position = "fixed";
-						new_top = Math.min(86, window.innerHeight - navigation_block_pos.height) + "px";
+						newStatus = NavigationStatus.FIXED_BOTTOM;
+						newPosition = "fixed";
+						newTop = Math.min(86, window.innerHeight - navigationBlockPos.height) + "px";
 					}
 					break;
 
-				case NAVIGATION_STATUS.FIXED_TOP:
+				case NavigationStatus.FIXED_TOP:
 					// console.log("Changing navbar to FLOATING:", relative_pos + "px");
-					new_status = NAVIGATION_STATUS.FLOATING;
-					new_position = "absolute";
-					new_top = relative_pos + "px";
+					newStatus = NavigationStatus.FLOATING;
+					newPosition = "absolute";
+					newTop = relativePos + "px";
 					break;
 			}
 
 		} else { // Scrolling up
-			switch (old_status) {
-				case NAVIGATION_STATUS.FIXED_TOP:
-					if (relative_pos <= 86) {
+			switch (oldStatus) {
+				case NavigationStatus.FIXED_TOP:
+					if (relativePos <= 86) {
 						// console.log("Changing navbar to MAX_TOP:", "86px");
-						new_status = NAVIGATION_STATUS.MAX_TOP;
-						new_position = "absolute";
-						new_top = "86px";
+						newStatus = NavigationStatus.MAX_TOP;
+						newPosition = "absolute";
+						newTop = "86px";
 					}
 					break;
 
-				case NAVIGATION_STATUS.FIXED_BOTTOM:
+				case NavigationStatus.FIXED_BOTTOM:
 					// console.log("Changing navbar to FLOATING:", relative_pos + "px");
-					new_status = NAVIGATION_STATUS.FLOATING;
-					new_position = "absolute";
-					new_top = relative_pos + "px";
+					newStatus = NavigationStatus.FLOATING;
+					newPosition = "absolute";
+					newTop = relativePos + "px";
 					break;
 
-				case NAVIGATION_STATUS.FLOATING:
-					if (navigation_block_pos.top >= 86) {
+				case NavigationStatus.FLOATING:
+					if (navigationBlockPos.top >= 86) {
 						// console.log("Changing navbar to FIXED_TOP:", "86px");
-						new_status = NAVIGATION_STATUS.FIXED_TOP;
-						new_position = "fixed";
-						new_top = "86px";
+						newStatus = NavigationStatus.FIXED_TOP;
+						newPosition = "fixed";
+						newTop = "86px";
 					}
 					break;
 			}
 		}
 	}
 
-	if (new_status != navigation_status) {
-		if (markets.style.position != new_position) {
+	if (newStatus != navigationStatus) {
+		if (markets.style.position != newPosition) {
 			// console.log("Changing position to", new_position);
-			markets.style.position = new_position;
+			markets.style.position = newPosition;
 		}
-		if (markets.style.top != new_top) {
+		if (markets.style.top != newTop) {
 			// console.log("Changing top to", new_top);
-			markets.style.top = new_top;
+			markets.style.top = newTop;
 		}
 	}
 
-	navigation_status = new_status;
-	last_scroll = scroll;
+	navigationStatus = newStatus;
+	lastScroll = scroll;
 
-	// ----------------------------------- Autoscroll -----------------------------------
+	// ---------- Autoscroll ----------
 
 	if (scroll * 2 < window.innerHeight) {
-		auto_scroll_timeout = setTimeout(() => {
+		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
 				top: 0,
 				left: 0,
 				behavior: "smooth"
 			});
-		}, SCROLL_DELAY);
+		}, AUTOSCROLL_DELAY);
 
 	} else if (scroll < window.innerHeight) {
-		auto_scroll_timeout = setTimeout(() => {
+		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
 				top: window.innerHeight,
 				left: 0,
 				behavior: "smooth"
 			});
-		}, SCROLL_DELAY);
+		}, AUTOSCROLL_DELAY);
 	}
 }
 
-window.addEventListener("scroll", handle_scroll);
-window.addEventListener("resize", handle_scroll);
+window.addEventListener("scroll", handleScroll);
+window.addEventListener("resize", handleScroll);
 
 // ====================================================== Markets ======================================================
 
 
-function change_market(market: string = HOMEPAGE_REGION) {
-	markets_items.forEach(selector => {
+function changeMarket(market: string = HOMEPAGE_REGION) {
+	marketsItems.forEach(selector => {
 		selector.classList.toggle("active", selector.getAttribute("data-mkt") == market);
 	});
 }
 
-change_market();
+changeMarket();
 
 window.addEventListener("hashchange", () => {
 	let market = window.location.hash.slice(1);
 	if (REGIONS.indexOf(market) === -1) {
 		console.log(`Invalid market specified in URL hash: ${market}`);
 	} else {
-		change_market(market);
+		changeMarket(market);
 	}
 });
 
 // ================================================== Market selector ==================================================
 
-function toggle_market_selector() {
-	markets.classList.toggle("hidden", !markets_toggle.checked);
-	markets_wrapper.classList.toggle("hidden", !markets_toggle.checked);
+function toggleMarketSelector() {
+	markets.classList.toggle("hidden", !marketsToggle.checked);
+	marketsWrapper.classList.toggle("hidden", !marketsToggle.checked);
 }
 
-function toggle_market_selector_by_screen_size() {
-	markets_toggle.checked = window.innerWidth > 950;
-	toggle_market_selector();
+function toggleMarketSelectorByScreenSize() {
+	marketsToggle.checked = window.innerWidth > 950;
+	toggleMarketSelector();
 }
 
-markets_toggle.addEventListener('change', toggle_market_selector);
-window.addEventListener("resize", toggle_market_selector_by_screen_size);
-toggle_market_selector_by_screen_size();
+marketsToggle.addEventListener('change', toggleMarketSelector);
+window.addEventListener("resize", toggleMarketSelectorByScreenSize);
+toggleMarketSelectorByScreenSize();
 
 
 // ================================================= Page fully loaded =================================================

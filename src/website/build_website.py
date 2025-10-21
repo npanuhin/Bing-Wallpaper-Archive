@@ -20,7 +20,7 @@ def build_website():
     shutil.copytree(
         WEBSITE_SOURCES_ROOT,
         WEBSITE_ROOT,
-        ignore=shutil.ignore_patterns('*.ts', '*.source.*')
+        ignore=shutil.ignore_patterns('*.ts')
     )
 
     for region in REGIONS:
@@ -47,7 +47,7 @@ def build_website():
 
     # Place the starting image
     initial_image_data = ROW.read_api()[-1]
-    with open(mkpath(WEBSITE_SOURCES_ROOT, 'index.source.html'), 'r', encoding='utf-8') as file:
+    with open(mkpath(WEBSITE_SOURCES_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
         html = file.read().format(
             initial_title=initial_image_data.title,
             initial_image_url=initial_image_data.url,
