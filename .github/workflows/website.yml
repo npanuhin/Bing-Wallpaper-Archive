@@ -42,11 +42,7 @@ jobs:
         working-directory: src/website
         run: npm ci
 
-      - name: Generate website assets (API, HTML, CSS)
-        working-directory: src/website
-        run: python build_website.py
-
-      - name: Compile TypeScript
+      - name: Build website
         working-directory: src/website
         run: npm run build
 

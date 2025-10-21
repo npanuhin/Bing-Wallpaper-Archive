@@ -30,9 +30,6 @@
 	-ms-interpolation-mode: bicubic;
 	image-rendering: optimizeQuality;
 
-	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
-	-ms-backface-visibility: hidden;
 	backface-visibility: hidden;
 	/* transition-duration: 0s; */
 

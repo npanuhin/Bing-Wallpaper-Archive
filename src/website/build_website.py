@@ -1,4 +1,3 @@
-import shutil
 import sys
 import os
 
@@ -12,16 +11,10 @@ WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
 
 
 def build_website():
-    # Clean output folder
-    if os.path.isdir(WEBSITE_ROOT):
-        shutil.rmtree(WEBSITE_ROOT)
-
-    # Copy static files
-    shutil.copytree(
-        WEBSITE_SOURCES_ROOT,
-        WEBSITE_ROOT,
-        ignore=shutil.ignore_patterns('*.ts')
-    )
+    if not os.path.isdir(WEBSITE_ROOT):
+        sys.stderr.write(f'Error: Build directory "{WEBSITE_ROOT}" not found.\n')
+        sys.stderr.write('Please build the website before this script.\n')
+        sys.exit(1)
 
     for region in REGIONS:
         region_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
@@ -47,12 +40,14 @@ def build_website():
 
     # Place the starting image
     initial_image_data = ROW.read_api()[-1]
-    with open(mkpath(WEBSITE_SOURCES_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
-        html = file.read().format(
-            initial_title=initial_image_data.title,
-            initial_image_url=initial_image_data.url,
-            initial_description=initial_image_data.description
-        )
+    with open(mkpath(WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
+        html = file.read()
+
+    html = (html
+            .replace('{initial_title}', initial_image_data.title or '')
+            .replace('{initial_image_url}', initial_image_data.url or '')
+            .replace('{initial_description}', initial_image_data.description or '')
+    )
 
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
         file.write(html)
