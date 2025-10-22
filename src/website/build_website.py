@@ -1,13 +1,16 @@
 import sys
 import os
 
-sys.path.append('../')
-from Region import REGIONS, ROW
-from utils import mkpath, WEBSITE_PATH
+from PIL import Image
+import requests
 
+sys.path.append('../')
+from utils import mkpath, WEBSITE_PATH
+from Region import REGIONS, ROW
 
 WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')
 WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
+WEBSITE_ASSETS_PATH = mkpath(WEBSITE_ROOT, 'assets')
 
 
 def build_website():
@@ -39,15 +42,43 @@ def build_website():
                 )
 
     # Place the starting image
+    os.makedirs(WEBSITE_ASSETS_PATH, exist_ok=True)
     initial_image_data = ROW.read_api()[-1]
+
+    compressed_image_path_rel = 'assets/initial-image.jpg'
+    compressed_image_path_abs = mkpath(WEBSITE_ROOT, compressed_image_path_rel)
+
+    with requests.get(initial_image_data.url, stream=True) as response:
+        response.raw.decode_content = True
+        with Image.open(response.raw) as img:
+            img = img.convert('RGB')
+
+            original_width, original_height = img.size
+            target_width, target_height = 1920, 1080
+
+            width_ratio = target_width / original_width
+            height_ratio = target_height / original_height
+
+            if width_ratio >= height_ratio:
+                new_width = target_width
+                new_height = round(original_height * width_ratio)
+            else:
+                new_height = target_height
+                new_width = round(original_width * height_ratio)
+
+            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+
+            img.save(compressed_image_path_abs, 'jpeg', quality=60, optimize=True)
+
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
         html = file.read()
 
     html = (html
             .replace('{initial_title}', initial_image_data.title or '')
             .replace('{initial_image_url}', initial_image_data.url or '')
+            .replace('{initial_image_url_compressed}', compressed_image_path_rel)
             .replace('{initial_description}', initial_image_data.description or '')
-    )
+            )
 
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
         file.write(html)

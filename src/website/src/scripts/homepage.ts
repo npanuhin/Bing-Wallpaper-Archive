@@ -49,11 +49,12 @@ const
 	marketsWrapper = document.querySelector<HTMLElement>("#markets_wrapper")!,
 	markets = document.querySelector<HTMLElement>("#markets")!,
 	marketsItems = document.querySelectorAll<HTMLAnchorElement>("#markets a"),
-	marketsToggle = document.querySelector<HTMLInputElement>("#markets_menu")!;
+	marketsToggle = document.querySelector<HTMLInputElement>("#markets_menu")!,
 
-	// cur_image = document.querySelector<HTMLElement>("#cur_image")!,
-	// cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!,
-	// cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!;
+	curImageReal = document.querySelector<HTMLImageElement>("#cur_image_real")!,
+	curImageInitial = document.querySelector<HTMLImageElement>("#cur_image_initial")!;
+// cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!,
+// cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!;
 
 // transition_delay_initial = 200, // Initial delay before showing the first image
 // transition_delay_true = 1000,
@@ -67,8 +68,8 @@ const
 
 // let hold = false;
 
-let curHomepage: HTMLImageElement = homepageForeground, // Either background or foreground: image shown at the moment
-	nextHomepage: HTMLImageElement = homepageBackground;
+let curHomepageImage: HTMLImageElement = homepageForeground, // Either background or foreground: image shown at the moment
+	nextHomepageImage: HTMLImageElement = homepageBackground;
 
 // ==================================================== Api storage ====================================================
 
@@ -248,14 +249,14 @@ function changeHomepage() {
 	const chosenImage = apiByRegion.get(HOMEPAGE_REGION)!.getRandom()!;
 	// console.log(chosen_image);
 
-	nextHomepage.src = chosenImage["url"];
-	nextHomepage.alt = chosenImage["title"];
-	nextHomepage.title = chosenImage["title"];
+	nextHomepageImage.src = chosenImage["url"];
+	nextHomepageImage.alt = chosenImage["title"];
+	nextHomepageImage.title = chosenImage["title"];
 
 	waitFor(() => !document.hidden && window.scrollY < window.innerHeight).then(_ => {
 		console.log("Changing image soon");
 		wait(HOMEPAGE_DELAY).then(_ => {
-			waitFor(() => nextHomepage.complete).then(_ => {
+			waitFor(() => nextHomepageImage.complete).then(_ => {
 
 				// Restart timer animation
 				// setTimeout(_ => {
@@ -265,9 +266,9 @@ function changeHomepage() {
 				// 	}, transition_delay / 2);
 				// }, transition_delay / 2);
 
-				waitAnimations(homepageForeground, "opacity", (nextHomepage === homepageForeground ? 1 : 0))
+				waitAnimations(homepageForeground, "opacity", (nextHomepageImage === homepageForeground ? 1 : 0))
 					.then(_ => {
-						[curHomepage, nextHomepage] = [nextHomepage, curHomepage]; // Swap images
+						[curHomepageImage, nextHomepageImage] = [nextHomepageImage, curHomepageImage]; // Swap images
 						changeHomepage();
 					});
 
@@ -284,16 +285,73 @@ function changeHomepage() {
 	});
 }
 
-apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(PREVIOUS_YEAR, () => {
 
-	waitFor(() => document.body.classList.contains("shown")).then(changeHomepage);
+// =================================================== On page load ====================================================
 
-	for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
-		if (year === PREVIOUS_YEAR) continue;
-
-		apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(year);
+const domReady = new Promise<void>(resolve => {
+	if (document.readyState === "interactive" || document.readyState === "complete") {
+		return resolve();
 	}
-}, true);
+	document.addEventListener("DOMContentLoaded", () => resolve(), {once: true});
+});
+
+const initialImageLoad = new Promise<void>(resolve => {
+	const onImageReady = () => {
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				resolve();
+			});
+		});
+	};
+
+	if (homepageForeground.complete) {
+		onImageReady();
+	} else {
+		homepageForeground.addEventListener('load', onImageReady, {once: true});
+		homepageForeground.addEventListener('error', onImageReady, {once: true});
+	}
+});
+
+Promise.all([domReady, initialImageLoad]).then(() => {
+	document.body.classList.add("shown");
+
+	console.log("Website rendered");
+
+	const highResHomepageUrl = homepageForeground.dataset.realImage!;
+	nextHomepageImage.src = highResHomepageUrl;
+	curImageReal.src = highResHomepageUrl;
+
+	waitFor(() => nextHomepageImage.complete).then(() => {
+		console.log("Initial image loaded");
+		waitAnimations(homepageForeground, "opacity", 0)
+			.then(() => {
+				[curHomepageImage, nextHomepageImage] = [nextHomepageImage, curHomepageImage];
+
+				apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(PREVIOUS_YEAR, () => {
+					changeHomepage();
+
+					for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
+						if (year === PREVIOUS_YEAR) continue;
+						apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(year);
+					}
+				}, true);
+			});
+	});
+
+	waitFor(() => curImageReal.complete).then(() => {
+		console.log("Current image loaded");
+		waitAnimations(curImageInitial, "opacity", 0).then(() => {
+			// Wait 1 frame + 1 sec -> remove initial image
+			requestAnimationFrame(() => {
+				wait(1000).then(() => {
+					if (curImageInitial.parentNode) {
+						curImageInitial.parentNode.removeChild(curImageInitial);
+					}
+				});
+			});
+		});
+	});
+});
 
 
 // ===================================================== Scrolling =====================================================
@@ -420,8 +478,8 @@ function handleScroll() {
 window.addEventListener("scroll", handleScroll);
 window.addEventListener("resize", handleScroll);
 
-// ====================================================== Markets ======================================================
 
+// ====================================================== Markets ======================================================
 
 function changeMarket(market: string = HOMEPAGE_REGION) {
 	marketsItems.forEach(selector => {
@@ -440,6 +498,7 @@ window.addEventListener("hashchange", () => {
 	}
 });
 
+
 // ================================================== Market selector ==================================================
 
 function toggleMarketSelector() {
@@ -455,10 +514,3 @@ function toggleMarketSelectorByScreenSize() {
 marketsToggle.addEventListener('change', toggleMarketSelector);
 window.addEventListener("resize", toggleMarketSelectorByScreenSize);
 toggleMarketSelectorByScreenSize();
-
-
-// ================================================= Page fully loaded =================================================
-
-window.addEventListener('load', () => {
-	document.body.classList.add("shown");
-});

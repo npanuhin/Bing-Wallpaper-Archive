@@ -8,6 +8,8 @@
 
 	--main-color: #E2E8F0;
 	--light-color: #FFF;
+
+	--image-fade-duration: 1s;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -113,7 +115,7 @@ body:not(.shown) * {
 }
 
 #foreground {
-	transition: 1s opacity ease-in-out;
+	transition: opacity var(--image-fade-duration) ease-in-out;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -488,6 +490,7 @@ body:not(.shown) * {
 #cur_image {
 	width: 100%;
 	margin: 20px 10px 0 20px;
+	display: grid;
 }
 
 #cur_image_info {
@@ -495,9 +498,11 @@ body:not(.shown) * {
 	margin: 20px 20px 0 10px;
 }
 
-#cur_image img {
+#cur_image > img {
+	grid-area: 1 / 1;
 	width: 100%;
 	border-radius: 12px;
+	transition: opacity var(--image-fade-duration) ease-in-out;
 }
 
 #cur_image_title {

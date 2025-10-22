@@ -13,7 +13,7 @@
 
 <div class="homepage">
 	<img id="background">
-	<img id="foreground" src="{initial_image_url}" alt="{initial_title}" title="{initial_title}">  <!-- opacity change -->
+	<img id="foreground" src="{initial_image_url_compressed}" data-real-image="{initial_image_url}" alt="{initial_title}" title="{initial_title}">  <!-- opacity change -->
 
 	<svg id="timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 		<circle id="timer_path" cx="50" cy="50" r="35" pathLength="100"></circle>
@@ -66,7 +66,8 @@
 		</div>
 
 		<div id="cur_image">
-			<img src="{initial_image_url}" alt="{initial_title}" title="{initial_title}">
+			<img id="cur_image_real" alt="{initial_title}" title="{initial_title}">
+			<img id="cur_image_initial" src="{initial_image_url_compressed}" alt="{initial_title}" title="{initial_title}">
 		</div>
 
 		<div id="cur_image_info">
