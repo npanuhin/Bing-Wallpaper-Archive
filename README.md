@@ -1,8 +1,8 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2025-10-21.jpg">
-        <img id="last_image" title="Cap d'Antibes, Provence-Alpes-Côte d'Azur, France" alt="Cap d'Antibes, Provence-Alpes-Côte d'Azur, France" src="https://bing.npanuhin.me/ROW/en/2025-10-21.jpg">
+    <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2025-10-22.jpg">
+        <img id="last_image" title="Belogradchik Rocks, Bulgaria" alt="Belogradchik Rocks, Bulgaria" src="https://bing.npanuhin.me/ROW/en/2025-10-22.jpg">
         <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
     </a>
 </div>
