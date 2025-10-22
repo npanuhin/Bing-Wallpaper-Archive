@@ -1,3 +1,30 @@
+@font-face {
+	font-family: 'Mi Sans';
+	src: url('../fonts/MiSans Latin/woff2/MiSansLatin-Light.woff2') format('woff2'),
+		 url('../fonts/MiSans Latin/woff/MiSansLatin-Light.woff')   format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Mi Sans';
+	src: url('../fonts/MiSans Latin/woff2/MiSansLatin-Regular.woff2') format('woff2'),
+		 url('../fonts/MiSans Latin/woff/MiSansLatin-Regular.woff')   format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Mi Sans';
+	src: url('../fonts/MiSans Latin/woff2/MiSansLatin-Bold.woff2') format('woff2'),
+		 url('../fonts/MiSans Latin/woff/MiSansLatin-Bold.woff')   format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
 	--color-background-black: rgb(16, 16, 16);
 
@@ -45,7 +72,7 @@
 }
 
 html {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Mi Sans", Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: normal;
 

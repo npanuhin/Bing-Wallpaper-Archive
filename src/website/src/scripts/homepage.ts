@@ -25,6 +25,38 @@ const
 
 // =====================================================================================================================
 
+async function loadFullFonts() {
+	try {
+		const fontsToLoad = [
+			{weight: '300', name: 'MiSans-Light'},
+			{weight: '400', name: 'MiSans-Regular'},
+			{weight: '700', name: 'MiSans-Bold'},
+		];
+
+		const fontPromises = fontsToLoad.map(fontInfo => {
+			const fontFace = new FontFace(
+				'Mi Sans',
+				`url(../fonts/MiSans/woff2/${fontInfo.name}.woff2) format('woff2'), url(../fonts/MiSans/woff/${fontInfo.name}.woff) format('woff')`,
+				{
+					weight: fontInfo.weight,
+					style: 'normal',
+					display: 'swap',
+				},
+			);
+			return fontFace.load();
+		});
+
+		const loadedFonts = await Promise.all(fontPromises);
+
+		loadedFonts.forEach(font => (document.fonts as any).add(font));
+
+		console.log("Full Mi Sans font loaded and activated.");
+
+	} catch (error) {
+		console.error('Failed to load and activate full Mi Sans font:', error);
+	}
+}
+
 interface ImageEntry {
 	date: string;
 	url: string;
