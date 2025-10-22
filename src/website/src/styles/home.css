@@ -1,29 +1,28 @@
-@font-face {
-	font-family: 'Mi Sans';
-	src: url('../fonts/MiSans Latin/woff2/MiSansLatin-Light.woff2') format('woff2'),
-		 url('../fonts/MiSans Latin/woff/MiSansLatin-Light.woff')   format('woff');
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
-}
+/* --- Mi Sans --- */
 
+/*noinspection CssUnknownTarget*/
 @font-face {
 	font-family: 'Mi Sans';
-	src: url('../fonts/MiSans Latin/woff2/MiSansLatin-Regular.woff2') format('woff2'),
-		 url('../fonts/MiSans Latin/woff/MiSansLatin-Regular.woff')   format('woff');
+	src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2'),
+		 url('/fonts/MiSans Latin/MiSansLatin-Regular.woff')   format('woff');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 
+/* --- Segoe UI --- */
+
+/*noinspection CssUnknownTarget*/
 @font-face {
-	font-family: 'Mi Sans';
-	src: url('../fonts/MiSans Latin/woff2/MiSansLatin-Bold.woff2') format('woff2'),
-		 url('../fonts/MiSans Latin/woff/MiSansLatin-Bold.woff')   format('woff');
-	font-weight: 700;
+	font-family: 'Segoe UI';
+	src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2'),
+		 url('/fonts/Segoe UI/SegoeUI-Regular.woff') format('woff');
+	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 :root {
 	--color-background-black: rgb(16, 16, 16);
@@ -72,13 +71,17 @@
 }
 
 html {
-	font-family: "Mi Sans", Arial, Helvetica, sans-serif;
+	font-family: "Segoe UI", "Mi Sans", Arial, Helvetica, sans-serif;
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 400;
 
 	scrollbar-width: thin;
 
 	background-color: #232327;
+}
+
+.font-mi-sans, .font-mi-sans * {
+	font-family: "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -208,7 +211,6 @@ body:not(.shown) * {
 }
 
 #title_background > svg {
-	position: relative;
 	display: block;
 	font-size: 0;
 
@@ -232,7 +234,7 @@ body:not(.shown) * {
 #title.fullwidth > div,
 #title.fullwidth > div > div,
 #title.fullwidth > span {
-	border-top-left-radius: 0px;
+	border-top-left-radius: 0;
 }
 
 #title_background {
@@ -332,6 +334,7 @@ body:not(.shown) * {
 
 #content_inner {
 	display: flex;
+	margin-top: 20px;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -456,7 +459,7 @@ body:not(.shown) * {
 }
 
 #markets {
-	/* height: calc(100vh - 86px); */
+	/* height: calc(100vh - 106px); */
 	box-sizing: border-box;
 	scrollbar-width: thin;
 	padding: 10px 10px 10px 10px;
@@ -516,24 +519,24 @@ body:not(.shown) * {
 
 #cur_image {
 	width: 100%;
-	margin: 20px 10px 0 20px;
+	margin: 20px 20px 0 50px;
 	display: grid;
 }
 
 #cur_image_info {
 	width: 100%;
-	margin: 20px 20px 0 10px;
+	margin: 20px 60px 0 20px;
 }
 
 #cur_image > img {
 	grid-area: 1 / 1;
 	width: 100%;
-	border-radius: 12px;
+	border-radius: 20px;
 	transition: opacity var(--image-fade-duration) ease-in-out;
 }
 
 #cur_image_title {
-	margin: 5px 0 20px 0;
+	margin: 5px 0 20px -1.5px;
 
 	color: var(--main-color);
 	font-size: 25px;

@@ -25,18 +25,69 @@ const
 
 // =====================================================================================================================
 
+interface ImageEntry {
+	date: string
+	url: string
+	title: string
+
+	[key: string]: any
+}
+
+const YESTERDAY: Date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date) // Yesterday
+const PREVIOUS_YEAR: number = YESTERDAY.getFullYear() - 1 // Previous year to avoid having only one image on January 1st
+
+const homepageBackground = document.querySelector<HTMLImageElement>("#background")!
+const homepageForeground = document.querySelector<HTMLImageElement>("#foreground")!
+// const timer_path = document.querySelector("#timer_path")
+const title = document.querySelector<HTMLAnchorElement>("#title")!
+const titleBackground = document.querySelector<HTMLElement>("#title_background")!
+const titleTexts = document.querySelectorAll<HTMLSpanElement>("#title span")
+
+const contentArea = document.querySelector<HTMLElement>("#content")!
+
+const marketsWrapper = document.querySelector<HTMLElement>("#markets_wrapper")!
+const markets = document.querySelector<HTMLElement>("#markets")!
+const marketsItems = document.querySelectorAll<HTMLAnchorElement>("#markets a")
+const marketsToggle = document.querySelector<HTMLInputElement>("#markets_menu")!
+
+const curImageReal = document.querySelector<HTMLImageElement>("#cur_image_real")!
+const curImageInitial = document.querySelector<HTMLImageElement>("#cur_image_initial")!
+// const cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!
+// const cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!
+
+// cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!
+// cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!
+
+// transition_delay_initial = 200, // Initial delay before showing the first image
+// transition_delay_true = 1000,
+// delay = 5000,
+// hold_delay = 3000,
+// timer_duration = delay - transition_delay_true,
+
+// homepage_image_transition_duration = parseFloat(getComputedStyle(homepage_foreground)["transitionDuration"])
+
+// timer_path.style.animationDuration = `${(timer_duration) / 1000}s`
+
+// let hold = false
+
+let curHomepageImage: HTMLImageElement = homepageForeground, // Either background or foreground: image shown at the moment
+	nextHomepageImage: HTMLImageElement = homepageBackground
+
+// ======================================================= Fonts =======================================================
+
 async function loadFullFonts() {
 	try {
 		const fontsToLoad = [
-			{weight: '300', name: 'MiSans-Light'},
+			// {weight: '300', name: 'MiSans-Light'},
 			{weight: '400', name: 'MiSans-Regular'},
-			{weight: '700', name: 'MiSans-Bold'},
+			// {weight: '700', name: 'MiSans-Bold'},
 		]
 
 		const fontPromises = fontsToLoad.map(fontInfo => {
 			const fontFace = new FontFace(
 				'Mi Sans',
-				`url(../fonts/MiSans/woff2/${fontInfo.name}.woff2) format('woff2'), url(../fonts/MiSans/woff/${fontInfo.name}.woff) format('woff')`,
+				`url(fonts/MiSans/${fontInfo.name}.woff2) format('woff2'),
+				 url(fonts/MiSans/${fontInfo.name}.woff) format('woff')`,
 				{
 					weight: fontInfo.weight,
 					style: 'normal',
@@ -56,52 +107,6 @@ async function loadFullFonts() {
 		console.error('Failed to load and activate full Mi Sans font:', error)
 	}
 }
-
-interface ImageEntry {
-	date: string
-	url: string
-	title: string
-
-	[key: string]: any
-}
-
-const
-	YESTERDAY: Date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date), // Yesterday
-	PREVIOUS_YEAR: number = YESTERDAY.getFullYear() - 1, // Previous year to avoid having only one image on January 1st
-
-	homepageBackground = document.querySelector<HTMLImageElement>("#background")!,
-	homepageForeground = document.querySelector<HTMLImageElement>("#foreground")!,
-	// timer_path = document.querySelector("#timer_path"),
-	title = document.querySelector<HTMLAnchorElement>("#title")!,
-	titleBackground = document.querySelector<HTMLElement>("#title_background")!,
-	titleTexts = document.querySelectorAll<HTMLSpanElement>("#title span"),
-
-	contentArea = document.querySelector<HTMLElement>("#content")!,
-
-	marketsWrapper = document.querySelector<HTMLElement>("#markets_wrapper")!,
-	markets = document.querySelector<HTMLElement>("#markets")!,
-	marketsItems = document.querySelectorAll<HTMLAnchorElement>("#markets a"),
-	marketsToggle = document.querySelector<HTMLInputElement>("#markets_menu")!,
-
-	curImageReal = document.querySelector<HTMLImageElement>("#cur_image_real")!,
-	curImageInitial = document.querySelector<HTMLImageElement>("#cur_image_initial")!
-// cur_image_title = document.querySelector<HTMLElement>("#cur_image_title")!,
-// cur_image_description = document.querySelector<HTMLElement>("#cur_image_description")!
-
-// transition_delay_initial = 200, // Initial delay before showing the first image
-// transition_delay_true = 1000,
-// delay = 5000,
-// hold_delay = 3000,
-// timer_duration = delay - transition_delay_true,
-
-// homepage_image_transition_duration = parseFloat(getComputedStyle(homepage_foreground)["transitionDuration"])
-
-// timer_path.style.animationDuration = `${(timer_duration) / 1000}s`
-
-// let hold = false
-
-let curHomepageImage: HTMLImageElement = homepageForeground, // Either background or foreground: image shown at the moment
-	nextHomepageImage: HTMLImageElement = homepageBackground
 
 // ==================================================== Api storage ====================================================
 
@@ -282,7 +287,6 @@ async function changeHomepage() {
 
 	nextHomepageImage.src = chosenImage["url"]
 	nextHomepageImage.alt = chosenImage["title"]
-	nextHomepageImage.title = chosenImage["title"]
 
 	await waitFor(() => !document.hidden && window.scrollY < window.innerHeight)
 
@@ -341,10 +345,10 @@ const initialImageLoad = new Promise<void>(resolve => {
 	}
 })
 
-Promise.all([domReady, initialImageLoad]).then(() => {
+Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	document.body.classList.add("shown")
 
-	console.log("Website rendered")
+	console.log("DOM, initial image, and fonts are ready. Website rendered.")
 
 	const highResHomepageUrl = homepageForeground.dataset.realImage!
 	nextHomepageImage.src = highResHomepageUrl
@@ -424,11 +428,11 @@ function handleScroll() {
 			switch (oldStatus) {
 				case NavigationStatus.MAX_TOP:
 				case NavigationStatus.FLOATING:
-					if (navigationBlockPos.top <= 86 && navigationBlockPos.bottom <= window.innerHeight) {
-						// console.log("Changing navbar to FIXED_BOTTOM:", Math.min(86, window.innerHeight - navigation_block_pos.height) + "px")
+					if (navigationBlockPos.top <= 106 && navigationBlockPos.bottom <= window.innerHeight) {
+						// console.log("Changing navbar to FIXED_BOTTOM:", Math.min(106, window.innerHeight - navigation_block_pos.height) + "px")
 						newStatus = NavigationStatus.FIXED_BOTTOM
 						newPosition = "fixed"
-						newTop = Math.min(86, window.innerHeight - navigationBlockPos.height) + "px"
+						newTop = Math.min(106, window.innerHeight - navigationBlockPos.height) + "px"
 					}
 					break
 
@@ -443,11 +447,11 @@ function handleScroll() {
 		} else { // Scrolling up
 			switch (oldStatus) {
 				case NavigationStatus.FIXED_TOP:
-					if (relativePos <= 86) {
-						// console.log("Changing navbar to MAX_TOP:", "86px")
+					if (relativePos <= 106) {
+						// console.log("Changing navbar to MAX_TOP:", "106px")
 						newStatus = NavigationStatus.MAX_TOP
 						newPosition = "absolute"
-						newTop = "86px"
+						newTop = "106px"
 					}
 					break
 
@@ -459,11 +463,11 @@ function handleScroll() {
 					break
 
 				case NavigationStatus.FLOATING:
-					if (navigationBlockPos.top >= 86) {
-						// console.log("Changing navbar to FIXED_TOP:", "86px")
+					if (navigationBlockPos.top >= 106) {
+						// console.log("Changing navbar to FIXED_TOP:", "106px")
 						newStatus = NavigationStatus.FIXED_TOP
 						newPosition = "fixed"
-						newTop = "86px"
+						newTop = "106px"
 					}
 					break
 			}
