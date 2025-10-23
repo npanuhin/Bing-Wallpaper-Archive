@@ -1,0 +1,8 @@
+<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <clipPath id="rounded-corners">
+            <rect width="{width}" height="{height}" rx="{radius}" ry="{radius}"/>
+        </clipPath>
+    </defs>
+    <image width="{width}" height="{height}" clip-path="url(#rounded-corners)" href="{image_url}"/>
+</svg>

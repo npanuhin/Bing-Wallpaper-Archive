@@ -11,9 +11,7 @@ print('Update finished\n')
 
 # --------------------------------------------- Fetch last image in en-US ----------------------------------------------
 
-row_api = ROW.read_api()
-
-latest_image = max(row_api, key=lambda entry: entry.date)
+latest_image = ROW.read_api()[-1]
 
 print(f'Last ROW image: {latest_image.date}')
 
@@ -28,11 +26,11 @@ readme = re.sub(
     readme
 )
 
-readme = re.sub(
-    r'<img id="last_image" title=".*?" alt=".*?" src=".*?">',
-    f'<img id="last_image" title="{latest_image.title}" alt="{latest_image.title}" src="{latest_image.url}">',
-    readme
-)
+# readme = re.sub(
+#     r'<img id="last_image" title=".*?" alt=".*?" src=".*?">',
+#     f'<img id="last_image" title="{latest_image.title}" alt="{latest_image.title}" src="{latest_image.url}">',
+#     readme
+# )
 
 # badge_formatted_date = latest_image.date.strftime(DATE_FORMAT).replace("-", "--")
 # readme = re.sub(

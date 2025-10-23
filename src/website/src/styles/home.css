@@ -27,6 +27,8 @@
 :root {
 	--color-background-black: rgb(16, 16, 16);
 
+	--html-color: #10161F;
+
 	--background-color: #10161F;
 	--background-color-secondary: #1D2633;
 	--background-color-light: #3E4756;
@@ -77,10 +79,10 @@ html {
 
 	scrollbar-width: thin;
 
-	background-color: #232327;
+	background-color: var(--html-color);
 }
 
-.font-mi-sans, .font-mi-sans * {
+.font-mi-sans {
 	font-family: "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
@@ -328,8 +330,9 @@ body:not(.shown) * {
 	position: relative;
 	background-color: var(--background-color);
 
-	/* min-width: 100vh; */
-	min-height: 1000vh;
+	/*TODO: if screen height is too small */
+	min-height: 500vh;
+	/*min-height: 1000vh;*/
 }
 
 #content_inner {

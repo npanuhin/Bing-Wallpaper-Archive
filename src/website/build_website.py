@@ -1,3 +1,4 @@
+import base64
 import sys
 import os
 
@@ -11,6 +12,15 @@ from Region import REGIONS, ROW
 WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')
 WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
 WEBSITE_ASSETS_PATH = mkpath(WEBSITE_ROOT, 'assets')
+
+LATEST_IMAGE_SVG_TEMPLATE = mkpath(WEBSITE_PATH, 'latest-template.svg')
+LATEST_IMAGE_SVG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
+
+WEBSITE_INITIAL_IMAGE_PATH = mkpath(WEBSITE_ASSETS_PATH, 'initial-image.jpg')
+
+INITIAL_IMAGE_WIDTH = 1920
+INITIAL_IMAGE_HEIGHT = 1080
+INITIAL_IMAGE_RADIUS = 40
 
 
 def build_website():
@@ -41,12 +51,28 @@ def build_website():
                     indent=None, separators=(',', ':')  # Compact JSON
                 )
 
-    # Place the starting image
-    os.makedirs(WEBSITE_ASSETS_PATH, exist_ok=True)
+    # ==================== Initial image ====================
     initial_image_data = ROW.read_api()[-1]
 
-    compressed_image_path_rel = 'assets/initial-image.jpg'
-    compressed_image_path_abs = mkpath(WEBSITE_ROOT, compressed_image_path_rel)
+    # Generate SVG with rounded corners
+    with open(LATEST_IMAGE_SVG_TEMPLATE, 'r') as file:
+        svg_template = file.read()
+
+    image_response = requests.get(initial_image_data.url)
+    base64_image = base64.b64encode(image_response.content).decode('utf-8')
+    image_data_uri = f'data:image/jpeg;base64,{base64_image}'
+
+    svg_content = (svg_template
+                   .replace('{width}', str(INITIAL_IMAGE_WIDTH))
+                   .replace('{height}', str(INITIAL_IMAGE_HEIGHT))
+                   .replace('{radius}', str(INITIAL_IMAGE_RADIUS))
+                   .replace('{image_url}', image_data_uri))
+
+    with open(LATEST_IMAGE_SVG_PATH, 'w') as file:
+        file.write(svg_content)
+
+    # Generate website's initial image
+    os.makedirs(WEBSITE_ASSETS_PATH, exist_ok=True)
 
     with requests.get(initial_image_data.url, stream=True) as response:
         response.raw.decode_content = True
@@ -54,29 +80,28 @@ def build_website():
             img = img.convert('RGB')
 
             original_width, original_height = img.size
-            target_width, target_height = 1920, 1080
 
-            width_ratio = target_width / original_width
-            height_ratio = target_height / original_height
+            width_ratio = INITIAL_IMAGE_WIDTH / original_width
+            height_ratio = INITIAL_IMAGE_HEIGHT / original_height
 
             if width_ratio >= height_ratio:
-                new_width = target_width
+                new_width = INITIAL_IMAGE_WIDTH
                 new_height = round(original_height * width_ratio)
             else:
-                new_height = target_height
+                new_height = INITIAL_IMAGE_HEIGHT
                 new_width = round(original_width * height_ratio)
 
             img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-            img.save(compressed_image_path_abs, 'jpeg', quality=60, optimize=True)
+            img.save(WEBSITE_INITIAL_IMAGE_PATH, 'jpeg', quality=60, optimize=True)
 
+    # Generate website's HTML
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
         html = file.read()
 
     html = (html
             .replace('{initial_title}', initial_image_data.title or '')
             .replace('{initial_image_url}', initial_image_data.url or '')
-            .replace('{initial_image_url_compressed}', compressed_image_path_rel)
             .replace('{initial_description}', initial_image_data.description or '')
             )
 
