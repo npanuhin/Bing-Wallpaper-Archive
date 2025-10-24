@@ -231,12 +231,6 @@ REGIONS.forEach(region => apiByRegion.set(region, new Region(region)))
 //     this.resume()
 // }
 
-async function waitFor(conditionFunction: () => boolean, interval: number = 50): Promise<void> {
-	while (!conditionFunction()) {
-		await wait(interval)
-	}
-}
-
 function waitAnimations(element: HTMLElement, property: string, value: string | number): Promise<void> { // TODO rewrite + remove .style
 	return new Promise(resolve => {
 		(element.style as any)[property] = value
@@ -251,6 +245,12 @@ function waitAnimations(element: HTMLElement, property: string, value: string | 
 
 function wait(delay: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, delay))
+}
+
+async function waitFor(conditionFunction: () => boolean, interval: number = 50): Promise<void> {
+	while (!conditionFunction()) {
+		await wait(interval)
+	}
 }
 
 // =====================================================================================================================
@@ -288,7 +288,10 @@ async function changeHomepage() {
 	nextHomepageImage.src = chosenImage['url']
 	nextHomepageImage.alt = chosenImage['title']
 
-	await waitFor(() => document.visibilityState === 'visible' && window.scrollY < window.innerHeight)
+	await waitFor(
+		() => document.visibilityState === 'visible' && window.scrollY < window.innerHeight,
+		100
+	)
 
 	console.log('Changing image soon')
 	await wait(HOMEPAGE_DELAY)
@@ -405,7 +408,7 @@ let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP
 
 function handleScroll() {
 	clearTimeout(autoScrollTimeout)
-	let scroll = window.scrollY
+	const scroll = window.scrollY
 
 	// ---------- Title background ----------
 
@@ -494,7 +497,6 @@ function handleScroll() {
 		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
 				top: 0,
-				left: 0,
 				behavior: 'smooth'
 			})
 		}, AUTOSCROLL_DELAY)
@@ -502,8 +504,7 @@ function handleScroll() {
 	} else if (scroll < window.innerHeight) {
 		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
-				top: window.innerHeight,
-				left: 0,
+				top: window.innerHeight + 1,
 				behavior: 'smooth'
 			})
 		}, AUTOSCROLL_DELAY)
@@ -524,7 +525,7 @@ function changeMarket(market: string = HOMEPAGE_REGION) {
 changeMarket()
 
 window.addEventListener('hashchange', () => {
-	let market = window.location.hash.slice(1)
+	const market = window.location.hash.slice(1)
 	if (REGIONS.indexOf(market) === -1) {
 		console.log(`Invalid market specified in URL hash: ${market}`)
 	} else {

@@ -14,13 +14,14 @@ WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
 WEBSITE_ASSETS_PATH = mkpath(WEBSITE_ROOT, 'assets')
 
 LATEST_IMAGE_SVG_TEMPLATE = mkpath(WEBSITE_PATH, 'latest-template.svg')
-LATEST_IMAGE_SVG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
 
 WEBSITE_INITIAL_IMAGE_PATH = mkpath(WEBSITE_ASSETS_PATH, 'initial-image.jpg')
 
 INITIAL_IMAGE_WIDTH = 1920
 INITIAL_IMAGE_HEIGHT = 1080
-INITIAL_IMAGE_RADIUS = 40
+
+README_IMAGE_PNG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
+README_IMAGE_RADIUS = 40
 
 
 def build_website():
@@ -65,10 +66,10 @@ def build_website():
     svg_content = (svg_template
                    .replace('{width}', str(INITIAL_IMAGE_WIDTH))
                    .replace('{height}', str(INITIAL_IMAGE_HEIGHT))
-                   .replace('{radius}', str(INITIAL_IMAGE_RADIUS))
+                   .replace('{radius}', str(README_IMAGE_RADIUS))
                    .replace('{image_url}', image_data_uri))
 
-    with open(LATEST_IMAGE_SVG_PATH, 'w') as file:
+    with open(README_IMAGE_PNG_PATH, 'w') as file:
         file.write(svg_content)
 
     # Generate website's initial image

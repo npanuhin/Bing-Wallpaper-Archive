@@ -246,6 +246,7 @@ body:not(.shown) * {
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
+/* TODO: needs a complete rewrite */
 
 #title_background > div {
 	transition: 0.075s background-color ease-in-out;
