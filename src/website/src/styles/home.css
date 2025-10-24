@@ -57,9 +57,6 @@
 
 	/* box-sizing: border-box; */
 
-	-ms-interpolation-mode: bicubic;
-	image-rendering: optimizeQuality;
-
 	backface-visibility: hidden;
 	/* transition-duration: 0s; */
 

@@ -2,7 +2,7 @@
 __pycache__/
 
 # Generated website
-website/root/*
+website/root/
 
 # Node.js
 website/node_modules/
