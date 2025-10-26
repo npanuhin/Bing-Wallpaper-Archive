@@ -21,7 +21,7 @@ const
 
 	HOMEPAGE_DELAY: number = 5000, // Delay between homepage images. Does not include transition time
 
-	AUTOSCROLL_DELAY: number = 2000 // Delay before automatic scroll
+	AUTOSCROLL_DELAY: number = 5000 // Delay before automatic scroll
 
 // =====================================================================================================================
 
@@ -231,9 +231,10 @@ REGIONS.forEach(region => apiByRegion.set(region, new Region(region)))
 //     this.resume()
 // }
 
-function waitAnimations(element: HTMLElement, property: string, value: string | number): Promise<void> { // TODO rewrite + remove .style
+function waitAnimations(element: HTMLElement, property: keyof CSSStyleDeclaration, value: string): Promise<void> {
 	return new Promise(resolve => {
-		(element.style as any)[property] = value
+		element.style.setProperty(property as string, String(value));
+
 		const transitionEnded = (animation: TransitionEvent) => {
 			if (animation.propertyName !== property) return
 			element.removeEventListener('transitionend', transitionEnded)
@@ -306,13 +307,13 @@ async function changeHomepage() {
 	// 	}, transition_delay / 2)
 	// }, transition_delay / 2)
 
-	waitAnimations(homepageForeground, 'opacity', (nextHomepageImage === homepageForeground ? 1 : 0))
+	waitAnimations(homepageForeground, 'opacity', (nextHomepageImage === homepageForeground ? '1' : '0'))
 		.then(() => {
 			[curHomepageImage, nextHomepageImage] = [nextHomepageImage, curHomepageImage] // Swap images
 			changeHomepage()
 		})
 
-	waitAnimations(title, 'opacity', 0).then(() => {
+	waitAnimations(title, 'opacity', '0').then(() => {
 		titleTexts.forEach(span => span.textContent = chosenImage['title'])
 		title.href = chosenImage['url']
 
@@ -361,7 +362,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 		await waitFor(() => nextHomepageImage.complete)
 		console.log('Initial image loaded')
 		void loadFullFonts()
-		await waitAnimations(homepageForeground, 'opacity', 0);
+		await waitAnimations(homepageForeground, 'opacity', '0');
 		[curHomepageImage, nextHomepageImage] = [nextHomepageImage, curHomepageImage]
 
 		try {
@@ -382,7 +383,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	(async () => {
 		await waitFor(() => curImageReal.complete)
 		console.log('Current image loaded')
-		await waitAnimations(curImageInitial, 'opacity', 0)
+		await waitAnimations(curImageInitial, 'opacity', '0')
 		requestAnimationFrame(async () => {
 			await wait(1000)
 			if (curImageInitial.parentNode) {
@@ -406,9 +407,32 @@ enum NavigationStatus {
 
 let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP
 
-function handleScroll() {
+function updateHomepageAutoscroll(scroll: number = window.scrollY) {
 	clearTimeout(autoScrollTimeout)
+	const window_height = window.innerHeight
+
+	if (scroll * 2 < window_height) {
+		autoScrollTimeout = setTimeout(() => {
+			window.scroll({
+				top: 0,
+				behavior: 'smooth'
+			})
+		}, AUTOSCROLL_DELAY)
+
+	} else if (scroll < window_height) {
+		autoScrollTimeout = setTimeout(() => {
+			window.scroll({
+				top: window_height + 1,
+				behavior: 'smooth'
+			})
+		}, AUTOSCROLL_DELAY)
+	}
+}
+
+function handleScroll() {
 	const scroll = window.scrollY
+
+	updateHomepageAutoscroll(scroll)
 
 	// ---------- Title background ----------
 
@@ -490,29 +514,19 @@ function handleScroll() {
 
 	navigationStatus = newStatus
 	lastScroll = scroll
-
-	// ---------- Autoscroll ----------
-
-	if (scroll * 2 < window.innerHeight) {
-		autoScrollTimeout = setTimeout(() => {
-			window.scroll({
-				top: 0,
-				behavior: 'smooth'
-			})
-		}, AUTOSCROLL_DELAY)
-
-	} else if (scroll < window.innerHeight) {
-		autoScrollTimeout = setTimeout(() => {
-			window.scroll({
-				top: window.innerHeight + 1,
-				behavior: 'smooth'
-			})
-		}, AUTOSCROLL_DELAY)
-	}
 }
 
-window.addEventListener('scroll', handleScroll)
-window.addEventListener('resize', handleScroll)
+window.addEventListener('scroll', handleScroll, { passive: true })
+window.addEventListener('resize', handleScroll, { passive: true })
+
+window.addEventListener('touchstart', () => updateHomepageAutoscroll(), { passive: true });
+window.addEventListener('touchmove', () => updateHomepageAutoscroll(), { passive: true });
+window.addEventListener('mousedown', () => updateHomepageAutoscroll());
+window.addEventListener('mousemove', (e: MouseEvent) => {
+	if (e.buttons > 0) {
+		updateHomepageAutoscroll();
+	}
+}, { passive: true });
 
 // ====================================================== Markets ======================================================
 
@@ -546,5 +560,5 @@ function toggleMarketSelectorByScreenSize() {
 }
 
 marketsToggle.addEventListener('change', toggleMarketSelector)
-window.addEventListener('resize', toggleMarketSelectorByScreenSize)
+window.addEventListener('resize', toggleMarketSelectorByScreenSize, { passive: true })
 toggleMarketSelectorByScreenSize()
