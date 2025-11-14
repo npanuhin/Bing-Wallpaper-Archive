@@ -49,7 +49,7 @@ def build_website():
                 region.write_api(
                     api_for_year,
                     mkpath(region_directory, region.api_lang.lower() + f'.{year}.json'),
-                    indent=None, separators=(',', ':')  # Compact JSON
+                    minify=True
                 )
 
     # ==================== Initial image ====================

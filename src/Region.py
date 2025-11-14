@@ -56,20 +56,21 @@ class Region(Market):
                 for parsed_json in json.load(file)
             ]
 
-    def write_api(self, api: list[ApiEntry], output_path: str | None = None, *args, **kwargs):
+    def write_api(self, api: list[ApiEntry], output_path: str | None = None, minify: bool = False):
         if output_path is None:
             output_path = self.api_path
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        kwargs = {
-            'ensure_ascii': False,
-            'indent': '\t',
-            'default': lambda item: item.isoformat() if isinstance(item, datetime.date) else None,
-        } | kwargs
-
         with open(output_path, 'w', encoding='utf-8') as file:
-            json.dump([asdict(entry) for entry in api], file, *args, **kwargs)
+            json.dump(
+                [asdict(entry) for entry in api],
+                file,
+                ensure_ascii=False,
+                indent=None if minify else '\t',
+                separators=(',', ':') if minify else None,
+                default=lambda item: item.isoformat() if isinstance(item, datetime.date) else item,
+            )
 
 
 def extract_market_from_url(url: str) -> Market | None:
@@ -82,7 +83,6 @@ def extract_market_from_url(url: str) -> Market | None:
 
 ROW = Region(_ROW)
 REGIONS = [ROW] + list(map(Region, _REGIONS))
-
 
 if __name__ == '__main__':
     assert extract_market_from_url(

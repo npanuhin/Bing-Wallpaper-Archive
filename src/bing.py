@@ -1,17 +1,18 @@
 import dataclasses
-from shutil import rmtree
 import datetime
 import os
+from shutil import rmtree
 
 import requests
 
 from Region import REGIONS, Region, extract_market_from_url
-from utils import mkpath, posixpath, warn, fetch_json
-from structures import ApiEntry, DATE_FORMAT
-from postprocess import postprocess_api
 from cloudflare import CloudflareR2
+from postprocess import postprocess_api
+from structures import ApiEntry, DATE_FORMAT
+from utils import mkpath, posixpath, warn, fetch_json
 
 storage = CloudflareR2()
+
 
 # ======================================================================================================================
 
@@ -34,14 +35,34 @@ def get_uhd_url(region: Region, base_url: str) -> str:
 
 
 def parse_date(date_string: str) -> datetime.date | None:
-    for datetime_format in ('%Y%m%d_%H%M', '%Y%m%d%H%M', '%Y%m%d'):
-        try:
-            parsed = datetime.datetime.strptime(date_string, datetime_format)
-        except ValueError:
-            continue
+    date_string = date_string.strip()
 
-        # Add one day if time is after 15:00
-        return parsed.date() + datetime.timedelta(days=int(parsed.hour >= 15))  # TODO: explain in docs
+    if '_' in date_string:
+        datetime_format = '%Y%m%d_%H%M'
+        has_time = True
+    elif len(date_string) == 12:
+        datetime_format = '%Y%m%d%H%M'
+        has_time = True
+    elif len(date_string) == 8:
+        datetime_format = '%Y%m%d'
+        has_time = False
+    else:
+        warn(f'parse_date: unexpected date format: {date_string!r}')
+        return None
+
+    try:
+        parsed = datetime.datetime.strptime(date_string, datetime_format)
+        print(f'[Date parsing] parsed {date_string!r} with {datetime_format!r} -> {parsed}')
+    except ValueError:
+        warn(f'parse_date: cannot parse date string: {date_string!r}')
+        return None
+
+    if has_time and parsed.hour >= 15:
+        # TODO: explain in docs
+        # TODO: Check if this is correct with '%Y%m%d'
+        parsed = parsed + datetime.timedelta(days=1)
+
+    return parsed.date()
 
 
 def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -> bool:
@@ -59,7 +80,7 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
 
     if old_entry.bing_url != new_entry.bing_url:
         warn(f'Force-rewriting api for {date} due to Bing URL change:\n'
-             '"{old_entry.bing_url}" -> "{new_entry.bing_url}"')
+             f'"{old_entry.bing_url}" -> "{new_entry.bing_url}"')
         api_by_date[date] = new_entry
         return True
 
@@ -98,6 +119,7 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
 
     return changed
 
+
 def update(region: Region):
     print(f'Updating {repr(region)}...')
 
@@ -131,8 +153,8 @@ def update(region: Region):
             caption=caption,
             bing_url=bing_url
         )
-        if add_entry(api_by_date, new_entry):
-            to_download.add(date)
+        # if add_entry(api_by_date, new_entry):
+        to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
     # https://www.bing.com/hp/api/model?mkt=en-US&setlang=en&cc=US
@@ -165,8 +187,8 @@ def update(region: Region):
             description=description,
             bing_url=bing_url
         )
-        if add_entry(api_by_date, new_entry):
-            to_download.add(date)
+        # if add_entry(api_by_date, new_entry):
+        to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
     # https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US&setlang=en&cc=US
@@ -203,8 +225,8 @@ def update(region: Region):
             description=description,
             bing_url=bing_url
         )
-        if add_entry(api_by_date, new_entry):
-            to_download.add(date)
+        # if add_entry(api_by_date, new_entry):
+        to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
     print('Downloading images and uploading to Storage...')
