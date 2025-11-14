@@ -20,9 +20,12 @@ Alternatively, you can set the environment variables `CLOUDFLARE_ACCOUNT_ID`, `C
 
 ### TODO
 
-Roughly in order of importance:
+Roughly in order of ~~ease of implementation~~ importance:
 
-- [ ] ! Fix `en` not working for Canada (urgent)
+- Ability to download full acrhive from Cloudflare R2 as `.zip` (e.g. for backup)
+
+- [ ] !!! Setup up alerts (e.g. failed workflow) for integrity errors (super urgent)
+- [ ] !! Fix `en` not working for Canada (urgent)
 - [ ] ! Fix `CA/en` second day not having `title`
 - [ ] Cache `wrangler` (website deployment)
 - [x] Proper everyday image retrieval from three sources
@@ -37,16 +40,16 @@ Roughly in order of importance:
 - [ ] Write a comprehensive README
 - [x] Enable other countries
 - [x] Rewrite website
-- [x] Website: hold current image when hovering over title
-- [ ] Website: Maybe show the latest image as the first one + preload it sooner than JS script would do it
-- [ ] Website: fade-in not just body but all elements
-- [ ] ~~Add protection for GCloud (because 5s per image \~= 500'000 images per month if somebody decides to leave the page open for so long xd)~~ Switched to Cloudflare R2
+- [ ] Website: hold current image when hovering over title
+- [x] Website: Maybe show the latest image as the first one + preload it sooner than JS script would do it
+- [ ] Website: fade-in not just body but all elements  (??? body is better?)
+- [x] ~~Add protection for GCloud (because 5s per image \~= 500'000 images per month if somebody decides to leave the page open for so long xd)~~ Switched to Cloudflare R2
+- [ ] On the previous note: still add a fail-safe functionality to disable the slideshow after N hours (24?)
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
 
 
-- Ability to download full acrhive from Cloudflare R2 as `.zip`
 - **Missing images (!)** (`src/check_status.py` shows 4 images)
     UPD: probably those are videos, need to check
 - Add more images from 2009
