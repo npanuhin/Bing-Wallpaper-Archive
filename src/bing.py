@@ -110,6 +110,7 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
                 new_value = new_value.replace('’', "'")
 
         if old_value != new_value:
+            # TODO: No alert if new_value.startswith(old_value)
             warn(f'Rewriting key `{key}` for {date}:\n{old_value}\nvs\n{new_value}')
             merged_data[key] = new_value
             changed = True
@@ -153,7 +154,7 @@ def update(region: Region):
             caption=caption,
             bing_url=bing_url
         )
-        # if add_entry(api_by_date, new_entry):
+        add_entry(api_by_date, new_entry)
         to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -187,7 +188,7 @@ def update(region: Region):
             description=description,
             bing_url=bing_url
         )
-        # if add_entry(api_by_date, new_entry):
+        add_entry(api_by_date, new_entry)
         to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -225,7 +226,7 @@ def update(region: Region):
             description=description,
             bing_url=bing_url
         )
-        # if add_entry(api_by_date, new_entry):
+        add_entry(api_by_date, new_entry)
         to_download.add(date)
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -234,6 +235,8 @@ def update(region: Region):
     os.makedirs('_temp', exist_ok=True)
 
     for date in sorted(to_download):
+        assert date in api_by_date, f'Date {date} not found in api'  # TODO
+
         filename = date.strftime(DATE_FORMAT) + '.jpg'
         temp_image_path = mkpath('_temp', filename)
 
