@@ -30,7 +30,7 @@ jobs:
       - name: Install Python dependencies
         working-directory: src
         run: pip install -r requirements.txt
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:

@@ -1,4 +1,5 @@
 import base64
+import shutil
 import sys
 import os
 
@@ -10,6 +11,7 @@ from utils import mkpath, WEBSITE_PATH
 from Region import REGIONS, ROW
 
 WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')
+WEBSITE_SYS_ROOT = mkpath(WEBSITE_PATH, 'root')
 WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
 WEBSITE_ASSETS_PATH = mkpath(WEBSITE_ROOT, 'assets')
 
@@ -108,6 +110,13 @@ def build_website():
 
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
         file.write(html)
+
+    # Add headers
+    shutil.copyfile(
+        mkpath(WEBSITE_PATH, '_headers'),
+        mkpath(WEBSITE_SYS_ROOT, '_headers')
+    )
+
 
 
 if __name__ == '__main__':
