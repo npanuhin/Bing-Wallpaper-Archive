@@ -1,4 +1,4 @@
-name: Daily update
+name: Archive update
 
 on:
   schedule:
@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update-images:
+  update-archive:
     name: Update images
     runs-on: ubuntu-latest
 

@@ -26,11 +26,11 @@ readme = re.sub(
     readme
 )
 
-# readme = re.sub(
-#     r'<img id="last_image" title=".*?" alt=".*?" src=".*?">',
-#     f'<img id="last_image" title="{latest_image.title}" alt="{latest_image.title}" src="{latest_image.url}">',
-#     readme
-# )
+readme = re.sub(
+    r'<img id="last_image" title=".*?" alt=".*?" src=".*?">',
+    f'<img id="last_image" title="{latest_image.title}" alt="{latest_image.title}" src="https://bing.npanuhin.me/latest.svg">',
+    readme
+)
 
 # badge_formatted_date = latest_image.date.strftime(DATE_FORMAT).replace("-", "--")
 # readme = re.sub(
