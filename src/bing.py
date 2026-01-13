@@ -242,6 +242,8 @@ def update(region: Region):
 
         old_entry = api_by_date[date]
 
+        assert old_entry.bing_url is not None  # TODO
+
         with open(temp_image_path, 'wb') as file:
             file.write(requests.get(old_entry.bing_url).content)
 

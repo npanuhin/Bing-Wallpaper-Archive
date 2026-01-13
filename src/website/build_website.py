@@ -1,3 +1,4 @@
+from io import BytesIO
 import base64
 import shutil
 import sys
@@ -61,6 +62,7 @@ def build_website():
     with open(LATEST_IMAGE_SVG_TEMPLATE, 'r') as file:
         svg_template = file.read()
 
+    assert initial_image_data.url is not None  # TODO
     image_response = requests.get(initial_image_data.url)
     base64_image = base64.b64encode(image_response.content).decode('utf-8')
     image_data_uri = f'data:image/jpeg;base64,{base64_image}'
@@ -78,8 +80,7 @@ def build_website():
     os.makedirs(WEBSITE_ASSETS_PATH, exist_ok=True)
 
     with requests.get(initial_image_data.url, stream=True) as response:
-        response.raw.decode_content = True
-        with Image.open(response.raw) as img:
+        with Image.open(BytesIO(response.content)) as img:
             img = img.convert('RGB')
 
             original_width, original_height = img.size
