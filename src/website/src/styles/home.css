@@ -61,6 +61,7 @@ body.shown {
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
+/* TODO: title needs a complete rewrite */
 
 #title {
 	position: absolute;
@@ -135,7 +136,6 @@ body.shown {
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
-/* TODO: needs a complete rewrite */
 
 #title_background > div {
 	transition: 0.075s background-color ease-in-out;
@@ -145,17 +145,17 @@ body.shown {
 	transition: 0.075s fill ease-in-out;
 }
 
-#title_background.always_visible {
+#title_background.permanent_hover {
 	transition: 0.2s opacity ease-in-out;
 	opacity: 1;
 }
 
-#title_background.always_visible > div {
+#title_background.permanent_hover > div {
 	transition: 0.2s background-color ease-in-out;
 	background-color: var(--background-color-secondary);
 }
 
-#title_background.always_visible > svg {
+#title_background.permanent_hover > svg {
 	transition: 0.2s fill ease-in-out;
 	fill: var(--background-color-secondary);
 }
