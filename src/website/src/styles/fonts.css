@@ -1,0 +1,41 @@
+/* --- Mi Sans --- */
+
+/*noinspection CssUnknownTarget*/
+@font-face {
+	font-family: 'Mi Sans';
+	src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2'),
+		 url('/fonts/MiSans Latin/MiSansLatin-Regular.woff')  format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* --- SegoeUI --- */
+
+/*noinspection CssUnknownTarget*/
+@font-face {
+	font-family: 'Segoe UI';
+	src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2'),
+		 url('/fonts/Segoe UI/SegoeUI-Regular.woff')  format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+* {
+	font-family: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+html {
+	font-family: "Segoe UI", "Mi Sans", Arial, Helvetica, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.font-mi-sans {
+	font-family: "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+}

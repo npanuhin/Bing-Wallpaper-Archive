@@ -1,27 +1,29 @@
 // ===================================================== SETTINGS ======================================================
-const
-	REGIONS: string[] = [
-		'pt-BR',
-		'en-CA',
-		'fr-CA',
-		'fr-FR',
-		'de-DE',
-		'en-IN',
-		'it-IT',
-		'ja-JP',
-		'zh-CN',
-		'es-ES',
-		'en-GB',
-		'en-US',
-		'en-ROW'
-	],
-	HOMEPAGE_REGION: string = 'en-US',
-	YEAR_API_PATH = (country: string, lang: string, year: number): string => `${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`,
-	START_DATE: Date = new Date(2017, 2, 1), // 2017-03-01: 1080p images start here
+const REGIONS_LIST = [
+	'pt-BR',
+	'en-CA',
+	'fr-CA',
+	'fr-FR',
+	'de-DE',
+	'en-IN',
+	'it-IT',
+	'ja-JP',
+	'zh-CN',
+	'es-ES',
+	'en-GB',
+	'en-US',
+	'en-ROW'
+] as const;
 
-	HOMEPAGE_DELAY: number = 5000, // Delay between homepage images. Does not include transition time
+type RegionId = typeof REGIONS_LIST[number];
+const HOMEPAGE_REGION: RegionId = 'en-US';
 
-	AUTOSCROLL_DELAY: number = 5000 // Delay before automatic scroll
+const YEAR_API_PATH = (country: string, lang: string, year: number): string =>
+	`${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`;
+
+const START_DATE: Date = new Date(2017, 2, 1); // 2017-03-01: 1080p images start here
+const AUTOSCROLL_DELAY: number = 5000; // Delay before automatic scroll
+const HOMEPAGE_DELAY: number = 5000; // Delay between homepage images. Does not include transition time
 
 // =====================================================================================================================
 
@@ -33,11 +35,11 @@ interface ImageEntry {
 	[key: string]: any
 }
 
-const YESTERDAY: Date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date) // Yesterday
-const PREVIOUS_YEAR: number = YESTERDAY.getFullYear() - 1 // Previous year to avoid having only one image on January 1st
+const TODAY: Date = (new Date)
+const PREVIOUS_YEAR: number = TODAY.getFullYear() - 1 // Previous year to avoid having only one image on January 1st
 
-const homepageBackground = document.querySelector<HTMLImageElement>('#background')!
-const homepageForeground = document.querySelector<HTMLImageElement>('#foreground')!
+const homepageBackground = document.querySelector<HTMLImageElement>('#home_image_background')!
+const homepageForeground = document.querySelector<HTMLImageElement>('#home_image_foreground')!
 // const timer_path = document.querySelector('#timer_path')
 const title = document.querySelector<HTMLAnchorElement>('#title')!
 const titleBackground = document.querySelector<HTMLElement>('#title_background')!
@@ -70,28 +72,27 @@ const curImageInitial = document.querySelector<HTMLImageElement>('#cur_image_ini
 
 // let hold = false
 
-let curHomepageImage: HTMLImageElement = homepageForeground, // Either background or foreground: image shown at the moment
+// curHomepageImage and nextHomepageImage switch places each iteration
+let curHomepageImage: HTMLImageElement = homepageForeground,
 	nextHomepageImage: HTMLImageElement = homepageBackground
 
 // ======================================================= Fonts =======================================================
 
+const fullFonts = [
+	{ name: 'Mi Sans', path: 'MiSans/MiSans-Regular', weight: '400', style: 'normal', display: 'swap' },
+] as const
+
 async function loadFullFonts() {
 	try {
-		const fontsToLoad = [
-			// {weight: '300', name: 'MiSans-Light'},
-			{weight: '400', name: 'MiSans-Regular'},
-			// {weight: '700', name: 'MiSans-Bold'},
-		]
-
-		const fontPromises = fontsToLoad.map(fontInfo => {
+		const fontPromises = fullFonts.map(fontInfo => {
 			const fontFace = new FontFace(
-				'Mi Sans',
-				`url(fonts/MiSans/${fontInfo.name}.woff2) format('woff2'),
-				 url(fonts/MiSans/${fontInfo.name}.woff) format('woff')`,
+				fontInfo.name,
+				`url(fonts/${fontInfo.path}.woff2) format('woff2'),
+				 url(fonts/${fontInfo.path}.woff) format('woff')`,
 				{
 					weight: fontInfo.weight,
-					style: 'normal',
-					display: 'swap',
+					style: fontInfo.style,
+					display: fontInfo.display,
 				},
 			)
 			return fontFace.load()
@@ -101,10 +102,10 @@ async function loadFullFonts() {
 
 		loadedFonts.forEach(font => (document.fonts as any).add(font))
 
-		console.log('Full Mi Sans font loaded and activated.')
+		console.log('Full fonts loaded and activated')
 
 	} catch (error) {
-		console.error('Failed to load and activate full Mi Sans font:', error)
+		console.error('Failed to load and activate full fonts:', error)
 	}
 }
 
@@ -171,8 +172,14 @@ class Region {
 	}
 }
 
-const apiByRegion = new Map<string, Region>()
-REGIONS.forEach(region => apiByRegion.set(region, new Region(region)))
+const apiByRegion = {} as Record<RegionId, Region>;
+REGIONS_LIST.forEach(region => {
+	apiByRegion[region] = new Region(region);
+});
+
+function isRegion(market: string): market is RegionId {
+	return (REGIONS_LIST as readonly string[]).indexOf(market) !== -1;
+}
 
 // =====================================================================================================================
 
@@ -283,7 +290,7 @@ async function waitFor(conditionFunction: () => boolean, interval: number = 50):
 // let homepageChangeTimer: any
 
 async function changeHomepage() {
-	const chosenImage = apiByRegion.get(HOMEPAGE_REGION)!.getRandom()!
+	const chosenImage = apiByRegion[HOMEPAGE_REGION].getRandom()!
 	// console.log(chosen_image)
 
 	nextHomepageImage.src = chosenImage['url']
@@ -329,7 +336,7 @@ const domReady = new Promise<void>(resolve => {
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
 		return resolve()
 	}
-	document.addEventListener('DOMContentLoaded', () => resolve(), {once: true})
+	document.addEventListener('DOMContentLoaded', () => resolve(), { once: true })
 })
 
 const initialImageLoad = new Promise<void>(resolve => {
@@ -344,8 +351,8 @@ const initialImageLoad = new Promise<void>(resolve => {
 	if (homepageForeground.complete) {
 		onImageReady()
 	} else {
-		homepageForeground.addEventListener('load', onImageReady, {once: true})
-		homepageForeground.addEventListener('error', onImageReady, {once: true})
+		homepageForeground.addEventListener('load', onImageReady, { once: true })
+		homepageForeground.addEventListener('error', onImageReady, { once: true })
 	}
 })
 
@@ -360,23 +367,25 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 
 	(async () => {
 		await waitFor(() => nextHomepageImage.complete)
-		console.log('Initial image loaded')
+		console.log('Initial image loaded in full resolution')
 		void loadFullFonts()
 		await waitAnimations(homepageForeground, 'opacity', '0');
 		[curHomepageImage, nextHomepageImage] = [nextHomepageImage, curHomepageImage]
 
-		try {
-			await apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(PREVIOUS_YEAR)
-		} catch (e) {
-			console.log(e)
-			alert(String(e))
-		}
+		await apiByRegion[HOMEPAGE_REGION]
+			.fetchYear(PREVIOUS_YEAR)
+			.catch((e) => {
+				console.log(e);
+				alert(String(e))
+			})
 
 		void changeHomepage()
 
-		for (let year = START_DATE.getFullYear(); year <= YESTERDAY.getFullYear(); ++year) {
+		for (let year = START_DATE.getFullYear(); year <= TODAY.getFullYear(); ++year) {
 			if (year === PREVIOUS_YEAR) continue
-			apiByRegion.get(HOMEPAGE_REGION)!.fetchYear(year).catch(console.log)
+			apiByRegion[HOMEPAGE_REGION]
+				.fetchYear(year)
+				.catch(console.log)
 		}
 	})();
 
@@ -540,7 +549,7 @@ changeMarket()
 
 window.addEventListener('hashchange', () => {
 	const market = window.location.hash.slice(1)
-	if (REGIONS.indexOf(market) === -1) {
+	if (!isRegion(market)) {
 		console.log(`Invalid market specified in URL hash: ${market}`)
 	} else {
 		changeMarket(market)

@@ -1,126 +1,15 @@
-/* --- Mi Sans --- */
-
-/*noinspection CssUnknownTarget*/
-@font-face {
-	font-family: 'Mi Sans';
-	src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2'),
-		 url('/fonts/MiSans Latin/MiSansLatin-Regular.woff')   format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-/* --- Segoe UI --- */
-
-/*noinspection CssUnknownTarget*/
-@font-face {
-	font-family: 'Segoe UI';
-	src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2'),
-		 url('/fonts/Segoe UI/SegoeUI-Regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-:root {
-	--color-background-black: rgb(16, 16, 16);
-
-	--background-color: #10161F;
-	--background-color-secondary: #1D2633;
-	--background-color-light: #3E4756;
-	--background-color-superlight: #5C6679;
-
-	--main-color: #E2E8F0;
-	--light-color: #FFF;
-
-	--image-fade-duration: 1s;
-
-	--html-color: var(--background-color);
-}
-
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-* {
-	margin: 0;
-	padding: 0;
-	width: auto;
-	height: auto;
-	/* top: 0; */
-	/* left: 0; */
-	text-decoration: none;
-	text-align: left;
-	z-index: 1;
-	color: #000;
-	transform-origin: center center;
-
-	/* box-sizing: border-box; */
-
-	backface-visibility: hidden;
-	/* transition-duration: 0s; */
-
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-
-	font-family: inherit;
-	font-style: inherit;
-	font-weight: inherit;
-}
-
-html {
-	font-family: "Segoe UI", "Mi Sans", Arial, Helvetica, sans-serif;
-	font-style: normal;
-	font-weight: 400;
-
-	scrollbar-width: thin;
-
-	background-color: var(--html-color);
-}
-
-.font-mi-sans {
-	font-family: "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
-}
-
-a {
-	cursor: pointer;
-}
-
-li {
-	list-style: none;
-}
-
-input, textarea {
-	box-shadow: none;
-}
-
-
 body {
-	/* min-width: 100vw; */
-	/* min-height: 100vh; */
-
-	width: 100%;
-	height: 100%;
-
 	opacity: 0;
 }
 
-body.shown {
-	animation: 0.2s ease-in 0s forwards fadeIn;
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
+/* Everything is hidden and changes instantly while loading */
 body:not(.shown) * {
 	transition: none !important;
+}
+
+body.shown {
+	opacity: 1;
+	transition: opacity 0.2s ease-in 0.2s;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -133,7 +22,7 @@ body:not(.shown) * {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-#background, #foreground {
+#home_image_background, #home_image_foreground {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -143,7 +32,7 @@ body:not(.shown) * {
 	border: none;
 }
 
-#foreground {
+#home_image_foreground {
 	transition: opacity var(--image-fade-duration) ease-in-out;
 }
 

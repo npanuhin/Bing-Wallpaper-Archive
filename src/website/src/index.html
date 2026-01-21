@@ -18,6 +18,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Explore the Bing Wallpaper Archive, a complete collection of daily Bing wallpapers from around the world">
+	<link rel="stylesheet" href="styles/defaults.css">
+	<link rel="stylesheet" href="styles/colors.css">
+	<link rel="stylesheet" href="styles/fonts.css">
 	<link rel="stylesheet" href="styles/home.css">
 	<title>Bing Wallpaper Archive</title>
 </head>
@@ -25,12 +28,13 @@
 <body>
 
 <div class="homepage">
-	<img id="background">
-	<img id="foreground" src="assets/initial-image.jpg" data-real-image="{initial_image_url}" alt="{initial_title}">  <!-- opacity change -->
+	<!-- Images change is done by switching opacity on/off on background2 -->
+	<img id="home_image_background">
+	<img id="home_image_foreground" src="assets/initial-image.jpg" data-real-image="{initial_image_url}" alt="{initial_title}">
 
-	<svg id="timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-		<circle id="timer_path" cx="50" cy="50" r="35" pathLength="100"></circle>
-	</svg>
+	<!--<svg id="timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">-->
+	<!--	<circle id="timer_path" cx="50" cy="50" r="35" pathLength="100"></circle>-->
+	<!--</svg>-->
 
 	<div class="container_wrapper">
 		<div class="container">

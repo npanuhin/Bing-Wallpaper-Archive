@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+	/* top: 0; */
+	/* left: 0; */
+	text-decoration: none;
+	text-align: left;
+	z-index: 1;
+	color: #000;
+	transform-origin: center center;
+
+	/* box-sizing: border-box; */
+
+	backface-visibility: hidden;
+	/* transition-duration: 0s; */
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+html {
+	scrollbar-width: thin;
+	background-color: var(--html-color);
+}
+
+a {
+	cursor: pointer;
+}
+
+li {
+	list-style: none;
+}
+
+input, textarea {
+	box-shadow: none;
+}
+
+body {
+	/* min-width: 100vw; */
+	/* min-height: 100vh; */
+
+	width: 100%;
+	height: 100%;
+}

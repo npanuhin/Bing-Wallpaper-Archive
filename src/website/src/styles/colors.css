@@ -1,0 +1,15 @@
+:root {
+	--color-background-black: rgb(16, 16, 16);
+
+	--background-color: #10161F;
+	--background-color-secondary: #1D2633;
+	--background-color-light: #3E4756;
+	--background-color-superlight: #5C6679;
+
+	--main-color: #E2E8F0;
+	--light-color: #FFF;
+
+	--image-fade-duration: 1s;
+
+	--html-color: var(--background-color);
+}
