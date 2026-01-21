@@ -25,9 +25,8 @@ Roughly in order of ~~ease of implementation~~ importance:
 - Ability to download full acrhive from Cloudflare R2 as `.zip` (e.g. for backup)
 
 - [ ] !!! Setup up alerts (e.g. failed workflow) for integrity errors (super urgent)
-- [ ] !! Fix `en` not working for Canada (urgent)
-- [ ] ! Fix `CA/en` second day not having `title`
-- [ ] Cache `wrangler` (website deployment)
+- [ ] ~~!! Fix `en` not working for Canada (urgent)~~ ???
+- [ ] Fix `CA/en` second day not having `title`
 - [x] Proper everyday image retrieval from three sources
 - [x] Uploading images to external storage (chose ~~Google Cloud Storage~~ Cloudflare R2 for now)
 - [x] Removing metadata nonsense — images should be preserved in their original form
@@ -37,7 +36,7 @@ Roughly in order of ~~ease of implementation~~ importance:
 - [x] Finally remove all images from this repo and reduce the size of repo (+ number of commits in repo)
 - [x] Remove the `path` key
 - [x] Generate API only for website and not store it in Git repo (+ minified)
-- [ ] Write a comprehensive README
+- [x] Write a comprehensive README
 - [x] Enable other countries
 - [x] Rewrite website
 - [ ] Website: hold current image when hovering over title
@@ -48,6 +47,7 @@ Roughly in order of ~~ease of implementation~~ importance:
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
 - [ ] Find a way to retrieve videos from Bing (identify that today's image is a video, etc.)
+- [ ] Cache `wrangler` (website deployment)
 
 
 - **Missing images (!)** (`src/check_status.py` shows 4 images)
