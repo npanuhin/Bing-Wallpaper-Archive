@@ -61,103 +61,49 @@ body.shown {
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
-/* TODO: title needs a complete rewrite */
 
 #title {
 	position: absolute;
 	right: 0;
 	bottom: 0;
 
-	/* background-color: rgba(16, 16, 16, 0.5); */
-	transition: 0.5s opacity ease-in-out;
-
-	--total-height: calc(20px + 10px + 8px); /* height + padding-up + padding-down = 38px */
-}
-
-#title_background > svg {
-	pointer-events: none;
-}
-
-#title_background > svg > path {
-	pointer-events: auto;
-}
-
-#title > span,
-#title_background > div {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	color: var(--light-color);
-	font-size: 17px;
-
-	/* height: 20px; */
-	padding: 10px 13px 8px 15px;
-}
-
-#title_background > div {
-	position: relative;
-	background-color: var(--color-background-black);
-}
-
-#title_background > svg {
-	display: block;
-	font-size: 0;
-
-	position: absolute;
-	bottom: -1px;
-	left: -10px;
-	width: 11px;
-	height: 19px;
-
-	fill: var(--color-background-black);
-}
-
-#title,
-#title_background,
-#title_background > div,
-#title > span {
-	border-top-left-radius: 15px 19px;
-}
-
-#title.fullwidth,
-#title.fullwidth > div,
-#title.fullwidth > div > div,
-#title.fullwidth > span {
-	border-top-left-radius: 0;
-}
-
-#title_background {
-	opacity: 0.5;
-	transition: 0.075s opacity ease-in-out;
-}
-
-#title:hover > div {
+	background-color: rgba(16, 16, 16, 0.5);
 	opacity: 1;
+	box-shadow: inset 0 0 0 1000px transparent;
+	transition:
+		opacity 0.5s ease-in-out,
+		background-color 0.1s ease-in-out,
+		box-shadow 0.25s ease-in-out;
+
+	padding: 9px 13px 9px 39px;
+	text-decoration: none;
+
+	mask-image:
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 30" preserveAspectRatio="none"><path d="M40 30H0q19 0 22-15T40 0Z" fill="black"/></svg>'),
+		linear-gradient(to right, transparent 40px, black 40px);
+	mask-size: 40px 100%, 100% 100%;
+	mask-position: left, left;
+	mask-repeat: no-repeat, no-repeat;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-#title_background > div {
-	transition: 0.075s background-color ease-in-out;
-}
-
-#title_background > svg {
-	transition: 0.075s fill ease-in-out;
-}
-
-#title_background.permanent_hover {
-	transition: 0.2s opacity ease-in-out;
-	opacity: 1;
-}
-
-#title_background.permanent_hover > div {
-	transition: 0.2s background-color ease-in-out;
+#title:hover {
 	background-color: var(--background-color-secondary);
 }
 
-#title_background.permanent_hover > svg {
-	transition: 0.2s fill ease-in-out;
-	fill: var(--background-color-secondary);
+#title.permanent_hover {
+	box-shadow: inset 0 0 0 1000px var(--background-color-secondary);
+}
+
+#title > span {
+	display: block;
+	padding: 0;
+	color: var(--light-color);
+	font-size: 17px;
+}
+
+#title.fullwidth {
+	padding-left: 0;
+	mask-image: none;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -316,6 +262,7 @@ body.shown {
 	transform: translateY(-8px) rotate(90deg);
 }
 
+/*noinspection CssNonIntegerLengthInPixels*/
 @media (max-width: 533.33px) {
 	#header h1 {
 		font-size: 6vw;

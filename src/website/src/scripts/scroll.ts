@@ -1,5 +1,5 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import { contentArea, markets, titleBackground } from './elements';
+import { contentArea, markets, title } from './elements';
 
 let autoScrollTimeout: any
 let lastScroll: number = window.scrollY
@@ -42,7 +42,7 @@ export function handleScroll() {
 
 	// ---------- Title background ----------
 
-	titleBackground.classList.toggle('permanent_hover', scroll > 0)
+	title.classList.toggle('permanent_hover', scroll > 0)
 
 	// ---------- Sticky navigation ----------
 

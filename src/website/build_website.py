@@ -79,25 +79,24 @@ def build_website():
     # Generate website's initial image
     os.makedirs(WEBSITE_ASSETS_PATH, exist_ok=True)
 
-    with requests.get(initial_image_data.url, stream=True) as response:
-        with Image.open(BytesIO(response.content)) as img:
-            img = img.convert('RGB')
+    with Image.open(BytesIO(image_response.content)) as img:
+        img = img.convert('RGB')
 
-            original_width, original_height = img.size
+        original_width, original_height = img.size
 
-            width_ratio = INITIAL_IMAGE_WIDTH / original_width
-            height_ratio = INITIAL_IMAGE_HEIGHT / original_height
+        width_ratio = INITIAL_IMAGE_WIDTH / original_width
+        height_ratio = INITIAL_IMAGE_HEIGHT / original_height
 
-            if width_ratio >= height_ratio:
-                new_width = INITIAL_IMAGE_WIDTH
-                new_height = round(original_height * width_ratio)
-            else:
-                new_height = INITIAL_IMAGE_HEIGHT
-                new_width = round(original_width * height_ratio)
+        if width_ratio >= height_ratio:
+            new_width = INITIAL_IMAGE_WIDTH
+            new_height = round(original_height * width_ratio)
+        else:
+            new_height = INITIAL_IMAGE_HEIGHT
+            new_width = round(original_width * height_ratio)
 
-            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+        img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-            img.save(WEBSITE_INITIAL_IMAGE_PATH, 'jpeg', quality=60, optimize=True)
+        img.save(WEBSITE_INITIAL_IMAGE_PATH, 'jpeg', quality=60, optimize=True)
 
     # Generate website's HTML
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
@@ -117,7 +116,6 @@ def build_website():
         mkpath(WEBSITE_PATH, '_headers'),
         mkpath(WEBSITE_SYS_ROOT, '_headers')
     )
-
 
 
 if __name__ == '__main__':

@@ -1,7 +1,6 @@
 export const homepageBackground = document.querySelector<HTMLImageElement>('#home_image_background')!
 export const homepageForeground = document.querySelector<HTMLImageElement>('#home_image_foreground')!
 export const title = document.querySelector<HTMLAnchorElement>('#title')!
-export const titleBackground = document.querySelector<HTMLElement>('#title_background')!
 export const titleTexts = document.querySelectorAll<HTMLSpanElement>('#title span')
 
 export const contentArea = document.querySelector<HTMLElement>('#content')!
