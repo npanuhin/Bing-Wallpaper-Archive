@@ -17,28 +17,24 @@ print(f'Last ROW image: {latest_image.date}')
 
 # --------------------------------------------------- Update README ----------------------------------------------------
 
+def update_html_attribute(text, tag_id, attr, value):
+    pattern = rf'(id="{tag_id}" [^>]*?{attr}=").*?(")'
+    return re.sub(pattern, rf'\1{value}\2', text)
+
+
 with open('../README.md', 'r', encoding='utf-8') as file:
     readme = file.read()
 
-readme = re.sub(
-    r'<a id="last_image_link" href=".*?">',
-    f'<a id="last_image_link" href="{latest_image.url}">',
-    readme
-)
+readme = update_html_attribute(readme, 'last_image_link', 'href', latest_image.url)
+readme = update_html_attribute(readme, 'last_image', 'title', latest_image.title)
+readme = update_html_attribute(readme, 'last_image', 'alt', latest_image.title)
 
-readme = re.sub(
-    r'<img id="last_image" title=".*?" alt=".*?" src=".*?">',
-    f'<img id="last_image" title="{latest_image.title}" alt="{latest_image.title}" src="https://bing.npanuhin.me/latest.svg">',
-    readme
-)
-
-# badge_formatted_date = latest_image.date.strftime(DATE_FORMAT).replace("-", "--")
-# readme = re.sub(
-#     r'<img id="last_image_badge" alt=".*?" src=".*?">',
-#     f'<img id="last_image_badge" alt="Last image: {latest_image.date}" src='
-#     f'"https://img.shields.io/badge/Last_image-{badge_formatted_date}-informational?style=flat">',
-#     readme
-# )
+# badge_date = latest_image.date.strftime('%Y-%m-%d')
+# badge_formatted_date = badge_date.replace("-", "--")
+# badge_url = f"https://img.shields.io/badge/Last_image-{badge_formatted_date}-informational?style=flat"
+#
+# readme = update_html_attribute(readme, 'last_image_badge', 'alt', f"Last image: {badge_date}")
+# readme = update_html_attribute(readme, 'last_image_badge', 'src', badge_url)
 
 with open('../README.md', 'w', encoding='utf-8') as file:
     file.write(readme)
