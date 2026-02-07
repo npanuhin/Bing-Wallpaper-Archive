@@ -4,7 +4,7 @@ import shutil
 import sys
 import os
 
-from PIL import Image
+from PIL import Image, ImageDraw
 import requests
 
 sys.path.append('../')
@@ -23,8 +23,9 @@ WEBSITE_INITIAL_IMAGE_PATH = mkpath(WEBSITE_ASSETS_PATH, 'initial-image.jpg')
 INITIAL_IMAGE_WIDTH = 1920
 INITIAL_IMAGE_HEIGHT = 1080
 
-README_IMAGE_PNG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
-README_IMAGE_RADIUS = 40
+README_IMAGE_WEBP_PATH = mkpath(WEBSITE_ROOT, 'latest.webp')
+README_IMAGE_SVG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
+README_IMAGE_RADIUS = 30  # Based on height=1080
 
 
 def build_website():
@@ -58,22 +59,36 @@ def build_website():
     # ==================== Initial image ====================
     initial_image_data = ROW.read_api()[-1]
 
+    assert initial_image_data.url is not None  # TODO
+    image_response = requests.get(initial_image_data.url)
+
+    # Generate WebP with rounded corners
+    with Image.open(BytesIO(image_response.content)) as img:
+        img = img.convert('RGBA')
+        width, height = img.size
+        radius = round(height * README_IMAGE_RADIUS / INITIAL_IMAGE_HEIGHT)
+
+        mask = Image.new('L', img.size, 0)
+        draw = ImageDraw.Draw(mask)
+        draw.rounded_rectangle((0, 0) + img.size, radius=radius, fill=255)
+        img.putalpha(mask)
+
+        img.save(README_IMAGE_WEBP_PATH, 'webp', quality=80, method=6)
+
     # Generate SVG with rounded corners
     with open(LATEST_IMAGE_SVG_TEMPLATE, 'r') as file:
         svg_template = file.read()
 
-    assert initial_image_data.url is not None  # TODO
-    image_response = requests.get(initial_image_data.url)
     base64_image = base64.b64encode(image_response.content).decode('utf-8')
     image_data_uri = f'data:image/jpeg;base64,{base64_image}'
 
     svg_content = (svg_template
-                   .replace('{width}', str(INITIAL_IMAGE_WIDTH))
-                   .replace('{height}', str(INITIAL_IMAGE_HEIGHT))
-                   .replace('{radius}', str(README_IMAGE_RADIUS))
+                   .replace('{width}', str(width))
+                   .replace('{height}', str(height))
+                   .replace('{radius}', str(radius))
                    .replace('{image_url}', image_data_uri))
 
-    with open(README_IMAGE_PNG_PATH, 'w') as file:
+    with open(README_IMAGE_SVG_PATH, 'w') as file:
         file.write(svg_content)
 
     # Generate website's initial image

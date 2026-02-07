@@ -2,7 +2,10 @@
 
 <div align="center">
     <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-02-07.jpg">
-        <img id="last_image" title="Salar de Uyuni salt flats in Bolivia" alt="Salar de Uyuni salt flats in Bolivia" src="https://bing.npanuhin.me/latest.svg">
+        <picture>
+            <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
+            <img id="last_image" title="Salar de Uyuni salt flats in Bolivia" alt="Salar de Uyuni salt flats in Bolivia" src="https://bing.npanuhin.me/latest.svg">
+        </picture>
         <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
     </a>
 </div>
