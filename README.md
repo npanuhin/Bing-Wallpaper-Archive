@@ -1,10 +1,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-    <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-02-08.jpg">
+    <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-02-11.jpg">
         <picture>
             <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-            <img id="last_image" title="Corfu, Greece" alt="Corfu, Greece" src="https://bing.npanuhin.me/latest.svg">
+            <img id="last_image" title="Salt flats in Badwater Basin, Death Valley National Park, California, USA" alt="Salt flats in Badwater Basin, Death Valley National Park, California, USA" src="https://bing.npanuhin.me/latest.svg">
         </picture>
         <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
     </a>
