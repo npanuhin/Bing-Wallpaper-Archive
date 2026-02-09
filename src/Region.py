@@ -83,17 +83,3 @@ def extract_market_from_url(url: str) -> Market | None:
 
 ROW = Region(_ROW)
 REGIONS = [ROW] + list(map(Region, _REGIONS))
-
-if __name__ == '__main__':
-    assert extract_market_from_url(
-        'https://bing.com/th?id=OHR.WhiteEyes_EN-US2249866810_1920x1080.jpg'
-    ) == Market('en-US')
-    assert extract_market_from_url(
-        'https://bing.com/th?id=OHR.WhiteEyes_ROW2172958331_1920x1200.jpg&rf=LaDigue_1920x1200.jpg'
-    ) == Market('ROW')
-
-    assert str(Region('ROW')) == 'en-RU'
-    assert str(Region('en-US')) == 'en-US'
-
-    assert repr(Region('ROW')) == 'ROW [en-RU]'
-    assert repr(Region('en-US')) == 'en-US'

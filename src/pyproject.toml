@@ -18,3 +18,7 @@ flake8-quotes.inline-quotes = "single"
 
 [tool.pyrefly]
 project-excludes = ["old/"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

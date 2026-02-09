@@ -1,5 +1,4 @@
 name: Code Quality
-
 on:
   push:
     paths:
@@ -13,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  check:
     name: Check Python code
     runs-on: ubuntu-latest
 
@@ -29,9 +28,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: src
-        run: |
-          pip install -r requirements.txt
-          pip install ruff pyrefly
+        run: pip install -r requirements.txt
 
       - name: Check with ruff
         working-directory: src
@@ -40,3 +37,7 @@ jobs:
       - name: Check with pyrefly
         working-directory: src
         run: pyrefly check
+
+      - name: Run tests
+        working-directory: src
+        run: pytest
