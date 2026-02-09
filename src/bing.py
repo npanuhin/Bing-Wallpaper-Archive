@@ -2,36 +2,18 @@ import dataclasses
 import datetime
 import os
 from shutil import rmtree
+from typing import Iterable
 
 import requests
 
-from Region import REGIONS, Region, extract_market_from_url
+from Region import REGIONS, Region
+from bing_utils import extract_base_url, get_uhd_url
 from cloudflare import CloudflareR2
 from postprocess import postprocess_api
 from structures import ApiEntry, DATE_FORMAT
-from utils import mkpath, posixpath, warn, fetch_json
+from system_utils import mkpath, posixpath, warn, fetch_json
 
 storage = CloudflareR2()
-
-
-# ======================================================================================================================
-
-
-def extract_base_url(image_url: str) -> str:
-    # '/th?id=OHR.MountainDayChina_EN-US0394775210_1920x1080.webp'
-    if '_1920x1080' in image_url:
-        return image_url.split('_1920x1080')[0]
-    if '_UHD' in image_url:
-        return image_url.split('_UHD')[0]
-    raise ValueError(f'Cannot extract base url from {image_url}')
-
-
-def get_uhd_url(region: Region, base_url: str) -> str:
-    # '/th?id=OHR.MountainDayChina_EN-US0394775210_UHD.jpg'
-    url = f'https://bing.com{base_url}_UHD.jpg'
-    market = extract_market_from_url(url)
-    assert market == region, f'Region mismatch: {market}, but should be {region}'
-    return url
 
 
 def parse_date(date_string: str) -> datetime.date | None:
@@ -67,7 +49,7 @@ def parse_date(date_string: str) -> datetime.date | None:
 
 def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -> bool:
     """
-    :return: True if the api_by_date was modified, False otherwise
+    :return: True if the `api_by_date` was modified, False otherwise
     """
 
     date = new_entry.date
@@ -121,23 +103,14 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
     return changed
 
 
-def update(region: Region):
-    print(f'Updating {repr(region)}...')
-
-    common_params = {'mkt': region, 'setlang': region.lang, 'cc': region.country}
-
-    api_by_date = {item.date: item for item in region.read_api()}
-
-    to_download = set()
-
-    # ------------------------------------------------------------------------------------------------------------------
+def update_from_hp_image_archive(region: Region) -> Iterable[ApiEntry]:
     # https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=100&mkt=en-US&setlang=en&cc=US
     print('Getting caption, image and image url from bing.com/HPImageArchive.aspx...')
     # TODO: extract title and copyright
 
     data = fetch_json(
         'https://www.bing.com/HPImageArchive.aspx',
-        params=common_params | {'format': 'js', 'idx': 0, 'n': 10}
+        params={'mkt': region, 'setlang': region.lang, 'cc': region.country, 'format': 'js', 'idx': 0, 'n': 10}
     )['images']
 
     for image_data in data:
@@ -149,21 +122,20 @@ def update(region: Region):
         caption = image_data['title'].strip()
         bing_url = get_uhd_url(region, image_data['urlbase'].strip())
 
-        new_entry = ApiEntry(
+        yield ApiEntry(
             date=date,
             caption=caption,
             bing_url=bing_url
         )
-        add_entry(api_by_date, new_entry)
-        to_download.add(date)
 
-    # ------------------------------------------------------------------------------------------------------------------
+
+def update_from_hp_api_model(region: Region) -> Iterable[ApiEntry]:
     # https://www.bing.com/hp/api/model?mkt=en-US&setlang=en&cc=US
     print('Getting title, caption, copyright, description and image url from bing.com/hp/api/model...')
 
     data = fetch_json(
         'https://www.bing.com/hp/api/model',
-        params=common_params
+        params={'mkt': region, 'setlang': region.lang, 'cc': region.country}
     )['MediaContents']
 
     for image_data in data:
@@ -175,12 +147,13 @@ def update(region: Region):
         title = image_data['ImageContent']['Title'].strip()
         caption = image_data['ImageContent']['Headline'].strip()
         copyright = image_data['ImageContent']['Copyright'].strip()
-        bing_url = get_uhd_url(region, extract_base_url(image_data['ImageContent']['Image']['Url'].strip()))
+        base_url = extract_base_url(image_data['ImageContent']['Image']['Url'].strip())
+        bing_url = get_uhd_url(region, base_url)
 
         description = image_data['ImageContent']['Description'].strip()
         description = description.replace('  ', ' ')  # Fix for double spaces
 
-        new_entry = ApiEntry(
+        yield ApiEntry(
             date=date,
             title=title,
             caption=caption,
@@ -188,15 +161,14 @@ def update(region: Region):
             description=description,
             bing_url=bing_url
         )
-        add_entry(api_by_date, new_entry)
-        to_download.add(date)
 
-    # ------------------------------------------------------------------------------------------------------------------
+
+def update_from_hp_image_gallery(region: Region) -> Iterable[ApiEntry]:
     # https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US&setlang=en&cc=US
     print('Getting title, subtitle, copyright, description and image url from bing.com/hp/api/v1/imagegallery...')
     data = fetch_json(
         'https://www.bing.com/hp/api/v1/imagegallery',
-        params=common_params | {'format': 'json'}
+        params={'mkt': region, 'setlang': region.lang, 'cc': region.country, 'format': 'json'}
     )['data']['images']
 
     for image_data in data:
@@ -216,9 +188,10 @@ def update(region: Region):
             i += 1
         description = description.strip().replace('  ', ' ')  # Fix for double spaces
 
-        bing_url = get_uhd_url(region, extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef'].strip()))
+        base_url = extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef'].strip())
+        bing_url = get_uhd_url(region, base_url)
 
-        new_entry = ApiEntry(
+        yield ApiEntry(
             date=date,
             title=title,
             subtitle=subtitle,
@@ -226,8 +199,23 @@ def update(region: Region):
             description=description,
             bing_url=bing_url
         )
-        add_entry(api_by_date, new_entry)
-        to_download.add(date)
+
+
+def update(region: Region):
+    print(f'Updating {repr(region)}...')
+
+    api_by_date = {item.date: item for item in region.read_api()}
+
+    to_download: set[datetime.date] = set()
+
+    for update_func in (
+        update_from_hp_image_archive,
+        update_from_hp_api_model,
+        update_from_hp_image_gallery
+    ):
+        for entry in update_func(region):
+            add_entry(api_by_date, entry)
+            to_download.add(entry.date)
 
     # ------------------------------------------------------------------------------------------------------------------
     print('Downloading images and uploading to Storage...')

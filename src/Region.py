@@ -7,7 +7,7 @@ import re
 
 from structures import ApiEntry, _REGIONS, _ROW, DATE_FORMAT
 
-from utils import API_PATH, mkpath
+from system_utils import API_PATH, mkpath
 
 
 class Market:

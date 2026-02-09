@@ -3,7 +3,7 @@ import re
 from bing import update_all
 from Region import ROW
 
-# ----------------------------------------------- Update api and images ------------------------------------------------
+# ----------------------------------------------- Update API and images ------------------------------------------------
 
 update_all()
 

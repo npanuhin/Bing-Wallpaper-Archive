@@ -2,7 +2,7 @@ from exif import Image as ExifImage
 from PIL import Image
 import os
 
-from utils import mkpath, createFolderIfAbsent
+from system_utils import mkpath, createFolderIfAbsent
 
 API_PATH = mkpath("../", "api")
 

@@ -7,7 +7,7 @@ import os
 from botocore.exceptions import ClientError
 import boto3
 
-from utils import mkpath, SRC_PATH
+from system_utils import mkpath, SRC_PATH
 
 
 TOKEN_PATH = mkpath(SRC_PATH, 'configs/cloudflare_token.json')

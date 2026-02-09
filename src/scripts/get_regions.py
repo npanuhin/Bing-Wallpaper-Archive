@@ -1,22 +1,23 @@
 import sys
 
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
 sys.path.append('../')
 from Region import REGIONS, Market, extract_market_from_url
-from utils import warn
+from system_utils import warn
 
 
 # All regions list:
 # https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes
 
 
+# Active regions from online source 1:
 # Canada - English: en-CA | Canada - French: fr-CA | China: zh-CN | China - English: en-CN | France: fr-FR
 # Germany: de-DE | India: en-IN | Japan: ja-JP | United Kingdom: en-GB | United States: en-US | International: en-WW (?)
 # Spain: es-ES
 
-# Other information:
+# Active regions from online source 2:
 # `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR` (sometimes),
 # `pt-BR` and `zh-CN`
 
@@ -69,11 +70,9 @@ def get_regions() -> list[Market]:
 
     result = [Market('ROW')]
     for market in markets:
-
-        common_params = {'mkt': str(market), 'setlang': market.lang, 'cc': market.country}
         data = requests.get(
             'https://www.bing.com/HPImageArchive.aspx',
-            params={'format': 'js', 'idx': 0, 'n': 10} | common_params
+            params={'mkt': str(market), 'setlang': market.lang, 'cc': market.country, 'format': 'js', 'idx': 0, 'n': 10}
         ).json()['images']
 
         url = 'https://bing.com' + data[0]['urlbase']

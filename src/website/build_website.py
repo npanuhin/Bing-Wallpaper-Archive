@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw
 import requests
 
 sys.path.append('../')
-from utils import mkpath, WEBSITE_PATH
+from system_utils import mkpath, WEBSITE_PATH
 from Region import REGIONS, ROW
 
 WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')

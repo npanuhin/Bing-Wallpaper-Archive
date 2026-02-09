@@ -4,7 +4,7 @@ from PIL import Image
 import os
 
 sys_path.append("../")
-from utils import mkpath
+from system_utils import mkpath
 
 
 ROOT_PATH = mkpath("../", "../")

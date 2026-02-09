@@ -4,7 +4,7 @@ import json
 import os
 
 sys_path.append("../")
-from utils import mkpath
+from system_utils import mkpath
 
 
 REGION = "US"

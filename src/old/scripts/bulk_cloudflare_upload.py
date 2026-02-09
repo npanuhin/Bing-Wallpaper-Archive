@@ -1,9 +1,9 @@
 import sys
 import os
 
-sys.path.append('../')
+sys.path.append('../../')
 from cloudflare import CloudflareR2
-from utils import mkpath
+from system_utils import mkpath
 
 
 def main(root_path):

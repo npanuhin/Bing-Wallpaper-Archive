@@ -4,7 +4,7 @@ import os
 from google.cloud import storage
 
 from images import compare_image_pixels
-from utils import mkpath
+from system_utils import mkpath
 
 
 with open(mkpath(os.path.dirname(__file__), 'gcloud_conf.json'), 'r', encoding='utf-8') as file:

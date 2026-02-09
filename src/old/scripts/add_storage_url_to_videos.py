@@ -4,7 +4,7 @@ import json
 
 sys.path.append('../')
 from gcloud import gcloud_url  # noqa: E402
-from utils import mkpath  # noqa: E402
+from system_utils import mkpath  # noqa: E402
 
 
 def main():

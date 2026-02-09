@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-from utils import mkpath
+from system_utils import mkpath
 
 
 US_IMAGES_PATH = mkpath("../", "api", "US", "images")
