@@ -1,6 +1,8 @@
 from typing import Any
 
 from threading import Thread, Lock
+import requests
+import hashlib
 import json
 import os
 
@@ -26,25 +28,25 @@ def print_async(*args: Any, **kwargs: Any):
 
 class CloudflareR2:
     def __init__(self):
+        token_source = os.environ
         if os.path.isfile(TOKEN_PATH):
             with open(TOKEN_PATH) as token_file:
-                cloudflare_token = json.load(token_file)
-            ACCOUNT_ID = cloudflare_token['CLOUDFLARE_ACCOUNT_ID']
-            ACCESS_KEY_ID = cloudflare_token['CLOUDFLARE_ACCESS_KEY_ID']
-            SECRET_ACCESS_KEY = cloudflare_token['CLOUDFLARE_SECRET_ACCESS_KEY']
-        else:
-            ACCOUNT_ID = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
-            ACCESS_KEY_ID = os.environ.get('CLOUDFLARE_ACCESS_KEY_ID')
-            SECRET_ACCESS_KEY = os.environ.get('CLOUDFLARE_SECRET_ACCESS_KEY')
+                token_source = json.load(token_file)
 
-        if None in (ACCOUNT_ID, ACCESS_KEY_ID, SECRET_ACCESS_KEY):
+        self.account_id = token_source.get('CLOUDFLARE_ACCOUNT_ID')
+        access_key_id = token_source.get('CLOUDFLARE_R2_ACCESS_KEY_ID')
+        self.api_token = token_source.get('CLOUDFLARE_R2_API_TOKEN')
+
+        if self.account_id is None or access_key_id is None or self.api_token is None:
             raise Exception('Cloudflare token not found, please read src/README')
+
+        secret_access_key = hashlib.sha256(self.api_token.encode('utf-8')).hexdigest()
 
         self.client = boto3.client(
             service_name='s3',
-            endpoint_url=f'https://{ACCOUNT_ID}.r2.cloudflarestorage.com',
-            aws_access_key_id=ACCESS_KEY_ID,
-            aws_secret_access_key=SECRET_ACCESS_KEY
+            endpoint_url=f'https://{self.account_id}.r2.cloudflarestorage.com',
+            aws_access_key_id=access_key_id,
+            aws_secret_access_key=secret_access_key
         )
 
     # ----------------------------------------------- Working with files -----------------------------------------------
@@ -109,6 +111,50 @@ class CloudflareR2:
         print_async(f'Cloudflare R2: Folder {folder_path} deleted')
 
         return True
+
+    def get_bucket_usage(self) -> tuple[int, int] | None:
+        if not self.api_token or not self.account_id:
+            return None
+
+        url = f'https://api.cloudflare.com/client/v4/accounts/{self.account_id}/r2/buckets/{R2_CONFIG["bucket_name"]}/usage'
+        headers = {'Authorization': f'Bearer {self.api_token}'}
+
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            if data.get('success'):
+                result = data['result']
+                return int(result['payloadSize']), int(result['objectCount'])
+        except Exception as e:
+            print_async(f'Cloudflare API error: {e}')
+
+        return None
+
+    def get_stats(self, prefix: str = '') -> tuple[int, int]:
+        total_size = 0
+        total_count = 0
+
+        continuation_token = None
+        while True:
+            params = {
+                'Bucket': R2_CONFIG['bucket_name'],
+                'Prefix': prefix,
+            }
+            if continuation_token:
+                params['ContinuationToken'] = continuation_token
+
+            response = self.client.list_objects_v2(**params)
+
+            for item in response.get('Contents', []):
+                total_size += item['Size']
+                total_count += 1
+
+            if not response.get('IsTruncated'):
+                break
+            continuation_token = response['NextContinuationToken']
+
+        return total_size, total_count
 
 
 def r2_url(bucket_path: str) -> str:

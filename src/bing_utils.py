@@ -14,5 +14,6 @@ def get_uhd_url(region: Region, base_url: str) -> str:
     # '/th?id=OHR.MountainDayChina_EN-US0394775210_UHD.jpg'
     url = f'https://bing.com{base_url}_UHD.jpg'
     market = extract_market_from_url(url)
-    assert market == region, f'Region mismatch: {market}, but should be {region}'
+    if market != region:
+        raise ValueError(f'Region mismatch: {market}, but should be {region}')
     return url

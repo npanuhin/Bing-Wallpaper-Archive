@@ -5,7 +5,8 @@ on:
     - cron: '2 8 * * *'  # 8:02 UTC
   workflow_dispatch:
 
-permissions: {}  # Using PAT
+permissions:
+  contents: write
 
 concurrency:
   group: "daily_update"
@@ -20,7 +21,6 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v5
         with:
-          token: ${{ secrets.GH_PAT }}
           fetch-depth: 2
 
       - name: Install Python
@@ -29,17 +29,48 @@ jobs:
           python-version: 3.14
           cache: pip
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         working-directory: src
         run: pip install -r requirements.txt
 
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+          cache-dependency-path: src/website/package-lock.json
+
+      - name: Install Node.js dependencies
+        working-directory: src/website
+        run: npm ci
+
       - name: Update archive
         working-directory: src
-        run: python update.py
+        run: python bing.py
         env:
           CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
-          CLOUDFLARE_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}'
-          CLOUDFLARE_SECRET_ACCESS_KEY: '${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}'
+          CLOUDFLARE_R2_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}'
+          CLOUDFLARE_R2_API_TOKEN: '${{ secrets.CLOUDFLARE_R2_API_TOKEN }}'
+
+      - name: Build website
+        working-directory: src/website
+        run: npm run build
+
+      - name: Update README
+        working-directory: src
+        run: python update_readme.py
+        env:
+          CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
+          CLOUDFLARE_R2_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}'
+          CLOUDFLARE_R2_API_TOKEN: '${{ secrets.CLOUDFLARE_R2_API_TOKEN }}'
+
+      - name: Deploy website
+        uses: cloudflare/wrangler-action@v3
+        with:
+          wranglerVersion: "latest"
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: src/website
 
       - name: Get previous commit author
         id: previous_commit

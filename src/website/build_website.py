@@ -1,19 +1,21 @@
+from dataclasses import asdict
 from io import BytesIO
+import os
 import base64
 import shutil
 import sys
-import os
 
 from PIL import Image, ImageDraw
 import requests
 
 sys.path.append('../')
-from system_utils import mkpath, WEBSITE_PATH
-from Region import REGIONS, ROW
+from system_utils import mkpath, WEBSITE_PATH, WEBSITE_ROOT
+from structures import ApiEntry
+from Region import REGIONS
+from api import write_json
 
 WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')
 WEBSITE_SYS_ROOT = mkpath(WEBSITE_PATH, 'root')
-WEBSITE_ROOT = mkpath(WEBSITE_PATH, 'root', '_website')
 WEBSITE_ASSETS_PATH = mkpath(WEBSITE_ROOT, 'assets')
 
 LATEST_IMAGE_SVG_TEMPLATE = mkpath(WEBSITE_PATH, 'latest-template.svg')
@@ -28,42 +30,64 @@ README_IMAGE_SVG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
 README_IMAGE_RADIUS = 30  # Based on height=1080
 
 
-def build_website():
-    if not os.path.isdir(WEBSITE_ROOT):
-        sys.stderr.write(f'Error: Build directory "{WEBSITE_ROOT}" not found.\n')
-        sys.stderr.write('Please build the website before this script.\n')
-        sys.exit(1)
+def gen_api_endpoints(region_to_api: dict[str, list[ApiEntry]]):
+    # all.json
+    all_json_data = {
+        region_id: [asdict(entry) for entry in api]
+        for region_id, api in region_to_api.items()
+    }
+    write_json(all_json_data, mkpath(WEBSITE_ROOT, 'all.json'))
+    write_json(all_json_data, mkpath(WEBSITE_ROOT, 'all.min.json'), minify=True)
 
-    for region in REGIONS:
-        region_directory = mkpath(WEBSITE_ROOT, region.api_country.upper())
-        api = region.read_api()
+    for region_id, api in region_to_api.items():
+        country, lang = region_id.split('-')
+        api_json = all_json_data[region_id]
 
-        os.makedirs(region_directory, exist_ok=True)
+        # /{country}-{language}.json
+        write_json(api_json, mkpath(WEBSITE_ROOT, f'{region_id}.json'))
+        write_json(api_json, mkpath(WEBSITE_ROOT, f'{region_id}.min.json'), minify=True)
 
-        # Add API
-        region.write_api(api, mkpath(region_directory, region.api_lang.lower() + '.json'))
+        # backward compatibility: /{country}/{language}
+        write_json(api_json, mkpath(WEBSITE_ROOT, country, f'{lang}.json'))
+        write_json(api_json, mkpath(WEBSITE_ROOT, country, f'{lang}.min.json'), minify=True)
 
-        if api:
-            # Split by year
-            min_year = min(image.date for image in api).year
-            max_year = max(image.date for image in api).year
+        # By year
+        years = sorted(set(entry.date.year for entry in api))
+        for year in years:
+            api_year_json = [
+                entry_json
+                for entry, entry_json in zip(api, api_json)
+                if entry.date.year == year
+            ]
 
-            for year in range(min_year, max_year + 1):
-                api_for_year = [image for image in api if image.date.year == year]
-                region.write_api(
-                    api_for_year,
-                    mkpath(region_directory, region.api_lang.lower() + f'.{year}.json'),
-                    minify=True
-                )
+            write_json(api_year_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.json'))
+            write_json(api_year_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.min.json'), minify=True)
 
-    # ==================== Initial image ====================
-    initial_image_data = ROW.read_api()[-1]
+            # backward compatibility: /{country}/{language}
+            write_json(api_year_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.json'))
+            write_json(api_year_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.min.json'), minify=True)
 
-    assert initial_image_data.url is not None  # TODO
-    image_response = requests.get(initial_image_data.url)
+        # By month
+        months = sorted(set((entry.date.year, entry.date.month) for entry in api))
+        for year, month in months:
+            api_month_json = [
+                entry_json
+                for entry, entry_json in zip(api, api_json)
+                if entry.date.year == year and entry.date.month == month
+            ]
+            month_str = f'{month:02d}'
 
+            write_json(api_month_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.json'))
+            write_json(api_month_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.min.json'), minify=True)
+
+            # backward compatibility: /{country}/{language}
+            write_json(api_month_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.min.json'))
+            write_json(api_month_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.json'), minify=True)
+
+
+def gen_github_initial_image(image_content: bytes):
     # Generate WebP with rounded corners
-    with Image.open(BytesIO(image_response.content)) as img:
+    with Image.open(BytesIO(image_content)) as img:
         img = img.convert('RGBA')
         width, height = img.size
         radius = round(height * README_IMAGE_RADIUS / INITIAL_IMAGE_HEIGHT)
@@ -79,7 +103,7 @@ def build_website():
     with open(LATEST_IMAGE_SVG_TEMPLATE, 'r') as file:
         svg_template = file.read()
 
-    base64_image = base64.b64encode(image_response.content).decode('utf-8')
+    base64_image = base64.b64encode(image_content).decode('utf-8')
     image_data_uri = f'data:image/jpeg;base64,{base64_image}'
 
     svg_content = (svg_template
@@ -91,10 +115,11 @@ def build_website():
     with open(README_IMAGE_SVG_PATH, 'w') as file:
         file.write(svg_content)
 
-    # Generate website's initial image
+
+def gen_website_initial_image(image_content: bytes):
     os.makedirs(WEBSITE_ASSETS_PATH, exist_ok=True)
 
-    with Image.open(BytesIO(image_response.content)) as img:
+    with Image.open(BytesIO(image_content)) as img:
         img = img.convert('RGB')
 
         original_width, original_height = img.size
@@ -113,7 +138,8 @@ def build_website():
 
         img.save(WEBSITE_INITIAL_IMAGE_PATH, 'jpeg', quality=60, optimize=True)
 
-    # Generate website's HTML
+
+def update_website_html(initial_image_data: ApiEntry):
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
         html = file.read()
 
@@ -126,11 +152,39 @@ def build_website():
     with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
         file.write(html)
 
-    # Add headers
+
+def add_headers():
     shutil.copyfile(
         mkpath(WEBSITE_PATH, '_headers'),
         mkpath(WEBSITE_SYS_ROOT, '_headers')
     )
+
+
+def build_website():
+    if not os.path.isdir(WEBSITE_ROOT):
+        sys.stderr.write(f'Error: Build directory "{WEBSITE_ROOT}" not found.\n')
+        sys.stderr.write('Please build the website before this script.\n')
+        sys.exit(1)
+
+    region_to_api = {
+        f'{region.api_country}-{region.api_lang}': region.read_api()
+        for region in REGIONS
+    }
+
+    initial_image_data = region_to_api['ROW-en'][-1]
+    assert initial_image_data.url is not None
+    image_content = requests.get(initial_image_data.url).content
+
+    print('Generating GitHub initial image...')
+    gen_github_initial_image(image_content)
+    print('Generating website initial image...')
+    gen_website_initial_image(image_content)
+    print('Updating website HTML...')
+    update_website_html(initial_image_data)
+    print('Adding headers...')
+    add_headers()
+    print('Generating API endpoints...')
+    gen_api_endpoints(region_to_api)
 
 
 if __name__ == '__main__':

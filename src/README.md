@@ -1,22 +1,24 @@
-## Cloudflare R2 token
+## Cloudflare tokens
 
-Token should be placed into the <code><a href="configs">configs</a>/cloudflare_token.json</code> file:
+Tokens and IDs should be placed into the <code><a href="configs">configs</a>/cloudflare_token.json</code> file:
+
 ```json
 {
   "CLOUDFLARE_ACCOUNT_ID": "<----->",
-  "CLOUDFLARE_ACCESS_KEY_ID": "<----->",
-  "CLOUDFLARE_SECRET_ACCESS_KEY": "<----->"
+  "CLOUDFLARE_R2_ACCESS_KEY_ID": "<----->",
+  "CLOUDFLARE_R2_API_TOKEN": "<----->"
 }
 ```
 
-Alternatively, you can set the environment variables `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ACCESS_KEY_ID` and `CLOUDFLARE_SECRET_ACCESS_KEY`.
+Alternatively, you can set environment variables `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_R2_ACCESS_KEY_ID` and
+`CLOUDFLARE_R2_API_TOKEN`.
 
 ## Development information
 
 (in no particular order)
 
-> Microsoft does not embed any watermarks in Bing pictures except for the 1920x1200 format when it is available (not systematic)
-
+> Microsoft does not embed any watermarks in Bing pictures except for the 1920x1200 format when it is available (not
+> systematic)
 
 ### TODO
 
@@ -42,7 +44,8 @@ Roughly in order of ~~ease of implementation~~ importance:
 - [ ] Website: hold current image when hovering over title
 - [x] Website: Maybe show the latest image as the first one + preload it sooner than JS script would do it
 - [ ] Website: fade-in not just body but all elements  (??? body is better?)
-- [x] ~~Add protection for GCloud (because 5s per image \~= 500'000 images per month if somebody decides to leave the page open for so long xd)~~ Switched to Cloudflare R2
+- [x] ~~Add protection for GCloud (because 5s per image \~= 500'000 images per month if somebody decides to leave the
+  page open for so long xd)~~ Switched to Cloudflare R2
 - [ ] On the previous note: still add a fail-safe functionality to disable the slideshow after N hours (24?)
 - [ ] Deal with integrity errors (see [TODO](#todo) below)
 - [ ] Update (and upload to storage) videos, if needed
@@ -51,7 +54,7 @@ Roughly in order of ~~ease of implementation~~ importance:
 
 
 - **Missing images (!)** (`src/check_status.py` shows 4 images)
-    UPD: probably those are videos, need to check
+  UPD: probably those are videos, need to check
 - Add more images from 2009
 - Videos update
 

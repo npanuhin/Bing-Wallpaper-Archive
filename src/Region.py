@@ -1,13 +1,11 @@
 from urllib.parse import urlparse, parse_qs
-from dataclasses import asdict
-import datetime
-import json
 import os
 import re
 
-from structures import ApiEntry, _REGIONS, _ROW, DATE_FORMAT
+from structures import ApiEntry, _REGIONS, _ROW
 
 from system_utils import API_PATH, mkpath
+import api
 
 
 class Market:
@@ -43,34 +41,10 @@ class Region(Market):
         os.makedirs(self.root_path, exist_ok=True)
 
     def read_api(self) -> list[ApiEntry]:
-        if not os.path.isfile(self.api_path):
-            return []
+        return api.read_api(self.api_path)
 
-        with open(self.api_path, 'r', encoding='utf-8') as file:
-            return [
-                ApiEntry(
-                    **parsed_json | {
-                        'date': datetime.datetime.strptime(parsed_json['date'], DATE_FORMAT).date()
-                    }
-                )
-                for parsed_json in json.load(file)
-            ]
-
-    def write_api(self, api: list[ApiEntry], output_path: str | None = None, minify: bool = False):
-        if output_path is None:
-            output_path = self.api_path
-
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-        with open(output_path, 'w', encoding='utf-8') as file:
-            json.dump(
-                [asdict(entry) for entry in api],
-                file,
-                ensure_ascii=False,
-                indent=None if minify else '\t',
-                separators=(',', ':') if minify else None,
-                default=lambda item: item.isoformat() if isinstance(item, datetime.date) else item,
-            )
+    def write_api(self, api_data: list[ApiEntry], output_path: str | None = None, minify: bool = False):
+        api.write_api(api_data, output_path or self.api_path, minify=minify)
 
 
 def extract_market_from_url(url: str) -> Market | None:
