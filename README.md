@@ -118,15 +118,15 @@ API files contain image data:
 ```
 
 
-### Endpoints:
+<h3 align="center">Endpoints</h3>
 
 <table>
   <thead>
     <tr>
-      <th width="5000px">Scope</th>
-      <th width="10000px">Path</th>
+      <th width="6000px">Scope</th>
+      <th width="7000px">Path</th>
       <th width="2000px">Example</th>
-      <th width="1000px">Size</th>
+      <th width="800px">Size</th>
     </tr>
   </thead>
   <tbody>
@@ -181,7 +181,7 @@ API files contain image data:
     <tr>
       <td><b>Image</b></td>
       <td>
-        <b><code>/{country}/{lang}/{Y}-{M}-{D}.jpg</code></b>
+        <b><code>/{country}/{lang}/{date}.jpg</code></b>
       </td>
       <td>
         <b><a href="https://bing.npanuhin.me/US/en/2024-01-16.jpg">US/en/2024-01-16.jpg</a></b>
