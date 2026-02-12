@@ -42,6 +42,8 @@ jobs:
         working-directory: src/website
         run: npm ci
 
+      # ----------------------------------------------------------------------------------------------------------------
+
       - name: Build website
         working-directory: src/website
         run: npm run build
@@ -53,3 +55,22 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: src/website
+
+      # ----------------------------------------------------------------------------------------------------------------
+
+      - name: Update README
+        working-directory: src
+        run: python update_readme.py
+        env:
+          CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
+          CLOUDFLARE_R2_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}'
+          CLOUDFLARE_R2_API_TOKEN: '${{ secrets.CLOUDFLARE_R2_API_TOKEN }}'
+
+      - name: Commit and push changes
+        if: ${{ steps.previous_commit.outputs.PREVIOUS_COMMIT_AUHOUR != 'GitHub Actions' }}
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: README update
+          commit_user_name: GitHub Actions
+          commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          file_pattern: 'README.md'

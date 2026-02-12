@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: "daily_update"
+  group: "archive_update"
   cancel-in-progress: false
 
 jobs:
@@ -44,6 +44,8 @@ jobs:
         working-directory: src/website
         run: npm ci
 
+      # ----------------------------------------------------------------------------------------------------------------
+
       - name: Update archive
         working-directory: src
         run: python bing.py
@@ -52,17 +54,11 @@ jobs:
           CLOUDFLARE_R2_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}'
           CLOUDFLARE_R2_API_TOKEN: '${{ secrets.CLOUDFLARE_R2_API_TOKEN }}'
 
+      # ----------------------------------------------------------------------------------------------------------------
+
       - name: Build website
         working-directory: src/website
         run: npm run build
-
-      - name: Update README
-        working-directory: src
-        run: python update_readme.py
-        env:
-          CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
-          CLOUDFLARE_R2_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}'
-          CLOUDFLARE_R2_API_TOKEN: '${{ secrets.CLOUDFLARE_R2_API_TOKEN }}'
 
       - name: Deploy website
         uses: cloudflare/wrangler-action@v3
@@ -71,6 +67,16 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: src/website
+
+      # ----------------------------------------------------------------------------------------------------------------
+
+      - name: Update README
+        working-directory: src
+        run: python update_readme.py
+        env:
+          CLOUDFLARE_ACCOUNT_ID: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}'
+          CLOUDFLARE_R2_ACCESS_KEY_ID: '${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}'
+          CLOUDFLARE_R2_API_TOKEN: '${{ secrets.CLOUDFLARE_R2_API_TOKEN }}'
 
       - name: Get previous commit author
         id: previous_commit
@@ -83,6 +89,7 @@ jobs:
           commit_message: Archive update
           commit_user_name: GitHub Actions
           commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          file_pattern: 'api/* README.md'
           commit_options: --amend --no-edit
           push_options: --force
           skip_fetch: true
@@ -94,3 +101,4 @@ jobs:
           commit_message: Archive update
           commit_user_name: GitHub Actions
           commit_author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          file_pattern: 'api/* README.md'
