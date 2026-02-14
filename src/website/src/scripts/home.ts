@@ -1,10 +1,10 @@
 import { HOMEPAGE_REGION, PREVIOUS_YEAR, START_DATE, TODAY } from './constants';
 import { curImageInitial, curImageReal, homepageForeground } from './elements';
-import { apiByRegion } from './region';
-import { changeHomepage, nextHomepageImage, setInitialImages, swapInitialImages } from './background';
-import { wait, waitAnimations, waitFor } from './animations';
+import { apiByRegion } from './Region';
+import { slideshow } from './slideshow';
+import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
 import { initScroll } from './scroll';
-import { initMarkets } from './markets';
+import { initMarkets } from './markets_sidebar';
 import { loadFullFonts } from './fonts';
 
 // =================================================== On page load ====================================================
@@ -34,49 +34,57 @@ const initialImageLoad = new Promise<void>(resolve => {
 })
 
 Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
+	console.log('DOM, fonts, and initial image are ready. Showing website...')
 	document.body.classList.add('shown')
 
-	console.log('DOM, initial image, and fonts are ready. Website rendered.')
-
 	const highResHomepageUrl = homepageForeground.dataset.realImage!
-	setInitialImages(highResHomepageUrl)
+	slideshow.queueImage(highResHomepageUrl)
 	curImageReal.src = highResHomepageUrl;
 
 	(async () => {
-		await waitFor(() => nextHomepageImage.complete)
-		console.log('Initial image loaded in full resolution')
+		await waitFor(() => slideshow.nextHomepageImage.complete)
+		console.log('Slideshow image loaded in full resolution')
+
 		void loadFullFonts()
-		await waitAnimations(homepageForeground, 'opacity', '0');
-		swapInitialImages()
 
-		await apiByRegion[HOMEPAGE_REGION]
-			.fetchYear(PREVIOUS_YEAR)
-			.catch((e) => {
-				console.log(e);
-				alert(String(e))
-			})
-
-		void changeHomepage()
-
-        // TODO: Fetch all regions
-		for (let year = START_DATE.getFullYear(); year <= TODAY.getFullYear(); ++year) {
-			if (year === PREVIOUS_YEAR) continue
+		const apiPromise =
 			apiByRegion[HOMEPAGE_REGION]
-				.fetchYear(year)
-				.catch(console.log)
-		}
+				.fetchYear(PREVIOUS_YEAR)
+				.catch((e) => {
+					console.log(e);
+					alert(String(e))
+				})
+
+		void apiPromise.finally(() => {
+			// TODO: Fetch all regions
+			for (let year = START_DATE.getFullYear(); year <= TODAY.getFullYear(); ++year) {
+				if (year === PREVIOUS_YEAR) continue
+				apiByRegion[HOMEPAGE_REGION]
+					.fetchYear(year)
+					.catch(console.log)
+			}
+		})
+
+		const animPromise =
+			waitAnimation(homepageForeground, 'opacity', '0')
+				.then(() => {
+					slideshow.swapImages()
+				})
+
+		await Promise.all([apiPromise, animPromise])
+
+		void slideshow.roll()
 	})();
 
 	(async () => {
 		await waitFor(() => curImageReal.complete)
-		console.log('Current image loaded')
-		await waitAnimations(curImageInitial, 'opacity', '0')
-		requestAnimationFrame(async () => {
-			await wait(1000)
-			if (curImageInitial.parentNode) {
-				curImageInitial.parentNode.removeChild(curImageInitial)
-			}
-		})
+		console.log('Current image loaded in full resolution')
+		await waitAnimation(curImageInitial, 'opacity', '0')
+		await waitFrame()
+		await wait(1000)
+		if (curImageInitial.parentNode) {
+			curImageInitial.parentNode.removeChild(curImageInitial)
+		}
 	})()
 
 	initScroll()

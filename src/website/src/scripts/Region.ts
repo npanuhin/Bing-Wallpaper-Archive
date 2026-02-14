@@ -44,7 +44,7 @@ export class Region {
 			})
 
 			if (response.ok) {
-				console.log(`Loaded year: ${year}`)
+				console.log(`Loaded API: ${apiPath}`)
 				this.addAll(await response.json())
 			} else {
 				const error = new Error(`Error: can not load API file (HTTP ${response.status}): ${apiPath}`)

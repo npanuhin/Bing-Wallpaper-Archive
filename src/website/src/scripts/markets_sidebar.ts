@@ -1,6 +1,6 @@
 import { HOMEPAGE_REGION } from './constants';
 import { markets, marketsItems, marketsToggle, marketsWrapper } from './elements';
-import { isRegion } from './region';
+import { isRegion } from './Region';
 
 export function changeMarket(market: string = HOMEPAGE_REGION) {
 	marketsItems.forEach(selector => {

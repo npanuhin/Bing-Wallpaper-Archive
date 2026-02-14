@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2018",
     "module": "ES6",
     "strict": true,
     "esModuleInterop": true,
@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "lib": [
       "DOM",
-      "ES6"
+      "ES2018"
     ],
     "rootDir": "src",
     "outDir": "root/_website"

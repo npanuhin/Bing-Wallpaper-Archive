@@ -121,9 +121,9 @@ export function initScroll() {
 
 	window.addEventListener('touchstart', () => updateHomepageAutoscroll(), { passive: true });
 	window.addEventListener('touchmove', () => updateHomepageAutoscroll(), { passive: true });
-	window.addEventListener('mousedown', () => updateHomepageAutoscroll());
-	window.addEventListener('mousemove', (e: MouseEvent) => {
-		if (e.buttons > 0) {
+	window.addEventListener('mousedown', () => updateHomepageAutoscroll(), { passive: true });
+	window.addEventListener('mousemove', (mouseEvent: MouseEvent) => {
+		if (mouseEvent.buttons > 0) {
 			updateHomepageAutoscroll();
 		}
 	}, { passive: true });

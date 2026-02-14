@@ -1,4 +1,4 @@
-export function waitAnimations(element: HTMLElement, property: keyof CSSStyleDeclaration, value: string): Promise<void> {
+export function waitAnimation(element: HTMLElement, property: keyof CSSStyleDeclaration, value: string): Promise<void> {
 	return new Promise(resolve => {
 		element.style.setProperty(property as string, String(value));
 
@@ -19,4 +19,24 @@ export async function waitFor(conditionFunction: () => boolean, interval: number
 	while (!conditionFunction()) {
 		await wait(interval)
 	}
+}
+
+export function waitFrames(frames: number = 1): Promise<void> {
+	return new Promise(resolve => {
+		let count = 0
+
+		function step() {
+			if (++count >= frames) {
+				resolve()
+			} else {
+				requestAnimationFrame(step)
+			}
+		}
+
+		requestAnimationFrame(step)
+	})
+}
+
+export function waitFrame(): Promise<void> {
+	return waitFrames(1)
 }

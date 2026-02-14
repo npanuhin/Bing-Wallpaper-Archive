@@ -18,7 +18,7 @@ export type RegionId = typeof REGIONS_LIST[number];
 export const HOMEPAGE_REGION: RegionId = 'en-US';
 
 export const YEAR_API_PATH = (country: string, lang: string, year: number): string =>
-	`${country.toUpperCase()}/${lang.toLowerCase()}.${year}.json`;
+	`${country.toUpperCase()}-${lang.toLowerCase()}.${year}.json`;
 
 export const START_DATE: Date = new Date(2017, 2, 1); // 2017-03-01: 1080p images start here
 export const AUTOSCROLL_DELAY: number = 5000; // Delay before automatic scroll
