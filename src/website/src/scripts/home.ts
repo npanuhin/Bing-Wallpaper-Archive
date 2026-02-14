@@ -58,6 +58,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 
 		void changeHomepage()
 
+        // TODO: Fetch all regions
 		for (let year = START_DATE.getFullYear(); year <= TODAY.getFullYear(); ++year) {
 			if (year === PREVIOUS_YEAR) continue
 			apiByRegion[HOMEPAGE_REGION]

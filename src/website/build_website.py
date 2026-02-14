@@ -1,9 +1,10 @@
 from dataclasses import asdict
 from io import BytesIO
-import os
-import base64
+import argparse
 import shutil
+import base64
 import sys
+import os
 
 from PIL import Image, ImageDraw
 import requests
@@ -31,11 +32,12 @@ README_IMAGE_RADIUS = 30  # Based on height=1080
 
 
 def gen_api_endpoints(region_to_api: dict[str, list[ApiEntry]]):
-    # all.json
     all_json_data = {
         region_id: [asdict(entry) for entry in api]
         for region_id, api in region_to_api.items()
     }
+
+    # /all.json
     write_json(all_json_data, mkpath(WEBSITE_ROOT, 'all.json'))
     write_json(all_json_data, mkpath(WEBSITE_ROOT, 'all.min.json'), minify=True)
 
@@ -160,7 +162,7 @@ def add_headers():
     )
 
 
-def build_website():
+def build_website(*, dev: bool = False):
     if not os.path.isdir(WEBSITE_ROOT):
         sys.stderr.write(f'Error: Build directory "{WEBSITE_ROOT}" not found.\n')
         sys.stderr.write('Please build the website before this script.\n')
@@ -175,17 +177,29 @@ def build_website():
     assert initial_image_data.url is not None
     image_content = requests.get(initial_image_data.url).content
 
-    print('Generating GitHub initial image...')
-    gen_github_initial_image(image_content)
-    print('Generating website initial image...')
-    gen_website_initial_image(image_content)
+    if not dev:
+        print('Generating GitHub initial image...')
+        gen_github_initial_image(image_content)
+
+        print('Generating website initial image...')
+        gen_website_initial_image(image_content)
+
+        print('Generating API endpoints...')
+        gen_api_endpoints(region_to_api)
+
     print('Updating website HTML...')
     update_website_html(initial_image_data)
+
     print('Adding headers...')
     add_headers()
-    print('Generating API endpoints...')
-    gen_api_endpoints(region_to_api)
+
+
+def _parse_args(argv: list[str]) -> argparse.Namespace:
+    p = argparse.ArgumentParser()
+    p.add_argument('--dev', action='store_true', help='Fast dev build (skip webp/svg and non-year JSON endpoints).')
+    return p.parse_args(argv)
 
 
 if __name__ == '__main__':
-    build_website()
+    args = _parse_args(sys.argv[1:])
+    build_website(dev=args.dev)

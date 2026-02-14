@@ -4,12 +4,11 @@
 	"private": true,
 	"scripts": {
 		"deploy": "npm run build && wrangler deploy",
-		"dev": "vite",
-		"start": "vite",
-		"build:python": "python build_website.py",
+		"build": "npm run build:vite -- --emptyOutDir && npm run build:python",
+        "dev": "npm run build:vite && npm run build:python -- --dev",
+
 		"build:vite": "vite build",
-		"build": "npm run build:vite && npm run build:python",
-		"preview": "vite preview"
+		"build:python": "python build_website.py"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-legacy": "^7.2.1",

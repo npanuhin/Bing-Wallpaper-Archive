@@ -79,9 +79,9 @@ body.shown {
 	text-decoration: none;
 
 	mask-image:
-		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 30" preserveAspectRatio="none"><path d="M40 30H0q19 0 22-15T40 0Z" fill="black"/></svg>'),
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 30" preserveAspectRatio="none"><path d="M45 30H0q19 0 22-15T40 0Z" fill="black"/></svg>'),
 		linear-gradient(to right, transparent 40px, black 40px);
-	mask-size: 40px 100%, 100% 100%;
+	mask-size: 45px 100%, 100% 100%;
 	mask-position: left, left;
 	mask-repeat: no-repeat, no-repeat;
 }

@@ -194,19 +194,19 @@ API files contain image data:
 
 Size column contains an estimated average file size for that type. `↑` means the size will increase with time.
 
-Replace `.json` with `.min.json` to get the files with no indentation.
+Replace `.json` with `.min.json` to get files with no indentation.
 
 If 404 error is returned, then sadly, there is no data or image.
 
 
 > [!TIP]
-> If you know the date, you can fetch an image without bothering with API files.
+> If you know the date, you can fetch an image directly, bypassing API.
 
 #### Notes on the available data:
 
 Images are sorted by `date` in ascending order (oldest first, newest last).
 
-Although the `title` field is optional, de facto every image has a proper title, and this also applies to new images.
+Although the `title` field is optional, de facto every image has a proper title.
 
 The `bing_url` field contains the original image URL from Bing (Microsoft) servers. Unfortunately, it is not possible to
 retrieve images from more than a couple of years ago from these URLs (they all point to the same dummy image).
