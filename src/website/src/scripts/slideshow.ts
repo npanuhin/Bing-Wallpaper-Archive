@@ -2,6 +2,7 @@ import { SLIDESHOW_DELAY, RegionId } from './constants';
 import { slideshowBackground, slideshowForeground, slideshowTitle, slideshowTitleTexts } from './elements';
 import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
+import { getLogicalScroll } from './scroll';
 
 export const SLIDESHOW_REGION: RegionId = 'US-en';
 
@@ -10,7 +11,14 @@ export class Slideshow {
 	nextImage: HTMLImageElement = slideshowBackground;
 
 	async roll() {
-		const chosenImage = apiByRegion[SLIDESHOW_REGION].getRandom()
+		let chosenImage = undefined
+
+		let attempts = 0
+		while (chosenImage === undefined || (!chosenImage.title || chosenImage.title.trim() === '') && attempts < 20) {
+			chosenImage = apiByRegion[SLIDESHOW_REGION].getRandom()
+			attempts++
+		}
+
 		if (!chosenImage) {
 			console.warn('Warning: no images available for slideshow. Retrying...')
 			setTimeout(() => void this.roll(), 200)
@@ -21,10 +29,11 @@ export class Slideshow {
 		this.nextImage.alt = chosenImage['title']
 
 		await waitFor(
-			() => document.visibilityState === 'visible' && window.scrollY < window.innerHeight,
+			() => document.visibilityState === 'visible' && getLogicalScroll() < window.innerHeight,
 			300
 		)
 
+		// console.log(getLogicalScroll(), window.innerHeight, getLogicalScroll() < window.innerHeight)
 		console.log(`Image will change in ${SLIDESHOW_DELAY / 1000} seconds`)
 		await wait(SLIDESHOW_DELAY)
 

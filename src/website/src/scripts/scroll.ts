@@ -1,8 +1,14 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import { contentArea, header, markets, slideshowTitle, curImageReal, slideshowTitleContainer } from './elements';
+import { contentArea, header, markets, slideshowTitle, curImageReal, slideshowTitleContainer, slideshowElement } from './elements';
 
 let autoScrollTimeout: any
-let lastScroll: number = window.scrollY
+let slideshowCollapsed: boolean = false
+let lastScroll: number = getLogicalScroll()
+let slideshowExpandTimeout: any = null
+const SLIDESHOW_EXPAND_DELAY = 200
+export function getLogicalScroll() {
+	return slideshowCollapsed ? window.scrollY + window.innerHeight : window.scrollY
+}
 
 enum NavigationStatus {
 	MAX_TOP,
@@ -13,8 +19,9 @@ enum NavigationStatus {
 
 let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP
 
-export function updateSlideshowAutoscroll(scroll: number = window.scrollY) {
+export function updateSlideshowAutoscroll(scroll: number = getLogicalScroll()) {
 	clearTimeout(autoScrollTimeout)
+	if (slideshowCollapsed) return
 	const window_height = window.innerHeight
 	if (scroll <= 0 || scroll >= window_height) return
 
@@ -40,14 +47,39 @@ export function updateSlideshowAutoscroll(scroll: number = window.scrollY) {
 
 export function handleScroll() {
 	const scroll = window.scrollY
+	const windowHeight = window.innerHeight
 
-	updateSlideshowAutoscroll(scroll)
+	const logicalScroll = getLogicalScroll()
+
+	if (logicalScroll < lastScroll) {  // Scrolling up
+		// console.log('Scrolling up')
+		if (slideshowCollapsed && scroll < windowHeight * 0.05) {  // Higher than %5 of window height
+			if (!slideshowExpandTimeout) {
+				// console.log('Requesting slideshow expand')
+				slideshowExpandTimeout = setTimeout(slideshowExpand, SLIDESHOW_EXPAND_DELAY)
+			}
+		}
+	} else if (logicalScroll > lastScroll) {  // Scrolling down
+		// console.log('Scrolling down')
+		if (slideshowExpandTimeout) {
+			clearTimeout(slideshowExpandTimeout)
+			slideshowExpandTimeout = null
+		}
+		if (!slideshowCollapsed && scroll > windowHeight * 1.05) {  // Lower than %5 of window height
+			slideshowCollapse()
+			return
+		}
+	}
+
+	slideshowTitleContainer.style.top = slideshowCollapsed ? '0' : '100vh'
+
+	updateSlideshowAutoscroll(logicalScroll)
 
 	// ---------- Title background ----------
 
-	slideshowTitle.classList.toggle('permanent_hover', scroll > 0)
-	slideshowTitleContainer.classList.toggle('has-shadow', scroll > 0)
-	contentArea.classList.toggle('has-shadow', scroll > 0)
+	slideshowTitle.classList.toggle('permanent_hover', logicalScroll > 0)
+	slideshowTitleContainer.classList.toggle('has-shadow', logicalScroll > 0)
+	contentArea.classList.toggle('has-shadow', logicalScroll > 0)
 
 	// ---------- Header shadow ----------
 
@@ -68,7 +100,7 @@ export function handleScroll() {
 	while (oldStatus != newStatus) {
 		oldStatus = newStatus
 
-		if (scroll >= lastScroll) { // Scrolling down
+		if (logicalScroll >= lastScroll) { // Scrolling down  // TODO: is == needed?
 			switch (oldStatus) {
 				case NavigationStatus.MAX_TOP:
 				case NavigationStatus.FLOATING:
@@ -123,19 +155,45 @@ export function handleScroll() {
 	}
 
 	navigationStatus = newStatus
-	lastScroll = scroll
+	lastScroll = logicalScroll
+}
+
+function slideshowExpand() {
+	// console.log('Expanding slideshow')
+	requestAnimationFrame(() => {
+		const newScroll = getLogicalScroll()
+		slideshowElement.style.marginTop = '0'
+		slideshowTitleContainer.style.top = '100vh'
+		window.scrollTo(0, newScroll)
+		// handleScroll()
+		slideshowCollapsed = false
+	})
+}
+
+function slideshowCollapse() {
+	// console.log('Collapsing slideshow')
+	requestAnimationFrame(() => {
+		const newScroll = getLogicalScroll() - window.innerHeight
+		slideshowElement.style.marginTop = '-100vh'
+		slideshowTitleContainer.style.top = '0'
+		window.scrollTo(0, newScroll)
+		// handleScroll()
+		slideshowCollapsed = true
+	})
 }
 
 export function initScroll() {
 	window.addEventListener('scroll', handleScroll, { passive: true })
 	window.addEventListener('resize', handleScroll, { passive: true })
 
-	window.addEventListener('touchstart', () => updateSlideshowAutoscroll(), { passive: true });
-	window.addEventListener('touchmove', () => updateSlideshowAutoscroll(), { passive: true });
-	window.addEventListener('mousedown', () => updateSlideshowAutoscroll(), { passive: true });
+	window.addEventListener('touchstart', () => updateSlideshowAutoscroll(), { passive: true })
+	window.addEventListener('touchmove', () => updateSlideshowAutoscroll(), { passive: true })
+	window.addEventListener('mousedown', () => updateSlideshowAutoscroll(), { passive: true })
 	window.addEventListener('mousemove', (mouseEvent: MouseEvent) => {
 		if (mouseEvent.buttons > 0) {
-			updateSlideshowAutoscroll();
+			updateSlideshowAutoscroll()
 		}
-	}, { passive: true });
+	}, { passive: true })
+
+	handleScroll()
 }

@@ -1,5 +1,6 @@
 export const slideshowBackground = document.querySelector<HTMLImageElement>('#slideshow_image_background')!
 export const slideshowForeground = document.querySelector<HTMLImageElement>('#slideshow_image_foreground')!
+export const slideshowElement = document.querySelector<HTMLElement>('#slideshow')!
 export const slideshowTitle = document.querySelector<HTMLAnchorElement>('#slideshow_title')!
 export const slideshowTitleContainer = document.querySelector<HTMLElement>('#slideshow_title_container')!
 export const slideshowTitleTexts = document.querySelectorAll<HTMLSpanElement>('#slideshow_title span')
