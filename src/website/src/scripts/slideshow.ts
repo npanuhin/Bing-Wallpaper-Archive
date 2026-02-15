@@ -2,7 +2,7 @@ import { SLIDESHOW_DELAY, RegionId } from './constants';
 import { slideshowBackground, slideshowForeground, slideshowTitle, slideshowTitleTexts } from './elements';
 import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
-import { getLogicalScroll } from './scroll';
+import { getLogicalScroll, getViewportHeight } from './scroll';
 
 export const SLIDESHOW_REGION: RegionId = 'US-en'
 
@@ -29,11 +29,11 @@ export class Slideshow {
 		this.nextImage.alt = chosenImage['title']
 
 		await waitFor(
-			() => document.visibilityState === 'visible' && getLogicalScroll() < window.innerHeight,
+			() => document.visibilityState === 'visible' && getLogicalScroll() < getViewportHeight(),
 			300
 		)
 
-		// console.log(getLogicalScroll(), window.innerHeight, getLogicalScroll() < window.innerHeight)
+		// console.log(getLogicalScroll(), getViewportHeight(), getLogicalScroll() < getViewportHeight())
 		console.log(`Image will change in ${SLIDESHOW_DELAY / 1000} seconds`)
 		await wait(SLIDESHOW_DELAY)
 

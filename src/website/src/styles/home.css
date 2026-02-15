@@ -17,7 +17,7 @@ body.shown {
 #slideshow {
 	position: relative;
 	width: 100%;
-	height: 100vh;
+	height: var(--window-height);
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -27,7 +27,8 @@ body.shown {
 	top: 0;
 	left: 0;
 	width: 100vw;
-	height: 100vh;
+	/*height: var(--window-height);*/
+	height: 100lvh;  /* ! */
 	object-fit: cover;
 	border: none;
 }
@@ -41,7 +42,7 @@ body.shown {
 
 #slideshow_title_container {
 	position: absolute;
-	top: 100vh;
+	top: var(--window-height);
 	right: 0;
 	transform: translateY(-100%);
 	z-index: 5;
@@ -156,8 +157,7 @@ body.shown {
 	background-color: var(--background-color);
 
 	/*TODO: if screen height is too small */
-	min-height: 500vh;
-	/*min-height: 1000vh;*/
+	min-height: calc(var(--window-height) * 5);
 
 	transition: box-shadow 0.3s ease-out;
 }
@@ -300,7 +300,7 @@ body.shown {
 }
 
 #markets {
-	/* height: calc(100vh - 106px); */
+	/* height: calc(var(--window-height) - 106px); */
 	box-sizing: border-box;
 	scrollbar-width: thin;
 	padding: 10px 10px 10px 10px;

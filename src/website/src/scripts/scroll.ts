@@ -6,9 +6,6 @@ let slideshowCollapsed: boolean = false
 let lastScroll: number = getLogicalScroll()
 let slideshowExpandTimeout: any = null
 const SLIDESHOW_EXPAND_DELAY = 200
-export function getLogicalScroll() {
-	return slideshowCollapsed ? window.scrollY + window.innerHeight : window.scrollY
-}
 
 enum NavigationStatus {
 	MAX_TOP,
@@ -19,10 +16,18 @@ enum NavigationStatus {
 
 let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP
 
+export function getViewportHeight(): number {
+	return window.visualViewport?.height ?? window.innerHeight
+}
+
+export function getLogicalScroll() {
+	return slideshowCollapsed ? window.scrollY + getViewportHeight() : window.scrollY
+}
+
 export function updateSlideshowAutoscroll(scroll: number = getLogicalScroll()) {
 	clearTimeout(autoScrollTimeout)
 	if (slideshowCollapsed) return
-	const window_height = window.innerHeight
+	const window_height = getViewportHeight()
 	if (scroll <= 0 || scroll >= window_height) return
 
 	if (scroll * 2 < window_height) {
@@ -46,14 +51,13 @@ export function updateSlideshowAutoscroll(scroll: number = getLogicalScroll()) {
 }
 
 export function handleScroll() {
-	const scroll = window.scrollY
-	const windowHeight = window.innerHeight
-
+	const windowHeight = getViewportHeight()
 	const logicalScroll = getLogicalScroll()
 
+	const slideshowExpandThreshold = windowHeight * 1.05  // %5 of window height after content start
 	if (logicalScroll < lastScroll) {  // Scrolling up
 		// console.log('Scrolling up')
-		if (slideshowCollapsed && scroll < windowHeight * 0.05) {  // Higher than %5 of window height
+		if (slideshowCollapsed && logicalScroll < slideshowExpandThreshold) {
 			if (!slideshowExpandTimeout) {
 				// console.log('Requesting slideshow expand')
 				slideshowExpandTimeout = setTimeout(slideshowExpand, SLIDESHOW_EXPAND_DELAY)
@@ -65,21 +69,21 @@ export function handleScroll() {
 			clearTimeout(slideshowExpandTimeout)
 			slideshowExpandTimeout = null
 		}
-		if (!slideshowCollapsed && scroll > windowHeight * 1.05) {  // Lower than %5 of window height
+		if (!slideshowCollapsed && logicalScroll > slideshowExpandThreshold) {
 			slideshowCollapse()
 			return
 		}
 	}
 
-	slideshowTitleContainer.style.top = slideshowCollapsed ? '0' : '100vh'
+	slideshowTitleContainer.style.top = slideshowCollapsed ? '0' : 'var(--window-height)'
 
 	updateSlideshowAutoscroll(logicalScroll)
 
 	// ---------- Title background ----------
 
-	slideshowTitle.classList.toggle('permanent_hover', logicalScroll > 0)
-	slideshowTitleContainer.classList.toggle('has-shadow', logicalScroll > 0)
-	contentArea.classList.toggle('has-shadow', logicalScroll > 0)
+	slideshowTitle.classList.toggle('permanent_hover', logicalScroll > windowHeight * 0.01)
+	slideshowTitleContainer.classList.toggle('has-shadow', logicalScroll > windowHeight * 0.01)
+	contentArea.classList.toggle('has-shadow', logicalScroll > windowHeight * 0.01)
 
 	// ---------- Header shadow ----------
 
@@ -104,10 +108,10 @@ export function handleScroll() {
 			switch (oldStatus) {
 				case NavigationStatus.MAX_TOP:
 				case NavigationStatus.FLOATING:
-					if (navigationBlockPos.top <= 106 && navigationBlockPos.bottom <= window.innerHeight) {
+					if (navigationBlockPos.top <= 106 && navigationBlockPos.bottom <= windowHeight) {
 						newStatus = NavigationStatus.FIXED_BOTTOM
 						newPosition = 'fixed'
-						newTop = Math.min(106, window.innerHeight - navigationBlockPos.height) + 'px'
+						newTop = Math.min(106, windowHeight - navigationBlockPos.height) + 'px'
 					}
 					break
 
@@ -161,9 +165,9 @@ export function handleScroll() {
 function slideshowExpand() {   // When scrolling up
 	// console.log('Expanding slideshow')
 	requestAnimationFrame(() => {
-		const newScroll = window.scrollY + window.innerHeight;
+		const newScroll = window.scrollY + getViewportHeight()
 		slideshowElement.style.marginTop = '0'
-		slideshowTitleContainer.style.top = '100vh'
+		slideshowTitleContainer.style.top = 'var(--window-height)'
 		window.scrollTo({ left: 0, top: newScroll, behavior: 'instant' })
 		// handleScroll()
 		slideshowCollapsed = false
@@ -173,8 +177,8 @@ function slideshowExpand() {   // When scrolling up
 function slideshowCollapse() {  // When scrolling down
 	// console.log('Collapsing slideshow')
 	requestAnimationFrame(() => {
-		const newScroll = window.scrollY - window.innerHeight
-		slideshowElement.style.marginTop = '-100vh'
+		const newScroll = window.scrollY - getViewportHeight()
+		slideshowElement.style.marginTop = 'calc(var(--window-height) * -1)'
 		slideshowTitleContainer.style.top = '0'
 		window.scrollTo({ left: 0, top: newScroll, behavior: 'instant' })
 		// handleScroll()
