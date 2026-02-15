@@ -1,7 +1,7 @@
-import { HOMEPAGE_REGION, PREVIOUS_YEAR, START_DATE, TODAY } from './constants';
-import { curImageInitial, curImageReal, homepageForeground } from './elements';
+import { PREVIOUS_YEAR, START_DATE, TODAY } from './constants';
+import { curImageInitial, curImageReal, slideshowForeground } from './elements';
 import { apiByRegion } from './Region';
-import { slideshow } from './slideshow';
+import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
 import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
 import { initScroll } from './scroll';
 import { initMarkets } from './markets_sidebar';
@@ -25,11 +25,11 @@ const initialImageLoad = new Promise<void>(resolve => {
 		})
 	}
 
-	if (homepageForeground.complete) {
+	if (slideshowForeground.complete) {
 		onImageReady()
 	} else {
-		homepageForeground.addEventListener('load', onImageReady, { once: true })
-		homepageForeground.addEventListener('error', onImageReady, { once: true })
+		slideshowForeground.addEventListener('load', onImageReady, { once: true })
+		slideshowForeground.addEventListener('error', onImageReady, { once: true })
 	}
 })
 
@@ -37,18 +37,18 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	console.log('DOM, fonts, and initial image are ready. Showing website...')
 	document.body.classList.add('shown')
 
-	const highResHomepageUrl = homepageForeground.dataset.realImage!
+	const highResHomepageUrl = slideshowForeground.dataset.realImage!
 	slideshow.queueImage(highResHomepageUrl)
 	curImageReal.src = highResHomepageUrl;
 
 	(async () => {
-		await waitFor(() => slideshow.nextHomepageImage.complete)
+		await waitFor(() => slideshow.nextImage.complete)
 		console.log('Slideshow image loaded in full resolution')
 
 		void loadFullFonts()
 
 		const apiPromise =
-			apiByRegion[HOMEPAGE_REGION]
+			apiByRegion[SLIDESHOW_REGION]
 				.fetchYear(PREVIOUS_YEAR)
 				.catch((e) => {
 					console.log(e);
@@ -59,14 +59,14 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 			// TODO: Fetch all regions
 			for (let year = START_DATE.getFullYear(); year <= TODAY.getFullYear(); ++year) {
 				if (year === PREVIOUS_YEAR) continue
-				apiByRegion[HOMEPAGE_REGION]
+				apiByRegion[SLIDESHOW_REGION]
 					.fetchYear(year)
 					.catch(console.log)
 			}
 		})
 
 		const animPromise =
-			waitAnimation(homepageForeground, 'opacity', '0')
+			waitAnimation(slideshowForeground, 'opacity', '0')
 				.then(() => {
 					slideshow.swapImages()
 				})
@@ -89,4 +89,5 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 
 	initScroll()
 	initMarkets()
+	initTitleClick()
 })

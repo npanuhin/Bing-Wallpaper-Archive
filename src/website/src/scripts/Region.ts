@@ -8,7 +8,7 @@ export class Region {
 	dates: string[]
 
 	constructor(region: string) {
-		[this.lang, this.country] = region.split('-')
+		[this.country, this.lang] = region.split('-')
 		this.images = new Map<string, ImageEntry>()
 		this.dates = []
 	}

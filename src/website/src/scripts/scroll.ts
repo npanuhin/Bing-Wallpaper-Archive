@@ -1,5 +1,5 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import { contentArea, markets, title } from './elements';
+import { contentArea, header, markets, slideshowTitle, curImageReal } from './elements';
 
 let autoScrollTimeout: any
 let lastScroll: number = window.scrollY
@@ -13,11 +13,13 @@ enum NavigationStatus {
 
 let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP
 
-export function updateHomepageAutoscroll(scroll: number = window.scrollY) {
+export function updateSlideshowAutoscroll(scroll: number = window.scrollY) {
 	clearTimeout(autoScrollTimeout)
 	const window_height = window.innerHeight
+	if (scroll <= 0 || scroll >= window_height) return
 
 	if (scroll * 2 < window_height) {
+		// console.log('Autoscrolling to top')
 		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
 				top: 0,
@@ -25,7 +27,8 @@ export function updateHomepageAutoscroll(scroll: number = window.scrollY) {
 			})
 		}, AUTOSCROLL_DELAY)
 
-	} else if (scroll < window_height) {
+	} else {
+		// console.log('Autoscrolling to bottom')
 		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
 				top: window_height + 1,
@@ -38,11 +41,18 @@ export function updateHomepageAutoscroll(scroll: number = window.scrollY) {
 export function handleScroll() {
 	const scroll = window.scrollY
 
-	updateHomepageAutoscroll(scroll)
+	updateSlideshowAutoscroll(scroll)
 
 	// ---------- Title background ----------
 
-	title.classList.toggle('permanent_hover', scroll > 0)
+	slideshowTitle.classList.toggle('permanent_hover', scroll > 0)
+	contentArea.classList.toggle('has-shadow', scroll > 0)
+
+	// ---------- Header shadow ----------
+
+	const headerBottom = header.getBoundingClientRect().bottom
+	const curImageTop = curImageReal.getBoundingClientRect().top
+	header.classList.toggle('has-shadow', curImageTop <= headerBottom)
 
 	// ---------- Sticky navigation ----------
 
@@ -119,12 +129,12 @@ export function initScroll() {
 	window.addEventListener('scroll', handleScroll, { passive: true })
 	window.addEventListener('resize', handleScroll, { passive: true })
 
-	window.addEventListener('touchstart', () => updateHomepageAutoscroll(), { passive: true });
-	window.addEventListener('touchmove', () => updateHomepageAutoscroll(), { passive: true });
-	window.addEventListener('mousedown', () => updateHomepageAutoscroll(), { passive: true });
+	window.addEventListener('touchstart', () => updateSlideshowAutoscroll(), { passive: true });
+	window.addEventListener('touchmove', () => updateSlideshowAutoscroll(), { passive: true });
+	window.addEventListener('mousedown', () => updateSlideshowAutoscroll(), { passive: true });
 	window.addEventListener('mousemove', (mouseEvent: MouseEvent) => {
 		if (mouseEvent.buttons > 0) {
-			updateHomepageAutoscroll();
+			updateSlideshowAutoscroll();
 		}
 	}, { passive: true });
 }

@@ -14,7 +14,7 @@ body.shown {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-.homepage {
+.slideshow {
 	position: relative;
 	width: 100%;
 	height: 100vh;
@@ -22,7 +22,7 @@ body.shown {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-#home_image_background, #home_image_foreground {
+#slideshow_image_background, #slideshow_image_foreground {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -32,7 +32,7 @@ body.shown {
 	border: none;
 }
 
-#home_image_foreground {
+#slideshow_image_foreground {
 	transition: opacity var(--image-fade-duration) ease-in-out;
 }
 
@@ -62,10 +62,20 @@ body.shown {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-#title {
+#slideshow_title_container {
 	position: absolute;
+	top: 100vh;
 	right: 0;
-	bottom: 0;
+	transform: translateY(-100%);
+	z-index: 5;
+	filter: drop-shadow(0 0 7px rgb(16, 18, 22));
+	clip-path: inset(-100px 0 0 -100px);
+	pointer-events: none;
+}
+
+#slideshow_title {
+	display: block;
+	pointer-events: auto;
 
 	background-color: rgba(16, 16, 16, 0.5);
 	opacity: 1;
@@ -86,22 +96,22 @@ body.shown {
 	mask-repeat: no-repeat, no-repeat;
 }
 
-#title:hover {
+#slideshow_title:hover {
 	background-color: var(--background-color-secondary);
 }
 
-#title.permanent_hover {
+#slideshow_title.permanent_hover {
 	box-shadow: inset 0 0 0 1000px var(--background-color-secondary);
 }
 
-#title > span {
+#slideshow_title > span {
 	display: block;
 	padding: 0;
 	color: var(--light-color);
 	font-size: 17px;
 }
 
-#title.fullwidth {
+#slideshow_title.fullwidth {
 	padding-left: 0;
 	mask-image: none;
 }
@@ -166,6 +176,12 @@ body.shown {
 	/*TODO: if screen height is too small */
 	min-height: 500vh;
 	/*min-height: 1000vh;*/
+
+	transition: box-shadow 0.3s ease-out;
+}
+
+#content.has-shadow {
+	box-shadow: 0 0 7px rgb(16, 18, 22);
 }
 
 #content_inner {
@@ -186,6 +202,12 @@ body.shown {
 	text-align: center;
 
 	z-index: 10;
+
+	transition: box-shadow 0.3s ease-out;
+}
+
+#header.has-shadow {
+	box-shadow: 0 0 7px rgb(10, 12, 16);
 }
 
 #header h1 {

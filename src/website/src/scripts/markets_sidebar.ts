@@ -1,8 +1,8 @@
-import { HOMEPAGE_REGION } from './constants';
 import { markets, marketsItems, marketsToggle, marketsWrapper } from './elements';
 import { isRegion } from './Region';
+import { SLIDESHOW_REGION } from './slideshow';
 
-export function changeMarket(market: string = HOMEPAGE_REGION) {
+export function changeMarket(market: string = SLIDESHOW_REGION) {
 	marketsItems.forEach(selector => {
 		selector.classList.toggle('active', selector.getAttribute('data-mkt') == market)
 	})

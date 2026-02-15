@@ -1,9 +1,10 @@
-export const homepageBackground = document.querySelector<HTMLImageElement>('#home_image_background')!
-export const homepageForeground = document.querySelector<HTMLImageElement>('#home_image_foreground')!
-export const title = document.querySelector<HTMLAnchorElement>('#title')!
-export const titleTexts = document.querySelectorAll<HTMLSpanElement>('#title span')
+export const slideshowBackground = document.querySelector<HTMLImageElement>('#slideshow_image_background')!
+export const slideshowForeground = document.querySelector<HTMLImageElement>('#slideshow_image_foreground')!
+export const slideshowTitle = document.querySelector<HTMLAnchorElement>('#slideshow_title')!
+export const slideshowTitleTexts = document.querySelectorAll<HTMLSpanElement>('#slideshow_title span')
 
 export const contentArea = document.querySelector<HTMLElement>('#content')!
+export const header = document.querySelector<HTMLElement>('#header')!
 
 export const marketsWrapper = document.querySelector<HTMLElement>('#markets_wrapper')!
 export const markets = document.querySelector<HTMLElement>('#markets')!
