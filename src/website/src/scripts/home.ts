@@ -17,13 +17,7 @@ const domReady = new Promise<void>(resolve => {
 })
 
 const initialImageLoad = new Promise<void>(resolve => {
-	const onImageReady = () => {
-		requestAnimationFrame(() => {
-			requestAnimationFrame(() => {
-				resolve()
-			})
-		})
-	}
+	const onImageReady = () => void waitFrame().then(resolve)
 
 	if (slideshowForeground.complete) {
 		onImageReady()
@@ -51,7 +45,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 			apiByRegion[SLIDESHOW_REGION]
 				.fetchYear(PREVIOUS_YEAR)
 				.catch((e) => {
-					console.log(e);
+					console.log(e)
 					alert(String(e))
 				})
 

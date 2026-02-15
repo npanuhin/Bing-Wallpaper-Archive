@@ -62,11 +62,11 @@ export class Region {
 	}
 }
 
-export const apiByRegion = {} as Record<RegionId, Region>;
+export const apiByRegion = {} as Record<RegionId, Region>
 REGIONS_LIST.forEach(region => {
-	apiByRegion[region] = new Region(region);
-});
+	apiByRegion[region] = new Region(region)
+})
 
 export function isRegion(market: string): market is RegionId {
-	return (REGIONS_LIST as readonly string[]).indexOf(market) !== -1;
+	return (REGIONS_LIST as readonly string[]).indexOf(market) !== -1
 }

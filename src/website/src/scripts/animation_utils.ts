@@ -1,6 +1,6 @@
 export function waitAnimation(element: HTMLElement, property: keyof CSSStyleDeclaration, value: string): Promise<void> {
 	return new Promise(resolve => {
-		element.style.setProperty(property as string, String(value));
+		element.style.setProperty(property as string, String(value))
 
 		const transitionEnded = (animation: TransitionEvent) => {
 			if (animation.propertyName !== property) return
@@ -38,5 +38,5 @@ export function waitFrames(frames: number = 1): Promise<void> {
 }
 
 export function waitFrame(): Promise<void> {
-	return waitFrames(1)
+	return new Promise(resolve => requestAnimationFrame(() => resolve()))
 }

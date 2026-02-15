@@ -158,25 +158,25 @@ export function handleScroll() {
 	lastScroll = logicalScroll
 }
 
-function slideshowExpand() {
+function slideshowExpand() {   // When scrolling up
 	// console.log('Expanding slideshow')
 	requestAnimationFrame(() => {
-		const newScroll = getLogicalScroll()
+		const newScroll = window.scrollY + window.innerHeight;
 		slideshowElement.style.marginTop = '0'
 		slideshowTitleContainer.style.top = '100vh'
-		window.scrollTo(0, newScroll)
+		window.scrollTo({ left: 0, top: newScroll, behavior: 'instant' })
 		// handleScroll()
 		slideshowCollapsed = false
 	})
 }
 
-function slideshowCollapse() {
+function slideshowCollapse() {  // When scrolling down
 	// console.log('Collapsing slideshow')
 	requestAnimationFrame(() => {
-		const newScroll = getLogicalScroll() - window.innerHeight
+		const newScroll = window.scrollY - window.innerHeight
 		slideshowElement.style.marginTop = '-100vh'
 		slideshowTitleContainer.style.top = '0'
-		window.scrollTo(0, newScroll)
+		window.scrollTo({ left: 0, top: newScroll, behavior: 'instant' })
 		// handleScroll()
 		slideshowCollapsed = true
 	})

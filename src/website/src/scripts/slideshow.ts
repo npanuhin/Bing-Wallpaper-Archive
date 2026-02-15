@@ -4,11 +4,11 @@ import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
 import { getLogicalScroll } from './scroll';
 
-export const SLIDESHOW_REGION: RegionId = 'US-en';
+export const SLIDESHOW_REGION: RegionId = 'US-en'
 
 export class Slideshow {
-	curImage: HTMLImageElement = slideshowForeground;
-	nextImage: HTMLImageElement = slideshowBackground;
+	curImage: HTMLImageElement = slideshowForeground
+	nextImage: HTMLImageElement = slideshowBackground
 
 	async roll() {
 		let chosenImage = undefined
@@ -57,15 +57,15 @@ export class Slideshow {
 	}
 
 	queueImage(highResHomepageUrl: string) {
-		this.nextImage.src = highResHomepageUrl;
+		this.nextImage.src = highResHomepageUrl
 	}
 
 	swapImages() {
-		[this.curImage, this.nextImage] = [this.nextImage, this.curImage];
+		[this.curImage, this.nextImage] = [this.nextImage, this.curImage]
 	}
 }
 
-export const slideshow = new Slideshow();
+export const slideshow = new Slideshow()
 
 export function initTitleClick() {
 	slideshowTitle.addEventListener('click', (e) => {
