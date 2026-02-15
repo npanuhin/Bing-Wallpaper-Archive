@@ -1,5 +1,5 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import { contentArea, header, markets, slideshowTitle, curImageReal } from './elements';
+import { contentArea, header, markets, slideshowTitle, curImageReal, slideshowTitleContainer } from './elements';
 
 let autoScrollTimeout: any
 let lastScroll: number = window.scrollY
@@ -46,6 +46,7 @@ export function handleScroll() {
 	// ---------- Title background ----------
 
 	slideshowTitle.classList.toggle('permanent_hover', scroll > 0)
+	slideshowTitleContainer.classList.toggle('has-shadow', scroll > 0)
 	contentArea.classList.toggle('has-shadow', scroll > 0)
 
 	// ---------- Header shadow ----------
