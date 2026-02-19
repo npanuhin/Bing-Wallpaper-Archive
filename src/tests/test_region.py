@@ -12,7 +12,7 @@ def test_extract_market_from_url():
 
 
 def test_region_str():
-    assert str(Region('ROW')) == 'en-RU'
+    assert str(Region('ROW')) == 'en-ROW'
     assert str(Region('en-US')) == 'en-US'
 
 

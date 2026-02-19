@@ -20,11 +20,11 @@ class Market:
             self.country = self.api_country = country.upper()
 
     def __str__(self):
-        return f'{self.lang}-{self.country}'
+        return f'{self.lang}-{self.api_country}'
 
     def __repr__(self):
         if self.api_country == 'ROW':
-            return f'ROW [{self}]'
+            return f'ROW [{self.lang}-{self.country}]'
         return str(self)
 
     def __eq__(self, other):

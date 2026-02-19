@@ -15,6 +15,6 @@ configs/*token.json
 
 # Temporary files
 _temp/
-./*.txt
+checks/anomalies.txt
 
 !.gitkeep

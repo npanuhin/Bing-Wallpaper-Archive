@@ -9,7 +9,7 @@ import requests
 from Region import REGIONS, Region
 from bing_utils import extract_base_url, get_uhd_url
 from cloudflare import CloudflareR2
-from postprocess import postprocess_api
+from ApiPostprocessor import postprocessor
 from structures import ApiEntry, DATE_FORMAT
 from system_utils import mkpath, posixpath, warn, fetch_json
 
@@ -250,7 +250,7 @@ def update(region: Region):
     # ------------------------------------------------------------------------------------------------------------------
 
     region.write_api(
-        postprocess_api(list(api_by_date.values()))
+        postprocessor.process_api(list(api_by_date.values()))
     )
     print()
 

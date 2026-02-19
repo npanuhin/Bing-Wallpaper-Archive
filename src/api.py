@@ -9,7 +9,7 @@ from structures import ApiEntry, DATE_FORMAT
 def write_json(data, path: str, minify: bool = False):
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
-    with open(path, 'w', encoding='utf-8') as file:
+    with open(path, 'w', encoding='utf-8', newline='\n') as file:
         json.dump(
             data,
             file,
