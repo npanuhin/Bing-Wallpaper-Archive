@@ -1,4 +1,4 @@
-from typing import Callable, List
+from typing import Callable
 
 from Region import REGIONS
 from structures import Api, ApiEntry
@@ -6,8 +6,8 @@ from structures import Api, ApiEntry
 
 class ApiPostprocessor:
     def __init__(self):
-        self.item_processors: List[Callable[[ApiEntry], ApiEntry]] = []
-        self.api_processors: List[Callable[[Api], Api]] = []
+        self.item_processors: list[Callable[[ApiEntry], ApiEntry]] = []
+        self.api_processors: list[Callable[[Api], Api]] = []
 
     def item_processor(self, func: Callable[[ApiEntry], ApiEntry]):
         self.item_processors.append(func)

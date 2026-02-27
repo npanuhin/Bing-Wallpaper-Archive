@@ -6,10 +6,10 @@ from typing import Iterable
 
 import requests
 
+from ApiPostprocessor import postprocessor
 from Region import REGIONS, Region
 from bing_utils import extract_base_url, get_uhd_url
 from cloudflare import CloudflareR2
-from ApiPostprocessor import postprocessor
 from structures import ApiEntry, DATE_FORMAT
 from system_utils import mkpath, posixpath, warn, fetch_json
 
@@ -67,10 +67,9 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
         return True
 
     merged_data = dataclasses.asdict(old_entry)
-    new_data = dataclasses.asdict(new_entry)
     changed = False
 
-    for key, new_value in new_data.items():
+    for key, new_value in dataclasses.asdict(new_entry).items():
         if new_value is None:
             continue
 
@@ -103,7 +102,22 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
     return changed
 
 
-def update_from_hp_image_archive(region: Region) -> Iterable[ApiEntry]:
+def upload_image(region: Region, date: datetime.date, bing_url: str) -> str:
+    filename = date.strftime(DATE_FORMAT) + '.jpg'
+    temp_image_path = mkpath('_temp', filename)
+
+    with open(temp_image_path, 'wb') as file:
+        file.write(requests.get(bing_url).content)
+
+    new_url = storage.upload_file(
+        temp_image_path,
+        posixpath(mkpath(region.api_country.upper(), region.api_lang.lower(), filename)),
+        skip_exists=False
+    )
+    return new_url
+
+
+def update_from_hp_image_archive(region: Region, bing_url_mapping: dict[str, str]) -> Iterable[ApiEntry]:
     # https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=100&mkt=en-US&setlang=en&cc=US
     print('Getting caption, image and image url from bing.com/HPImageArchive.aspx...')
     # TODO: extract title and copyright
@@ -122,14 +136,18 @@ def update_from_hp_image_archive(region: Region) -> Iterable[ApiEntry]:
         caption = image_data['title'].strip()
         bing_url = get_uhd_url(region, image_data['urlbase'].strip())
 
+        if bing_url not in bing_url_mapping:
+            bing_url_mapping[bing_url] = upload_image(region, date, bing_url)
+
         yield ApiEntry(
             date=date,
             caption=caption,
-            bing_url=bing_url
+            bing_url=bing_url,
+            url=bing_url_mapping[bing_url]
         )
 
 
-def update_from_hp_api_model(region: Region) -> Iterable[ApiEntry]:
+def update_from_hp_api_model(region: Region, bing_url_mapping: dict[str, str]) -> Iterable[ApiEntry]:
     # https://www.bing.com/hp/api/model?mkt=en-US&setlang=en&cc=US
     print('Getting title, caption, copyright, description and image url from bing.com/hp/api/model...')
 
@@ -153,17 +171,21 @@ def update_from_hp_api_model(region: Region) -> Iterable[ApiEntry]:
         description = image_data['ImageContent']['Description'].strip()
         description = description.replace('  ', ' ')  # Fix for double spaces
 
+        if bing_url not in bing_url_mapping:
+            bing_url_mapping[bing_url] = upload_image(region, date, bing_url)
+
         yield ApiEntry(
             date=date,
             title=title,
             caption=caption,
             copyright=copyright,
             description=description,
-            bing_url=bing_url
+            bing_url=bing_url,
+            url=bing_url_mapping[bing_url]
         )
 
 
-def update_from_hp_image_gallery(region: Region) -> Iterable[ApiEntry]:
+def update_from_hp_image_gallery(region: Region, bing_url_mapping: dict[str, str]) -> Iterable[ApiEntry]:
     # https://www.bing.com/hp/api/v1/imagegallery?format=json&mkt=en-US&setlang=en&cc=US
     print('Getting title, subtitle, copyright, description and image url from bing.com/hp/api/v1/imagegallery...')
     data = fetch_json(
@@ -191,63 +213,39 @@ def update_from_hp_image_gallery(region: Region) -> Iterable[ApiEntry]:
         base_url = extract_base_url(image_data['imageUrls']['landscape']['ultraHighDef'].strip())
         bing_url = get_uhd_url(region, base_url)
 
+        if bing_url not in bing_url_mapping:
+            bing_url_mapping[bing_url] = upload_image(region, date, bing_url)
+
         yield ApiEntry(
             date=date,
             title=title,
             subtitle=subtitle,
             copyright=copyright,
             description=description,
-            bing_url=bing_url
+            bing_url=bing_url,
+            url=bing_url_mapping[bing_url]
         )
 
 
 def update(region: Region):
     print(f'Updating {repr(region)}...')
 
-    api_by_date = {item.date: item for item in region.read_api()}
+    os.makedirs('_temp', exist_ok=True)
 
-    to_download: set[datetime.date] = set()
+    api_by_date = {item.date: item for item in region.read_api()}
+    # bing_url_mapping = {item.bing_url: item.url for item in api_by_date.values() if item.bing_url and item.url}
+    bing_url_mapping = {}  # Force uploading (rewriting) all available images
 
     for update_func in (
         update_from_hp_image_archive,
         update_from_hp_api_model,
         update_from_hp_image_gallery
     ):
-        for entry in update_func(region):
+        for entry in update_func(region, bing_url_mapping):
             add_entry(api_by_date, entry)
-            to_download.add(entry.date)
 
-    # ------------------------------------------------------------------------------------------------------------------
-    print('Downloading images and uploading to Storage...')
-
-    os.makedirs('_temp', exist_ok=True)
-
-    for date in sorted(to_download):
-        assert date in api_by_date, f'Date {date} not found in api'  # TODO
-
-        filename = date.strftime(DATE_FORMAT) + '.jpg'
-        temp_image_path = mkpath('_temp', filename)
-
-        old_entry = api_by_date[date]
-
-        assert old_entry.bing_url is not None  # TODO
-
-        with open(temp_image_path, 'wb') as file:
-            file.write(requests.get(old_entry.bing_url).content)
-
-        new_url = storage.upload_file(
-            temp_image_path,
-            posixpath(mkpath(region.api_country.upper(), region.api_lang.lower(), filename)),
-            skip_exists=False
-        )
-
-        new_entry = dataclasses.replace(old_entry, url=new_url)
-
-        api_by_date[date] = new_entry
-
-    rmtree('_temp')
-
-    # ------------------------------------------------------------------------------------------------------------------
+    if os.path.isdir('_temp'):
+        rmtree('_temp')
 
     region.write_api(
         postprocessor.process_api(list(api_by_date.values()))

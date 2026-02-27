@@ -1,10 +1,13 @@
 import re
 import sys
+from typing import Iterable
 
 sys.path.append('../')
 
-from ApiChecker import checker  # type: ignore
+from ApiChecker import ApiChecker  # type: ignore
 from Region import Region  # type: ignore
+
+checker = ApiChecker()
 
 TEXT_FIELDS = ['title', 'caption', 'subtitle', 'copyright', 'description']
 NBSP = '\u00a0'
@@ -12,7 +15,7 @@ NNBSP = '\u202f'
 
 
 @checker.check_field(*TEXT_FIELDS)
-def check_dashes(value: str, region: Region):
+def check_dashes(value: str, region: Region) -> Iterable[str]:
     other_dashes = '‐‑‒–—―⁓⁃−'
     for m in re.finditer(r'\S*\s+-\s*\S*|\S*-\s+\S*', value):
         yield f'Dash with spaces: {m.group(0)}'
@@ -21,14 +24,14 @@ def check_dashes(value: str, region: Region):
 
 
 @checker.check_field(*TEXT_FIELDS)
-def check_number_near_letter(value: str, region: Region):
+def check_number_near_letter(value: str, region: Region) -> Iterable[str]:
     for m in re.finditer(r'\d[^\W\d_ºª]|[^\W\d_ºª]\d', value):
         if not re.search(r'\b\d+(st|nd|rd|th|s)\b', value, re.IGNORECASE):
             yield f'Number near letter: {m.group(0)}'
 
 
 @checker.check_field(*TEXT_FIELDS)
-def check_strange_characters(value: str, region: Region):
+def check_strange_characters(value: str, region: Region) -> Iterable[str]:
     for char in value:
         cp = ord(char)
         if cp < 32 and char not in '\n\r':
@@ -45,7 +48,7 @@ def check_strange_characters(value: str, region: Region):
 
 
 @checker.check_field(*TEXT_FIELDS)
-def check_non_standard_whitespace(value: str, region: Region):
+def check_non_standard_whitespace(value: str, region: Region) -> Iterable[str]:
     is_french = region.lang == 'fr'
     for m in re.finditer(r'[^\S\r\n ]', value):
         char = m.group(0)
@@ -55,7 +58,7 @@ def check_non_standard_whitespace(value: str, region: Region):
 
 
 @checker.check_field(*TEXT_FIELDS)
-def check_repeating_characters(value: str, region: Region):
+def check_repeating_characters(value: str, region: Region) -> Iterable[str]:
     for m in re.finditer(r'[!?]{2,}', value):
         if not re.fullmatch(r'\?!+', m.group(0)):
             yield f'Multiple punctuation marks: {m.group(0)}'
@@ -70,7 +73,7 @@ def check_repeating_characters(value: str, region: Region):
 
 
 @checker.check_field(*TEXT_FIELDS)
-def check_punctuation_spacing(value: str, region: Region):
+def check_punctuation_spacing(value: str, region: Region) -> Iterable[str]:
     is_french = region.lang == 'fr'
     french_punc = ':;?!'
 

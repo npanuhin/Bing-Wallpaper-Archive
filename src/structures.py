@@ -12,7 +12,7 @@ class ApiEntry:
     description: str | None = None
     date: datetime.date
     bing_url: str | None = None
-    url: str | None = None  # TODO: not optional
+    url: str
 
 type Api = list[ApiEntry]
 
