@@ -3,10 +3,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-02-27.jpg">
+  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-02-28.jpg">
     <picture>
       <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-      <img id="last_image" title="Polar bear cub walking across pack ice, Arctic National Wildlife Refuge, Alaska, United States" alt="Polar bear cub walking across pack ice, Arctic National Wildlife Refuge, Alaska, United States" src="https://bing.npanuhin.me/latest.svg">
+      <img id="last_image" title="Olo'upena Falls, island of Moloka'i, Hawaii, United States" alt="Olo'upena Falls, island of Moloka'i, Hawaii, United States" src="https://bing.npanuhin.me/latest.svg">
     </picture>
     <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
   </a>
