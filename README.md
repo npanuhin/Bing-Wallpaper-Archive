@@ -17,7 +17,7 @@
 
 All information is stored in "API files". They can be obtained by sending a GET request to the following URL:
 
-```haskell
+```d2lang
 https://bing.npanuhin.me/{country}-{language}.json
 ```
 
