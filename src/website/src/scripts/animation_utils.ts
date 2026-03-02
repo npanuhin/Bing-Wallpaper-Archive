@@ -1,12 +1,34 @@
 export function waitAnimation(element: HTMLElement, property: keyof CSSStyleDeclaration, value: string): Promise<void> {
 	return new Promise(resolve => {
-		element.style.setProperty(property as string, String(value))
+		const propertyName = property as string
+		const computedStyle = getComputedStyle(element)
+
+		// If value is already what we want, resolve immediately
+		if (computedStyle.getPropertyValue(propertyName) === value) {
+			element.style.setProperty(propertyName, String(value))
+			resolve()
+			return
+		}
+
+		element.style.setProperty(propertyName, String(value))
+
+		const cleanup = () => {
+			element.removeEventListener('transitionend', transitionEnded)
+			clearTimeout(timeoutId)
+		}
 
 		const transitionEnded = (animation: TransitionEvent) => {
 			if (animation.propertyName !== property) return
-			element.removeEventListener('transitionend', transitionEnded)
+			cleanup()
 			resolve()
 		}
+
+		const timeoutId = setTimeout(() => {
+			console.warn(`waitAnimation: transition for property "${propertyName}" timed out after 2s for element:`, element)
+			cleanup()
+			resolve()
+		}, 2000)
+
 		element.addEventListener('transitionend', transitionEnded)
 	})
 }

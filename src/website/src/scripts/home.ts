@@ -4,7 +4,6 @@ import { apiByRegion } from './Region';
 import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
 import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
 import { initScroll } from './scroll';
-import { initMarkets } from './markets_sidebar';
 import { loadFullFonts } from './fonts';
 
 // =================================================== On page load ====================================================
@@ -79,6 +78,5 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	})()
 
 	initScroll()
-	initMarkets()
 	initTitleClick()
 })

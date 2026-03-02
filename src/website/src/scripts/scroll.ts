@@ -1,28 +1,11 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import {
-	contentArea,
-	curImageReal,
-	header,
-	markets,
-	slideshowElement,
-	slideshowTitle,
-	slideshowTitleContainer
-} from './elements';
+import { contentArea, header, slideshowElement, slideshowTitle, slideshowTitleContainer } from './elements';
 
 let autoScrollTimeout: any
 let slideshowCollapsed: boolean = false
 let lastScroll: number = getLogicalScroll()
 let slideshowExpandTimeout: any = null
 const SLIDESHOW_EXPAND_DELAY = 200
-
-enum NavigationStatus {
-	MAX_TOP,
-	FIXED_TOP,
-	FIXED_BOTTOM,
-	FLOATING
-}
-
-let navigationStatus: NavigationStatus = NavigationStatus.MAX_TOP
 
 export function getViewportHeight(): number {
 	return window.visualViewport?.height ?? window.innerHeight
@@ -63,9 +46,9 @@ export function handleScroll() {
 	const logicalScroll = getLogicalScroll()
 
 	const slideshowExpandThreshold = windowHeight * 1.05  // %5 of window height after content start
-	if (logicalScroll < lastScroll) {  // Scrolling up
+	if (logicalScroll <= lastScroll) {  // Scrolling up
 		// console.log('Scrolling up')
-		if (slideshowCollapsed && logicalScroll < slideshowExpandThreshold) {
+		if (slideshowCollapsed && logicalScroll <= slideshowExpandThreshold) {
 			if (!slideshowExpandTimeout) {
 				// console.log('Requesting slideshow expand')
 				slideshowExpandTimeout = setTimeout(slideshowExpand, SLIDESHOW_EXPAND_DELAY)
@@ -95,78 +78,10 @@ export function handleScroll() {
 
 	// ---------- Header shadow ----------
 
-	const headerBottom = header.getBoundingClientRect().bottom
-	const curImageTop = curImageReal.getBoundingClientRect().top
-	header.classList.toggle('has-shadow', curImageTop <= headerBottom)
+	// const headerBottom = header.getBoundingClientRect().bottom
+	// const curImageTop = curImageReal.getBoundingClientRect().top
+	header.classList.toggle('has-shadow', logicalScroll > windowHeight + 30)  // margin-top for markets is at least 30px
 
-	// ---------- Sticky navigation ----------
-
-	let navigationBlockPos = markets.getBoundingClientRect()
-	let relativePos = navigationBlockPos.top - contentArea.getBoundingClientRect().top
-
-	let newPosition: string = '',
-		newTop: string = ''
-	let oldStatus: NavigationStatus | null = null,
-		newStatus: NavigationStatus = navigationStatus
-
-	while (oldStatus != newStatus) {
-		oldStatus = newStatus
-
-		if (logicalScroll >= lastScroll) { // Scrolling down  // TODO: is == needed?
-			switch (oldStatus) {
-				case NavigationStatus.MAX_TOP:
-				case NavigationStatus.FLOATING:
-					if (navigationBlockPos.top <= 106 && navigationBlockPos.bottom <= windowHeight) {
-						newStatus = NavigationStatus.FIXED_BOTTOM
-						newPosition = 'fixed'
-						newTop = Math.min(106, windowHeight - navigationBlockPos.height) + 'px'
-					}
-					break
-
-				case NavigationStatus.FIXED_TOP:
-					newStatus = NavigationStatus.FLOATING
-					newPosition = 'absolute'
-					newTop = relativePos + 'px'
-					break
-			}
-
-		} else { // Scrolling up
-			switch (oldStatus) {
-				case NavigationStatus.FIXED_TOP:
-					if (relativePos <= 106) {
-						newStatus = NavigationStatus.MAX_TOP
-						newPosition = 'absolute'
-						newTop = '106px'
-					}
-					break
-
-				case NavigationStatus.FIXED_BOTTOM:
-					newStatus = NavigationStatus.FLOATING
-					newPosition = 'absolute'
-					newTop = relativePos + 'px'
-					break
-
-				case NavigationStatus.FLOATING:
-					if (navigationBlockPos.top >= 106) {
-						newStatus = NavigationStatus.FIXED_TOP
-						newPosition = 'fixed'
-						newTop = '106px'
-					}
-					break
-			}
-		}
-	}
-
-	if (newStatus != navigationStatus) {
-		if (markets.style.position != newPosition) {
-			markets.style.position = newPosition
-		}
-		if (markets.style.top != newTop) {
-			markets.style.top = newTop
-		}
-	}
-
-	navigationStatus = newStatus
 	lastScroll = logicalScroll
 }
 
@@ -197,6 +112,7 @@ function slideshowCollapse() {  // When scrolling down
 export function initScroll() {
 	window.addEventListener('scroll', handleScroll, { passive: true })
 	window.addEventListener('resize', handleScroll, { passive: true })
+	window.visualViewport?.addEventListener('resize', handleScroll, { passive: true })
 
 	window.addEventListener('touchstart', () => updateSlideshowAutoscroll(), { passive: true })
 	window.addEventListener('touchmove', () => updateSlideshowAutoscroll(), { passive: true })

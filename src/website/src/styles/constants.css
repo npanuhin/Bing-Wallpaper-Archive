@@ -11,6 +11,8 @@
 	--light-color: #FFF;
 
 	--image-fade-duration: 1s;
+	--transition-hover-in: 0.05s;
+	--transition-hover-out: 0.1s;
 
 	--html-color: var(--background-color);
 
