@@ -1,4 +1,4 @@
-import { SLIDESHOW_DELAY, RegionId } from './constants';
+import { RegionId, SLIDESHOW_DELAY } from './constants';
 import { slideshowBackground, slideshowForeground, slideshowTitle, slideshowTitleTexts } from './elements';
 import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
@@ -11,13 +11,7 @@ export class Slideshow {
 	nextImage: HTMLImageElement = slideshowBackground
 
 	async roll() {
-		let chosenImage = undefined
-
-		let attempts = 0
-		while (chosenImage === undefined || (!chosenImage.title || chosenImage.title.trim() === '') && attempts < 20) {
-			chosenImage = apiByRegion[SLIDESHOW_REGION].getRandom()
-			attempts++
-		}
+		const chosenImage = apiByRegion[SLIDESHOW_REGION].getRandom()
 
 		if (!chosenImage) {
 			console.warn('Warning: no images available for slideshow. Retrying...')

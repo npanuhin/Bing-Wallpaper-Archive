@@ -1,21 +1,24 @@
-import { RegionId, REGIONS_LIST, YEAR_API_PATH } from './constants';
+import { REGION_API_PATH, RegionId, REGIONS_LIST, START_DATE, YEAR_API_PATH } from './constants';
 import { ImageEntry } from './types';
 
 export class Region {
 	lang: string
 	country: string
 	images: Map<string, ImageEntry>
-	dates: string[]
+	slideshow_dates: string[]
 
 	constructor(region: string) {
 		[this.country, this.lang] = region.split('-')
 		this.images = new Map<string, ImageEntry>()
-		this.dates = []
+		this.slideshow_dates = []
 	}
 
 	add(date: string, item: ImageEntry) {
 		if (!this.images.has(date)) {
-			this.dates.push(date)
+			const itemDate = new Date(date)
+			if (itemDate >= START_DATE && item.title?.trim()) {
+				this.slideshow_dates.push(date)
+			}
 		}
 		this.images.set(date, item)
 	}
@@ -29,11 +32,21 @@ export class Region {
 	}
 
 	getRandom(): ImageEntry | undefined {
-		return this.images.get(this.dates[Math.floor(Math.random() * this.dates.length)])
+		if (this.slideshow_dates.length === 0) return undefined
+		return this.images.get(this.slideshow_dates[Math.floor(Math.random() * this.slideshow_dates.length)])
 	}
 
 	async fetchYear(year: number, alertError: boolean = false): Promise<void> {
 		const apiPath = YEAR_API_PATH(this.country, this.lang, year)
+		return this.fetchUrl(apiPath, alertError)
+	}
+
+	async fetchAll(alertError: boolean = false): Promise<void> {
+		const apiPath = REGION_API_PATH(this.country, this.lang)
+		return this.fetchUrl(apiPath, alertError)
+	}
+
+	private async fetchUrl(apiPath: string, alertError: boolean = false): Promise<void> {
 		try {
 			const response = await fetch(apiPath, {
 				method: 'GET',

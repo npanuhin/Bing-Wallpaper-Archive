@@ -1,5 +1,13 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import { contentArea, header, markets, slideshowTitle, curImageReal, slideshowTitleContainer, slideshowElement } from './elements';
+import {
+	contentArea,
+	curImageReal,
+	header,
+	markets,
+	slideshowElement,
+	slideshowTitle,
+	slideshowTitleContainer
+} from './elements';
 
 let autoScrollTimeout: any
 let slideshowCollapsed: boolean = false
@@ -162,7 +170,7 @@ export function handleScroll() {
 	lastScroll = logicalScroll
 }
 
-function slideshowExpand() {   // When scrolling up
+function slideshowExpand() {  // When scrolling up
 	// console.log('Expanding slideshow')
 	requestAnimationFrame(() => {
 		const newScroll = window.scrollY + getViewportHeight()

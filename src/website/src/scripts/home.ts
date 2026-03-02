@@ -1,4 +1,4 @@
-import { PREVIOUS_YEAR, START_DATE, TODAY } from './constants';
+import { PREVIOUS_YEAR } from './constants';
 import { curImageInitial, curImageReal, slideshowForeground } from './elements';
 import { apiByRegion } from './Region';
 import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
@@ -51,12 +51,9 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 
 		void apiPromise.finally(() => {
 			// TODO: Fetch all regions
-			for (let year = START_DATE.getFullYear(); year <= TODAY.getFullYear(); ++year) {
-				if (year === PREVIOUS_YEAR) continue
-				apiByRegion[SLIDESHOW_REGION]
-					.fetchYear(year)
-					.catch(console.log)
-			}
+			apiByRegion[SLIDESHOW_REGION]
+				.fetchAll()
+				.catch(console.log)
 		})
 
 		const animPromise =
