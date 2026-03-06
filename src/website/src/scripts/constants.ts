@@ -22,7 +22,7 @@ export const YEAR_API_PATH = (country: string, lang: string, year: number): stri
 export const REGION_API_PATH = (country: string, lang: string): string =>
 	`${country.toUpperCase()}-${lang.toLowerCase()}.json`
 
-export const START_DATE: Date = new Date(2017, 2, 1)  // 2017-03-01: 1080p images start here
+export const START_DATE: Date = new Date(2021, 7, 28)  // 1080p starts on 2017-03-01, >1080p starts on 2021-08-28
 export const AUTOSCROLL_DELAY: number = 5000  // Delay before automatic scroll
 export const SLIDESHOW_DELAY: number = 5000  // Delay between homepage images. Does not include transition time
 

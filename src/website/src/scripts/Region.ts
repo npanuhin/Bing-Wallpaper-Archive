@@ -24,7 +24,7 @@ export class Region {
 	}
 
 	addAll(items: ImageEntry[]) {
-		items.forEach(item => this.add(item['date'], item))
+		items.forEach(item => this.add(item.date, item))
 	}
 
 	get(date: string): ImageEntry | undefined {

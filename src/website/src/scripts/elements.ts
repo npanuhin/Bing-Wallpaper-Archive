@@ -10,3 +10,5 @@ export const header = document.querySelector<HTMLElement>('#header')!
 
 export const curImageReal = document.querySelector<HTMLImageElement>('#cur_image_real')!
 export const curImageInitial = document.querySelector<HTMLImageElement>('#cur_image_initial')!
+export const curImageTitle = document.querySelector<HTMLElement>('#cur_image_title')!
+export const curImageDescription = document.querySelector<HTMLElement>('#cur_image_description')!

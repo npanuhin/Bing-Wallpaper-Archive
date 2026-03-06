@@ -1,14 +1,16 @@
 import { RegionId, SLIDESHOW_DELAY } from './constants';
-import { slideshowBackground, slideshowForeground, slideshowTitle, slideshowTitleTexts } from './elements';
+import { curImageDescription, curImageReal, curImageTitle, slideshowBackground, slideshowForeground, slideshowTitle, slideshowTitleTexts } from './elements';
 import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
 import { getLogicalScroll, getViewportHeight } from './scroll';
+import { ImageEntry } from './types';
 
 export const SLIDESHOW_REGION: RegionId = 'US-en'
 
 export class Slideshow {
 	curImage: HTMLImageElement = slideshowForeground
 	nextImage: HTMLImageElement = slideshowBackground
+	curImageData: ImageEntry | null = null
 
 	async roll() {
 		const chosenImage = apiByRegion[SLIDESHOW_REGION].getRandom()
@@ -19,8 +21,8 @@ export class Slideshow {
 			return
 		}
 
-		this.queueImage(chosenImage['url'])
-		this.nextImage.alt = chosenImage['title']
+		this.queueImage(chosenImage.url)
+		this.nextImage.alt = chosenImage.title
 
 		await waitFor(
 			() => document.visibilityState === 'visible' && getLogicalScroll() < getViewportHeight(),
@@ -34,6 +36,7 @@ export class Slideshow {
 		await waitFor(() => this.nextImage.complete)
 
 		const targetOpacity = this.nextImage === slideshowForeground ? '1' : '0'
+		slideshowForeground.style.pointerEvents = targetOpacity === '1' ? 'auto' : 'none'
 		waitAnimation(slideshowForeground, 'opacity', targetOpacity)
 			.then(() => {
 				this.swapImages()
@@ -41,8 +44,10 @@ export class Slideshow {
 			})
 
 		waitAnimation(slideshowTitle, 'opacity', '0').then(() => {
-			slideshowTitleTexts.forEach(span => span.textContent = chosenImage['title'])
-			slideshowTitle.href = chosenImage['url']
+			slideshowTitleTexts.forEach(span => span.textContent = chosenImage.title)
+			slideshowTitle.href = chosenImage.url
+
+			this.curImageData = chosenImage
 
 			slideshowTitle.classList.toggle('fullwidth', slideshowTitle.getBoundingClientRect().left == 0)
 
@@ -66,6 +71,20 @@ export function initTitleClick() {
 		const selection = window.getSelection()
 		if (selection && !selection.isCollapsed && selection.anchorNode && slideshowTitle.contains(selection.anchorNode)) {
 			e.preventDefault()
+			return
+		}
+
+		e.preventDefault()
+
+		window.scroll({
+			top: getViewportHeight(),
+			behavior: 'smooth'
+		})
+
+		if (slideshow.curImageData) {
+			curImageReal.src = slideshow.curImageData.url
+			curImageTitle.textContent = slideshow.curImageData.title
+			curImageDescription.textContent = slideshow.curImageData.description ?? ''
 		}
 	})
 }

@@ -162,7 +162,7 @@ body.shown {
 
 	/*TODO: if screen height is too small */
 	/*min-height: calc(var(--window-height) * 5);*/
-	min-height: calc(var(--window-height) * 1);
+	min-height: calc(var(--window-height) * 1 + 1vh);
 
 	transition: box-shadow 0.3s ease-out;
 }

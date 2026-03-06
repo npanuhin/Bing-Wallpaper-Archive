@@ -1,5 +1,5 @@
 import { PREVIOUS_YEAR } from './constants';
-import { curImageInitial, curImageReal, slideshowForeground } from './elements';
+import { curImageDescription, curImageInitial, curImageReal, curImageTitle, slideshowForeground, slideshowTitle } from './elements';
 import { apiByRegion } from './Region';
 import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
 import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
@@ -34,6 +34,14 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	slideshow.queueImage(highResHomepageUrl)
 	curImageReal.src = highResHomepageUrl;
 
+	// TODO
+	slideshow.curImageData = {
+		date: '',
+		url: highResHomepageUrl,
+		title: curImageTitle.textContent?.trim() ?? '',
+		description: curImageDescription.textContent?.trim() ?? ''
+	};
+
 	(async () => {
 		await waitFor(() => slideshow.nextImage.complete)
 		console.log('Slideshow image loaded in full resolution')
@@ -55,6 +63,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 				.catch(console.log)
 		})
 
+		slideshowForeground.style.pointerEvents = 'none'
 		const animPromise =
 			waitAnimation(slideshowForeground, 'opacity', '0')
 				.then(() => {
@@ -69,6 +78,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	(async () => {
 		await waitFor(() => curImageReal.complete)
 		console.log('Current image loaded in full resolution')
+		curImageInitial.style.pointerEvents = 'none'
 		await waitAnimation(curImageInitial, 'opacity', '0')
 		await waitFrame()
 		await wait(1000)
