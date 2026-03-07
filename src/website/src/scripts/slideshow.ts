@@ -1,5 +1,13 @@
 import { RegionId, SLIDESHOW_DELAY } from './constants';
-import { curImageDescription, curImageReal, curImageTitle, slideshowBackground, slideshowForeground, slideshowTitle, slideshowTitleTexts } from './elements';
+import {
+	curImageDescription,
+	curImageReal,
+	curImageTitle,
+	slideshowBackground,
+	slideshowForeground,
+	slideshowTitle,
+	slideshowTitleTexts
+} from './elements';
 import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
 import { formatDescription } from './utils';

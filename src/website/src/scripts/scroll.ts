@@ -1,5 +1,5 @@
 import { AUTOSCROLL_DELAY } from './constants';
-import { contentArea, header, slideshowElement, slideshowTitle, slideshowTitleContainer } from './elements';
+import { contentArea, header, slideshowElement, slideshowTitleContainer } from './elements';
 
 let autoScrollTimeout: any
 let slideshowCollapsed: boolean = false
@@ -72,8 +72,7 @@ export function handleScroll() {
 
 	// ---------- Title background ----------
 
-	slideshowTitle.classList.toggle('permanent_hover', logicalScroll > windowHeight * 0.01)
-	slideshowTitleContainer.classList.toggle('has-shadow', logicalScroll > windowHeight * 0.01)
+	slideshowTitleContainer.classList.toggle('permanent_hover', logicalScroll > windowHeight * 0.01)
 	contentArea.classList.toggle('has-shadow', logicalScroll > windowHeight * 0.01)
 
 	// ---------- Header shadow ----------

@@ -1,5 +1,5 @@
 import { PREVIOUS_YEAR } from './constants';
-import { curImageDescription, curImageInitial, curImageReal, curImageTitle, slideshowForeground, slideshowTitle } from './elements';
+import { curImageDescription, curImageInitial, curImageReal, curImageTitle, slideshowForeground } from './elements';
 import { apiByRegion } from './Region';
 import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
 import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
