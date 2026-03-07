@@ -108,8 +108,12 @@ body.shown {
 }
 
 #slideshow_title.fullwidth {
-	padding-left: 0;
+	padding-left: 13px;
 	mask-image: none;
+}
+
+#slideshow_title.fullwidth > span {
+	text-align: center;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -189,7 +193,7 @@ body.shown {
 	background-color: var(--background-color-secondary);
 
 	margin-bottom: 30px;
-	padding: 20px 10%;
+	padding: 15px 10%;
 	box-sizing: border-box;
 
 	text-align: center;
@@ -206,9 +210,10 @@ body.shown {
 #header h1 {
 	display: inline-block;
 
+	text-align: center;
 	color: var(--light-color);
 	font-size: 32px;
-	line-height: 36px;
+	line-height: 1.4em;
 }
 
 #markets {
@@ -301,13 +306,6 @@ body.shown {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*noinspection CssNonIntegerLengthInPixels*/
-@media (max-width: 533.33px) {
-	#header h1 {
-		font-size: 6vw;
-	}
-}
-
 @media (max-width: 1400px) {
 	#markets {
 		grid-template-columns: repeat(4, 1fr);
@@ -334,5 +332,11 @@ body.shown {
 @media (max-width: 450px) {
 	#markets {
 		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+@media (orientation: portrait) {
+	#cur_image_description p {
+		text-align: initial;
 	}
 }
