@@ -3,6 +3,7 @@ import { curImageDescription, curImageInitial, curImageReal, curImageTitle, slid
 import { apiByRegion } from './Region';
 import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
 import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
+import { formatDescription } from './utils';
 import { initScroll } from './scroll';
 import { loadFullFonts } from './fonts';
 
@@ -35,12 +36,15 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 	curImageReal.src = highResHomepageUrl;
 
 	// TODO
+	const initialDescription = curImageDescription.textContent?.trim() ?? ''
 	slideshow.curImageData = {
 		date: '',
 		url: highResHomepageUrl,
 		title: curImageTitle.textContent?.trim() ?? '',
-		description: curImageDescription.textContent?.trim() ?? ''
+		description: initialDescription
 	};
+
+	curImageDescription.innerHTML = formatDescription(initialDescription);
 
 	(async () => {
 		await waitFor(() => slideshow.nextImage.complete)
