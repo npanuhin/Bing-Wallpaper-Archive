@@ -3,10 +3,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-03-18.jpg">
+  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-03-19.jpg">
     <picture>
       <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-      <img id="last_image" title="Cherry blossoms at Tom McCall Waterfront Park, Portland, Oregon, USA" alt="Cherry blossoms at Tom McCall Waterfront Park, Portland, Oregon, USA" src="https://bing.npanuhin.me/latest.svg">
+      <img id="last_image" title="Short-beaked echidna, Adelaide Hills, Australia" alt="Short-beaked echidna, Adelaide Hills, Australia" src="https://bing.npanuhin.me/latest.svg">
     </picture>
     <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
   </a>
