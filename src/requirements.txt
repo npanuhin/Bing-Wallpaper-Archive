@@ -1,7 +1,7 @@
 beautifulsoup4==4.14.3
 requests==2.32.5
 Pillow==12.1.1
-boto3==1.42.52
-ruff==0.15.1
-pyrefly==0.53.0
+boto3==1.42.73
+ruff==0.15.7
+pyrefly==0.57.1
 pytest==9.0.2
