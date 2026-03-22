@@ -3,7 +3,7 @@ name: Archive update
 on:
   schedule:
 #    - cron: '2 8 * * *'  # 8:02 UTC
-    - cron: '2 * * * *'  # every hour at HH:02 UTC
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 permissions:
