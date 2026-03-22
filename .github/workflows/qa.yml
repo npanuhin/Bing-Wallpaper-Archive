@@ -18,17 +18,30 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: 3.14
-          cache: pip
 
-      - name: Install dependencies
+      - name: Cache Python dependencies
+        uses: actions/cache@v5
+        id: cache-python
+        with:
+          path: src/venv
+          key: ${{ runner.os }}-venv-${{ hashFiles('src/requirements.txt') }}
+
+      - name: Install Python dependencies
+        if: steps.cache-python.outputs.cache-hit != 'true'
         working-directory: src
-        run: pip install -r requirements.txt
+        run: |
+          python -m venv venv
+          venv/bin/pip install -r requirements.txt
+
+      - name: Add Python venv to PATH
+        working-directory: src
+        run: echo "${GITHUB_WORKSPACE}/src/venv/bin" >> "$GITHUB_PATH"
 
       - name: Check with ruff
         working-directory: src
