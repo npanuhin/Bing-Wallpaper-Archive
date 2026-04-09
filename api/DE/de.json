@@ -7382,11 +7382,751 @@
 	{
 		"title": "Seattle, Washington, USA",
 		"caption": "Die Smaragdstadt",
-		"subtitle": null,
+		"subtitle": "Seattle, Washington, USA",
 		"copyright": "© Jim Patterson/Tandem Stills + Motion",
-		"description": "Über Seattle im US-Bundesstaat Washington liegt ein warmes Licht, das die Uferlinie sanft modelliert. Die Piers reichen weit in die Elliott Bay hinein, während sich die Stadt dahinter über die ansteigenden Straßen den Hügel hinaufzieht. Über der Skyline setzt die Space Needle einen markanten Akzent und ist längst zu einem Sinnbild der Region geworden. Seattle verdankt seinen Namen Chief Si’ahl, einem Anführer der Duwamish und Suquamish, deren Geschichte eng mit diesem Küstenabschnitt verbunden ist. Oberhalb der Waterfront befindet sich der Pike Place Market, der seit 1907 ein Ort des Handels und der Begegnung ist.",
+		"description": "Über Seattle im US-Bundesstaat Washington liegt ein warmes Licht, das die Uferlinie sanft modelliert. Die Piers reichen weit in die Elliott Bay hinein, während sich die Stadt dahinter über die ansteigenden Straßen den Hügel hinaufzieht. Über der Skyline setzt die Space Needle einen markanten Akzent und ist längst zu einem Sinnbild der Region geworden. Seattle verdankt seinen Namen Chief Si’ahl, einem Anführer der Duwamish und Suquamish, deren Geschichte eng mit diesem Küstenabschnitt verbunden ist. Oberhalb der Waterfront befindet sich der Pike Place Market, der seit 1907 ein Ort des Handels und der Begegnung ist.\nIn den späten 1980er-Jahren entstand in Seattle ein neuer Klang: In kleinen Clubs entwickelte sich der Grunge, der von hier aus bald darauf die internationale Musikwelt prägte. Umgeben von Meer, Seen und fernen Gebirgsketten wirkt Seattle offen und weit. Die immergrünen Landschaften ringsum brachten der Stadt den bis heute gültigen Beinamen „Emerald City” (Smaragdstadt) ein.",
 		"date": "2026-04-08",
 		"bing_url": "https://bing.com/th?id=OHR.SeattleSunrise_DE-DE4194725859_UHD.jpg",
 		"url": "https://bing.npanuhin.me/DE/de/2026-04-08.jpg"
+	},
+	{
+		"title": "Wasserfall Sgwd yr Eira, Bannau-Brycheiniog-Nationalpark, Wales",
+		"caption": "Schleier aus Licht",
+		"subtitle": "Wasserfall Sgwd yr Eira, Bannau-Brycheiniog-Nationalpark, Wales",
+		"copyright": "© Guy Edwardes/Nature Picture Library",
+		"description": "Der Wasserfall Sgwd yr Eira stürzt in klaren Linien über eine Felswand im Süden von Wales. Sein walisischer Name bedeutet „Wasserfall des Schnees“ und verweist auf den hellen Schleier, der über den dunklen Stein gleitet. Besonders an diesem Ort ist die unmittelbare Nähe: Ein schmaler Pfad führt direkt hinter den Wasserfall, sodass man ihn aus einer seltenen Perspektive erleben kann – mit dem Klang, dem Licht und der kühlen Gischt ganz nah.\nSgwd yr Eira liegt im Bannau-Brycheiniog-Nationalpark in Wales, einer Region, die wegen ihrer vielen Wasserfälle oft als „Waterfall Country“ bezeichnet wird. Gut markierte Wege verbinden diesen Ort mit weiteren Wasserfällen entlang des Flusses Hepste. Oberhalb der bewaldeten Schluchten öffnet sich die Landschaft zu weiten Moorflächen und langgezogenen Bergrücken – ein Wechselspiel aus geschütztem Wasser und offenem Hochland, das den Charakter dieser Gegend prägt. Ähnliche Kontraste zwischen engen Wasserfalltälern und offenen Höhenzügen finden sich auch in Deutschland, etwa in den Schluchten des Schwarzwalds oder in den bayerischen Alpen.",
+		"date": "2026-04-09",
+		"bing_url": "https://bing.com/th?id=OHR.WalesWaterfall_DE-DE3914943057_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-09.jpg"
+	},
+	{
+		"title": "Zwei junge Rotfüchse im Nationalpark Karula, Estland",
+		"caption": "Kleine Pfoten, große Ideen",
+		"subtitle": "Tag der Geschwister",
+		"copyright": "© Sven Zacek/Nature Picture Library",
+		"description": "Zum Tag der Geschwister rückt ein besonderes Band in den Mittelpunkt – und selten zeigt es sich so bezaubernd wie bei diesen beiden jungen Rotfüchsen im estnischen Nationalpark Karula. Eng beieinander sitzen sie im Gras, als würden sie ein stilles Geheimnis teilen. Dieses Zusammensein ist kein Zufall, denn Fuchswelpen wachsen in Würfen auf, in denen Nähe und Zusammenarbeit überlebenswichtig sind.\nDer Bau dient ihnen als Schlafplatz, Spielraum und erstes Trainingsfeld. Hier lernen sie, wie man jagt, sich verteidigt und miteinander kommuniziert. Ältere Geschwister spielen dabei eine wichtige Rolle – sie halten Wache, teilen Nahrung und üben im spielerischen Raufen die Fähigkeiten, die später draußen benötigt werden.\nWas bei den jungen Füchsen so vertraut wirkt, ist uns ebenfalls bekannt. Geschwister begleiten uns oft von Anfang an, prägen unsere ersten Abenteuer und bleiben manchmal ein Leben lang unsere verlässlichsten Partner.",
+		"date": "2026-04-10",
+		"bing_url": "https://bing.com/th?id=OHR.FoxSiblings_DE-DE2992215006_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-10.jpg"
+	},
+	{
+		"title": "Playa del Papagayo, Lanzarote, Kanarische Inseln, Spanien",
+		"caption": "Wo Lava auf Meer trifft",
+		"subtitle": "Playa del Papagayo, Lanzarote, Kanarische Inseln, Spanien",
+		"copyright": "© Gavin Hellier/Getty Images",
+		"description": "An der Südküste Lanzarotes, einer zu Spanien gehörenden Insel der Kanaren, liegt die Playa del Papagayo, eine geschützte Bucht vulkanischen Ursprungs. Vor Millionen von Jahren entstand hier Land aus Basalt, Asche und Lava, das später durch Wind und Wasser geglättet wurde. Die rund 120 Meter lange Bucht gehört zum Naturdenkmal Los Ajaches und ist bis heute bewusst nur wenig erschlossen.\nEinst diente sie Seeleuten als geschützter Ankerplatz auf Routen zwischen Afrika und Europa. Auch heute ist sie nur zu Fuß, per Boot oder über eine einfache Schotterpiste erreichbar. Steilwände umschließen die Bucht und wirken wie natürliche Wellenbrecher, die den Atlantik in ruhige, klare Flachwasserzonen verwandeln. Zwischen den Steinen leben Fische, Krabben und Oktopusse, die sich im Gestein verbergen. Der warme Sand aus Muschelresten und vulkanischem Material zeigt, wie Zeit und Gezeiten den Charakter dieser Küste geprägt haben. Ihre stille, abgeschiedene Lage macht die Bucht bis heute zu einem besonderen Ort.",
+		"date": "2026-04-11",
+		"bing_url": "https://bing.com/th?id=OHR.PlayaPapagayo_DE-DE0494036913_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-11.jpg"
+	},
+	{
+		"title": "Lichterspuren der Erde, aufgenommen von der Internationalen Raumstation",
+		"caption": "Der erste Schritt ins All",
+		"subtitle": "Internationaler Tag der bemannten Raumfahrt",
+		"copyright": "© NASA",
+		"description": "Der Internationale Tag der bemannten Raumfahrt erinnert an einen Wendepunkt der Menschheitsgeschichte. Am 12. April 1961 umkreiste Juri Gagarin erstmals die Erde und kehrte sicher zurück – ein Ereignis, das den Beginn der modernen Raumfahrt markierte. Ein deutscher Meilenstein folgte 1978, als Sigmund Jähn im Rahmen des sowjetischen Interkosmos‑Programms als erster Deutscher ins All flog. Während seines Aufenthalts führte er wissenschaftliche Experimente durch und sammelte Erfahrungen, die den internationalen Austausch in der Raumfahrt förderten.\nDiese Zusammenarbeit setzt sich bis heute an Bord der Internationalen Raumstation fort. In rund 400 Kilometern Höhe umkreist die ISS die Erde etwa alle 90 Minuten und ermöglicht ihren Besatzungen bis zu 16 Sonnenauf‑ und ‑untergänge pro Tag. Seit dem Jahr 2000 ist sie dauerhaft bewohnt und wird gemeinsam von den USA, Russland, Europa, Japan und Kanada betrieben. Die dort gewonnenen Erkenntnisse fließen in Medizin, Materialwissenschaften und Klimaforschung ein – und ebnen Wege für künftige Missionen ins All.",
+		"date": "2026-04-12",
+		"bing_url": "https://bing.com/th?id=OHR.SpaceTrails_DE-DE4428560014_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-12.jpg"
+	},
+	{
+		"title": "Zilpzalp, Deutschland",
+		"caption": "Ein Vogel mit gutem Ruf",
+		"subtitle": "Zilpzalp",
+		"copyright": "© Andyworks/Getty Images",
+		"description": "Klein, lebhaft und sofort am Ruf zu erkennen: Der Zilpzalp gehört zu den häufigsten Singvögeln Deutschlands und ist ein echter Vorbote des Frühjahrs. Schon ab Ende Februar kehren die ersten Männchen aus ihren Winterquartieren im Mittelmeerraum oder Südwesteuropa zurück und beginnen mit dem charakteristischen Gesang, der der Art ihren Namen gegeben hat. Dieses prägnante „zilp‑zalp‑zilp‑zalp“ macht ihn selbst dann gut auffindbar, wenn er in dichter Vegetation verborgen bleibt.\nDer Kurzstreckenzieher brütet seit dem 19. Jahrhundert flächendeckend in Deutschland und hat sich vom typischen Waldbewohner zum Kulturfolger entwickelt. Neben Laub‑, Nadel‑ und Mischwäldern besiedelt er heute zunehmend Parks, große Gärten und halboffene Kulturlandschaften. Sein braunolives Gefieder und der helle Überaugenstreif sind dezente, aber markante Merkmale. Als Insektenfresser spielt der Zilpzalp eine wichtige Rolle im Ökosystem. Sein Bestand gilt in Deutschland als stabil bis zunehmend und ist derzeit nicht gefährdet. Beim nächsten Spaziergang lohnt es sich, genauer zuzuhören – irgendwo aus den Zweigen klingt vielleicht schon ein „zilp‑zalp“.",
+		"date": "2026-04-13",
+		"bing_url": "https://bing.com/th?id=OHR.ChiffchaffSpring_DE-DE4997065919_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-13.jpg"
+	},
+	{
+		"title": "Gewöhnlicher Clownfisch in einer Seeanemone, Raja-Ampat-Inseln, Indonesien",
+		"caption": "Nachbarn im Riff",
+		"subtitle": "Seeanemone, Raja-Ampat-Inseln, Indonesien",
+		"copyright": "© Magnus Lundgren/Nature Picture Library",
+		"description": "Manchmal entfalten sich die faszinierendsten Naturbeziehungen in Momenten, die man leicht übersehen könnte. Seeanemonen wirken wie filigrane Unterwasserblumen, doch sie sind Tiere und eng mit Quallen und Korallen verwandt. Fest verankert auf Felsen oder Riffen nutzen sie ihre Tentakel mit winzigen Nesselzellen, um Beute zu fangen, was für die meisten Fische gefährlich wird. Auf dem Bild lugt ein Gewöhnlicher Clownfisch aus seiner Wirtsanemone in den Raja‑Ampat‑Inseln Indonesiens hervor, einem abgelegenen Archipel im westlichen Pazifik und Teil des Korallendreiecks. Eine spezielle Schleimschicht schützt den Fisch vor den Nesselzellen und macht die Anemone zu einem sicheren Zufluchtsort. Im Gegenzug profitiert sie von Schutz und Futterresten. Solche Partnerschaften zeigen, wie fein abgestimmt das Zusammenleben im Korallenriff ist.",
+		"date": "2026-04-14",
+		"bing_url": "https://bing.com/th?id=OHR.OcellarisClownfish_DE-DE4824723739_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-14.jpg"
+	},
+	{
+		"title": "Van-Gogh-Ausstellung in den Carrières des Lumières, Les Baux‑de‑Provence, Frankreich",
+		"caption": "Eintauchen in eine lebendige Leinwand",
+		"subtitle": "Weltkunsttag",
+		"copyright": "© Patrick Aventurier/Getty Images",
+		"description": "Kunst begleitet uns überall – in Bildern, Räumen und Ideen, die unsere Wahrnehmung herausfordern. Der Weltkunsttag am 15. April erinnert daran, wie sehr Kreativität unsere Kultur prägt und ständig neue Ausdrucksformen findet. Ein eindrucksvolles Beispiel dafür ist die immersive Van‑Gogh‑Inszenierung in den Carrières des Lumières im südfranzösischen Les Baux‑de‑Provence, wo seine Werke 2019–2020 über monumentale Steinwände projiziert wurden und Besuchern das Gefühl gaben, mitten in den Bildern zu stehen und förmlich durch die Pinselstriche zu wandeln.\nSolche immersiven Kunsterlebnisse begeisterten in den vergangenen Monaten auch ein großes Publikum in Deutschland, etwa bei Van‑Gogh‑Ausstellungen in Berlin und München. Digitale Projektionen, Licht und Klang eröffnen neue Zugänge zur Kunst und zeigen, dass sie sich stetig wandelt und immer wieder neu erfahrbar wird.",
+		"date": "2026-04-15",
+		"bing_url": "https://bing.com/th?id=OHR.VanGoghFields_DE-DE5579767701_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-15.jpg"
+	},
+	{
+		"title": "Tulpenfelder im Skagit Valley, Washington, USA",
+		"caption": "Ein Meer aus Tulpen",
+		"subtitle": "Tulpenfelder im Skagit Valley, Washington, USA",
+		"copyright": "© Alan Majchrowicz/Getty Images",
+		"description": "Es gibt Landschaften, die sofort gute Laune machen – und Tulpenfelder gehören ganz sicher dazu. Im Skagit Valley im US‑Bundesstaat Washington ziehen sich bunte Streifen über weite Felder, als hätte jemand den Frühling großzügig über die Landschaft ausgegossen. Die Felder wirken nahezu endlos und laden dazu ein, kurz innezuhalten und die Farben auf sich wirken zu lassen. In der Region gibt es zwar auch ein bekanntes Tulpenfestival, doch die eigentliche Magie entsteht direkt auf den Feldern: in den klaren Linien, der Weite und dem ständigen Wechselspiel von Licht und Farbe.\nViele Besucher kommen genau deshalb hierher – wegen dieser geordneten Farbenpracht, die jedes Jahr aufs Neue entsteht. Auch in Deutschland lässt sich ein ähnliches Schauspiel erleben, etwa auf Tulpenfeldern in Niedersachsen, Schleswig-Holstein oder am Niederrhein. Wer solche farbstarken Landschaften bewusst betrachtet, merkt schnell, wie sehr Farben und Natur das Gemüt aufhellen können.",
+		"date": "2026-04-16",
+		"bing_url": "https://bing.com/th?id=OHR.SkagitTulips_DE-DE0725960684_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-16.jpg"
+	},
+	{
+		"title": "Graukopf‑Flughund mit Jungtier, Yarra Bend Park, Melbourne, Australien",
+		"caption": "Fest an Mamas Seite",
+		"subtitle": "Graukopf‑Flughund mit Jungtier, Australien",
+		"copyright": "© Doug Gimesy/Nature Picture Library",
+		"description": "Hoch oben in den Baumwipfeln klammert sich ein Jungtier fest an den Bauch seiner Mutter. Der Graukopf‑Flughund gehört zu den größten Vertretern der Fledertiere und ist in Australien heimisch. Obwohl er mit Fledermäusen verwandt ist, unterscheidet er sich deutlich von ihnen. Flughunde zählen zu einer eigenen Gruppe innerhalb der Fledertiere und nutzen in der Regel keine Echoortung. Stattdessen orientieren sie sich mithilfe ihres ausgeprägten Seh‑ und Geruchssinns, was eine Anpassung an ihre überwiegend pflanzliche Ernährung darstellt.\nGraukopf‑Flughunde fressen vor allem Früchte, Nektar und Pollen und leisten damit einen wichtigen Beitrag zur Bestäubung von Pflanzen und zur Verbreitung von Samen. Nach der Geburt bleibt das Jungtier zunächst eng bei der Mutter und wird sogar im Flug mitgetragen. Erst nach mehreren Monaten beginnt es, eigenständig die Umgebung zu erkunden. Flughunde leben häufig in großen Kolonien, die tagsüber gemeinsam in Bäumen ruhen und ein ausgeprägtes soziales Verhalten zeigen.",
+		"date": "2026-04-17",
+		"bing_url": "https://bing.com/th?id=OHR.FlyingFoxMom_DE-DE9791519824_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-17.jpg"
+	},
+	{
+		"title": "Eingangsbereich des Kölner Doms, Nordrhein‑Westfalen",
+		"caption": "Ein Tor zur Geschichte",
+		"subtitle": "Internationaler Denkmaltag",
+		"copyright": "© ALFSnaiper/Getty Images",
+		"description": "Der Internationale Denkmaltag am 18. April lenkt den Blick auf historische Bauwerke und Stätten von herausragender Bedeutung. Sie bewahren kulturelles Wissen, spiegeln handwerkliche Traditionen wider und zeigen, wie Architektur, Glauben und Technik das kulturelle Erbe über Jahrhunderte geprägt haben. Das heutige Bild zeigt ein Detail des Eingangsportals des Kölner Doms, einer der bedeutendsten gotischen Kathedralen Europas und seit 1996 UNESCO‑Welterbe. Der Bau begann 1248, ruhte über Jahrhunderte und wurde erst 1880 vollendet. Reich verzierte Türflächen, plastische Reliefs und fein ausgearbeitete Ornamente verdeutlichen den hohen Anspruch mittelalterlicher Baukunst.\nMit seinen 157 Meter hohen Türmen war der Dom zeitweise das höchste Bauwerk der Welt. Der am Rhein gelegene Dom beherbergt zudem den Schrein der Heiligen Drei Könige und prägt bis heute das Stadtbild Kölns als herausragendes Zeugnis europäischer Architekturgeschichte. Spitzbögen, Maßwerk und Figurenprogramme machen die Portalarchitektur zu einem Schlüsselwerk der Hochgotik. Jährlich zieht der Dom Millionen Besucher an.",
+		"date": "2026-04-18",
+		"bing_url": "https://bing.com/th?id=OHR.CathedralCologne_DE-DE0399722778_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-18.jpg"
+	},
+	{
+		"title": "Praia do Espelho, Porto Seguro, Bahia, Brasilien",
+		"caption": "Die Handschrift der Gezeiten",
+		"subtitle": "Praia do Espelho, Porto Seguro, Bahia, Brasilien",
+		"copyright": "© Marcelo Nacinovic/Getty Images",
+		"description": "Schon aus der Vogelperspektive wirkt die Praia do Espelho wie ein Gemälde aus Licht und Wasser. Helle Steilklippen, vorgelagerte Riffe und natürliche Gezeitenpools prägen diesen besonderen Ort. Bei Ebbe spiegeln die flachen Wasserflächen Himmel und Wolken so klar, dass der Beiname „Spiegelstrand“ treffend erscheint.\nDie Praia do Espelho liegt im brasilianischen Bundesstaat Bahia an der Atlantikküste, südlich von Porto Seguro. Schmale Erdwege und kurze Fußpfade führen dorthin und tragen dazu bei, dass der Strand vergleichsweise ruhig bleibt. Lange Zeit galt er als Geheimtipp, ehe er in den 1990er‑Jahren international bekannt wurde.\nMit jeder Gezeit verändert sich die Landschaft sichtbar. Sandbänke werden neu geformt, Riffe freigelegt und die Pools bieten Lebensraum für kleine Meeresbewohner. Wer hier ankommt, erlebt Natur im stetigen Wandel – ruhig, ursprünglich und eindrucksvoll. In den frühen Morgenstunden zeigt sich die Küste oft von ihrer stillsten und klarsten Seite.",
+		"date": "2026-04-19",
+		"bing_url": "https://bing.com/th?id=OHR.TranBA_DE-DE2926110774_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-19.jpg"
+	},
+	{
+		"title": "Rathaus St. Johann, Saarbrücken, Saarland",
+		"caption": "Ein Rathaus mit Geschichte",
+		"subtitle": "Rathaus St. Johann, Saarbrücken, Saarland",
+		"copyright": "© frantic00/Getty Images",
+		"description": "Saarbrücken ist eine Stadt zwischen Kulturen. Ihre Lage nahe der französischen Grenze hat Architektur, Stadtbild und Alltag über Jahrhunderte hinweg geprägt. Entlang der Saar treffen historische Einflüsse und städtisches Leben aufeinander und schaffen so ein vielschichtiges urbanes Umfeld.\nAuf dem Bild ist das Rathaus St. Johann zu sehen, eines der bekanntesten Bauwerke Saarbrückens. Es wurde um 1900 im Stil der Neugotik erbaut und prägt mit seinen spitzen Bögen, reich gegliederten Fassaden und dem markanten Turm bis heute das Stadtbild. In den Turm ist ein Glockenspiel integriert, das zu einem festen Bestandteil des Stadtbilds geworden ist.\nDarüber hinaus zeugen feine Steinmetzarbeiten, dekorative Ornamente und symmetrisch angeordnete Fenster vom architektonischen Anspruch jener Zeit. Der warme Sandstein verändert seine Wirkung je nach Licht. Bis heute dient das Rathaus als Sitz der Stadtverwaltung und ist ein fester Bestandteil des urbanen Alltags.",
+		"date": "2026-04-20",
+		"bing_url": "https://bing.com/th?id=OHR.SaarbrueckenRathaus_DE-DE1197352085_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-20.jpg"
+	},
+	{
+		"title": "Europäischer Igel, Frankreich",
+		"caption": "Stachelige Frühlingspatrouille",
+		"subtitle": "Europäischer Igel, Frankreich",
+		"copyright": "© Klein & Hubert/Nature Picture Library",
+		"description": "Mit dem Frühling zeigt sich ein vertrauter Bewohner unserer Landschaften. Der Europäische Igel, der hier in Frankreich zu sehen ist, ist ein überwiegend nachtaktives Tier, das meist allein lebt. Mit seiner feinen Nase und seinem guten Gehör durchstreift er Wiesen, Gärten und Waldränder auf der Suche nach Insekten, Würmern oder Schnecken. Droht Gefahr, zieht er sich zusammen und formt eine schützende Stachelkugel – eine einfache, aber wirkungsvolle Strategie. Nach dem Winterschlaf kehren Igel in vielen Teilen Europas in ihre Reviere zurück. Ihr Stoffwechsel fährt nun wieder hoch und sie müssen rasch neue Energiereserven aufbauen.\nAuch in Deutschland gehört ihr leises Schnauben und Rascheln zum Frühling, besonders in naturnahen Gärten und Parks. Wo Laubhaufen liegen bleiben und Wege durch Grünflächen verbunden sind, finden die Tiere Nahrung und Schutz. Solche Momente zeigen, wie wichtig kleine Rückzugsräume für das Leben direkt vor unserer Haustür sind.",
+		"date": "2026-04-21",
+		"bing_url": "https://bing.com/th?id=OHR.SpringHedgehog_DE-DE1345910488_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-21.jpg"
+	},
+	{
+		"title": "Naturschutzgebiet Alam‑Pedja, Landkreis Tartu, Estland",
+		"caption": "Die Stimme der Erde",
+		"subtitle": "Tag der Erde",
+		"copyright": "© Sven Zacek/Nature Picture Library",
+		"description": "Der Tag der Erde erinnert daran, dass Umweltbewusstsein aus konkreten Sorgen entstanden ist. Im Jahr 1970 machten Proteste auf verschmutzte Flüsse, belastete Luft und zerstörte Landschaften aufmerksam und setzten damit politische Veränderungen in Gang. Heute wird der 22. April weltweit begangen, um Bilanz zu ziehen und neue Ziele zu formulieren. Das Motto „Our Power, Our Planet“ für das Jahr 2026 richtet dabei den Blick nach vorn: Bis 2030 soll die globale Kapazität erneuerbarer Energien deutlich ausgebaut werden.\nDoch Klimaschutz bedeutet nicht nur neue Technologien. Auch intakte Naturräume leisten einen wichtigen Beitrag. Das heute abgebildete Naturschutzgebiet Alam‑Pedja in Estland schützt seit 1994 eines der größten zusammenhängenden Feuchtgebiete Europas. Frei fließende Flüsse, ausgedehnte Moore und Auen speichern Kohlenstoff und regulieren Wasserstände ganz ohne technische Eingriffe. Auch in Deutschland wächst das Bewusstsein dafür, wie wertvoll diese natürlichen Prozesse für Klima, Landschaft und Artenvielfalt sind.",
+		"date": "2026-04-22",
+		"bing_url": "https://bing.com/th?id=OHR.TartuEstonia_DE-DE1682620724_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-22.jpg"
+	},
+	{
+		"title": "Anne Hathaway’s Cottage, Stratford‑upon‑Avon, England",
+		"caption": "Ein Cottage voller Geschichten",
+		"subtitle": "Shakespeare-Tag",
+		"copyright": "© David Steele/Shutterstock",
+		"description": "Der heutige Tag steht im Zeichen von William Shakespeare, einem der einflussreichsten Dramatiker der Literaturgeschichte. Der Shakespeare-Tag fällt auf dieses Datum, da Shakespeare am 23. April 1616 starb und dieser Tag zugleich als sein traditionell angenommenes Geburtsdatum im Jahr 1564 gilt. Seine Werke – von „Hamlet” bis „Romeo und Julia” – gehören bis heute zum festen Repertoire von Bühnen weltweit und prägen Theater, Unterricht und Sprache weit über den englischsprachigen Raum hinaus. Viele seiner Wendungen sind bis heute im alltäglichen Sprachgebrauch präsent und zeugen von der anhaltenden Wirkung seines Schaffens.\nAuf dem Bild ist Anne Hathaways Cottage im englischen Stratford-upon-Avon zu sehen, das Elternhaus von Shakespeares späterer Ehefrau. Das reetgedeckte Fachwerkhaus aus dem 15. Jahrhundert dient heute als Museum und vermittelt einen anschaulichen Eindruck vom ländlichen Alltag des elisabethanischen England. Historische Räume, originale Bauelemente und ein traditionell gestalteter Garten machen die Lebenswelt sichtbar, die Shakespeare, seine Familie und sein Umfeld geprägt hat.",
+		"date": "2026-04-23",
+		"bing_url": "https://bing.com/th?id=OHR.HathawayCottage_DE-DE1846813831_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-23.jpg"
+	},
+	{
+		"title": "Galápagos‑Pinguine beim Schwimmen, Galapagosinseln, Ecuador",
+		"caption": "Wenn Pinguine aus der Reihe tanzen",
+		"subtitle": "Galápagos‑Pinguine beim Schwimmen, Galapagosinseln, Ecuador",
+		"copyright": "© Henley Spiers/Nature Picture Library",
+		"description": "Pinguine werden meist mit eisigen Regionen in Verbindung gebracht, doch die Galápagos‑Pinguine bilden eine bemerkenswerte Ausnahme. Als einzige Pinguinart reicht ihr natürliches Verbreitungsgebiet bis nördlich des Äquators. Beheimatet sind sie ausschließlich auf den Galapagosinseln, einem vulkanischen Archipel, das rund 1.000 Kilometer vor der Küste Ecuadors liegt.\nTrotz der tropischen Lage sorgen kalte, nährstoffreiche Meeresströmungen wie der Humboldtstrom und der Cromwellstrom für vergleichsweise kühle Gewässer und ein reiches Nahrungsangebot, das ihre Nahrungssuche begünstigt. Die kleinen, wendigen Vögel verbringen den Großteil ihres Lebens im Wasser, wo sie Fische jagen und ihre Körpertemperatur regulieren. An Land ziehen sie sich in Felsspalten oder schattige Lavaröhren zurück, um der Hitze zu entgehen. Diese Anpassungen ermöglichen ihr Überleben in einer ungewöhnlichen Umgebung.\nAls eine der seltensten Pinguinarten reagieren Galápagos‑Pinguine besonders empfindlich auf Klimaschwankungen, veränderte Meeresbedingungen und Nahrungsverfügbarkeit. Ihr Bestand gilt daher als wichtiger Indikator für ökologische Veränderungen in der Region.",
+		"date": "2026-04-24",
+		"bing_url": "https://bing.com/th?id=OHR.GalapagosPenguins_DE-DE2195733852_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-24.jpg"
+	},
+	{
+		"title": "Waldinsel mit Sumpfkiefern und Sägepalmen, Everglades-Nationalpark, Florida, USA",
+		"caption": "Eine Hommage an die Bäume",
+		"subtitle": "Tag des Baumes",
+		"copyright": "© Mary Liz Austin/Alamy",
+		"description": "Bäume prägen Landschaften und sichern die ökologische Vielfalt. Am Tag des Baumes rücken sie auch in Deutschland besonders in den Mittelpunkt. Seit vielen Jahren nutzen Initiativen diesen Aktionstag, um mit Pflanzaktionen und Informationsveranstaltungen auf den Wert von Bäumen und Wäldern aufmerksam zu machen. Sie regulieren das Klima, verbessern die Luftqualität und bieten Lebensraum für zahlreiche Tier‑ und Pflanzenarten.\nDas Bild zeigt eine Waldinsel im Everglades‑Nationalpark im US‑Bundesstaat Florida. Auf diesen leicht erhöhten Flächen, den sogenannten Hammocks, wachsen unter anderem Sumpfkiefern und Sägepalmen. Sie bilden stabile Lebensräume inmitten weitläufiger Feuchtgebiete, die regelmäßig überflutet werden, und bieten vielen spezialisierten Arten Schutz und Nahrung. Der Everglades‑Nationalpark gehört zum UNESCO‑Welterbe und zählt zu den bedeutendsten Feuchtgebieten Nordamerikas.\nDer heutige Tag lenkt den Blick auf solche ökologischen Zusammenhänge und auf die Verantwortung, Bäume und Wälder dauerhaft zu schützen. Gerade angesichts von Klimawandel, Flächenverlust und wachsendem Bevölkerungsdruck gewinnt dieser Schutz weiter an Bedeutung, weltweit und lokal.",
+		"date": "2026-04-25",
+		"bing_url": "https://bing.com/th?id=OHR.SlashPine_DE-DE2654946647_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-25.jpg"
+	},
+	{
+		"title": "Rosafarbene Apfelblüten, Avila Beach, Kalifornien, USA",
+		"caption": "In voller Blüte",
+		"subtitle": "Rosafarbene Apfelblüten, Avila Beach, Kalifornien, USA",
+		"copyright": "© Mimi Ditchie Photography/Getty Images",
+		"description": "An der Zentralküste Kaliforniens kündigt die Apfelblüte den Frühling an. Zartrosa Blüten öffnen sich an den Zweigen der Apfelbäume und setzen helle Akzente vor dem Blau des Himmels und der offenen Küstenlandschaft des US‑Bundesstaats. Das vom Pazifik geprägte Klima mit gleichmäßigen Temperaturen und hohem Sonnenscheinanteil begünstigt eine frühe Blütezeit. In der Region rund um Avila Beach ziehen sich Apfelhaine durch nahegelegene Täler und sanfte Hügel, während kühle Meeresbrisen für ein frisches Klima sorgen und das Landschaftsbild prägen. Für Bienen und andere Insekten sind die Blüten eine wichtige Nahrungsquelle – zugleich bilden sie die Grundlage für die spätere Apfelernte.\nAuch in Deutschland zählt die Apfelblüte im April und Mai zu den vertrauten Zeichen des Frühlings. In traditionellen Obstbauregionen wie dem Alten Land oder entlang des Bodensees prägen blühende Apfelbäume ganze Landschaften. Ob an der kalifornischen Küste oder in deutschen Obstgärten – die Apfelblüte steht überall für den Rhythmus der Jahreszeiten und eine lange landwirtschaftliche Tradition.",
+		"date": "2026-04-26",
+		"bing_url": "https://bing.com/th?id=OHR.AppleBlossoms_DE-DE5754939117_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-26.jpg"
+	},
+	{
+		"title": "Glaskuppel der Galleria Vittorio Emanuele II, Mailand, Italien",
+		"caption": "Eleganz unter Glas",
+		"subtitle": "Glaskuppel der Galleria Vittorio Emanuele II, Mailand, Italien",
+		"copyright": "© PhillipMinnis/Getty Images",
+		"description": "Die Galleria Vittorio Emanuele II ist weit mehr als eine Einkaufspassage. Entworfen vom Architekten Giuseppe Mengoni und im Jahr 1877 fertiggestellt, setzte sie neue Maßstäbe für die Architektur und das Stadtleben Mailands. Mit ihrer gläsernen Kuppel verbindet sie bis heute zwei der wichtigsten Plätze der Stadt: die Piazza del Duomo und die Piazza della Scala.\nUnter dem lichtdurchfluteten Dach treffen sich Einheimische und Besucher, um in historischen Cafés zu verweilen, durch elegante Geschäfte zu flanieren oder die kunstvollen Mosaike im Boden zu bewundern. Zu ihnen zählen Darstellungen von Europa, Asien, Afrika und Amerika ebenso wie das berühmte Stiermosaik, mit dem bis heute ein Glücksritual verbunden ist.\nNach mehreren behutsamen Restaurierungen – zuletzt im Vorfeld der Expo 2015 – gilt die Galleria als Symbol für Stil, Geschichte und urbanes Leben. Wer hier steht, erlebt Mailand von seiner klassischsten Seite.",
+		"date": "2026-04-27",
+		"bing_url": "https://bing.com/th?id=OHR.MilanGalleria_DE-DE5963996541_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-27.jpg"
+	},
+	{
+		"title": "Brillenbär ruht auf einem Baum, Ecuador",
+		"caption": "Ein Blick hinter die Brille",
+		"subtitle": "Brillenbär ruht auf einem Baum, Ecuador",
+		"copyright": "© Andy Rouse/Nature Picture Library",
+		"description": "Der Brillenbär, auch Andenbär genannt, ist die einzige in Südamerika beheimatete Bärenart und lebt in den Berg‑ und Nebelwäldern der Anden. In Ländern wie Ecuador, Kolumbien oder Peru findet er Nahrung, Schutz und Rückzugsorte, häufig in schwer zugänglichen Höhenlagen. Auffällig sind die hellen Zeichnungen um seine Augen, die wie eine Brille wirken und jedem Tier ein unverwechselbares Aussehen verleihen. Als geschickter Kletterer hält sich der Brillenbär oft in Bäumen auf, wo er ruht und auf selbstgebauten Plattformen aus Zweigen frisst.\nSeine Nahrung besteht überwiegend aus pflanzlichem Material wie Früchten, Bromelien, Blättern und Rinde, ergänzt durch Insekten oder gelegentlich kleine Wirbeltiere. Der scheue Einzelgänger meidet in der Regel den Kontakt mit Menschen und ist vor allem dämmerungsaktiv. Lebensraumverlust durch Abholzung, Landwirtschaft und illegale Jagd gefährden jedoch seinen Bestand. Der Schutz des Brillenbären ist daher entscheidend für den Erhalt der artenreichen Ökosysteme der Anden.",
+		"date": "2026-04-28",
+		"bing_url": "https://bing.com/th?id=OHR.AndeanBear_DE-DE6978814593_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-28.jpg"
+	},
+	{
+		"title": "Turm von Belém am Ufer des Tejo, Lissabon, Portugal",
+		"caption": "Geschichte aus Stein",
+		"subtitle": "Turm von Belém, Lissabon, Portugal",
+		"copyright": "© f9photos/Getty Images",
+		"description": "Am Ufer des Tejo erhebt sich ein markanter Steinturm, der einst den Weg von Lissabon hinaus auf den Atlantik begleitete. Der Turm von Belém diente früher als Verteidigungsanlage und symbolischer Wächter der Stadt und erinnert heute an Portugals Aufbruch in das Zeitalter der Entdeckungen. Errichtet zu Beginn des 16. Jahrhunderts unter König Manuel I., spielte er eine zentrale Rolle beim Schutz des Hafens und der Einfahrt in den Fluss. Seine Architektur verbindet gotische Formen mit typischen Elementen des manuelinischen Stils. Maritime Motive wie Seile, Schilde, Kreuze und kunstvolle Ornamente verweisen auf Portugals enge Beziehung zum Meer und zur Seefahrt jener Zeit.\nWas einst auf einer kleinen Insel im Fluss stand, liegt heute nahe am Ufer. Veränderte Strömungen und menschliche Aufschüttungen haben die Umgebung über die Jahrhunderte hinweg geprägt. Als UNESCO‑Welterbestätte vereint der Turm von Belém bis heute Geschichte, Funktion und symbolische Bedeutung auf eindrucksvolle Weise.",
+		"date": "2026-04-29",
+		"bing_url": "https://bing.com/th?id=OHR.BelemTowerBank_DE-DE6367494619_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-29.jpg"
+	},
+	{
+		"title": "Traubenhyazinthen und Tulpen im Keukenhof, Lisse, Niederlande",
+		"caption": "Tulpen im Rampenlicht",
+		"subtitle": "Keukenhof, Lisse, Niederlande",
+		"copyright": "© Martin Ruegner/Getty Images",
+		"description": "Tulpen stehen heute für Frühling und Farbenpracht, doch ihre Geschichte begann mit einem außergewöhnlichen Finanzphänomen. Im 17. Jahrhundert löste die Begeisterung für seltene Zwiebeln in den Niederlanden eine beispiellose Spekulationswelle aus. Besonders gefragt waren außergewöhnliche Farben und gestreifte Muster, deren Entstehung kaum vorhersehbar war. Zeitweise wurden für einzelne Tulpen Summen gezahlt, die dem Wert eines Hauses entsprachen. Auch nachdem die sogenannte Tulpenmanie endete, blieb die Faszination für die Blume ungebrochen.\nEin Ort, an dem sich diese lange Beziehung bis heute zeigt, ist der Keukenhof bei Lisse, der auf dem heutigen Bild zu sehen ist. Seit seiner Eröffnung im Jahr 1950 dient der Park als Schaufenster niederländischer Blumenzucht und zieht jedes Frühjahr Besucher aus aller Welt an. Jährlich werden hier rund sieben Millionen Blumenzwiebeln neu gesetzt, darunter etwa 800 Tulpensorten, ergänzt durch Hyazinthen und Narzissen. Die Faszination für Tulpen reicht dabei weit über die Niederlande hinaus: Auch in Deutschland prägen Felder im Alten Land oder am Niederrhein längst das Bild des Frühlings.",
+		"date": "2026-04-30",
+		"bing_url": "https://bing.com/th?id=OHR.DutchTulips_DE-DE6573946518_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-04-30.jpg"
+	},
+	{
+		"title": "Leuchtturm Tŵr Mawr, Ynys Llanddwyn, Anglesey, Wales",
+		"caption": "Ein stiller Wächter an der Küste",
+		"subtitle": "Leuchtturm Tŵr Mawr, Anglesey, Wales",
+		"copyright": "© Lukas Bischoff/Getty Images",
+		"description": "Manchmal sind es die stillen Orte, die lange im Gedächtnis bleiben – so wie der Leuchtturm Tŵr Mawr. Er steht seit 1845 auf Ynys Llanddwyn, einer kleinen Gezeiteninsel vor Anglesey (Ynys Môn) an der walisischen Küste, die bei Flut zeitweise vom Festland abgeschnitten wird. Mit einer Höhe von etwas mehr als zehn Metern ist Tŵr Mawr kein imposanter Koloss, sondern ein Orientierungspunkt mit Charakter. Früher wies er Schiffen den Weg durch die anspruchsvolle Menai-Meerenge und trug so zur sicheren Navigation in einem der schwierigsten Seegebiete der Region bei. Seine konische Form erinnert an eine alte Windmühle und erzählt von frühen technischen Lösungen.\nHeute ist der Turm ein geschütztes Baudenkmal, während das benachbarte Tŵr Bach weiterhin als aktives Leuchtfeuer dient. Der tideabhängige Zugang und die schlichte Bauweise erinnern an kleinere Leuchttürme an der deutschen Nord- und Ostseeküste, wie etwa den „Kleinen Preußen“ in Wremen oder das Leuchtfeuer Pelzerhaken, bei denen Funktion und Landschaft ebenso eng verbunden sind.",
+		"date": "2026-05-01",
+		"bing_url": "https://bing.com/th?id=OHR.TwrMawrLighthouse2026_DE-DE3505547766_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-01.jpg"
+	},
+	{
+		"title": "Kleiner See und Feuchtgebiet im Jasper‑Nationalpark in Alberta, Kanada",
+		"caption": "Die Magie von Jasper",
+		"subtitle": "Jasper‑Nationalpark in Alberta, Kanada",
+		"copyright": "© Don White/Getty Images",
+		"description": "Wie wild sich Natur anfühlen kann, zeigt der Jasper‑Nationalpark in den kanadischen Rocky Mountains eindrucksvoll. Weite Täler, stille Feuchtgebiete, dichte Nadelwälder und von Gletschern gespeiste Flüsse prägen diese Landschaft in Alberta. Der Park wurde bereits zu Beginn des 20. Jahrhunderts unter Schutz gestellt und bewahrt bis heute einen spürbar ursprünglichen Charakter.\nElche bewegen sich durch offene Ebenen, Moose finden Nahrung in sumpfigen Bereichen, und mit etwas Glück lassen sich auch Wölfe oder Grizzlys entdecken. Karibus streifen noch immer durch Teile des Parks, wenn auch in geringer Zahl. Ein gut ausgebautes Wegenetz lädt zu kurzen Spaziergängen ebenso ein wie zu mehrtägigen Wanderungen im Hinterland.\nDer Icefields Parkway eröffnet als Panoramastraße beeindruckende Ausblicke auf Gletscher und weite Täler, während der Maligne‑See im Sommer Paddler anzieht. Nach Sonnenuntergang zeigt sich Jasper als Dark‑Sky‑Preserve, einem geschützten Gebiet mit besonders geringer Lichtverschmutzung, und bietet einen klaren, sternenreichen Himmel. So bleibt Jasper ein Ort, an dem sich Weite und Stille ganz unmittelbar erleben lassen.",
+		"date": "2026-05-02",
+		"bing_url": "https://bing.com/th?id=OHR.GreenJasper_DE-DE3724735614_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-02.jpg"
+	},
+	{
+		"title": "Leopard, der in einem Baum in der Savanne schläft, Masai‑Mara‑Nationalreservat, Kenia",
+		"caption": "Rast in der Savanne",
+		"subtitle": "Internationaler Tag des Leoparden",
+		"copyright": "© Klein & Hubert/Nature Picture Library",
+		"description": "Hoch über der Savanne im Masai-Mara-Nationalreservat hat es sich ein Leopard auf einem Ast bequem gemacht. Im warmen Licht des Abends ruht eine der anpassungsfähigsten Großkatzen der Welt und blickt über die weite Landschaft Kenias. Der Internationale Tag des Leoparden am 3. Mai ist ein Anlass, diese faszinierenden Jäger in den Fokus zu rücken.\nOb in dichten Wäldern, schroffen Gebirgen oder offenen Savannen – Leoparden sind wahre Überlebenskünstler. Ihr geflecktes Fell, dessen Muster bei jedem Tier so einzigartig ist wie ein Fingerabdruck, bietet ihnen eine wirkungsvolle Tarnung. Mit großer Kraft ziehen sie ihre Beute oft hoch in die Kronen der Bäume, um sie vor Konkurrenten wie Löwen oder Hyänen zu sichern.\nMeist in der Dämmerung aktiv, verlassen sich die scheuen Einzelgänger auf ihre geschärften Sinne und ihre Geduld. Doch trotz ihrer Anpassungsfähigkeit schrumpfen ihre Lebensräume. Der Aktionstag macht darauf aufmerksam, wie wichtig der Schutz dieser Großkatzen für das ökologische Gleichgewicht ist.",
+		"date": "2026-05-03",
+		"bing_url": "https://bing.com/th?id=OHR.MasaiLeopard_DE-DE1183742562_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-03.jpg"
+	},
+	{
+		"title": "Ksar Ouled Soltane, Gouvernement Tataouine, Südtunesien",
+		"caption": "Reale Kulisse, galaktische Fantasie",
+		"subtitle": "Star-Wars-Tag",
+		"copyright": "© Dark_Eni/Getty Images Plus",
+		"description": "Was wie eine Filmkulisse wirkt, ist ein historischer Ort: Ksar Ouled Soltane liegt im Süden Tunesiens im Gouvernement Tataouine, nahe der Sahara. Die mehrstöckigen Speicherburgen aus Lehm wurden im 15. Jahrhundert von Berbergruppen als sichere Vorratslager errichtet. Sie schützten das Getreide vor Hitze, Diebstahl und Verderb. Mit ihrer klaren, funktionalen Architektur prägen sie bis heute die trockene Landschaft der Region.\nZum Star‑Wars‑Tag am 4. Mai rückt Ksar Ouled Soltane regelmäßig in den Fokus. Denn die ungewöhnliche Bauweise diente Jahrhunderte später als visuelle Inspiration für den Wüstenplaneten Tatooine. Formen, Farben und die karge Umgebung flossen in die Bildsprache der Filmreihe ein. Selbst der Name des fiktiven Planeten erinnert an die tunesische Region Tataouine.\nFans der Kultreihe „Star Wars“ feiern diesen Anlass heute weltweit, auch in Deutschland ist er fest in der Popkultur verankert. Orte wie Ksar Ouled Soltane machen sichtbar, wie stark reale Landschaften filmische Fantasiewelten prägen – und dass manche der eindrucksvollsten Kulissen bereits existieren.",
+		"date": "2026-05-04",
+		"bing_url": "https://bing.com/th?id=OHR.KsarOuledSoltane_DE-DE0772664249_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-04.jpg"
+	},
+	{
+		"title": "Strandkörbe am Ostseestrand von Grömitz, Schleswig‑Holstein",
+		"caption": "Ein Stück Ostseetradition",
+		"subtitle": "Strandkörbe am Ostseestrand von Grömitz, Schleswig‑Holstein",
+		"copyright": "© Sabine Lubenow/Image Professionals GmbH/Alamy",
+		"description": "Unzählige Strandkörbe säumen die Promenade am Strand von Grömitz an der Ostseeküste Schleswig-Holsteins und prägen seit Generationen das Panorama des Küstenorts. Als eines der ältesten Seebäder der Region zog der Ort bereits im 19. Jahrhundert Erholungssuchende an die See. Das Erscheinungsbild wird dabei nicht nur vom feinen Sandstrand, sondern auch von der offenen, weiten Lage an der Lübecker Bucht bestimmt.\nMit dem aufkommenden Küstentourismus entstand ein ikonisches Element deutscher Strände: der Strandkorb. Erfunden wurde er 1882 vom Rostocker Korbmacher Wilhelm Bartelmann für eine Kundin, die aus gesundheitlichen Gründen windgeschützt am Meer sitzen wollte. Seither bietet die geflochtene Sitznische Zuflucht vor dem wechselhaften Küstenwetter und ist bis heute ein fester Bestandteil der Ostseekultur.\nIn Grömitz gehören diese Körbe ebenso zum Ortsbild wie das Rauschen der Wellen. Sie symbolisieren eine Badetradition, die eng mit der Sehnsucht nach dem Meer verbunden ist – von sonnigen Sommertagen bis hin zu rauen, windgeprägten Wetterlagen im Wandel der Jahreszeiten.",
+		"date": "2026-05-05",
+		"bing_url": "https://bing.com/th?id=OHR.LuebeckChairs_DE-DE4681131575_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-05.jpg"
+	},
+	{
+		"title": "Gewitter über der Ebene, Bulgarien",
+		"caption": "Die Kräfte der Natur",
+		"subtitle": "Gewitter über der Ebene, Bulgarien",
+		"copyright": "© Revolu7ion93/Getty Images",
+		"description": "Dunkle Gewitterwolken ziehen über die weiten Ebenen Bulgariens und entladen sich über einer offenen Kulturlandschaft. Die flachen Regionen im Norden und Süden des Landes zählen zu den fruchtbarsten Gebieten Südosteuropas und reagieren besonders sensibel auf plötzliche Wetterumschwünge.\nIm Norden prägt die Donautiefebene mit ihren weitläufigen Feldern, sanften Hügeln und breiten Flusstälern das Bild. Als einer der wichtigsten Agrarräume des Landes ist sie Schauplatz intensiver Wetterphänomene. Heiße Sommertage und hohe Luftfeuchtigkeit lassen hier regelmäßig kräftige Gewitter entstehen, die sich rasch aufbauen und ebenso schnell weiterziehen. Weiter südlich, in der Oberthrakischen Ebene, treffen warme Strömungen aus dem Süden auf die feuchtere Luft der Flussniederungen – eine Kombination, die besonders heftige Sommerstürme begünstigt.\nSeit Jahrhunderten bilden beide Ebenen das landwirtschaftliche Rückgrat der Region. Das Gewitter über der Landschaft macht sichtbar, wie abhängig Felder, Ernten und der ländliche Alltag in weiten Teilen Bulgariens vom Wetter sind.",
+		"date": "2026-05-06",
+		"bing_url": "https://bing.com/th?id=OHR.BulgariaPlains_DE-DE4866806694_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-06.jpg"
+	},
+	{
+		"title": "Kofa National Wildlife Refuge, Arizona, USA",
+		"caption": "Weite Horizonte der Wüste",
+		"subtitle": "Kofa National Wildlife Refuge, Arizona, USA",
+		"copyright": "© Denis Tangney Jr/Getty Images",
+		"description": "Mit dem Kofa National Wildlife Refuge erstreckt sich im Südwesten Arizonas, USA, ein weitläufiges Schutzgebiet, das von offenen Wüstenflächen, schroffen Bergzügen und einer überraschenden ökologischen Vielfalt geprägt ist. Das Gebiet liegt in der Sonora‑Wüste und wurde 1939 eingerichtet, um Dickhornschafe zu schützen, deren trittsichere Silhouetten bis heute das weite und offene Landschaftsbild prägen.\nMit einer Fläche von rund 2.700 Quadratkilometern ist das Schutzgebiet weitgehend unberührt und etwa so groß wie das Saarland. Mächtige Saguarokakteen ragen aus trockenen Flussbetten, während abgelegene Schluchten sogar seltene Palmenhaine verbergen. Neben den Dickhornschafen leben hier unter anderem Wüstenschildkröten, Kojoten und Kaktuszaunkönige, die perfekt an Hitze, Trockenheit und weite Räume angepasst sind.\nWanderwege und einsame Pisten führen durch vulkanisches Gestein, saisonale Blüten und scheinbar endlose Horizonte der Sonora‑Wüste. In der Abenddämmerung wird das Licht milder, Farben treten zurück und die Stille der Wüste wird besonders spürbar.",
+		"date": "2026-05-07",
+		"bing_url": "https://bing.com/th?id=OHR.Kofa_DE-DE5653026475_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-07.jpg"
+	},
+	{
+		"title": "Sardische Eselstute mit Fohlen, Frankreich",
+		"caption": "Mehr als nur ein I‑aah",
+		"subtitle": "Welteseltag",
+		"copyright": "© Klein & Hubert/Nature Picture Library",
+		"description": "Was macht den Esel so besonders? Anlässlich des Welteseltags lohnt es sich, einen genaueren Blick auf ein Tier zu werfen, das oft unterschätzt wird, obwohl es den Menschen seit über 5.000 Jahren begleitet. Der Esel ist weit mehr als ein genügsames Lastentier. Er ist ein hochsoziales Wesen mit einem bemerkenswerten Gedächtnis. Das zeigt sich auch auf dem Bild, auf dem eine sardische Eselstute eng bei ihrem Fohlen steht. Esel gehen enge Bindungen ein, erkennen vertraute Artgenossen und Menschen wieder und bleiben ihrer Gruppe lange verbunden. Ihre langen Ohren unterstützen das Hörvermögen und den Temperaturausgleich. Während Pferde bei Gefahr häufig instinktiv fliehen, reagieren Esel überlegt. Sie halten inne und prüfen Situationen sorgfältig. Dieses Verhalten wird oft fälschlicherweise als Sturheit bezeichnet.\nAuch in Deutschland haben Esel heute ihren festen Platz, jedoch in neuen Rollen. Sie werden etwa in der Landschaftspflege oder in der tiergestützten Therapie eingesetzt. Der Welteseltag erinnert daran, diese intelligenten Tiere besser zu verstehen und ihnen mit Respekt zu begegnen.",
+		"date": "2026-05-08",
+		"bing_url": "https://bing.com/th?id=OHR.SardinianDonkey_DE-DE5829201604_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-08.jpg"
+	},
+	{
+		"title": "Wasserfälle von Skradinski Buk im Nationalpark Krka, Kroatien",
+		"caption": "Die Sprache des Wassers",
+		"subtitle": "Wasserfälle von Skradinski Buk im Nationalpark Krka, Kroatien",
+		"copyright": "© Amazing Aerial Agency/Adobe Stock",
+		"description": "Fließendes Wasser prägt im Nationalpark Krka seit Jahrtausenden eine Landschaft aus smaragdgrünen Becken und gestuften Kalkterrassen. Am Skradinski Buk, nahe dem Dorf Lozovac, verzweigt sich der Fluss in zahlreiche Arme, die über helle Kalkformationen durch dichten Wald in die Tiefe stürzen. So entsteht eine der eindrucksvollsten Wasserfalllandschaften Kroatiens.\nDabei handelt es sich nicht um einen einzelnen Wasserfall, sondern um ein rund 800 Meter breites Kaskadensystem mit 17 Stufen. Die terrassenartigen Ablagerungen entstehen, wenn mineralreiches Wasser über Moose und Gestein fließt und nach und nach natürliche Barrieren bildet, die den Flusslauf dauerhaft verändern. Holzstege führen über das verzweigte Netzwerk aus Stromschnellen, kleinen Inseln und restaurierten Wassermühlen, die einst zur Energieversorgung der umliegenden Gemeinden dienten.\nDer Nationalpark schützt darüber hinaus ein weitläufiges Geflecht aus Gewässern und Lebensräumen, das zu den markantesten Naturräumen des Landes zählt. Im Zusammenspiel von geologischen Prozessen und historischer Nutzung bleibt die Landschaft von Skradinski Buk stetig in Bewegung.",
+		"date": "2026-05-09",
+		"bing_url": "https://bing.com/th?id=OHR.SkradinskiBuk_DE-DE6216835034_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-09.jpg"
+	},
+	{
+		"title": "Eisbärmutter mit Jungtieren im Wapusk‑Nationalpark, Manitoba, Kanada",
+		"caption": "Ein Band fürs Leben",
+		"subtitle": "Alles Gute zum Muttertag!",
+		"copyright": "© Hao Jiang/Getty Images",
+		"description": "Am Muttertag stehen Fürsorge, Schutz und bedingungslose Hingabe im Mittelpunkt – Werte, die in der Wildnis oft über Leben und Tod entscheiden. Dieses Bild, aufgenommen im Wapusk-Nationalpark im Norden Kanadas, zeigt eine Eisbärmutter mit ihren Jungen auf der weiten arktischen Tundra und lenkt den Blick auf die Mutterschaft unter extremen Bedingungen. Die Aufzucht von Eisbärjungen erfordert jahrelange Hingabe. Die Mutter bringt ihre Jungen im Winter zur Welt und schützt sie zunächst in isolierenden Schneehöhlen. Dort wachsen sie mit nahrhafter Milch heran, bis sie stark genug sind, um der Kälte und den Herausforderungen der Umwelt zu begegnen.\nÜber zwei Jahre lang führt die Mutter ihren Nachwuchs allein, lehrt Bewegungsabläufe, Ausdauer und Vorsicht. Spielerische Phasen gehören dabei ebenso zum Lernprozess wie Wachsamkeit – Grundlagen für ein selbstständiges Leben in einer der kältesten Regionen der Erde. Gerade am Muttertag erinnert diese Szene daran, wie universell mütterliche Stärke, Geduld und beschützende Liebe sind – und das gilt weit über den Menschen hinaus.",
+		"date": "2026-05-10",
+		"bing_url": "https://bing.com/th?id=OHR.MotherCub_DE-DE8187976527_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-10.jpg"
+	},
+	{
+		"title": "Great Barrier Reef aus der Luft, Queensland, Australien",
+		"caption": "Ein Mosaik unter Wasser",
+		"subtitle": "Great Barrier Reef aus der Luft, Queensland, Australien",
+		"copyright": "© Francesco Riccardo Iacomino/Getty Images",
+		"description": "Wie ein schimmerndes Mosaik breitet sich vor der Nordostküste Australiens im Korallenmeer eines der größten Naturwunder der Erde aus: das Great Barrier Reef. Das Netzwerk aus fast 3.000 Riffen und Hunderten Inseln erstreckt sich entlang der Küste von Queensland und bildet das größte zusammenhängende Korallenriffsystem der Welt. Es reicht von Norden nach Süden über mehr als 2.300 Kilometer.\nUnter der Wasseroberfläche entfaltet sich eine außergewöhnlich vielfältige Meereslandschaft. Hunderte Korallenarten und mehr als 1.600 Fischarten prägen die Riffe, ergänzt durch Meeresschildkröten, Rochen, Seevögel und Riffhaie. Flache Lagunen, Koralleninseln und vorgelagerte Außenriffe formen ein fein abgestimmtes Zusammenspiel unterschiedlicher Lebensräume.\nAls UNESCO‑Weltnaturerbe besitzt das Great Barrier Reef nicht nur eine enorme ökologische Bedeutung, sondern ist auch eng mit den kulturellen Traditionen der First Nations Australiens verbunden. Diese indigenen Bevölkerungsgruppen begreifen die Meereslandschaft seit Jahrtausenden als Teil ihres kulturellen Erbes. Um dieses empfindliche marine Ökosystem zu bewahren, arbeiten Forschungseinrichtungen, lokale Gemeinschaften und Behörden an langfristigen Schutzmaßnahmen.",
+		"date": "2026-05-11",
+		"bing_url": "https://bing.com/th?id=OHR.QueenslandReef_DE-DE8475072784_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-11.jpg"
+	},
+	{
+		"title": "Papageitaucher, Wales",
+		"caption": "Leben zwischen Luft und Meer",
+		"subtitle": "Papageitaucher, Wales",
+		"copyright": "© FLPA/Alamy",
+		"description": "Wind, Wellen und steile Klippen – hier fühlen sich Papageitaucher zu Hause. Sie nutzen Felsspalten und selbst gegrabene Bruthöhlen, wie hier an der Küste von Wales, um im Frühjahr ihren Nachwuchs aufzuziehen. Den Großteil des Jahres verbringen sie jedoch fernab der Küsten auf dem offenen Nordatlantik. Ihr schwarz‑weißes Gefieder und ihr auffällig gefärbter Schnabel machen sie unverwechselbar. Ihre Lebensweise ist konsequent auf das Leben zwischen Luft und Meer ausgerichtet.\nBei der Nahrungssuche zeigen Papageitaucher eine bemerkenswerte Fähigkeit: Mit kräftigen Flügelschlägen bewegen sie sich unter Wasser gezielt vorwärts und jagen kleine Fische wie Sandaale oder Heringe. Während der Brutzeit verändern sich Farbe und Struktur ihres Schnabels – ein Detail, das auch bei der Partnerwahl eine Rolle spielt.\nTrotz dieser Spezialisierung stehen Papageitaucher unter Druck. Die IUCN stuft die Art als gefährdet ein, da Überfischung und veränderte Meeresbedingungen das Nahrungsangebot verringern. Damit stehen sie beispielhaft für Seevögel, die perfekt an zwei Lebensräume angepasst sind und zugleich sensibel auf Umweltveränderungen reagieren.",
+		"date": "2026-05-12",
+		"bing_url": "https://bing.com/th?id=OHR.Fratercula_DE-DE8669315365_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-12.jpg"
+	},
+	{
+		"title": "Felsbogen und Milchstraße, Alabama Hills, Sierra Nevada, Kalifornien, USA",
+		"caption": "Tor zum Universum",
+		"subtitle": "Felsbogen und Milchstraße, Alabama Hills, Kalifornien, USA",
+		"copyright": "© Tim Fitzharris/Minden Pictures",
+		"description": "Abgerundete Granitfelsen und natürliche Bögen prägen die Landschaft der Alabama Hills im Osten Kaliforniens. Die markanten Formationen am Rande der Sierra Nevada entstanden vor rund 100 Millionen Jahren durch magmatische Prozesse und wurden anschließend über lange Zeit von Wind und Temperaturwechseln geformt. Heute bilden sie einen eindrucksvollen Rahmen für den Nachthimmel.\nNach Sonnenuntergang zeigt sich das Gebiet von seiner besonderen Seite. Dank der geringen Lichtverschmutzung ist die Milchstraße hier mit bloßem Auge sichtbar, was die Alabama Hills zu einem beliebten Ziel für Sternenbeobachtung und Astrofotografie macht. Die klare, trockene Luft und die abgeschiedene Lage schaffen ideale Bedingungen für den Blick in den Kosmos.\nÄhnliche Voraussetzungen schätzen Sternenbeobachter auch in Deutschland. Orte mit besonders wenig künstlichem Licht ermöglichen dort ebenfalls den Blick auf die Milchstraße, etwa in ausgewiesenen Sternenparks wie der Rhön, im Nationalpark Eifel oder im Westhavelland. Solche Regionen zeigen, wie wertvoll der Erhalt natürlicher Dunkelheit für Mensch und Natur ist.",
+		"date": "2026-05-13",
+		"bing_url": "https://bing.com/th?id=OHR.AlabamaHills_DE-DE8956133719_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-13.jpg"
+	},
+	{
+		"title": "Löwenmännchen mit Jungtier",
+		"caption": "An Vaters Seite",
+		"subtitle": "Alles Gute zum Vatertag!",
+		"copyright": "© JasonPrince/iStock/Getty Images",
+		"description": "Am Vatertag feiern wir Menschen, die Halt geben, Orientierung bieten und oft mehr durch ihr Handeln als durch große Worte prägen. In Deutschland fällt dieser Tag mit Christi Himmelfahrt zusammen und ist auch als Herrentag oder Männertag bekannt, vor allem in Ostdeutschland. Es ist eine Gelegenheit, nicht nur Väter, sondern auch Vaterfiguren zu würdigen, die begleiten, ermutigen und Verantwortung übernehmen.\nIn der Tierwelt übernimmt der Löwe eine vergleichbare Rolle: Ein Löwenmännchen bleibt wachsam, während ein Jungtier Schutz an seiner Seite sucht. Erwachsene Männchen verteidigen das Rudel und sichern den Nachwuchs, indem sie Gefahren abwehren und das Territorium schützen. Diese Balance aus Nähe und Freiraum kennen auch viele Väter. Sie lassen ausprobieren, geben Rückhalt und sind da, wenn es darauf ankommt.\nOb im Alltag oder in besonderen Momenten helfen verlässliche Bezugspunkte dabei, Vertrauen zu entwickeln und den eigenen Weg zu finden. Der Vatertag erinnert daran, wie wichtig Menschen sind, die durch Unterstützung und Fürsorge Orientierung geben.",
+		"date": "2026-05-14",
+		"bing_url": "https://bing.com/th?id=OHR.FathersDayItaly_DE-DE9115360587_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-14.jpg"
+	},
+	{
+		"title": "Eine Pottwal-Familie im Indischen Ozean",
+		"caption": "Ganz schön laut",
+		"subtitle": "Tag der gefährdeten Arten",
+		"copyright": "© Tony Wu/Nature Picture Library",
+		"description": "Der Pottwal ist ein Gigant der Tiefe und ein wahrer Meister der Extreme. Er zeigt eindrucksvoll, wozu Anpassung fähig ist. Anlässlich des Tags der gefährdeten Arten rückt ein Lebewesen in den Fokus, das zu den beeindruckendsten Tieren unseres Planeten gehört.\nMit dem größten jemals gemessenen Gehirn im Tierreich – bis zu neun Kilogramm und damit rund fünfmal so schwer wie das menschliche – setzt der Pottwal einen Rekord. Sein massiger Kopf, etwa ein Drittel der Körperlänge, enthält das berühmte Spermaceti‑Öl, das früher industriell genutzt wurde. Pottwale tauchen auf über 900 Meter Tiefe und bleiben bis zu 90 Minuten unter Wasser. Dabei orientieren sie sich mithilfe von Echoortung; ihre Klicklaute können eine Lautstärke von rund 230 Dezibel erreichen und zählen zu den stärksten im Tierreich.\nEinst intensiv bejagt, stehen Pottwale heute vor neuen Herausforderungen wie Lärmverschmutzung, Plastik und Schiffskollisionen. Ihr Schicksal spiegelt ein größeres Bild wider: Dieser Tag erinnert daran, dass weltweit über eine Million Tier‑ und Pflanzenarten als gefährdet gelten.",
+		"date": "2026-05-15",
+		"bing_url": "https://bing.com/th?id=OHR.EndangeredWhales_DE-DE2753356925_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-15.jpg"
+	},
+	{
+		"title": "Argus‑Bläuling auf einer Blüte",
+		"caption": "Zarte Zeichen der Natur",
+		"subtitle": "Argus‑Bläuling auf einer Blüte",
+		"copyright": "© Remus86/Getty Images",
+		"description": "Kaum hat die warme Jahreszeit begonnen, flattert ein kleiner Botschafter artenreicher Landschaften durch die Wiesen: der Argus‑Bläuling, auch Geißklee‑Bläuling genannt. Er gehört zu den bekanntesten Tagfaltern Deutschlands. Die Männchen leuchten in intensivem Blau, während die Weibchen eher braun gefärbt sind. Namensgebend sind die augenähnlichen Flecken mit orangefarbenem Rand auf der Flügelunterseite. Besonders faszinierend ist sein Lebenszyklus, denn die Raupen leben in enger Gemeinschaft mit Ameisen, die sie beschützen und dafür zuckerhaltige Absonderungen erhalten.\nHierzulande tritt der Falter meist in zwei Flugzeiten auf: Eine erste Generation fliegt von Mai bis Juni, eine zweite oft noch einmal von Juli bis August, abhängig von Region und Witterung. Zu finden ist er vor allem dort, wo sonnige, nährstoffarme Lebensräume erhalten geblieben sind, etwa auf Trockenrasen, Heiden oder extensiv genutzten Wiesen. Entscheidend ist das Vorkommen von Futterpflanzen wie Geißklee. Weil solche Flächen seltener werden, gilt der Argus‑Bläuling heute als wichtiger Zeiger für intakte Natur und als stiller Hinweis darauf, wie wertvoll gepflegte Kulturlandschaften sind.",
+		"date": "2026-05-16",
+		"bing_url": "https://bing.com/th?id=OHR.ButterflyFlower_DE-DE3210389568_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-16.jpg"
+	},
+	{
+		"title": "Hawksbill Mountain im Shenandoah‑Nationalpark, Virginia, USA",
+		"caption": "Stiller Gipfel, weite Sicht",
+		"subtitle": "Hawksbill Mountain im Shenandoah‑Nationalpark, Virginia, USA",
+		"copyright": "© John Baggaley/Getty Images",
+		"description": "Braucht es wirklich große Höhen für einen großartigen Ausblick? Im Osten der USA, im Bundesstaat Virginia, zeigt Hawksbill Mountain, dass auch sanfte Gipfel durchaus beeindrucken können. Mit rund 1.235 Metern ist er der höchste Punkt des Shenandoah‑Nationalparks und erinnert eher an europäische Mittelgebirge als an alpine Landschaften. Genau das macht seinen Reiz aus. Die Region gehört zu den Appalachen, einer der ältesten Gebirgsregionen der Erde, deren Formen über Millionen Jahre hinweg allmählich geglättet wurden.\nDabei entstand der Park bereits 1935, nachdem die Nutzung durch Landwirtschaft und Holzeinschlag die Landschaft stark verändert hatte. Heute breiten sich wieder zusammenhängende Wälder aus, mit Laubbäumen, Berglorbeer und Rhododendron. Am Gipfel erwartet einen keine schroffe Kante, sondern eine Steinplattform aus den 1930er‑Jahren, von der sich die Hügelketten sanft in bläulichen Lagen bis zum Horizont staffeln. Wer Ausblicke aus dem Harz oder dem Bayerischen Wald kennt, weiß: Eindrucksvoll wird eine Landschaft oft durch viel Ruhe, Weite und Zeit.",
+		"date": "2026-05-17",
+		"bing_url": "https://bing.com/th?id=OHR.ShenandoahSunset_DE-DE3403386055_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-17.jpg"
+	},
+	{
+		"title": "Natural History Museum, London, England",
+		"caption": "Ein Ort zum Entdecken und Staunen",
+		"subtitle": "Natural History Museum, London, England",
+		"copyright": "© Colm Keating/Tandem Stills + Motion",
+		"description": "Manchmal genügt ein Schritt durch die Tür eines Museums, um der Zeit eine neue Tiefe zu verleihen. Fossilien zeugen von Leben vor Millionen von Jahren, funkelnde Edelsteine von geologischen Prozessen, die unseren Planeten formten. Museen machen solche Verbindungen sichtbar und eröffnen Räume, in denen Vergangenheit, Gegenwart und Zukunft aufeinandertreffen.\nIm Natural History Museum in London entfalten sich diese Eindrücke besonders eindrucksvoll. Das 1881 eröffnete Gebäude im Stil der neugotischen Romanik greift Formen aus der Natur auf, während vier farblich gekennzeichnete Bereiche die Ausstellungen strukturieren. Heute bewahrt das Museum mehr als 80 Millionen Objekte aus den Bereichen Botanik, Zoologie, Mineralogie und Paläontologie. Zu den bekanntesten Exponaten zählen die Dinosauriergalerie und das frei schwebende Blauwal-Skelett „Hope“ in der Hintze Hall.\nAuch in Deutschland ziehen Naturkundemuseen viele Besucher an, allen voran das Museum für Naturkunde Berlin, das als das meistbesuchte Museum seiner Art im Land gilt. Wer ein Museum betritt, tritt immer auch in einen Dialog mit der Geschichte.",
+		"date": "2026-05-18",
+		"bing_url": "https://bing.com/th?id=OHR.MuseumLondon_DE-DE5033129678_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-18.jpg"
+	},
+	{
+		"title": "Leuchtturm von Formentor, Mallorca, Balearen, Spanien",
+		"caption": "Abgeschieden über den Klippen",
+		"subtitle": "Leuchtturm von Formentor, Mallorca, Balearen, Spanien",
+		"copyright": "© Allard Schager/Getty Images",
+		"description": "Weit sichtbar über dem Cap de Formentor steht der Leuchtturm von Formentor an einer der exponiertesten Küsten Mallorcas. Seit 1863 markiert er einen Ort, der nicht umsonst als „Treffpunkt der Winde“ bekannt ist. Rund 215 Meter über dem Mittelmeer gelegen, ist er von Port de Pollença aus über eine schmale, etwa 13 Kilometer lange Serpentinenstraße erreichbar. Der helle Kalkstein prägt die Landschaft und zeugt von uralten Meeren. Über Jahrmillionen wurde das Gestein angehoben und von Wind und Wasser zu steilen Wänden, Höhlen und natürlichen Bögen geformt. Diese raue Geologie verleiht der Gegend ihre stille Dramatik.\nWer die Aussicht genießen möchte, kann eine der Wanderrouten über die Halbinsel wählen oder den kurzen, steilen Aufstieg zur Talaia d’Albercutx unternehmen. Ähnlich wie am Kap Arkona in Deutschland wird hier deutlich, wie eindrucksvoll Landschaft und Leuchttürme als Orientierungspunkte zusammenspielen. Man verlässt diesen Ort mit dem Gefühl, eine besonders markante Küstenlandschaft Europas erlebt zu haben.",
+		"date": "2026-05-19",
+		"bing_url": "https://bing.com/th?id=OHR.SpainLighthouse_DE-DE4107700722_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-19.jpg"
+	},
+	{
+		"title": "Hummel bei der Bestäubung, Worcester, England",
+		"caption": "Die Kraft des Summens",
+		"subtitle": "Weltbienentag",
+		"copyright": "© SimonEastwood87/Shutterstock",
+		"description": "Ein sanftes Brummen im Garten hat oft eine größere Wirkung, als man vermutet. Am Weltbienentag, der 2018 von den Vereinten Nationen ins Leben gerufen wurde, rückt die stille Arbeit der Bestäuber in den Mittelpunkt. Die hier gezeigte Hummel gehört zur Familie der Bienen und übernimmt eine besondere Aufgabe. Mithilfe der sogenannten Vibrationsbestäubung bringt sie Blüten zum Zittern und löst so den Pollen, den Pflanzen für ihre Fortpflanzung benötigen. Ohne diese Technik hätten Tomaten, Paprika oder Heidelbeeren deutlich geringere Erträge.\nÜber 75 Prozent der weltweit wichtigsten Nahrungspflanzen profitieren von Bienen und anderen Bestäubern, die die Erträge sichern und die Qualität verbessern. Gleichzeitig stehen ihre Lebensräume unter Druck – auch in Deutschland durch Flächenversiegelung, intensive Nutzung und den Klimawandel. Deshalb gewinnen Blühflächen, naturnahe Gärten und eine insektenfreundliche Landwirtschaft zunehmend an Bedeutung. Weltweit sind mehr als 20.000 Bienenarten bekannt, die meisten davon leben wild. Jeder Blütenbesuch stärkt die Vielfalt. Manchmal reicht ein leises Brummen, um viel in Bewegung zu halten.",
+		"date": "2026-05-20",
+		"bing_url": "https://bing.com/th?id=OHR.BumbleBee_DE-DE5081297615_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-20.jpg"
+	},
+	{
+		"title": "Teeterrassen in der Provinz Sichuan, China",
+		"caption": "Wo Tradition aufgebrüht wird",
+		"subtitle": "Internationaler Tag des Tees",
+		"copyright": "© lzf/Shutterstock",
+		"description": "In vielen Regionen der Welt gehört Tee seit Jahrhunderten zum Alltag. Heute wird er mit dem von den Vereinten Nationen ausgerufenen Internationalen Tag des Tees gewürdigt. Terrassen wie diese hier in der chinesischen Provinz Sichuan sind Ausdruck dieser langen Tradition. In dieser Region im Südwesten Chinas wird seit über 2.000 Jahren Tee angebaut und genossen. Am nahe gelegenen Mengding-Berg begründete der Gelehrte Wu Lizhen zur Zeit der Han-Dynastie einige der ersten gezielt gepflegten Teegärten der Welt.\nDie schmalen Terrassen prägen nicht nur das Landschaftsbild der Hügel. Sie helfen auch, Wasser effizient zu nutzen, Erosion zu vermeiden und die empfindlichen Teeblätter sorgfältig von Hand zu pflücken. So wird der Anbau auch in steilen Lagen ermöglicht. Über alte Handelswege wurde der Tee von hier aus bis nach Tibet getragen und fand so seinen Weg weit über Sichuan hinaus. Warum also nicht kurz innehalten und eine Tasse Tee genießen?",
+		"date": "2026-05-21",
+		"bing_url": "https://bing.com/th?id=OHR.SichuanTea_DE-DE2246997070_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-21.jpg"
+	},
+	{
+		"title": "Kauehi‑Atoll, Tuamotu‑Archipel, Französisch‑Polynesien",
+		"caption": "Strukturen der Vielfalt",
+		"subtitle": "Internationaler Tag für biologische Vielfalt",
+		"copyright": "© WaterFrame_dpr/Alamy",
+		"description": "Der Internationale Tag für biologische Vielfalt, von den Vereinten Nationen ausgerufen, macht darauf aufmerksam, wie eng menschliches Leben mit gesunden Ökosystemen verbunden ist. Er soll das Bewusstsein für den Wert der Artenvielfalt schärfen, die eine zentrale Rolle für Ernährung, medizinische Forschung, ein stabiles Klima und widerstandsfähige Lebensräume weltweit spielt. Von oben betrachtet wirkt das Kauehi‑Atoll im Tuamotu‑Archipel von Französisch‑Polynesien fast wie eine Grafik. Ein schmaler Korallensaum umschließt eine weitläufige Lagune in leuchtenden Türkistönen.\nHinter dieser klaren Form verbirgt sich jedoch ein komplexes Ökosystem. Als Teil des Fakarava‑Biosphärenreservats gehört Kauehi zu einem Netz geschützter Atolle mit außergewöhnlicher Vielfalt. Korallenriffe, Fischbestände, Seevögel sowie spezialisierte Pflanzen‑ und Tierarten bilden hier ein eng verknüpftes Gefüge. Für die Menschen Polynesiens war diese Vielfalt über Generationen hinweg Lebensgrundlage und kultureller Bezugspunkt. Orte wie Kauehi veranschaulichen, wie kostbar und zugleich empfindlich biologische Vielfalt ist.",
+		"date": "2026-05-22",
+		"bing_url": "https://bing.com/th?id=OHR.KauehiAtollLagoon_DE-DE7537602324_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-22.jpg"
+	},
+	{
+		"title": "Schildkröten mit Schmetterlingen",
+		"caption": "Harte Schale, starkes Leben",
+		"subtitle": "Welttag der Schildkröte",
+		"copyright": "© Patrick Gallet/Getty Images",
+		"description": "Sie gleiten lautlos durch Ozeane, Seen und Feuchtgebiete und erfüllen dabei Aufgaben, die für das Gleichgewicht der Natur unverzichtbar sind. Schildkröten zählen zu den ältesten heute lebenden Reptilien und spielen eine zentrale Rolle in vielen Ökosystemen. Meeresschildkröten halten Seegraswiesen und Korallenriffe gesund, während Süßwasser‑ und Landschildkröten zur Stabilität empfindlicher Lebensräume beitragen. Ihr Panzer ist kein äußeres Schutzschild, sondern ein Teil ihres Skeletts und besteht aus zahlreichen miteinander verwachsenen Knochen. Manche Arten orientieren sich zudem am Magnetfeld der Erde, um nach Jahrzehnten zu genau den Stränden zurückzukehren, an denen sie geschlüpft sind.\nIn Deutschland ist allerdings nur eine Schildkrötenart heimisch: die seltene, streng geschützte Europäische Sumpfschildkröte, die heute vor allem in Brandenburg und weiteren Feuchtgebieten im Nordosten vorkommt. Seit über 200 Millionen Jahren existieren Schildkröten – und sind dennoch bis heute bedroht. Lebensraumverlust, Plastikverschmutzung und Beifang setzen ihren Beständen weltweit zu. Der heutige Welttag der Schildkröte lenkt den Blick auf diese uralten Tiere und macht deutlich, dass ihr Schutz eine globale Aufgabe bleibt.",
+		"date": "2026-05-23",
+		"bing_url": "https://bing.com/th?id=OHR.ThreeTurtlesButterflies_DE-DE2682966963_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-23.jpg"
+	},
+	{
+		"title": "Naturpark Drei Zinnen, Südtirol, Italien",
+		"caption": "Schutz für Europas natürliche Vielfalt",
+		"subtitle": "Europäischer Tag der Parke",
+		"copyright": "© Adisorn Fineday Chutikunakorn/Getty Images",
+		"description": "Manche Landschaften beeindrucken gerade deshalb, weil sie über Jahrzehnte hinweg geschützt wurden. Genau daran erinnert der Europäische Tag der Parke. Er knüpft an die Entstehung der ersten europäischen Nationalparks im Jahr 1909 an und lenkt den Blick auf unseren gemeinsamen Naturschatz. Im Mittelpunkt des heutigen Bildes steht der Naturpark Drei Zinnen in den Dolomiten in Südtirol, Italien. Seit 1981 bewahrt er eine spektakuläre alpine Kulisse innerhalb eines UNESCO‑Welterbes. Besonders bekannt sind die Drei Zinnen: drei markante Felstürme aus Dolomitgestein, die steil aus den Bergwiesen aufragen und den Alpen ein unverwechselbares Gesicht geben.\nDas Schutzgebiet zeigt, wie sich Naturschutz und Besucherlenkung vereinbaren lassen. Gut gepflegte Wege führen durch die Landschaft, während strenge Regeln Eingriffe begrenzen. So bleibt die ursprüngliche Bergwelt erhalten. Ähnlich wie die beiden deutschen Nationalparks Berchtesgaden und Harz steht auch dieser Park für den langfristigen Schutz der Natur, damit ihre Schönheit auch in Zukunft erlebbar bleibt.",
+		"date": "2026-05-24",
+		"bing_url": "https://bing.com/th?id=OHR.DolomitesPark_DE-DE0867398048_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-24.jpg"
+	},
+	{
+		"title": "Die Hexenlochmühle im Schwarzwald bei Furtwangen, Baden‑Württemberg",
+		"caption": "Wasser treibt Geschichte",
+		"subtitle": "Deutscher Mühlentag",
+		"copyright": "© Conny Pokorny/Shutterstock",
+		"description": "Jedes Jahr am Pfingstmontag rückt der Deutsche Mühlentag historische Wind‑ und Wassermühlen landesweit in den Fokus. Der Aktionstag erinnert daran, welche zentrale Rolle sie über Jahrhunderte hinweg für das Handwerk, die Energiegewinnung und die regionale Wirtschaft spielten – und warum ihr Erhalt bis heute von Bedeutung ist.\nDie auf dem Bild gezeigte Hexenlochmühle im Schwarzwald liegt verborgen in einer schmalen Schlucht zwischen St. Märgen und Furtwangen. Errichtet im Jahr 1825, wird sie bis heute vom Heubach angetrieben. Zwei Wasserräder versorgen getrennte Arbeitsbereiche – eine Besonderheit, die sie im Schwarzwald einzigartig macht. Ursprünglich als Nagelschmiede genutzt und später um eine Sägemühle erweitert, treiben die historischen Wasserräder noch heute eine Hochgang‑ und eine Kreissäge an.\nBis heute befindet sich die Mühle im Familienbesitz und wird als technisches Denkmal ebenso gepflegt wie als Teil des regionalen Alltagslebens. Heute wird die historische Anlage nicht nur zu Vorführzwecken erhalten, sondern auch als Gasthaus genutzt – ein Beispiel dafür, wie alte Mühlentechnik und moderner Alltag an diesem Ort zusammenfinden.",
+		"date": "2026-05-25",
+		"bing_url": "https://bing.com/th?id=OHR.HexenlochMill_DE-DE3552158856_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-25.jpg"
+	},
+	{
+		"title": "Blühende Lupinen, Nordkalifornien, USA",
+		"caption": "Blüten schreiben Landschaft",
+		"subtitle": "Blühende Lupinen, Nordkalifornien, USA",
+		"copyright": "© Jeffrey Lewis/Tandem Stills + Motion",
+		"description": "Ein Blick auf blühende Lupinen genügt, um zu erkennen, wie eng Farbe und Funktion in der Natur miteinander verbunden sind. Im Frühling verwandeln sie Teile Nordkaliforniens in Teppiche aus Blau‑, Violett‑ und Weißtönen und prägen dort offene Landschaften. Die Pflanzen sind an mediterrane Klimabedingungen angepasst und liefern wichtigen Nektar für Bestäuber wie Bienen und Schmetterlinge. Weltweit gibt es über 200 Lupinenarten, von Küstenregionen bis hin zu Bergwiesen.\nAuch in Deutschland werden Lupinen gezielt kultiviert – vor allem schmalblättrige, weiße und gelbe Arten. Sie kommen insbesondere auf nährstoffarmen Böden zum Einsatz und spielen eine wichtige Rolle in nachhaltigen Anbausystemen. Durch ihre Fähigkeit, Stickstoff aus der Luft zu binden, verbessern sie dort die Bodenqualität langfristig.\nIn einigen Kulturen werden Lupinensamen nach spezieller Verarbeitung verzehrt. Unbehandelt sind sie jedoch stark bitter und gelten als potenziell giftig. Wenn die Blütezeit endet und sich Samenkapseln bilden, setzt sich ein natürlicher Kreislauf fort. Diese jährliche Wiederkehr erinnert daran, wie verlässlich Farbe, Leben und Wachstum in die Landschaft zurückfinden.",
+		"date": "2026-05-26",
+		"bing_url": "https://bing.com/th?id=OHR.LupineBloom_DE-DE3740774254_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-26.jpg"
+	},
+	{
+		"title": "Seeotter in der Kachemak Bay bei Homer, Alaska, USA",
+		"caption": "Einzigartig auf ihre Art",
+		"subtitle": "Welttag der Otter",
+		"copyright": "© roclwyr/Getty Images",
+		"description": "Anlässlich des Welttags der Otter richtet sich die Aufmerksamkeit auf diesen Seeotter, der durch die ruhigen Gewässer der Kachemak Bay in Alaska, USA, gleitet. Otter wirken zwar verspielt, übernehmen aber eine zentrale Rolle im natürlichen Gleichgewicht. Als Schlüsselarten zeigen sie an, wie gesund Flüsse, Seen und Küstengewässer sind und wie gut ganze Lebensräume funktionieren. Seeotter sind insbesondere für Küstenökosysteme unverzichtbar. Sie fressen Seeigel und bewahren so ausgedehnte Kelpwälder, die zahlreichen Meereslebewesen Schutz bieten. Diese Unterwasserwälder speichern Kohlenstoff, dämpfen die Kraft der Wellen und schützen die Küste vor Erosion. Deshalb gelten Seeotter oft als stille Verbündete im Klimasystem.\nAuch in Deutschland gewinnt der Schutz von Ottern zunehmend an Bedeutung. Hier lebt der Eurasische Fischotter, die einzige heimische Otterart. Seine Rückkehr in einige Flüsse gilt als positives Zeichen für sauberere Gewässer und erfolgreiche Schutzmaßnahmen, deren Wirkung weit über diese eine Art hinausreicht.",
+		"date": "2026-05-27",
+		"bing_url": "https://bing.com/th?id=OHR.OtterDay_DE-DE4262333472_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-27.jpg"
+	},
+	{
+		"title": "Alte Stadtmauer der Festung Hwaseong, Suwon, Südkorea",
+		"caption": "Form trifft Ordnung",
+		"subtitle": "Alte Stadtmauer der Festung Hwaseong, Suwon, Südkorea",
+		"copyright": "© aomam/Getty Images",
+		"description": "Was erzählt eine Mauer, wenn es still wird? Mit Einbruch der Nacht zeigt die Festung Hwaseong im südkoreanischen Suwon, dass Zweck und Schönheit sich nicht ausschließen müssen. Die zwischen 1794 und 1796 unter König Jeongjo der Joseon‑Dynastie errichtete Anlage war weit mehr als eine Verteidigungsstruktur. Sie war Ausdruck politischer Reformen und zugleich ein persönliches Denkmal, das zur Erinnerung an den Vater des Königs errichtet wurde und Teil einer bewusst geplanten Stadtanlage ist.\nDie rund 5,6 Kilometer lange Mauer folgte nicht starr dem Gelände, sondern nutzte dessen natürliche Linien. Bastionen erweiterten das Blickfeld, Wachtürme dienten als Signalpunkte, verdeckte Tore ermöglichten flexible Wege und ausgeklügelte Flaschenzugsysteme beschleunigten den Bau. Die technische Raffinesse der Anlage zeigt sich bis heute in vielen Details. Seit 1997 zählt die Festung Hwaseong zum UNESCO‑Welterbe. Bis heute ist sie begehbar und in das Stadtleben eingebunden – ein Ort, an dem Geschichte nicht nur bewahrt, sondern täglich erlebt wird.",
+		"date": "2026-05-28",
+		"bing_url": "https://bing.com/th?id=OHR.HwaesongFortress_DE-DE4428807756_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-28.jpg"
+	},
+	{
+		"title": "Gipfel des Mount Everest, Sagarmatha-Nationalpark, Nepal",
+		"caption": "Ein Gipfelmoment der Geschichte",
+		"subtitle": "Mount-Everest-Expedition von 1953",
+		"copyright": "© fotoVoyager/Getty Images",
+		"description": "Der 29. Mai 1953 markierte einen Wendepunkt in der Geschichte des Mount Everest im nepalesischen Sagarmatha-Nationalpark. Nach wochenlangem Aufstieg erreichten der Neuseeländer Edmund Hillary und der Sherpa Tenzing Norgay den Gipfel in rund 8.848 Metern Höhe. Ihr Erfolg ging als Meilenstein des Bergsteigens in die Geschichte ein.\nFür die Menschen der Region war der Everest jedoch längst mehr als ein sportliches Ziel. Sie verehren ihn als heilig und entwickelten über Generationen ein tiefes Verständnis für Wetter, Gelände und Risiken. In der dünnen Luft und bei plötzlichen Stürmen war dieses Wissen überlebenswichtig. Der Erfolg von 1953 zeigte die Kraft der Zusammenarbeit: Internationale Planung traf auf lokale Erfahrung.\nAuch Europa ist eng mit dieser Geschichte verbunden. 1978 standen der aus Südtirol stammende Reinhold Messner und der Österreicher Peter Habeler als erste Menschen ohne zusätzlichen Sauerstoff auf dem Gipfel. Damit erweiterten sie die Grenzen des Alpinismus und knüpften an eine Tradition an, in der Wissen, Vertrauen und Ausdauer eine zentrale Rolle spielen.",
+		"date": "2026-05-29",
+		"bing_url": "https://bing.com/th?id=OHR.SummitEverest_DE-DE3618626129_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-29.jpg"
+	},
+	{
+		"title": "Steppenzebra-Fohlen im Etosha-Nationalpark, Namibia",
+		"caption": "Zwischen den Streifen lesen",
+		"subtitle": "Steppenzebra-Fohlen im Etosha-Nationalpark, Namibia",
+		"copyright": "© Sharon Heald/Nature Picture Library",
+		"description": "Im Etosha-Nationalpark in Namibia bedeutet jeder Anfang sofort Bewegung – das Steppenzebra-Fohlen auf diesem Bild scheint dies von Beginn an verstanden zu haben. In einer Landschaft aus Salzpfannen und Grasland ist das richtige Timing entscheidend, denn Zögern kann gefährlich sein. Löwen, Tüpfelhyänen, Wildhunde, Geparden und Leoparden setzen den Herden ständig zu, besonders den Jüngsten. Deshalb sind Zebras erstaunlich gut vorbereitet, wenn sie zur Welt kommen: Minuten nach der Geburt stehen sie bereits und folgen kurz darauf der Herde.\nDie markanten Streifen sind dabei alles andere als Schmuck. Sie stören die Wahrnehmung von Raubtieren und erschweren es, ein einzelnes Tier ins Visier zu nehmen. Jedes Muster ist einzigartig, doch gemeinsam bilden sie ein bewegtes Rätsel. Diese Strategie zahlt sich aus: In Schutzgebieten wie dem Etosha-Nationalpark bleiben die Bestände stabil, denn die Nähe zur Herde und das richtige Timing erhöhen die Überlebenschancen deutlich.",
+		"date": "2026-05-30",
+		"bing_url": "https://bing.com/th?id=OHR.EquusQuagga_DE-DE3459381022_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-30.jpg"
+	},
+	{
+		"title": "Rapsfelder vor der Festung Königstein, Sächsische Schweiz, Sachsen",
+		"caption": "Gelb, soweit das Auge reicht",
+		"subtitle": "Rapsfelder vor der Festung Königstein, Sächsische Schweiz, Sachsen",
+		"copyright": "© Frank Bienewald/Getty Images",
+		"description": "Im späten Frühling verwandelt sich die Landschaft in vielen Regionen Deutschlands in ein leuchtendes Gelb. Blühende Rapsfelder prägen dann das Bild und bieten einen eindrucksvollen Anblick, der die Bedeutung dieser Kulturpflanze unterstreicht. Raps liefert nicht nur wertvolles Öl, sondern dient auch zahlreichen Insekten, darunter Bienen und andere Bestäuber, als wichtige Nahrungsquelle. Für wenige Wochen stehen die Felder in voller Blüte und lassen ganze Landstriche wie ein strahlendes Farbenmeer erscheinen.\nVor dieser markanten Kulisse erhebt sich die Festung Königstein, eine der größten Bergfestungen Europas. Hoch über dem Elbtal gelegen, blickt sie auf eine lange Geschichte bis ins Mittelalter zurück und galt über Jahrhunderte hinweg als nahezu uneinnehmbar. Heute ist die weitläufige Anlage mit ihren Mauern, Kasernen und Aussichtspunkten für Besucher zugänglich und beherbergt mehrere Ausstellungen zur Geschichte der Festung. So verbindet sich das historische Bauwerk mit der blühenden Landschaft zu einem eindrucksvollen Gesamtbild.",
+		"date": "2026-05-31",
+		"bing_url": "https://bing.com/th?id=OHR.RapeseedField_DE-DE3303026116_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-05-31.jpg"
+	},
+	{
+		"title": "Skyline von Palermo in der Abenddämmerung, Sizilien, Italien",
+		"caption": "Geschichten aus Stein und Zeit",
+		"subtitle": "Palermo, Sizilien, Italien",
+		"copyright": "© Sean Pavone/Getty Images",
+		"description": "Wenn sich am Abend die Lichter über Palermo einschalten, wirkt die Stadt wie ein Mosaik aus Zeiten und Kulturen. Zwischen Meer und Bergen entfaltet sich eine Kulisse, in der sich Geschichte nicht nur betrachten, sondern regelrecht „lesen“ lässt – Schicht für Schicht, wie in einem vielschichtigen Gemälde.\nAuf der italienischen Insel Sizilien gelegen, blickt Palermo auf eine außergewöhnlich bewegte Vergangenheit zurück. Gegründet von den Phöniziern und geprägt von Römern, Arabern, Normannen und Spaniern, hat sie über Jahrhunderte unzählige Einflüsse aufgenommen. Ihre Spuren zeigen sich in arabisch-normannischen Palästen, barocken Fassaden und Kirchen, von denen mehrere zum UNESCO‑Welterbe gehören.\nDoch Palermo definiert sich nicht allein über seine Bauwerke. Auf Märkten wie Ballarò oder Vucciria verbinden sich Stimmen, Farben und Düfte zu einer dichten Atmosphäre. Auch kulinarisch spiegeln sich die vielen Einflüsse wider – von herzhaften Arancine bis zu süßen Cannoli. Hier bleibt Geschichte kein abgeschlossenes Kapitel, sondern Teil des täglichen Lebens.",
+		"date": "2026-06-01",
+		"bing_url": "https://bing.com/th?id=OHR.OlivaPalermo_DE-DE3024542120_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-01.jpg"
+	},
+	{
+		"title": "Straße durch den Xitai-Jinaier-See, Provinz Qinghai, China",
+		"caption": "Wo der Weg das Wasser teilt",
+		"subtitle": "Straße durch den Xitai-Jinaier-See, Provinz Qinghai, China",
+		"copyright": "© Kaicheng Xu/Getty Images",
+		"description": "Wie eine surreal wirkende Linie zieht sich eine Straße durch den Xitai-Jinaier-See im Westen Chinas. Der Salzsee, auch als West Taijinar Lake bekannt, liegt im abgelegenen Qaidam-Becken auf über 2.600 Metern Höhe. Ein Abschnitt der Nationalstraße 315 verläuft direkt durch das seichte Wasser und erzeugt den Eindruck, als würde die Fahrbahn zwischen zwei Farben schweben. Auf der einen Seite schimmert das Wasser tiefblau, auf der anderen in grün‑türkisen Tönen – ein Kontrast, der durch unterschiedliche Mineralkonzentrationen entsteht, etwa durch variierende Salz- und Lithiumgehalte im Wasser.\nDie karge Hochlandlandschaft verstärkt die Wirkung dieses ungewöhnlichen Farbspiels. Verdunstung und Salzablagerungen prägen die Umgebung und verleihen dem See seine markante Erscheinung. Ein wenig erinnert die Szene an den Hindenburgdamm nach Sylt – hier jedoch wirkt alles weiter, stiller und fast unwirklich. Das Ergebnis ist eine ruhige, eindrucksvolle Szenerie, in der Weite, Höhe und Geologie auf besondere Weise zusammenkommen.",
+		"date": "2026-06-02",
+		"bing_url": "https://bing.com/th?id=OHR.Qinghai_DE-DE2779615258_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-02.jpg"
+	},
+	{
+		"title": "Radfahrer in den Bardenas Reales, einem Naturpark und Biosphärenreservat in Navarra, Spanien",
+		"caption": "Wo die Straße endet, beginnt das Abenteuer",
+		"subtitle": "Weltfahrradtag",
+		"copyright": "© Artur Debat/Getty Images",
+		"description": "Ihr Arbeitsweg mag anders aussehen als die Szene in unserem heutigen Bild – doch auch in Deutschland gehört das Fahrrad längst zum Alltag. Aktuelle Studien zeigen, dass immer mehr Menschen regelmäßig aufs Rad steigen, sei es für den Weg zur Arbeit, kurze Erledigungen oder Ausflüge ins Grüne. Am Weltfahrradtag am 3. Juni geht es darum, Mobilität neu zu denken und vertraute Strecken anders zu erleben.\nDas Bild führt uns in die Bardenas Reales in Navarra im Norden Spaniens – eine Landschaft, die fast unwirklich wirkt. Wind und Wasser haben hier über Millionen Jahre bizarre Formationen geschaffen: zerklüftete Felslandschaften, weite Hochebenen und ausgetrocknete Flussläufe. Besonders markante Felskegel, sogenannte „Cabezos“, prägen die Landschaft und verleihen der Region ihren charakteristischen Ausdruck.\nAls geschütztes Biosphärenreservat ist das Gebiet nur auf ausgewiesenen Routen zugänglich – ideal, um diese stille, fragile Landschaft auf zwei Rädern zu erkunden. Ob im Alltag oder fernab gewohnter Wege: Das Fahrrad macht jede Strecke zu einer kleinen Entdeckungsreise.",
+		"date": "2026-06-03",
+		"bing_url": "https://bing.com/th?id=OHR.BardenasReales_DE-DE2578527889_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-03.jpg"
+	},
+	{
+		"title": "Schmuckreiher bei der Gefiederpflege, Zentralflorida, USA",
+		"caption": "Prachtvolles Gefieder",
+		"subtitle": "Schmuckreiher bei der Gefiederpflege, Zentralflorida, USA",
+		"copyright": "© Donald M. Jones/Minden Pictures",
+		"description": "Elegant und voller Geschichte: Der Schmuckreiher ist ein echter Blickfang. Sein strahlend weißes Gefieder und die leuchtend gelben Füße auf dunklen Beinen machen ihn unverwechselbar. Anfang des 20. Jahrhunderts stand diese Art kurz vor dem Aus, da ihre feinen Schmuckfedern in der Mode besonders begehrt waren. Erst konsequente Schutzmaßnahmen bewahrten den Schmuckreiher vor dem Verschwinden.\nAuf dem heutigen Bild ist der Vogel bei der Gefiederpflege in den Feuchtgebieten Floridas, USA, zu sehen. Dieses sorgfältige Putzen hält sein Gefieder sauber und wasserabweisend – eine wichtige Voraussetzung für die Jagd im flachen Wasser. Dort erbeutet er Fische, Insekten und kleine Krebstiere. Mit seinen Füßen wirbelt er das Wasser auf und bringt so versteckte Beute in Bewegung.\nIn Deutschland ist der Schmuckreiher ein seltener Irrgast. Er kann jedoch leicht mit dem etwas häufiger vorkommenden Seidenreiher verwechselt werden, der vor allem an der Nordsee, im Wattenmeer sowie entlang von Rhein und Elbe regelmäßig zu beobachten ist.",
+		"date": "2026-06-04",
+		"bing_url": "https://bing.com/th?id=OHR.PreeningEgret_DE-DE1842151218_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-04.jpg"
+	},
+	{
+		"title": "Blick vom Skierffe über das Flussdelta des Rapadalen, Nationalpark Sarek, Laponia, Lappland, Schweden",
+		"caption": "Die stille Kraft einer unberührten Welt",
+		"subtitle": "Weltumwelttag",
+		"copyright": "© Robert Haasmann/Getty Images",
+		"description": "Stellen Sie sich eine Landschaft vor, in der die Natur seit Jahrhunderten ihren eigenen Rhythmus bestimmt – genau das ist der Sarek-Nationalpark. Seit seiner Gründung im Jahr 1909 kommt dieser abgelegene Teil Schwedisch-Lapplands ohne Straßen, Hütten oder markierte Wege aus. Schroffe Gipfel, rund 100 Gletscher und tiefe Täler prägen die Kulisse. Als Teil des UNESCO-Welterbes Laponia ist die Region eng mit der Kultur der Sámi verbunden, deren Rentierherden die Täler bis heute durchziehen.\nWas sich im Sarek in großem Stil zeigt, lässt sich auch in Deutschland beobachten. Im Nationalpark Bayerischer Wald vertraut man darauf, der Natur Raum zu geben. Selbst nach massivem Borkenkäferbefall griff man in weiten Teilen nicht ein. Was zunächst wie Zerstörung wirkte, erwies sich jedoch als Teil eines natürlichen Prozesses: Totholz wird zum Lebensraum, und zwischen den abgestorbenen Bäumen wächst ein neuer, vielfältiger Wald heran. Beide Parks zeigen eindrucksvoll, dass nachhaltiger Schutz dort entsteht, wo wir der Natur Raum lassen und ihre eigene Dynamik zulassen.",
+		"date": "2026-06-05",
+		"bing_url": "https://bing.com/th?id=OHR.WedLapland_DE-DE1297494610_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-05.jpg"
+	},
+	{
+		"title": "Plönlein mit Siebersturm und Kobolzeller Tor, Rothenburg ob der Tauber, Bayern",
+		"caption": "Wie aus dem Märchen",
+		"subtitle": "Plönlein, Rothenburg ob der Tauber, Bayern",
+		"copyright": "© Harald Nachtmann/Getty Images",
+		"description": "Das Plönlein zählt zu den bekanntesten Fotomotiven Deutschlands. Doch was verbirgt sich wirklich dahinter? Im Herzen der historischen Altstadt von Rothenburg ob der Tauber in Bayern gelegen, ist es weit mehr als das ikonische Fachwerkhaus, das viele von Postkarten kennen. Der Name stammt vom fränkischen „Plänlein“ und bezeichnet einen kleinen Platz, meist an einem Brunnen.\nGenau darin zeigt sich die typische Szenerie des Plönleins: ein kleiner Platz mit einem Brunnen, einem schiefen Fachwerkhaus und zwei Türmen der alten Stadtmauer. Links führt der Siebersturm ins historische Spitalviertel, rechts öffnet das Kobolzeller Tor den Blick ins Taubertal. Diese ungewöhnliche Komposition aus Architektur und Perspektive verleiht dem Ort eine fast märchenhafte Wirkung.\nSeit Jahrzehnten dient das Plönlein als visuelle Vorlage für Illustrationen, Filme und sogar Videospiele. Oft wird es in diesem Zusammenhang als Inspirationsquelle für die märchenhaften Kulissen des frühen Animationsfilms Pinocchio aus den 1940er‑Jahren genannt. Wer den Ort besucht, erkennt schnell: Nicht ein einzelnes Gebäude macht ihn berühmt, sondern das harmonische Zusammenspiel vieler Elemente, eingebettet in die gewachsene Stadtstruktur.",
+		"date": "2026-06-06",
+		"bing_url": "https://bing.com/th?id=OHR.RothenburgPloenlein_DE-DE1102047823_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-06.jpg"
+	},
+	{
+		"title": "Ruine von Dunseverick Castle, County Antrim, Nordirland",
+		"caption": "Ruinen voller Geschichte",
+		"subtitle": "Ruine von Dunseverick Castle, Nordirland",
+		"copyright": "© Krzysztof Rogalski/Getty Images",
+		"description": "Nicht als romantische Ruine, sondern als strategischer Ort entstand Dunseverick Castle an der schroffen Nordküste Nordirlands. Der Basaltfelsen über dem Atlantik bot über Jahrhunderte hinweg Kontrolle über Meer und Land und machte den Ort früh bedeutend. Bereits vor rund 2.000 Jahren endete hier die Slige Midluachra, eine der großen Verkehrsachsen Irlands, die mit einer antiken Fernstraße vergleichbar ist und bis zum Königssitz am Hill of Tara führte. Auch religiös und politisch ist der Ort tief im kollektiven Gedächtnis verankert: Im 5. Jahrhundert soll der heilige Patrick hier den Einheimischen Olcán getauft haben.\nEiner Überlieferung zufolge wurde von dieser Küste aus auch der Lia Fáil, der Krönungsstein der irischen Hochkönige, nach Schottland gebracht. Nach Wikingerangriffen im späten 9. Jahrhundert und schweren Zerstörungen im 17. Jahrhundert blieb lange nur ein einzelner Turm bestehen. Erst 1978 verschwand auch dieser im Meer. Heute ist das frei zugängliche Areal nahe dem Giant’s Causeway ein nüchternes Zeugnis irischer Geschichte – mit den letzten Mauerfragmenten der einstigen Burg.",
+		"date": "2026-06-07",
+		"bing_url": "https://bing.com/th?id=OHR.DunseverickCastle2026_DE-DE1972643390_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-07.jpg"
+	},
+	{
+		"title": "Gelbe Haarqualle im Ozean",
+		"caption": "Gleiten im Takt der Wellen",
+		"subtitle": "Welttag der Ozeane",
+		"copyright": "© Alexander Semenov Images/Shutterstock",
+		"description": "Lassen Sie sich heute treiben! Der Welttag der Ozeane lädt dazu ein, dem Rhythmus des Wassers zu folgen. Ein faszinierender Begleiter dabei ist die Gelbe Haarqualle. Sie gilt als die größte Qualle der Welt und lebt in den kalten Meeren des Nordatlantiks und des Nordpazifiks. Ihr glockenförmiger Schirm besteht aus acht Lappen, darunter hängen dichte Büschel aus langen, haarähnlichen Tentakeln. Mit der Strömung gleitend, ernährt sie sich von Plankton, kleinen Fischen und Krebstieren. In arktischen Regionen können Exemplare einen Schirmdurchmesser von über 1,8 Metern erreichen.\nIn der Nord- und Ostsee treten meist deutlich kleinere Tiere auf, oft nach Sturmwetter, wenn sie an die Küste getrieben werden. Für Menschen gilt Vorsicht, denn die Nesselzellen ihrer Tentakel können selbst nach dem Tod der Qualle noch schmerzhafte Hautreaktionen verursachen – direkter Kontakt sollte daher vermieden werden. Der Welttag der Ozeane erinnert daran, wie eng alles verbunden ist. Wer Einwegplastik vermeidet, saubere Meere unterstützt und bewusst konsumiert, hilft mit, diese empfindlichen Lebensräume zu bewahren.",
+		"date": "2026-06-08",
+		"bing_url": "https://bing.com/th?id=OHR.Cyanea_DE-DE8289927523_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-08.jpg"
+	},
+	{
+		"title": "Vernazza, Cinque Terre, Ligurien, Italien",
+		"caption": "Farben eines ligurischen Abends",
+		"subtitle": "Vernazza, Cinque Terre, Ligurien, Italien",
+		"copyright": "© Kelly Cheng/Getty Images",
+		"description": "Ein Blick auf das italienische Vernazza genügt und die Zeit scheint langsamer zu fließen. Die pastellfarbenen Häuser drängen sich dicht an den steilen Hang und spiegeln sich im ruhigen Wasser einer geschützten Bucht, dem einzigen natürlichen Hafen der ligurischen Cinque Terre. So ist das Dorf seit Jahrhunderten untrennbar mit dem Meer verbunden. Bereits 1080 erstmals erwähnt, war Vernazza einst ein strategischer Teil der genuesischen Küstenverteidigung – ein Erbe, das in den Ruinen der Doria-Burg und den alten Wachtürmen weiterlebt. Direkt am Ufer erhebt sich die Kirche Santa Margherita d’Antiochia, deren markanter Glockenturm das bunte Treiben am Kai überragt.\nOberhalb der engen Gassen steigen steile Terrassen mit Weinreben und Olivenbäumen an, über Generationen sorgfältig gepflegt. Diese Kulturlandschaft ist heute im Nationalpark Cinque Terre geschützt und Teil des UNESCO-Welterbes. Besonders stimmungsvoll wird es, wenn Sie den Tag mit einem Aperitivo am Hafen ausklingen lassen und bei ligurischem Weißwein, frischer Focaccia und aromatischem Pesto ein Stück italienisches Dolce Vita genießen.",
+		"date": "2026-06-09",
+		"bing_url": "https://bing.com/th?id=OHR.CTNPVernazza_DE-DE9697732049_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-09.jpg"
+	},
+	{
+		"title": "Vulkanischer Kratersee Hnausapollur, Naturschutzgebiet Fjallabak, Landmannalaugar, Island",
+		"caption": "Ein Hauch von Blau",
+		"subtitle": "Kratersee Hnausapollur, Naturschutzgebiet Fjallabak, Island",
+		"copyright": "© Juan Maria Coy Vergara/Getty Images",
+		"description": "Mitten im isländischen Hochland liegt ein See, der fast zu ruhig wirkt für seine Herkunft. Hnausapollur, auch Bláhylur genannt, befindet sich im Naturschutzgebiet Fjallabak, in einer abgelegenen Region mit Lavafeldern, farbigen Bergen und weiten Tälern, die von vulkanischer Aktivität geprägt sind.\nDer Krater entstand, als aufsteigendes Magma auf Grundwasser traf und eine Explosion ein rundes Becken aus dem Gestein sprengte. Nach und nach sammelten sich Regen, Schmelzwasser und Grundwasser darin und bildeten den heutigen See. Seine Oberfläche wirkt oft still, doch Farbe und Erscheinungsbild verändern sich ständig mit dem Licht und dem Wetter, von leuchtendem Türkis bis zu tiefem Blau oder Grau.\nSolche vulkanischen Spuren finden sich nicht nur im hohen Norden: In der Vulkaneifel im Westen des Landes erinnern zahlreiche Maare an diese Prozesse. Auch dort entstanden trichterförmige Krater, die sich später mit Wasser füllten und heute ruhig in die Landschaft eingebettet sind.",
+		"date": "2026-06-10",
+		"bing_url": "https://bing.com/th?id=OHR.Hnausapollur_DE-DE2307473274_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-10.jpg"
+	},
+	{
+		"title": "Napfschnecken bei Ebbe an der Küste von Praia da Ursa, Portugal",
+		"caption": "Fest im Fels",
+		"subtitle": "Napfschnecken bei Ebbe an der Küste von Praia da Ursa, Portugal",
+		"copyright": "© Theo Bosboom/Nature Picture Library",
+		"description": "An der rauen Westküste Portugals, nahe Cabo da Roca, dem westlichsten Punkt des europäischen Festlands, liegt die Praia da Ursa verborgen unter steilen Felsen. Ein schmaler, teils anspruchsvoller Pfad führt zu diesem abgelegenen Strand am Atlantik, der vor allem von Wind, Gestein und Brandung geprägt ist. Bei Ebbe zieht sich das Meer zurück, die Küstenlinie wirkt für kurze Zeit weiter, und glatte Felsen werden freigelegt. Auf ihnen haften Napfschnecken fest und halten den kräftigen Wellen stand.\nDiese kleinen Meeresschnecken sind bestens an ihren Lebensraum angepasst. Bei Flut lösen sie ihre Haftung kurzzeitig, um Algen von den Felsen zu fressen, und kehren danach an ihre festen Plätze zurück. Auch an der deutschen Nordsee, etwa auf den roten Felsen von Helgoland, lassen sich Napfschnecken bei Ebbe auf freiliegenden Steinen beobachten. Dort wie hier entstehen diese stillen Momente zwischen Wasser und Land nur für kurze Zeit – leicht zu übersehen, wenn man nicht genau hinschaut.",
+		"date": "2026-06-11",
+		"bing_url": "https://bing.com/th?id=OHR.Limpets_DE-DE3433588374_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-11.jpg"
+	},
+	{
+		"title": "Europäischer Bienenfresser im Naturpark Sierra de Grazalema, Cádiz, Spanien",
+		"caption": "Farben in Bewegung",
+		"subtitle": "Naturpark Sierra de Grazalema, Cádiz, Spanien",
+		"copyright": "© Andres M. Dominguez/Nature Picture Library",
+		"description": "Ein leuchtender Farbklecks in der Landschaft – und schon ist er wieder weg. Kaum ein Vogel zieht mit seinem schillernden Gefieder so schnell die Blicke auf sich wie der Europäische Bienenfresser, der mit wendigem, leichtem Flug durch die Luft gleitet. Er zählt zu den faszinierendsten Sommergästen Europas. Während der Jagd fängt er Insekten wie Bienen oder Wespen direkt aus der Luft. Bevor er sie frisst, entfernt er mit erstaunlicher Präzision deren Stachel – eine spezialisierte Technik eines erfahrenen Jägers.\nDer farbenprächtige Vogel ist von Südeuropa bis nach Westasien verbreitet und zieht zum Überwintern vor allem nach Afrika. Das Bild zeigt ihn im Naturpark Sierra de Grazalema in Südspanien, wo er in sandigen Böschungen Bruthöhlen gräbt und in geselligen Kolonien lebt. Mit etwas Glück lässt sich dieses Naturschauspiel inzwischen auch in klimatisch begünstigten Regionen Deutschlands beobachten, wo sich zunehmend kleine Brutkolonien bilden – ein besonderer Moment für alle, die genau hinschauen.",
+		"date": "2026-06-12",
+		"bing_url": "https://bing.com/th?id=OHR.SpainBeeEater_DE-DE9310458421_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-12.jpg"
+	},
+	{
+		"title": "Sonnenuntergang im Badlands-Nationalpark, South Dakota, USA",
+		"caption": "Schichten des Wandels",
+		"subtitle": "Sonnenuntergang im Badlands-Nationalpark, South Dakota, USA",
+		"copyright": "© Troy Harrison/Getty Images",
+		"description": "Wenn die Sonne über dem Badlands-Nationalpark in South Dakota, USA, untergeht, erstrahlen die zerfurchten Hügel in Rosé, Ocker und Aschegrau. Im Abendlicht wirken die Kanten fast wie gemalt, und die Schatten zeichnen jede Falte nach. Die Schichtbänder ähneln einem aufgeschlagenen Gesteinsbuch: Sedimente lagerten sich einst in einem flachen Binnenmeer ab und bauten sich über Millionen Jahre wie ein Schichtkuchen auf, bevor Wind und Wasser die weichen Lagen wieder freilegten.\nUnter der rauen Oberfläche verbirgt sich eines der weltweit reichsten Fossilienvorkommen. Hier wurden Überreste früher Säugetiere gefunden, darunter urtümliche Pferde und entfernte Verwandte heutiger Nashörner. Doch die Landschaft ist nicht nur ein Relikt vergangener Zeiten, noch heute ziehen Bisons durch die offene Prärie, Dickhornschafe bewegen sich entlang steiler Grate, und Präriehunde beleben die Grasflächen. Aussichtspunkte und Straßen folgen den Konturen des Landes. Dabei erinnern die Farben fast an eine ferne Verwandte der Sandsteinfelsen der Sächsischen Schweiz – nur weiter, trockener und im ständigen Wandel.",
+		"date": "2026-06-13",
+		"bing_url": "https://bing.com/th?id=OHR.BadSunset_DE-DE9498581527_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-13.jpg"
+	},
+	{
+		"title": "Blumengarten auf der Insel Mainau im Bodensee, Baden-Württemberg",
+		"caption": "Die stille Kunst des Gartens",
+		"subtitle": "Tag des Gartens",
+		"copyright": "© toriru/Shutterstock",
+		"description": "Wer durch einen gut gestalteten Garten geht, spürt sofort: Hier steckt mehr dahinter als nur schöne Blumen. Der Tag des Gartens, der am zweiten Sonntag im Juni begangen wird, lenkt den Blick gezielt auf diese stille Kunst und würdigt Orte, an denen Gestaltung, Pflege und Natur ineinandergreifen. Die Insel Mainau im Bodensee ist dafür ein besonders eindrucksvolles Beispiel. Auf der sogenannten Blumeninsel wechseln sich im Rhythmus der Jahreszeiten Farben, Formen und Düfte ab. Frühjahrsblüher gehen nahtlos in sommerliche Arrangements über, wobei jede Pflanzung sorgfältig geplant und kontinuierlich gepflegt wird. Wege und Beete geben Struktur und Orientierung, ohne die Leichtigkeit des Ortes zu stören oder zu überformen.\nEin Highlight ist die Italienische Blumen-Wassertreppe, bei der sanft fließendes Wasser die Stufen begleitet und die Bepflanzung harmonisch verbindet. Wer genauer hinsieht, entdeckt hier mehr als Natur: ein fein austariertes Zusammenspiel aus Planung, Handwerk und der leisen Kunst des Gartenbaus.",
+		"date": "2026-06-14",
+		"bing_url": "https://bing.com/th?id=OHR.MainauFlowers_DE-DE9640558313_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-14.jpg"
+	},
+	{
+		"title": "Stockente",
+		"caption": "Ein vertrauter Gast am Wasser",
+		"subtitle": "Stockente",
+		"copyright": "© Philippe Paternolli/Getty Images",
+		"description": "Ob an stillen Seen, an langsam fließenden Flüssen oder in belebten Parkanlagen – die Stockente gehört in vielen Landschaften zum vertrauten Bild. Mit ihrer weiten Verbreitung zählt sie zu den häufigsten Entenarten Europas und ist auch in Deutschland ganzjährig zu beobachten. Auffällig ist das unterschiedliche Aussehen: Während das Männchen mit grün schimmerndem Kopf und weißem Halsring ins Auge fällt, bleibt das Weibchen in braunen Tarnfarben unauffällig.\nStockenten leben bevorzugt an Gewässern mit flachen Uferzonen, wo sie ihre Nahrung suchen. Sie ernähren sich vielseitig von Pflanzen, Samen und kleinen Wassertieren. Häufig sind sie dabei gründelnd im flachen Wasser zu beobachten. Zur Brutzeit zieht sich das Weibchen an einen geschützten Ort zurück und baut ein gut verstecktes Nest in der Nähe des Wassers. Nach dem Schlüpfen folgen die Küken unmittelbar ihrer Mutter – oft schon wenige Stunden später – auf ihren ersten Wegen durch das seichte Uferwasser. Die Aufzucht dauert nur wenige Wochen, dann werden die Jungvögel selbstständig.",
+		"date": "2026-06-15",
+		"bing_url": "https://bing.com/th?id=OHR.DuckPond_DE-DE9877208937_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-15.jpg"
+	},
+	{
+		"title": "Zwei Echte Karettschildkröten in der Nähe des Seven Mile Beach, Grand Cayman, Kaimaninseln",
+		"caption": "Hüter der Korallenriffe",
+		"subtitle": "Internationaler Tag der Meeresschildkröten",
+		"copyright": "© Alex Mustard/Nature Picture Library",
+		"description": "Seit über 100 Millionen Jahren durchqueren Meeresschildkröten die Ozeane und prägen bis heute empfindliche Meeresökosysteme. Am 16. Juni, dem Internationalen Tag der Meeresschildkröten, rückt ihr Schutz in den Mittelpunkt. Fast alle Arten gelten inzwischen als bedroht, da ihnen Plastikverschmutzung, Klimawandel, Lebensraumverlust und Beifang weltweit zu schaffen machen. Dabei spielen sie eine entscheidende Rolle für das Gleichgewicht der Meere, beispielsweise indem sie Seegraswiesen pflegen, Nährstoffe transportieren und Korallenriffe stabilisieren. Viele Arten legen dabei erstaunliche Distanzen zurück und kehren zur Eiablage an genau jene Strände zurück, an denen sie selbst geschlüpft sind.\nVor den Kaimaninseln gleitet ein Paar Echte Karettschildkröten ruhig durch das klare Wasser der Karibik. Ihr kunstvoll gemusterter Panzer und der schmale, schnabelartige Kopf machen sie unverwechselbar. Mit ihrem spitz zulaufenden Maul erreichen sie Nahrung in engen Riffspalten, vor allem Schwämme. Als spezialisierte Schwammfresser halten sie das Riff im Gleichgewicht, indem sie verhindern, dass diese Organismen die empfindlichen Korallen überwuchern. Solche stillen Momente zeigen, wie wichtig ihr Schutz ist.",
+		"date": "2026-06-16",
+		"bing_url": "https://bing.com/th?id=OHR.SevenMileTurtle_DE-DE3122799407_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-16.jpg"
+	},
+	{
+		"title": "Tremolastraße am Gotthardpass in Airolo, Schweiz",
+		"caption": "Tanz der Serpentinen",
+		"subtitle": "Tremolastraße am Gotthardpass in Airolo, Schweiz",
+		"copyright": "© Sandro Bisaro/Getty Images",
+		"description": "24 enge Kehren auf historischem Kopfsteinpflaster – die Tremola am Gotthardpass oberhalb von Airolo in der Schweiz gilt als eine der spektakulärsten Passstraßen der Alpen. Seit dem frühen 19. Jahrhundert schlängelt sich diese historische Südrampe durch das Gebirge und erhielt 1951 ihr heutiges Erscheinungsbild. Besonders eindrucksvoll ist der Abschnitt, der auf rund 4 Kilometern etwa 300 Höhenmeter überwindet und sich in 24 präzise angelegten Spitzkehren den Hang hinaufwindet. Das robuste Granitpflaster und die massiven Stützmauern zeugen bis heute von Ingenieurskunst, die sich dem Gelände anpasst.\nInsgesamt misst die Strecke etwa 11 Kilometer und umfasst 37 Kurven. Wer die Serpentinen der Rossfeld-Panoramastraße in Bayern kennt, erlebt hier eine ursprünglichere, fast zeitlose Variante im Hochgebirge. Mit jeder Kurve öffnet sich der Blick ins obere Leventinatal ein Stück weiter. Besonders bei trockener, klarer Witterung entfaltet die Tremola ihre ganze Wirkung – ein stiller, aber spürbarer Nervenkitzel für alle, die Kurven lieben.",
+		"date": "2026-06-17",
+		"bing_url": "https://bing.com/th?id=OHR.TremolaRoad_DE-DE0167255988_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-17.jpg"
+	},
+	{
+		"title": "Luftaufnahme der Ruinen von Sacsayhuamán, Cusco, Peru",
+		"caption": "Wunder aus Stein",
+		"subtitle": "Luftaufnahme der Ruinen von Sacsayhuamán, Cusco, Peru",
+		"copyright": "© Creative-Family/Getty Images Plus",
+		"description": "Hoch über der ehemaligen Inkahauptstadt Cusco in Peru thront Sacsayhuamán, ein beeindruckendes Zeugnis der Baukunst und Ambitionen des Inkareichs. Die im 15. Jahrhundert errichtete Anlage war Teil des heiligen Zentrums dieses Reichs. Aus der Vogelperspektive erschließt sich ihre Struktur: Terrassen, offene Plätze und die Überreste von Türmen fügen sich zu einer sorgfältig geplanten Zitadelle zusammen. Besonders imposant sind die gewaltigen Mauern aus riesigen Steinblöcken, von denen einige mehr als acht Meter hoch sind. Präzise ohne Mörtel gefügt, haben sie Jahrhunderte von Erdbeben überdauert.\nArchäologen gehen davon aus, dass Sacsayhuamán sowohl zeremonielle als auch strategische Funktionen erfüllte. Hier fanden Versammlungen und Rituale zu Ehren des Sonnengottes Inti statt, während die Anlage zugleich über die darunterliegende Stadt wachte. Der Name Sacsayhuamán stammt aus dem Quechua und wird häufig als „zufriedener Falke“ gedeutet – ein Hinweis auf die symbolische Rolle von Greifvögeln im andinen Weltbild. Bis heute beeindruckt der Ort durch die Verbindung aus durchdachtem Design, symbolischer Bedeutung und monumentalem Maßstab.",
+		"date": "2026-06-18",
+		"bing_url": "https://bing.com/th?id=OHR.Saqsaywaman_DE-DE3241976270_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-18.jpg"
+	},
+	{
+		"title": "Leuchtturm „La Rocchetta“, Piombino, Italien",
+		"caption": "Meer, Licht und Weite",
+		"subtitle": "Leuchtturm „La Rocchetta“, Piombino, Italien",
+		"copyright": "© StevanZZ/Getty Images",
+		"description": "Am Rand der Piazza Bovio, im Herzen von Piombino in der Toskana, erhebt sich ein Leuchtturm über der Küste. Der Leuchtturm von Piombino, auch „La Rocchetta“ genannt, steht an einem Punkt, an dem sich der Blick zur Insel Elba öffnet. Errichtet im 20. Jahrhundert auf den Resten einer älteren Befestigung, präsentiert sich der kleine Bau im neugotischen Stil. Bis heute dient er als Orientierung für Schiffe im Kanal des toskanischen Archipels – sein Licht ist weit sichtbar über dem Meer.\nSeine Lage prägt das Bild entscheidend. Die Piazza Bovio zählt zu den eindrucksvollsten Plätzen an der Küste Italiens und eröffnet weite Ausblicke über das Tyrrhenische Meer. An klaren Tagen reicht die Sicht bis nach Elba, während Sonnenuntergänge die Felsküste in warmes Licht tauchen. Ähnlich wie bei bekannten Leuchttürmen an der deutschen Nordsee, etwa in Westerhever, verbindet auch dieser Ort maritime Funktion mit der Weite der offenen See. Ein Küstenort, an dem Meer, Licht und Architektur ineinandergreifen.",
+		"date": "2026-06-19",
+		"bing_url": "https://bing.com/th?id=OHR.IsolaElba_DE-DE0710166341_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-19.jpg"
+	},
+	{
+		"title": "Windjammerparade zur Kieler Woche in Kiel, Schleswig-Holstein",
+		"caption": "Unter vollen Segeln",
+		"subtitle": "Kieler Woche",
+		"copyright": "© Snapshot freddy/Shutterstock",
+		"description": "„Leinen los!“ – so beginnt in Kiel jedes Jahr eines der größten und traditionsreichsten Segelereignisse der Welt: die Kieler Woche. Das renommierte Festival in Schleswig-Holstein verbindet internationale Regatten mit einem maritimen Volksfest, das die Stadt neun Tage lang prägt. Auf der Kieler Förde treffen moderne Yachten, historische Segelschiffe sowie zahlreiche kleinere Boote aufeinander und bestimmen das Bild der Küste.\nEin besonderer Höhepunkt ist die berühmte Windjammerparade, die auch auf diesem Foto zu sehen ist, jedoch traditionell erst gegen Ende der Kieler Woche stattfindet. Eindrucksvolle Großsegler ziehen dabei in Formation über das Wasser, begleitet von vielen kleineren Booten. Hohe Masten, weit gespannte Segel und das ruhige Gleiten der Schiffe verleihen der Szene eine fast zeitlose Anmutung.\nBesonders eindrucksvoll wirkt die Szene im Zusammenspiel von Licht und Wasser: Das helle Licht spiegelt sich auf der Förde, während sich die Silhouetten der Schiffe klar gegen Himmel und Wolken abzeichnen. So verbindet die Kieler Woche seemännische Tradition mit einem eindrucksvollen Spiel aus Bewegung und Wasser.",
+		"date": "2026-06-20",
+		"bing_url": "https://bing.com/th?id=OHR.KielSailing_DE-DE0980571166_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-20.jpg"
+	},
+	{
+		"title": "Ein Königspinguin-Männchen schaut nach seinem Ei",
+		"caption": "Wächter im Eis",
+		"subtitle": null,
+		"copyright": "© McDonald Wildlife Photography Inc./Getty Images",
+		"description": "Inmitten einer dicht gedrängten Kolonie hebt sich ein einzelnes Männchen der Königspinguine kaum vom Gewimmel ab. Mit gesenktem Kopf hält es ein Ei sicher auf seinen Füßen, das unter einer warmen, gut durchbluteten Hautfalte verborgen ist. Ein Nest gibt es nicht – alles hängt davon ab, die empfindliche Last vor dem eisigen Wind zu schützen und konstant warmzuhalten.",
+		"date": "2026-06-21",
+		"bing_url": "https://bing.com/th?id=OHR.EggDad_DE-DE1185821144_UHD.jpg",
+		"url": "https://bing.npanuhin.me/DE/de/2026-06-21.jpg"
 	}
 ]

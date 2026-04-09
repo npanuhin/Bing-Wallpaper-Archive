@@ -7382,11 +7382,751 @@
 	{
 		"title": "Seattle, Washington, United States",
 		"caption": "The Emerald City",
-		"subtitle": null,
+		"subtitle": "Seattle, Washington, United States",
 		"copyright": "© Jim Patterson/Tandem Stills + Motion",
-		"description": "Seattle's waterfront seems suspended between sea and sky as soft light settles on the horizon. The city in Washington, United States, is named after Chief Si'ahl, a leader of the Duwamish and Suquamish peoples, whose legacy remains important to the region's identity. Steep streets lead down to piers that sweep across Elliott Bay. Rising above the shoreline, the Space Needle stands out as the city's most recognisable landmark. Pike Place Market, founded in 1907, overlooks the waterfront and continues to anchor daily life and long-held traditions.",
+		"description": "Seattle's waterfront seems suspended between sea and sky as soft light settles on the horizon. The city in Washington, United States, is named after Chief Si'ahl, a leader of the Duwamish and Suquamish peoples, whose legacy remains important to the region's identity. Steep streets lead down to piers that sweep across Elliott Bay. Rising above the shoreline, the Space Needle stands out as the city's most recognisable landmark. Pike Place Market, founded in 1907, overlooks the waterfront and continues to anchor daily life and long-held traditions.\nMusic adds another layer to the city's story. In the late 20th century, grunge emerged from small clubs, and its raw sound evolved into a global genre that continues to influence Seattle's creative pulse. Framed by water and distant mountain ranges, the city feels open and expansive. Its evergreen landscape earned Seattle the enduring nickname 'Emerald City.'",
 		"date": "2026-04-08",
 		"bing_url": "https://bing.com/th?id=OHR.SeattleSunrise_EN-IN1391422222_UHD.jpg",
 		"url": "https://bing.npanuhin.me/IN/en/2026-04-08.jpg"
+	},
+	{
+		"title": "Sgwd yr Eira waterfall, Brecon Beacons National Park, Wales",
+		"caption": "Veil of light",
+		"subtitle": "Sgwd yr Eira waterfall, Brecon Beacons National Park, Wales",
+		"copyright": "© Guy Edwardes/Nature Picture Library",
+		"description": "Water spills in clean lines at Sgwd yr Eira, one of South Wales' most distinctive waterfalls. Its Welsh name means 'Waterfall of Snow,' referring to the pale curtain of water sliding over the rock face. What sets this waterfall apart is access. A narrow path leads visitors behind the falling water, immersing them in sound, light and movement at close range. Sgwd yr Eira lies within Brecon Beacons National Park, often called 'Waterfall Country' for its network of rivers and falls carved into wooded gorges. Well-marked trails connect this waterfall to others along the River Hepste, making it a popular stop on longer hikes. Above the valleys, the landscape opens into rolling moorland and long ridgelines where upland paths are shaped by wind and changing weather. These contrasts define the Brecon Beacons, where open, exposed uplands give way to sheltered water, tying the landscape together.",
+		"date": "2026-04-09",
+		"bing_url": "https://bing.com/th?id=OHR.WalesWaterfall_EN-IN1569227475_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-09.jpg"
+	},
+	{
+		"title": "Two young red foxes at Karula National Park, Estonia",
+		"caption": "Plotting paws",
+		"subtitle": "Siblings Day",
+		"copyright": "© Sven Zacek/Nature Picture Library",
+		"description": "Ever caught siblings plotting? In Karula National Park, Estonia, it looks as though these two red fox kits froze mid-conspiracy, their expressions mirrored in curiosity and caution. They're not just springtime fluff; they're apprentices in survival. Born in litters averaging four to six kits, foxes grow quickly, their underground den becoming their wrestling ring, classroom, and testing ground. Older kits often help feed, guard, and teach the younger ones, turning play into practice and mischief into muscle memory. In their families, siblings are not background—they're backup.\nIt's an impulse we know well. Siblings Day, observed every 10 April, was created in 1995 when American Claudia Evart decided the quiet power of brother-sister bonds deserved its own spotlight. Since then, it has leapt across 49 US states, earned presidential praise, and hopped continents. It resonates because the dynamic is universal. Whether in a woodland clearing or around a kitchen table, siblings are our first opponents, our first defenders and our lifelong witnesses.",
+		"date": "2026-04-10",
+		"bing_url": "https://bing.com/th?id=OHR.FoxSiblings_EN-IN1951935452_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-10.jpg"
+	},
+	{
+		"title": "Papagayo Beach, Lanzarote, Canary Islands, Spain",
+		"caption": "Volcanic veneer",
+		"subtitle": "Papagayo Beach, Lanzarote, Canary Islands, Spain",
+		"copyright": "© Gavin Hellier/Getty Images",
+		"description": "A beach born from fire rarely does so subtly, yet Papagayo Beach manages exactly that. The shoreline we see today rests on the southern edge of Lanzarote, one of Spain's Canary Islands. Tropical fantasy? More like volcanic precision. Millions of years ago, this land rose in successive layers of basalt and ash thrust upward by submarine eruptions.\nAbout 120 metres long, the cove feels intimate. Nestled within Los Ajaches Natural Monument, it remains protected and deliberately low-key. Once, it sheltered sailors navigating between Africa and Europe. Today, it is reached by foot, boat or a famously bumpy dirt road—preservation by inconvenience. Cliffs arc around the bay, forming natural breakwaters that temper the Atlantic into calm, clear shallows. Fish flicker through the light, crabs patrol the tidal edges and octopuses vanish into stone. The sand's warm, golden tone? Pulverised shells mixed with volcanic rock, refined by millennia of tides. Papagayo's power lies in its contrasts: forged by eruption, shaped by erosion and preserved by restraint.",
+		"date": "2026-04-11",
+		"bing_url": "https://bing.com/th?id=OHR.PlayaPapagayo_EN-IN2411013538_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-11.jpg"
+	},
+	{
+		"title": "City lights streak below, taken from the International Space Station",
+		"caption": "The first step off Earth",
+		"subtitle": "International Day of Human Space Flight",
+		"copyright": "© NASA",
+		"description": "Today, the world marks the International Day of Human Space Flight, a United Nations observance honouring the first human journey into space and the start of the space age for humanity. The date recalls 12 April, 1961, when Yuri Gagarin orbited Earth, proving that people could leave the planet and return safely.\nThat spirit of exploration lives on aboard the International Space Station. From the ISS, astronauts photograph glowing city grids and powerful lightning storms streaking through Earth's atmosphere—views that turn science into magic. Orbiting about 400 kilometres above the planet, the station circles Earth every 90 minutes, giving crews up to 16 sunrises and sunsets a day. It has been continuously occupied since 2000 and is operated by a partnership of the United States, Russia, Europe, Japan and Canada. Inside, astronauts conduct research that advances medicine, materials, and climate science, while also learning how humans can live and work farther from home.",
+		"date": "2026-04-12",
+		"bing_url": "https://bing.com/th?id=OHR.SpaceTrails_EN-IN2633640541_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-12.jpg"
+	},
+	{
+		"title": "Milky Way over Anza-Borrego Desert State Park, California, United States",
+		"caption": "After the lights go down",
+		"subtitle": "International Dark Sky Week",
+		"copyright": "© Kevin Key/Slworking)/Getty Images",
+		"description": "When the lights go down, the universe puts on a show. International Dark Sky Week, celebrated each April, invites everyone to rediscover the night and learn why darkness is worth protecting. Launched in 2003, the week highlights how excessive artificial light affects wildlife, human health, energy use and our ability to see the stars. Fewer lights don't mean less safety—smart, well-designed lighting can do both.\nThe image of the Milky Way glowing above Anza-Borrego Desert State Park, United States, captures this idea perfectly. As California's largest state park and an officially designated International Dark-Sky Park, Anza-Borrego offers some of the best stargazing in the country. On a clear night, the sky fills with planets, star clusters and the bright band of our home galaxy—views that have vanished from many urban areas.\nInternational Dark Sky Week encourages simple actions, from shielding porch lights to joining a local star party. Look up, get curious and help keep nights naturally brilliant.",
+		"date": "2026-04-13",
+		"bing_url": "https://bing.com/th?id=OHR.BorregoStars_EN-IN2846815950_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-13.jpg"
+	},
+	{
+		"title": "Ambedkar Memorial Park, Lucknow, Uttar Pradesh",
+		"caption": "Not just a birthday, a revolution",
+		"subtitle": "Ambedkar Jayanti",
+		"copyright": "© Varun Kumar Tiwari/iStock/Getty Images",
+		"description": "Every year on April 14, India pauses to honour a man who drafted more than just a constitution—he drafted the blueprint for social justice. Ambedkar Jayanti celebrates Dr. B.R. Ambedkar, a scholar, reformer and relentless champion of equality. Born in 1891, Ambedkar faced the harsh realities of caste discrimination but turned every hurdle into a stepping stone for change.\nOn this day, people across the country pay tribute through parades, seminars and cultural programmes. Schools and colleges organise discussions around his vision, while communities reflect on his efforts to fight social injustice. Streets are dotted with banners reminding us that equality isn't just a word—it's a mission.\nAmbedkar's influence goes beyond law and politics; he inspires movements for education, social reform and empowerment. So, this Jayanti, let's not just remember his birthday—let's upgrade our social software and debug inequality.",
+		"date": "2026-04-14",
+		"bing_url": "https://bing.com/th?id=OHR.AmbedkarJayanti2026_EN-IN3641683791_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-14.jpg"
+	},
+	{
+		"title": "The Carrières des Lumières exhibit of Vincent van Gogh, Les Baux-de-Provence, France",
+		"caption": "Stepping inside the living canvas",
+		"subtitle": "World Art Day",
+		"copyright": "© Patrick Aventurier/Getty Images",
+		"description": "Art surrounds us. Creativity and self-expression are part of human identity and mould our past and future. While some might dedicate their lives to the arts, others are the recipients of what artists channel. World Art Day on April 15 celebrates this ever-flowing link between artistic creations and society that shapes our cultures.\nImagine stepping inside the larger-than-life artworks of Vincent van Gogh, immersing yourself in the bold and textured brushstrokes. The Carrières des Lumières exhibit in Les Baux-de-Provence, France, offered exactly that during its 2019-2020 run.\nHoused in a former limestone quarry, the exhibition transformed Van Gogh's paintings into a shared physical space, projected across towering stone walls and floors. Rather than standing back to observe, visitors moved through colour, rhythm and scale, experiencing how technology can reshape the way we encounter art. It's a fitting reflection of World Art Day's purpose: not just honouring masterpieces, but rethinking how art lives, evolves and continues to engage new audiences.",
+		"date": "2026-04-15",
+		"bing_url": "https://bing.com/th?id=OHR.VanGoghFields_EN-IN6304322280_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-15.jpg"
+	},
+	{
+		"title": "Skagit Valley Tulip Fields, Washington, United States",
+		"caption": "Petal parade",
+		"subtitle": "Skagit Valley Tulip Festival",
+		"copyright": "© Alan Majchrowicz/Getty Images",
+		"description": "Each spring, Washington's Skagit Valley transforms into a patchwork of colour as the Skagit Valley Tulip Festival celebrates the arrival of bloom season. Throughout April, visitors can explore tulip gardens and farmland lined with vibrant rows of flowers, all framed by mountain views.\nThe festival isn't limited to one location—it stretches across the valley, inviting guests to discover multiple gardens, each offering its own experience. Some focus on carefully designed displays, while others highlight working farms and wide-open fields. Alongside the flowers, the festival connects visitors with art exhibits, family-friendly activities and community events hosted throughout the region.\nBloom timing changes every year, making each visit a little different, so checking bloom updates is part of the adventure. What began as a small local celebration in 1984 has grown into one of the Pacific Northwest's most loved spring traditions, drawing photographers, nature lovers and road trip enthusiasts eager to welcome the season.",
+		"date": "2026-04-16",
+		"bing_url": "https://bing.com/th?id=OHR.SkagitTulips_EN-IN3934438603_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-16.jpg"
+	},
+	{
+		"title": "Grey-headed flying fox carrying her pup, Yarra Bend Park, Australia",
+		"caption": "Bat signal: ON",
+		"subtitle": "International Bat Appreciation Day",
+		"copyright": "© Doug Gimesy/Nature Picture Library",
+		"description": "On 17 April, International Bat Appreciation Day flips its cape to the planet's night shift: bats. With more than 1,400 species on every continent except Antarctica, these winged mammals keep ecosystems balanced. They've been on Earth for over 50 million years, and only three species are true vampires. Found only in the Americas, these bats feed on blood, while the rest survive on insects, fruit, nectar or pollen. In Texas, Bracken Cave can host up to 20 million Mexican free-tailed bats in summer. Many gulp crop pests, cutting pesticide use; others pollinate wild agaves and disperse seeds that help forests rebound.\nIn today's image, a grey-headed flying fox mother in Yarra Bend Park, Australia, carries her pup. One of the country's largest bats, she can span over a metre, navigates by sharp sight and smell—not echolocation—and flies up to 50 kilometres for figs and blossoms. Batman is fictional; the real bat-signal is conservation, as habitat loss and disease are shrinking populations.",
+		"date": "2026-04-17",
+		"bing_url": "https://bing.com/th?id=OHR.FlyingFoxMom_EN-IN8520360814_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-17.jpg"
+	},
+	{
+		"title": "Moai statue quarry, Rano Raraku, Easter Island, Chile",
+		"caption": "The silence of unfinished giants",
+		"subtitle": "World Heritage Day",
+		"copyright": "© Gavin Hellier/Alamy",
+		"description": "Today, on World Heritage Day, attention turns to places that tell humanity's shared story—protected for their exceptional cultural or natural value. One of them rises from volcanic stone on Easter Island, Chile. At Rano Raraku, the slopes of an extinct volcano became the workshop where nearly all of the island's famous moai were carved. The image captures this remarkable quarry, where half-finished figures emerge from the rock, frozen mid-creation.\nCarved by the Rapa Nui people between about the 13th and 16th centuries, the statues were shaped directly from compressed volcanic ash, then transported across the island to ceremonial platforms. Rano Raraku lies within Rapa Nui National Park, a UNESCO World Heritage Site recognised for its extraordinary archaeological landscape and living Polynesian heritage.\nWorld Heritage Day highlights why protecting such places matters. Sites like Rano Raraku are more than landmarks—they are records of human ingenuity, belief and connection to the land, preserved for future generations to study and experience.",
+		"date": "2026-04-18",
+		"bing_url": "https://bing.com/th?id=OHR.MaoiStatues_EN-IN8684829616_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-18.jpg"
+	},
+	{
+		"title": "Spiti Valley, Himachal Pradesh",
+		"caption": "A little thin on air, big on impact",
+		"subtitle": "Spiti Valley, Himachal Pradesh",
+		"copyright": "© Rahul Wedpathak/500px/Getty Images",
+		"description": "Some places greet you gently. Spiti Valley starts by taking your breath away—literally. Sitting above 3,000 metres in Himachal Pradesh near the Tibetan border, this cold desert largely skips rain and goes straight to extremes.\nBlocked from the monsoon by the Himalayas, Spiti stays dry, rugged and unapologetically stark. But here's the twist: villages like Langza hold marine fossils, because this land once lay beneath an ancient sea. Talk about a glow-up—Spiti really rose to the occasion. The culture mirrors Tibetan traditions, seen in places like Key Monastery, over 1,000 years old and still standing strong—ageing better than most of us.\nIn Hikkim, you can send a postcard from one of the highest post offices in the world. It may arrive late, but the flex is instant. Nearby, Chandratal Lake shifts colours through the day, like the sky can't pick a favourite filter. Spiti doesn't try to impress—it just elevates everything, including your expectations.",
+		"date": "2026-04-19",
+		"bing_url": "https://bing.com/th?id=OHR.SpitiValley2026_EN-IN0228621600_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-19.jpg"
+	},
+	{
+		"title": "Canyonlands National Park, Moab, Utah, United States",
+		"caption": "The adventure doesn't end at sundown",
+		"subtitle": "Canyonlands National Park, Moab, Utah, United States",
+		"copyright": "© Jason Hatfield/Tandem Stills + Motion",
+		"description": "There are more than 400 places across the National Park System in the United States that preserve natural and cultural heritage while creating unforgettable outdoor experiences. From coastlines and forests to vast desert landscapes, these protected sites invite exploration, reflection and wonder.\nIn southeastern Utah, Canyonlands National Park near Moab offers a striking reminder that the adventure doesn't end at sundown. As the last light fades, the Colorado and Green rivers trace their way through carved canyons, towering buttes and rugged spires. With its remote setting and minimal light pollution, the park's clear skies reveal a brilliant canopy of stars.\nDesignated an International Dark Sky Park, Canyonlands is one of the best places to experience the desert after dark. Stargazing here doesn't require heading deep into the backcountry—short walks and scenic pull-outs provide unforgettable nighttime views, especially on moonless nights when the Milky Way stretches across the sky.",
+		"date": "2026-04-20",
+		"bing_url": "https://bing.com/th?id=OHR.SunsetKiva_EN-IN0473512523_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-20.jpg"
+	},
+	{
+		"title": "European hedgehog, France",
+		"caption": "Spring's prickly patrol",
+		"subtitle": "European hedgehog, France",
+		"copyright": "© Klein & Hubert/Nature Picture Library",
+		"description": "Spring arrives with a small, spiky ambassador: the European hedgehog, spotted here in France. Part cuddle, part survival gear, this tiny forager is mostly nocturnal and usually solitary, guided mainly by smell and sound. Its job description is simple: roam, sniff through leaf litter and vacuum up invertebrates like worms, beetles, slugs and caterpillars—the kind of snacks that keep ecosystems running and gardeners smiling. When danger shows up, it doesn't negotiate or flee. It curls into a tight ball and lets its spines do the talking.\nAcross colder regions, many hedgehogs hibernate through winter, reemerging as the earth hums with new life. Although these night-wanderers face real pressures in parts of Europe, especially from roads and habitat fragmentation, scenes like this are the hopeful bit. As long as forests stay connected and a little wild, spring will keep doing what it does best: rebooting the woods, one small prickly life at a time.",
+		"date": "2026-04-21",
+		"bing_url": "https://bing.com/th?id=OHR.SpringHedgehog_EN-IN0774143305_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-21.jpg"
+	},
+	{
+		"title": "Alam-Pedja Nature Reserve in Tartu County, Estonia",
+		"caption": "The power of protest",
+		"subtitle": "Earth Day",
+		"copyright": "© Sven Zacek/Nature Picture Library",
+		"description": "Earth Day didn't knock gently. It kicked the door wide open. In 1970, oilsoaked beaches, burning rivers and toxic air mobilised millions into street protests. When looking away was no longer an option, conservation was forced onto political agendas, sparking landmark environmental laws and flipping planetcare from fringe concern to global priority. Every 22 April, over 190 countries pause, reflect and reassess.\nThe 2026 theme, 'Our Power, Our Planet,' sets an ambitious target: triple renewable energy capacity worldwide by 2030. But action isn't only about turbines and solar panels. It's also protecting the natural engines already doing heavy lifting. Take AlamPedja Nature Reserve in Estonia, captured here. Since 1994, it has safeguarded one of Europe's largest wetland systems. How? By letting it be. Rivers run freely, bogs store carbon and floodplains soak excess water without concrete barriers. Elk, lynx and black storks thrive as seasons redraw the map. AlamPedja teaches that restraint can be the boldest move—to step back and let nature lead the way.",
+		"date": "2026-04-22",
+		"bing_url": "https://bing.com/th?id=OHR.TartuEstonia_EN-IN0962469731_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-22.jpg"
+	},
+	{
+		"title": "Anne Hathaway's cottage and garden, Stratford-upon-Avon, England",
+		"caption": "A cottage full of stories",
+		"subtitle": "Shakespeare Day",
+		"copyright": "© David Steele/Shutterstock",
+		"description": "Each 23 April, the curtain rises on the life and legacy of William Shakespeare, a playwright whose words still command the world's literary stage. Shakespeare Day commemorates the anniversary of his death in 1616 and the traditionally accepted date of his birth in 1564—a symbolic pairing that honours a writer whose works reshaped English literature. From the psychological depths of 'Hamlet' to the enduring romance of 'Romeo and Juliet,' his language continues to echo through classrooms, theatres and everyday speech. His plays have been performed in numerous languages worldwide.\nToday's image shows Anne Hathaway's cottage in Stratford‑upon‑Avon, England, the childhood home of Shakespeare's future wife. This 15th-century thatched cottage, now preserved as a museum, offers a rare glimpse into the domestic world that surrounded the young playwright. Visitors can explore original features, centuries‑old furnishings, and gardens inspired by Tudor life—an evocative setting in which to reflect on a legacy that continues to inspire new generations.",
+		"date": "2026-04-23",
+		"bing_url": "https://bing.com/th?id=OHR.HathawayCottage_EN-IN1263350288_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-23.jpg"
+	},
+	{
+		"title": "Forest hammock of slash pine and saw palmetto, Everglades National Park, Florida, United States",
+		"caption": "The power of taking it slow",
+		"subtitle": "Everglades National Park, Florida, United States",
+		"copyright": "© Mary Liz Austin/Alamy",
+		"description": "What happens when water moves too slowly to notice? In Everglades National Park, it shapes everything. Covering around 6,100 square kilometres, the park was established in 1947 to protect a wetland system unlike any other in the United States. As a recognised UNESCO World Heritage Site, the park's elevated pinelands rise above the marshes and prairies that form one of the world's largest wetland systems.\nSeen here, sunlit slash pines and saw palmetto create open woodlands that contrast sharply with the Everglades' vast wetlands and mangrove forests. These higher, drier areas support plant and animal communities that cannot survive in flooded conditions. The park also shelters a wide range of wildlife, from American alligators to elusive Florida panthers, along with hundreds of bird species. It is one of the few places in the world where alligators and crocodiles coexist, reflecting the overlap of freshwater and coastal environments. Ongoing conservation efforts aim to restore natural water flow, which remains essential to the park's survival.",
+		"date": "2026-04-24",
+		"bing_url": "https://bing.com/th?id=OHR.SlashPine_EN-IN1738190990_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-24.jpg"
+	},
+	{
+		"title": "Galápagos penguins swimming, Galápagos Islands, Ecuador",
+		"caption": "Breaking the penguin rules",
+		"subtitle": "World Penguin Day",
+		"copyright": "© Henley Spiers/Nature Picture Library",
+		"description": "Penguins usually bring Antarctica to mind, but these endearing flightless seabirds don't always follow the ice. On World Penguin Day, the Galápagos penguins pictured here offer a vivid counterpoint. Found only in the Galápagos Islands—a volcanic archipelago more than 950 kilometres off Ecuador's coast—this species lives farther north than any other penguin. Cool, nutrient‑rich ocean currents make this equatorial habitat possible by supplying food and keeping surrounding waters within survivable temperatures. Compact and agile, these birds spend much of the day in the water to stay cool.\nDue to their restricted range, they are especially susceptible to changes in ocean temperature and food availability. On World Penguin Day, this rare tropical scene highlights the remarkable diversity of penguins worldwide and the fragile balance that sustains species living at the limits of their habitats.",
+		"date": "2026-04-25",
+		"bing_url": "https://bing.com/th?id=OHR.GalapagosPenguins_EN-IN2047471212_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-25.jpg"
+	},
+	{
+		"title": "Pink apple blossoms, Avila Beach, California, United States",
+		"caption": "Bloom boom",
+		"subtitle": "Pink apple blossoms, Avila Beach, California, United States",
+		"copyright": "© Mimi Ditchie Photography/Getty Images",
+		"description": "Spring brings apple trees to life with clouds of soft pink blossoms. Their delicate petals brighten orchards and hillsides, standing out against clear blue skies as the season shifts from winter towards warmer days. These blooms attract pollinators such as bees and butterflies, helping fruit trees produce the apples that will grow later in the year.\nAlong the central coast of California, United States, mild temperatures and steady sunshine support this seasonal display. In places like Avila Beach, flowering trees spread across nearby valleys and hills while ocean breezes move through the landscape. Spring weather also draws people outdoors for activities such as cycling, hiking and golf.\nApple orchards reflect a long agricultural tradition in this region. Trees planted for fruit and shade still grow throughout surrounding valleys, connecting today's scenery with earlier farming practices. A walk among blooming apple trees in spring brings colour, fragrance and a gentle reminder of the seasonal rhythm along California's coast.",
+		"date": "2026-04-26",
+		"bing_url": "https://bing.com/th?id=OHR.AppleBlossoms_EN-IN2309236905_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-26.jpg"
+	},
+	{
+		"title": "The glass dome of Galleria Vittorio Emanuele II, Milan, Italy",
+		"caption": "Glass with class",
+		"subtitle": "The glass dome of Galleria Vittorio Emanuele II, Milan, Italy",
+		"copyright": "© PhillipMinnis/Getty Images",
+		"description": "Designed by architect Giuseppe Mengoni and completed in 1877, the Galleria Vittorio Emanuele II in Milan, Italy, is one of the world's oldest and most famous shopping arcades. Located between Piazza del Duomo and Piazza della Scala, it features a stunning glass-and-iron roof and an elegant, octagonal layout. Affectionately known as 'Milan's living room,' the Galleria is home to high-end boutiques, historic cafés such as Caffè Biffi and Camparino in Galleria and renowned restaurants.\nOver the years, the Galleria has undergone several restorations, including major projects in the 1950s to repair damage caused by World War II, in the 1980s to preserve the original structure, and most recently in preparation for the 2015 Expo. One of the most iconic features is the bull mosaic set into the floor, around which visitors spin for good luck. Among its notable features are four mosaics representing Europe, Asia, Africa and America. It remains a symbol of Milan's elegance and cultural sophistication, attracting locals and tourists.",
+		"date": "2026-04-27",
+		"bing_url": "https://bing.com/th?id=OHR.MilanGalleria_EN-IN2538393019_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-27.jpg"
+	},
+	{
+		"title": "Spectacled bear resting in tree, Ecuador",
+		"caption": "Spectacles in the wild",
+		"subtitle": "Spectacled bear resting in tree, Ecuador",
+		"copyright": "© Andy Rouse/Nature Picture Library",
+		"description": "The spectacled bear, also known as the Andean bear, is the only South American bear of the Ursidae family. Inhabiting the northern and central Andes Mountains, it dwells primarily in forested areas and feeds mainly on shoots and fruit. Pale markings around the eyes often resemble eyeglasses, or 'spectacles,' giving the species its distinctive name.\nThis animal is an excellent climber and spends much of its time in trees, sometimes building platforms from branches on which to feed or rest. Its diet is mainly vegetarian, consisting of fruit, leaves and other plant matter, although it may also eat insects or small animals. Generally shy and solitary, they tend to avoid contact with humans. The IUCN considers them vulnerable due to habitat loss, hunting and other human pressures. Safeguarding the spectacled bear means protecting a living treasure of the Andes and ensuring that this gentle forest guardian continues to thrive.",
+		"date": "2026-04-28",
+		"bing_url": "https://bing.com/th?id=OHR.AndeanBear_EN-IN2726227738_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-28.jpg"
+	},
+	{
+		"title": "Belém Tower on the bank of the Tagus River, Lisbon, Portugal",
+		"caption": "History anchored in stone",
+		"subtitle": "Belém Tower, Lisbon, Portugal",
+		"copyright": "© f9photos/Getty Images",
+		"description": "Ships leaving Lisbon once passed a small stone tower before meeting the wide Atlantic. That tower, standing on the bank of the Tagus River, served as both a guardian and a farewell. Say hello to Belém Tower—a fortress that watched Portugal sail into the Age of Exploration.\nBuilt in the early 1500s under King Manuel I of Portugal, the tower helped defend Lisbon's harbour while explorers set out to chart new sea routes. Its Manueline design mixes Gothic forms with maritime symbols—stone ropes, shields and sea-inspired carvings that clearly embraced their oceanic purpose.\nThe tower once stood on a small island, but shifting riverbanks brought it closer to land. Inside were cannons, soldiers and even prisoners. Today, this UNESCO World Heritage Site is proof that some landmarks truly stand the test of time and tide.",
+		"date": "2026-04-29",
+		"bing_url": "https://bing.com/th?id=OHR.BelemTowerBank_EN-IN2907801378_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-29.jpg"
+	},
+	{
+		"title": "Grape hyacinths and tulips, Keukenhof Gardens, Lisse, Netherlands",
+		"caption": "Tulips run the show",
+		"subtitle": "Keukenhof Gardens, Lisse, Netherlands",
+		"copyright": "© Martin Ruegner/Getty Images",
+		"description": "Imagine a flower sparking a financial frenzy. Sounds unlikely, right? Yet in the 1630s, tulips did exactly that in the Netherlands. During tulip mania, rare bulbs became luxury items traded for astonishing sums—some valued at prices comparable to a house. Why so valuable? Unusual colours and striped patterns were scarce and unpredictable, and collectors wanted the rarest varieties they could find.\nThe bubble eventually burst, but the country's fascination with tulips never faded. Centuries later, that long relationship with the flower found a new stage: Keukenhof Gardens near Lisse, seen in today's image. Opened in 1950, the park began as a spring exhibition where Dutch bulb growers presented their newest varieties to buyers and visitors.\nEach autumn, about 40 gardeners plant over seven million bulbs in layered designs so colours appear in waves through spring. Around 800 varieties of tulips lead the show, while grape hyacinths and daffodils add bursts of blue and yellow. The catch? The garden opens to the public for only a few weeks each year.",
+		"date": "2026-04-30",
+		"bing_url": "https://bing.com/th?id=OHR.DutchTulips_EN-IN3094932538_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-04-30.jpg"
+	},
+	{
+		"title": "Kailasa Temple, Ellora Caves, Maharashtra",
+		"caption": "A day carved in pride",
+		"subtitle": "Maharashtra Day",
+		"copyright": "© mazzzur/iStock/Getty Images",
+		"description": "If states threw birthday parties, Maharashtra would book the largest venue. Every 1 May, it marks its formation in 1960, when the bilingual Bombay State was split to create a Marathi-speaking region. The message was clear: language matters, but so does having a voice.\nThe capital, Mumbai, leads the celebrations with flag hoisting, parades and awards for public service. Elsewhere, schools, communities and cultural groups join in. Think dhol beats, Lavani (a traditional folk dance) performances and a menu that does not disappoint—vada pav keeps things quick, puran poli keeps things sweet. The day also tips its hat to Chhatrapati Shivaji Maharaj, whose legacy still shapes regional pride. Beyond the city, places like Ajanta Caves and Ellora Caves (pictured here) remind you that history here is carved in stone.\nMaharashtra Day is less about speeches and more about spirit—a state that works hard, celebrates louder and never misses a beat.",
+		"date": "2026-05-01",
+		"bing_url": "https://bing.com/th?id=OHR.MaharashtraDay2026_EN-IN0347211798_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-01.jpg"
+	},
+	{
+		"title": "Small lake and marsh in Jasper National Park in Alberta, Canada",
+		"caption": "The magic of Jasper",
+		"subtitle": "Jasper National Park in Alberta, Canada",
+		"copyright": "© Don White/Getty Images",
+		"description": "Can you picture more than 10,800 square kilometres of protected wilderness? That's Jasper National Park in Alberta, Canada. Established in 1907 as part of a growing network of protected landscapes in the Canadian Rockies, it was designated a national park in 1930. The park reflects both conservation efforts and much older Indigenous connections, including those of the Nakoda and Secwépemc peoples. Its terrain ranges from glacier-fed rivers and alpine meadows to dense conifer forests dominated by spruce and pine.\nWildlife is ever-present. Elk move through open valleys, moose feed in wetlands and the occasional grizzly bear or wolf is a reminder that this is their space. Caribou still roam parts of the park, though their numbers remain fragile. Do you hope to catch sight of the fauna? Trails range from short walks to multi-day backcountry routes. The Icefields Parkway offers access to glaciers and wide valley views, while Maligne Lake draws paddlers in summer. Winter brings cross-country skiing and snowshoeing. After sunset, Jasper's Dark Sky Preserve status reveals clear, star-filled skies.",
+		"date": "2026-05-02",
+		"bing_url": "https://bing.com/th?id=OHR.GreenJasper_EN-IN3195299837_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-02.jpg"
+	},
+	{
+		"title": "Leopard sleeping in a tree in the savannah, Masai Mara National Reserve, Kenya",
+		"caption": "Savanna afterglow",
+		"subtitle": "International Leopard Day",
+		"copyright": "© Klein & Hubert/Nature Picture Library",
+		"description": "High above the savanna in Kenya's Masai Mara, a leopard curls up on a tree branch, napping as the grasslands glow at sunset. On International Leopard Day, observed on 3 May, we celebrate one of the world's most adaptable big cats. Leopards roam across Africa and parts of Asia, thriving in habitats that range from forests and mountains to open savannas. Their spotted coats are unique to each individual, like fingerprints, and their powerful climbing skills allow them to stash prey high in trees, out of reach of scavengers.\nMostly active at night, leopards rely on stealth, sharp senses and patience rather than speed. Despite their resilience, global populations are declining due to habitat loss and conflict with humans. International Leopard Day invites you to learn more—and help ensure these remarkable cats keep their place in the wild.",
+		"date": "2026-05-03",
+		"bing_url": "https://bing.com/th?id=OHR.MasaiLeopard_EN-IN3617072692_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-03.jpg"
+	},
+	{
+		"title": "Ksar Ouled Soltane, Tataouine district in southern Tunisia",
+		"caption": "Sci‑fi, Earth‑made",
+		"subtitle": "Star Wars Day",
+		"copyright": "© Dark_Eni/Getty Images Plus",
+		"description": "May the 4th be with you! On Star Wars Day, reality cosplays as science fiction and dares you to tell the difference. Our image takes us to Ksar Ouled Soltane in Tunisia's Tataouine district, where stacked clay granaries rise like sand‑coloured fortresses. Dating back to the 15th century, this storehouse complex was built by Berber communities to protect harvests from heat, theft and time. Function first. Beauty as a side effect.\nCenturies later, filmmakers stumbled upon these structures and instantly recognised the world they were looking for. The architecture slid straight into Star Wars mythology, helping shape Tatooine, a planet whose name echoes Tataouine.\nEach 4 May, what began as a playful pun grew into a global tribute to visual magic, storytelling and a galaxy far, far away. Places like this are where imagination gets its texture: a combination of open horizons, sunbaked mud and human ingenuity. Cinematic wonder isn't limited to special effects—sometimes it's Earth itself, perfectly cast.",
+		"date": "2026-05-04",
+		"bing_url": "https://bing.com/th?id=OHR.KsarOuledSoltane_EN-IN1772152584_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-04.jpg"
+	},
+	{
+		"title": "Tŵr Mawr Lighthouse, Ynys Llanddwyn, Anglesey, Wales",
+		"caption": "Light at the end of the isle",
+		"subtitle": "Tŵr Mawr Lighthouse, Anglesey, Wales",
+		"copyright": "© Lukas Bischoff/Getty Images",
+		"description": "At the far edge of Ynys Llanddwyn, where the land quietly gives way to sea, Tŵr Mawr Lighthouse stands watch without making a fuss. It is not tall, not flashy, but it knows its purpose—and it keeps it bright.\nBuilt in 1845 on Anglesey's southwest coast in Wales, Tŵr Mawr (Great Tower) guided ships through the Menai Strait. At over 10 metres high, its tapered shape hints at a windmill past. It stands near Tŵr Bach (Small Tower), which now carries the active light, while Tŵr Mawr enjoys retirement as a Grade II listed landmark. Back in 1861, its lantern used Argand lamps, a Fresnel lens and a silver-plated reflector.\nSet on a tidal island, access depends on the sea's mood, so check the tide tables or risk being cut off. The site has also stepped into the spotlight, featuring in the 2006 film 'Half Light.' Nearby, the old Pilots' Cottages recall a time when crews stayed on watch, guiding ships through the tricky western approach to the strait. Throw in sweeping views towards Snowdonia (Eryri) National Park, and it is no surprise this lighthouse is often camera-ready.",
+		"date": "2026-05-05",
+		"bing_url": "https://bing.com/th?id=OHR.TwrMawrLighthouse2026_EN-IN1989617864_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-05.jpg"
+	},
+	{
+		"title": "Thunderstorm above the plains, Bulgaria",
+		"caption": "Plains under pressure",
+		"subtitle": "Thunderstorm above the plains, Bulgaria",
+		"copyright": "© Revolu7ion93/Getty Images",
+		"description": "Located on the eastern Balkan Peninsula, Bulgaria sits at the crossroads of Europe and Asia, where ancient cultures, fertile landscapes and shifting climates converge.\nUnder dramatic skies, Bulgaria's two great plains reveal the country's agricultural heart. The Danubian Plain spreads across the north, a rolling landscape of fields and river valleys shaped by a temperate continental climate, where warm summers often fuel powerful thunderstorms. Farther south lies the Upper Thracian Plain, lower and warmer, influenced by continental systems and Mediterranean air masses flowing inward from the Aegean region. Here, hot summers and moisture from the Maritsa River basin combine to make the region especially prone to intense summer storms—like the one unfolding above the plains in this image.\nTogether, these plains anchor Bulgaria's food production and reflect a land where weather, geography and human history remain closely linked.",
+		"date": "2026-05-06",
+		"bing_url": "https://bing.com/th?id=OHR.BulgariaPlains_EN-IN4718054909_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-06.jpg"
+	},
+	{
+		"title": "Kofa National Wildlife Refuge, Arizona, United States",
+		"caption": "Desert, drawn wide",
+		"subtitle": "Kofa National Wildlife Refuge, Arizona, United States",
+		"copyright": "© Denis Tangney Jr/Getty Images",
+		"description": "Stretching across the Sonoran Desert in southwestern Arizona, United States, Kofa National Wildlife Refuge is a land of sharp peaks, wide skies and surprising life. The refuge was established in 1939 to protect desert bighorn sheep, whose sure-footed silhouettes still define the rugged landscape.\nThe name 'Kofa' comes from the historic King of Arizona gold mine, once a booming operation in the nearby mountains—its title shortened into a single, memorable word.\nToday, Kofa spans 665,400 acres (269,278 hectares) of open desert, where saguaros rise from rocky washes and quiet canyons shelter rare palm groves. Bighorn sheep share this vast terrain with desert tortoises, coyotes and cactus wrens—each adapted to heat, scarcity and space. Hiking routes and backcountry tracks reveal ancient volcanic rock, sudden blooms after rain and seemingly endless horizons. At dusk, light softens the desert and wildlife stirs beneath the cooling air. Remote and largely undeveloped, Kofa rewards curiosity with silence, scale and the thrill of true desert wilderness.",
+		"date": "2026-05-07",
+		"bing_url": "https://bing.com/th?id=OHR.Kofa_EN-IN4942655895_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-07.jpg"
+	},
+	{
+		"title": "Sardinian donkey mare and foal, France",
+		"caption": "More than a hee-haw",
+		"subtitle": "World Donkey Day",
+		"copyright": "© Klein & Hubert/Nature Picture Library",
+		"description": "World Donkey Day celebrates one of humanity's most quietly capable partners. Donkeys have worked alongside people for thousands of years, prized for their endurance, sharp memory and sure-footed confidence on rugged ground. Often mistaken for stubborn, they are actually careful thinkers—pausing to assess risk rather than rushing into trouble.\nIn the image, a Sardinian donkey mare stands close to her foal, a reminder that these animals are not only hardworking but deeply social. Donkeys form strong bonds, recognise familiar faces long after separation and communicate with brays that can travel miles across open land. Their famously long ears help with both hearing and cooling in hot climates.\nFirst domesticated from African wild asses, donkeys helped move goods, shape trade routes and support daily life long before engines existed. World Donkey Day, observed each year on 8 May, invites us to notice their intelligence, resilience and lasting role in human history—past, present and braying proudly into the future.",
+		"date": "2026-05-08",
+		"bing_url": "https://bing.com/th?id=OHR.SardinianDonkey_EN-IN5118136670_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-08.jpg"
+	},
+	{
+		"title": "Skradinski Buk Waterfall in Krka National Park, Croatia",
+		"caption": "The architect of Krka",
+		"subtitle": "Skradinski Buk Waterfall, Krka National Park, Croatia",
+		"copyright": "© Amazing Aerial Agency/Adobe Stock",
+		"description": "Water is the architect of Krka National Park in Croatia, shaping emerald pools and layered waterfalls along the Krka River. Today's image highlights Skradinski Buk, the park's most famous waterfall system, where multiple streams spill over travertine terraces in a dense forest near the village of Lozovac.\nSkradinski Buk is not a single waterfall, but a wide cascade of 17 steps stretching 800 metres. These terraces form when mineral-rich water flows over moss and stone, slowly creating natural barriers that reshape the river's course. Wooden walkways cross the water, offering close-up views of rushing falls, small islands and restored watermills that once powered local communities. Beyond the waterfall complex, Krka National Park protects a network of natural waters and wildlife habitats, making it one of Croatia's most distinctive landscapes—where movement, history and geology remain deeply intertwined.",
+		"date": "2026-05-09",
+		"bing_url": "https://bing.com/th?id=OHR.SkradinskiBuk_EN-IN5310888144_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-09.jpg"
+	},
+	{
+		"title": "Polar bear mother and cubs playing in Wapusk National Park, Manitoba, Canada",
+		"caption": "A bond that endures",
+		"subtitle": "Happy Mother's Day!",
+		"copyright": "© Hao Jiang/Getty Images",
+		"description": "On Mother's Day, we honour the care, patience and protection that shape lives everywhere. In the wild, these qualities often stand out most where survival is hardest. Captured in Wapusk National Park in northern Manitoba, Canada, today's image shows a polar bear mother and her cubs sharing a playful moment on the Arctic tundra.\nFor polar bears, motherhood is a long and demanding commitment. Females give birth in winter, sheltering their newborn cubs in snow dens that provide vital insulation. Cubs are born very small and rely entirely on their mother's rich milk for warmth and growth. For more than two years, she raises them alone—guiding their movements, teaching essential survival skills and protecting them from danger. Play helps cubs build strength and coordination before they face life on their own. The scene offers a quiet reminder of the dedication behind motherhood—enduring, protective, and essential—even in one of the world's harshest environments.",
+		"date": "2026-05-10",
+		"bing_url": "https://bing.com/th?id=OHR.MotherCub_EN-IN5755289238_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-10.jpg"
+	},
+	{
+		"title": "Great Barrier Reef from above, Queensland, Australia",
+		"caption": "Underwater architecture",
+		"subtitle": "Great Barrier Reef from above, Queensland, Australia",
+		"copyright": "© Francesco Riccardo Iacomino/Getty Images",
+		"description": "One of the world's greatest natural wonders stretches through the turquoise waters of the Coral Sea off Australia's northeast shoreline. The Great Barrier Reef, running along the coast of Queensland, is the world's largest coral reef system. It is made up of nearly 3,000 individual reefs and hundreds of islands, spanning more than 1,400 miles.\nThis remarkable marine landscape supports extraordinary biodiversity, including hundreds of coral species, more than 1,600 kinds of fish, as well as sea turtles, rays, seabirds and reef sharks. Its shallow lagoons, coral cays and deeper outer reefs create a mosaic found nowhere else on Earth.\nRecognised as a UNESCO World Heritage Site, the reef is valued not only for its size and beauty, but also for its ecological importance and deep cultural connections to Australia's First Nations peoples. Today, researchers, communities and governments work together to protect this fragile ecosystem, helping preserve the reef's complex patterns and vibrant marine life for the future.",
+		"date": "2026-05-11",
+		"bing_url": "https://bing.com/th?id=OHR.QueenslandReef_EN-IN6010161885_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-11.jpg"
+	},
+	{
+		"title": "Atlantic puffins, Wales",
+		"caption": "Flap, dive, survive",
+		"subtitle": "Atlantic puffins, Wales",
+		"copyright": "© FLPA/Alamy",
+		"description": "Along the rocky coasts of the North Atlantic, Atlantic puffins make their homes in burrows and cliffside crevices. These seabirds, with their black‑and‑white plumage and colourful beaks, are classified by the IUCN as vulnerable, as overfishing and changing ocean conditions reduce the availability of their prey. Each spring, they return to breed, laying a single egg in carefully dug burrows. Remarkable swimmers, they use their wings to 'fly' underwater when hunting small fish such as herring and sand eels.\nDuring the breeding season, their beaks brighten in colour, helping attract a mate. Observing puffins in their natural habitat reveals a seabird perfectly adapted to both air and sea, resilient yet facing modern environmental challenges. A fun pop-culture twist: these charismatic birds inspired the 'porgs'—adorable bird-like creatures in 'Star Wars: The Last Jedi.' The filmmakers embraced their likeness rather than digitally remove them from a real ocean island set.",
+		"date": "2026-05-12",
+		"bing_url": "https://bing.com/th?id=OHR.Fratercula_EN-IN6270767271_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-12.jpg"
+	},
+	{
+		"title": "Arch and Milky Way, Alabama Hills, Sierra Nevada, California, United States",
+		"caption": "Rock on, Milky Way!",
+		"subtitle": "Arch and Milky Way, Alabama Hills, California, United States",
+		"copyright": "© Tim Fitzharris/Minden Pictures",
+		"description": "In today's image, the granite arches of the Alabama Hills frame the Milky Way over a rugged landscape in California's eastern Sierra Nevada. Famous for its rounded boulders and weathered rock formations, this area formed when molten rock cooled deep underground around 100 million years ago. Water and wind gradually shaped the stone into the smooth shapes seen today. Visitors can explore the natural arches, hike among the rocks, capture photographs of the unique landscape, ride horses or mountain bikes and enjoy seasonal displays of wildflowers.\nWith minimal light pollution, the hills are popular for stargazing and night photography. On a clear night, the dense band of stars that forms our galaxy is visible to the naked eye. While it might look like a peaceful desert today, this terrain has played many roles on screen. Since the 1920s, hundreds of movies and television shows have used these hills as a backdrop for westerns and sci-fi adventures, including 'Yellow Sky' with Gregory Peck, 'Django Unchained' by Quentin Tarantino and the Marvel classic 'Iron Man' by Jon Favreau.",
+		"date": "2026-05-13",
+		"bing_url": "https://bing.com/th?id=OHR.AlabamaHills_EN-IN6543590373_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-13.jpg"
+	},
+	{
+		"title": "Medieval town of Pitigliano, Tuscany, Italy",
+		"caption": "A journey through time",
+		"subtitle": "Pitigliano, Tuscany, Italy",
+		"copyright": "© bluejayphoto/Getty Images Plus",
+		"description": "Perched on a tufa ridge in southern Tuscany, Italy, Pitigliano is a small town with a big personality. Its roots stretch back to Etruscan times, and the winding streets still echo the past, from medieval fortifications to Renaissance palaces. Walking through its narrow alleys, you can feel centuries of life carved into the stone, while small piazzas invite pauses for coffee or gelato. This enduring treasure is often called 'Little Jerusalem' for its historic Jewish quarter, where a synagogue and historic cemetery tell stories of a once-thriving community.\nLocal trattorias serve classic Tuscan dishes, from rich pappardelle with wild boar to creamy pecorino cheeses, making every meal a chance to savour the region. The town's flair comes from its combination of history, architecture and everyday life—market stalls, church bells and the chatter of locals. Even a brief stroll through Pitigliano turns into a journey through time, where culture, cuisine and the simple joy of walking intertwine naturally.",
+		"date": "2026-05-14",
+		"bing_url": "https://bing.com/th?id=OHR.Pitigliano_EN-IN6839021414_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-14.jpg"
+	},
+	{
+		"title": "A family of sperm whales, Indian Ocean",
+		"caption": "Whale you save me?",
+		"subtitle": "Endangered Species Day",
+		"copyright": "© Tony Wu/Nature Picture Library",
+		"description": "Brains, brawn and a serious case of going deep—the sperm whale isn't here for surface-level living. This Endangered Species Day, meet a giant that thinks big and dives deeper.\nSperm whales have the largest brain ever recorded—up to 9 kilograms (about five times heavier than a human's). Their massive head, about one-third of their body length, holds spermaceti, a waxy oil once prized for candles and machinery. They're also record-breaking divers, plunging over 1,000 metres for up to 90 minutes to hunt squid. Down there, they rely on echolocation clicks that can reach around 230 decibels, making them the loudest animal on the planet.\nThey often nap vertically, eat up to 2 tonnes of food a day and have an off-centre blowhole. Living in matriarchal pods, with males going solo, they communicate through click patterns called codas. Once hunted for oil and ambergris, they now face ship strikes, noise and plastic pollution. Whales mastered diving deep. Now it's on us to not let their future sink.",
+		"date": "2026-05-15",
+		"bing_url": "https://bing.com/th?id=OHR.EndangeredWhales_EN-IN8821227225_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-15.jpg"
+	},
+	{
+		"title": "Smith Rock State Park, Oregon, United States",
+		"caption": "Rock bottom? Not here",
+		"subtitle": "Smith Rock State Park, Oregon, United States",
+		"copyright": "© Alex Ratson/Getty Images",
+		"description": "What do you call a place where the rocks do the climbing, and humans try to keep up? Welcome to Smith Rock State Park in Oregon, United States, where cliffs rise fast and excuses fall faster. It sits inside the 41-kilometre-long Crooked River Caldera, shaped by multiple volcanic eruptions. Its welded tuff cliffs are made from compressed volcanic ash that cooled under pressure. The Crooked River carved the canyon, while formations like the Spire rise over 200 metres.\nThe park helped launch modern sport climbing in the 1980s and now hosts over 2,000 routes. Trails like Misery Ridge offer sweeping views, with a side of leg burn. Wildlife keeps things lively, from golden eagles to river otters, with the occasional mountain lion cameo.\nIt is one of the 'Seven Wonders of Oregon,' just 30 minutes from the city of Bend. Summer can top 40°C, so spring and autumn are the sweet spots, with mild temperatures and clear skies. Smith Rock keeps things simple. It rocks, you roll.",
+		"date": "2026-05-16",
+		"bing_url": "https://bing.com/th?id=OHR.SmithRockPark_EN-IN9136730901_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-16.jpg"
+	},
+	{
+		"title": "Hawksbill Mountain in Shenandoah National Park, Virginia, USA",
+		"caption": "Quiet peak, loud view",
+		"subtitle": "Hawksbill Mountain, Shenandoah National Park, United States",
+		"copyright": "© John Baggaley/Getty Images",
+		"description": "How high is high enough for a great view? In the eastern United States, it doesn't take much. Hawksbill Mountain is the highest point in Shenandoah National Park, Virginia, United States, at more than 1,200 metres, showing how these older mountains rely on openness, not elevation. The park's establishment in 1935 involved reforestation after extensive farming and logging. Today, much of that land has returned to forest, supporting mixed hardwoods, mountain laurel and rhododendron. What else? Some of the rocks found here date back over 1 billion years, among the oldest in the state. The park shelters over 200 bird species and 32 species of fish and remains dog-friendly, allowing pets in campgrounds and on most trails.\nHawksbill's summit does not rely on steep cliffs. Instead, a stone platform built in the 1930s by the Civilian Conservation Corps marks the top. From here, ridges stretch into the distance in soft blue layers, an effect caused by atmospheric scattering. Skyline Drive connects visitors to trailheads leading to peaks like this.",
+		"date": "2026-05-17",
+		"bing_url": "https://bing.com/th?id=OHR.ShenandoahSunset_EN-IN9525704190_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-17.jpg"
+	},
+	{
+		"title": "Natural History Museum, London, England",
+		"caption": "Hope in the hall",
+		"subtitle": "International Museum Day",
+		"copyright": "© Colm Keating/Tandem Stills + Motion",
+		"description": "You walk into a museum, and suddenly time shifts. A fossil hints at life millions of years ago. A gemstone reflects geological change you can't see. That sense of connection is exactly what International Museum Day, created in 1977 by the International Council of Museums, aims to celebrate.\nAt the Natural History Museum in London, which opened in 1881, those moments come quickly. Built in Romanesque Revival style, the building reflects natural forms in its design, while four colour-coded zones organise the galleries by theme. Today, it houses over 80 million specimens, spanning botany, zoology, mineralogy and palaeontology. The museum's dinosaur gallery and the massive blue whale skeleton named Hope, suspended in Hintze Hall, are among its most recognised displays.\nWhat draws people in—curiosity or nostalgia? Museums turn abstract ideas into real objects you can see and question. From science documentaries to films like 'Night at the Museum,' they remind us that exploration doesn't end in textbooks—it starts when you walk through the door.",
+		"date": "2026-05-18",
+		"bing_url": "https://bing.com/th?id=OHR.MuseumLondon_EN-IN9734086718_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-18.jpg"
+	},
+	{
+		"title": "Formentor Lighthouse, Mallorca, Balearic Islands, Spain",
+		"caption": "The edge of Mallorca",
+		"subtitle": "Formentor Lighthouse, Mallorca, Balearic Islands, Spain",
+		"copyright": "© Allard Schager/Getty Images",
+		"description": "At Mallorca's far northern tip, in Spain's Balearic Islands, the Formentor Lighthouse stands on the sheer cliffs of Cap de Formentor. This exposed headland is often called the 'Meeting of the Winds.' Built in 1863 and first lit on 30 September of that year, the lighthouse rises more than 200 metres above the Mediterranean Sea and is reached by a narrow, switchback road more than 10 kilometres from Port de Pollença. Under your feet is pale limestone—rock formed from ancient marine life and later lifted and carved by erosion into dramatic faces, sea caves and natural arches. This rugged geology gives rise to the area's stark beauty and sense of isolation. Want to earn the view? Follow one of the peninsula's hiking routes or tackle the short, steep climb to Talaia d'Albercutx for a watchtower panorama before continuing to the lighthouse. Keep an eye on the slopes: wild goats, descended from early domestic herds, spring across the ledges with effortless balance.",
+		"date": "2026-05-19",
+		"bing_url": "https://bing.com/th?id=OHR.SpainLighthouse_EN-IN0100317723_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-19.jpg"
+	},
+	{
+		"title": "Bumble bee pollinating, Worcester, England",
+		"caption": "Where the buzz begins",
+		"subtitle": "World Bee Day",
+		"copyright": "© SimonEastwood87/Shutterstock",
+		"description": "A soft buzz and a dusting of pollen can shape the future of our food. World Bee Day, observed each year on 20 May, celebrates pollinators like the bumble bee pictured here during its quiet yet essential work. Unlike many insects, bumble bees use 'buzz pollination,' vibrating their flight muscles to shake pollen from flowers—a method vital for crops such as tomatoes, peppers and blueberries.\nBees and other pollinators contribute to more than 75% of the world's major food crops, improving both yield and quality. Recognising their importance, the United Nations designated World Bee Day in 2018 to draw attention to their role and the growing threats they face, from habitat loss to climate change.\nWith over 20,000 bee species worldwide—most of them wild—protecting pollinators also means safeguarding entire ecosystems. Each flower visit, like this one, supports biodiversity and helps keep food systems resilient, one vibration at a time.",
+		"date": "2026-05-20",
+		"bing_url": "https://bing.com/th?id=OHR.BumbleBee_EN-IN0298436204_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-20.jpg"
+	},
+	{
+		"title": "Tea terraces in Sichuan Province, China",
+		"caption": "Brewing a legacy",
+		"subtitle": "International Tea Day",
+		"copyright": "© lzf/Shutterstock",
+		"description": "International Tea Day celebrates a drink that connects daily rituals to ancient landscapes. Just one look at the terraced tea fields of Sichuan Province, China, shows how deep those roots run. This misty region in southwest China is one of the earliest centres of tea culture, where people drank and cultivated tea more than 2,000 years ago. On nearby Mengding Mountain, a scholar named Wu Lizhen planted some of the world's first managed tea gardens during the Han Dynasty, laying the groundwork for generations of growers.\nThe steep terraces weren't built for beauty alone. They helped farmers manage rainfall, protect fragile soil and hand-pick tender leaves that later travelled far beyond Sichuan. For centuries, harvests from these hills moved along rugged trade routes toward Tibet, carried by porters across mountain passes.\nRecognised by the United Nations, International Tea Day highlights the beverage's cultural legacy and the millions of livelihoods tied to every cup—whether brewed at home or grown on a mountainside.",
+		"date": "2026-05-21",
+		"bing_url": "https://bing.com/th?id=OHR.SichuanTea_EN-IN0699009240_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-21.jpg"
+	},
+	{
+		"title": "Kauehi Atoll, Tuamotu Archipelago, French Polynesia",
+		"caption": "The shape of life at sea",
+		"subtitle": "International Day for Biological Diversity",
+		"copyright": "© WaterFrame_dpr/Alamy",
+		"description": "Observed each year on 22 May, International Day for Biological Diversity is a global reminder that life on Earth is richer—and more fragile—than it appears. Established by the United Nations, today highlights why protecting plants, animals and ecosystems matters for food, medicine, climate stability and everyday well-being.\nFew places reveal our planet's secrets with such clarity as Kauehi Atoll, seen here from above in the Tuamotu Archipelago of French Polynesia. Its thin coral ring encloses a vast turquoise lagoon, shaped over millennia by living reefs and sheltered currents. Kauehi's ecosystem is part of Fakarava Biosphere Reserve and supports coral communities, fish nurseries, seabirds and island vegetation adapted to life between ocean and sky.\nFor centuries, Polynesian navigators understood this balance, relying on healthy lagoons and reefs for survival and culture—a relationship still reflected in the atoll today. On International Day for Biological Diversity, landscapes like Kauehi remind us that safeguarding nature protects stories, cultures and futures across our shared planet.",
+		"date": "2026-05-22",
+		"bing_url": "https://bing.com/th?id=OHR.KauehiAtollLagoon_EN-IN0930317309_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-22.jpg"
+	},
+	{
+		"title": "Turtles with butterflies",
+		"caption": "Shell yeah, turtles!",
+		"subtitle": "World Turtle Day",
+		"copyright": "© Patrick Gallet/Getty Images",
+		"description": "Turtles are not only fascinating animals; they also play vital roles in nature. Sea turtles help keep seagrass beds and coral reefs healthy, while freshwater and land counterparts support balanced ecosystems. Their shells are part of their skeletons, formed from dozens of fused bones, and some species navigate using Earth's magnetic field to return to the beaches where they hatched.\nThese reptiles have been around for more than 200 million years—long before dinosaurs—yet many species are now struggling to survive. World Turtle Day, celebrated every year on 23 May, shines a spotlight on one of Earth's oldest living survivors. Created as a global awareness day, today celebrates turtles and tortoises while drawing attention to the threats they face, from habitat loss and plastic pollution to illegal wildlife trade and fishing bycatch. It also serves as a call to action. Simple choices, such as reducing single-use plastics or protecting nesting areas, can help ensure these remarkable animals are still around for future generations.",
+		"date": "2026-05-23",
+		"bing_url": "https://bing.com/th?id=OHR.ThreeTurtlesButterflies_EN-IN2942559231_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-23.jpg"
+	},
+	{
+		"title": "Tre Cime Nature Park, South Tyrol, Italy",
+		"caption": "Preserving Europe's wild places",
+		"subtitle": "European Day of Parks",
+		"copyright": "© Adisorn Fineday Chutikunakorn/Getty Images",
+		"description": "The European Day of Parks celebrates protected areas across the continent, marking the creation of Europe's first national parks in 1909. It serves as a reminder that many of today's most iconic landscapes exist because of long-term conservation efforts. Today's image highlights a prime example of this legacy: Tre Cime Nature Park in northern Italy.\nLocated in the Dolomites—a UNESCO World Heritage Site known for striking geology—the park was established in 1981. It is best known for the Tre Cime di Lavaredo: three towering dolomite peaks that rise sharply above alpine meadows. Their sheer rock faces make them among the Alps' most recognisable landmarks.\nCreated to protect fragile alpine ecosystems, Tre Cime Nature Park balances preservation with carefully managed access. Well-maintained trails guide visitors through the landscape, and limits on development help safeguard native wildlife and the area's rugged character. European Day of Parks reminds us that these places endure because conservation remains a priority.",
+		"date": "2026-05-24",
+		"bing_url": "https://bing.com/th?id=OHR.DolomitesPark_EN-IN3505043244_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-24.jpg"
+	},
+	{
+		"title": "View over Jaipur from Hawa Mahal, Rajasthan",
+		"caption": "A breeze in stone",
+		"subtitle": "Hawa Mahal, Jaipur, Rajasthan",
+		"copyright": "© byheaven/Getty Images",
+		"description": "What if a building could breathe? In the middle of Jaipur, Hawa Mahal does exactly that—pulling in air, pushing out heat and turning architecture into a quiet science experiment. It's less a palace, more a perfectly timed exhale. And yes, it really does live up to its name: the 'Palace of Winds.'\nThe red-and-pink sandstone landmark was built in 1799 by Maharaja Sawai Pratap Singh and designed by Lal Chand Ustad. It was created for royal women to observe life in Johari Bazaar without being seen, following purdah customs that required them to veil their faces. The façade features 953 small windows, or jharokhas, that funnel breezes through the structure, keeping it naturally cool. Even more striking, the five-storey structure stands without a conventional foundation, supported by its pyramidal shape.\nThere's no front entrance from the street; access comes via the City Palace side. Inside, ramps replace stairs, easing the climb. Its crown-like shape nods to Lord Krishna, while its design blends Mughal arches with Rajput details. Hawa Mahal proves one thing: when design flows, everything else follows.",
+		"date": "2026-05-25",
+		"bing_url": "https://bing.com/th?id=OHR.HawaMahal2026_EN-IN3702170011_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-25.jpg"
+	},
+	{
+		"title": "Lupine flowers in bloom, Northern California, United States",
+		"caption": "A season written in lupine",
+		"subtitle": "Lupine flowers in bloom, Northern California, United States",
+		"copyright": "© Jeffrey Lewis/Tandem Stills + Motion",
+		"description": "As spring sweeps across Northern California in the United States, the landscape is transformed by the vibrant displays of lupine flowers in shades of blue, purple and white. Flourishing in the region's Mediterranean climate, these wildflowers provide a vital source of nectar for pollinators such as bees, butterflies and beetles. With over 200 species found worldwide, lupines range from coastal varieties to those that thrive in mountain meadows. Beyond their striking beauty, lupines are essential to the ecosystem: by fixing nitrogen underground, they enrich soil fertility and support the growth of surrounding plants, even in nutrient-poor environments.\nIn some cultures, specially prepared lupine seeds are enjoyed as a snack. However, caution is necessary—untreated seeds are extremely bitter and potentially toxic. By late spring, the vibrant blooms give way to seed pods, continuing the cycle of life for another year. Witnessing this seasonal transformation offers a quiet reminder of how colour and life return to the land each year.",
+		"date": "2026-05-26",
+		"bing_url": "https://bing.com/th?id=OHR.LupineBloom_EN-IN4015578692_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-26.jpg"
+	},
+	{
+		"title": "Sea otter, Kachemak Bay, Homer, Alaska, United States",
+		"caption": "No 'otter' like them",
+		"subtitle": "World Otter Day",
+		"copyright": "© roclwyr/Getty Images",
+		"description": "On World Otter Day, just look at this cutie swimming in the waters of Kachemak Bay, Alaska! Otters are captivating creatures that play an essential role in maintaining healthy ecosystems. Supported by the Otter Specialist Group (OSG)—a global network of professionals dedicated to the conservation of all 14 species—this day highlights the otter's vital contribution to nature. Known for their playful behaviour and remarkable intelligence, otters are key indicators of waterway health. Sadly, they face growing challenges from habitat loss and pollution.\nSea otters are particularly important in coastal ecosystems, where their relationship with kelp forests earns them the title of 'climate heroes.' They help to maintain kelp by preying on sea urchins, which would otherwise destroy the brown algae that provides shelter and sustenance for numerous marine species.\nTheir presence is crucial not only for maintaining biodiversity, but also for combating climate change. Healthy kelp forests sequester carbon and protect coastlines from erosion. Protecting these charismatic animals means safeguarding the future of our planet's delicate coastal habitats.",
+		"date": "2026-05-27",
+		"bing_url": "https://bing.com/th?id=OHR.OtterDay_EN-IN4331346367_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-27.jpg"
+	},
+	{
+		"title": "Old city wall of Hwaseong Fortress, Suwon, South Korea",
+		"caption": "Design meets discipline",
+		"subtitle": "Old city wall of Hwaseong Fortress, Suwon, South Korea",
+		"copyright": "© aomam/Getty Images",
+		"description": "As night settles over Suwon, South Korea, the old city wall pictured here shows that function doesn't necessarily cancel out beauty—it can create it. Built between 1794 and 1796 under King Jeongjo of the Joseon Dynasty, Hwaseong Fortress was more than a barrier. It was policy in stone: a reform-minded push for a leaner, better-run state, driven by practicality and a deeply personal motive. Jeongjo ordered its construction to honour his father while strengthening a kingdom that wanted smarter systems, not just thicker walls.\nAhead of its time, this masterpiece of Korean fortification hid innovation in plain sight. Rather than wrestling with the landscape, the more than 5-metre wall follows its curves. Bastions widened defensive coverage, watchtowers doubled as signalling points, concealed gates allowed discreet movement and pulley systems quickened construction. Recognised as a UNESCO World Heritage Site in 1997, the site is remarkably intact—and still very much in motion. Hwaseong remains walkable, watchable and woven into daily life. Defence by day, poetry by night.",
+		"date": "2026-05-28",
+		"bing_url": "https://bing.com/th?id=OHR.HwaesongFortress_EN-IN3146231102_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-28.jpg"
+	},
+	{
+		"title": "Mount Everest summit, Sagarmatha National Park, Nepal",
+		"caption": "A 'peak' into history",
+		"subtitle": "1953 Mount Everest Expedition",
+		"copyright": "© fotoVoyager/Getty Images",
+		"description": "In Sagarmatha National Park, Nepal, Mount Everest rises into view, calm and unmoved as evening settles in. But on 29 May, 1953, that stillness was broken. After years of planning and weeks of climbing, New Zealander Edmund Hillary and Sherpa mountaineer Tenzing Norgay reached the summit. At more than 8,800 metres above sea level, they became the first people known to have stood at Earth's highest point.\nThat moment became part of a much older story. Long before modern expeditions arrived, local communities honoured the mountain as sacred. They lived in its shadow, reading its moods with knowledge refined over generations. Such understanding proved essential in a place shaped by thin air, sudden storms and unforgiving routes.\nThe 1953 ascent showed what cooperation could unlock: British logistics, Sherpa expertise and a broad support team came together on one ridge. As daylight fades across Everest, the glow along its peak recalls a spring day when curiosity and courage lifted humans to the very edge of the sky.",
+		"date": "2026-05-29",
+		"bing_url": "https://bing.com/th?id=OHR.SummitEverest_EN-IN1233380057_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-29.jpg"
+	},
+	{
+		"title": "Plains zebra foal in Etosha National Park, Namibia",
+		"caption": "Reading between the lines",
+		"subtitle": "Plains zebra foal in Etosha National Park, Namibia",
+		"copyright": "© Sharon Heald/Nature Picture Library",
+		"description": "Etosha National Park, Namibia, is not a place for soft starts, and the plains zebra foal in this image seems to get the memo. In a land this vast—nearly 22,300 square kilometres of salt pans and grassland—timing is everything, and hesitation is expensive. Lions, spotted hyenas, wild dogs, cheetahs and leopards constantly pressure the herd—especially the youngest—so zebras are born ready. Minutes after arrival, they're upright. Hours later, they're moving.\nThose bold stripes aren't decoration; they disrupt vision and make it harder to isolate a single body. Each pattern is unique, yet together they form a moving puzzle predators struggle to solve. The strategy pays off. With hundreds of thousands spread across Africa, plains zebras have strong populations in protected areas like Etosha. The advantage lies in consistency: learn the pattern, read the space, stay close—and suddenly the odds look a lot better.",
+		"date": "2026-05-30",
+		"bing_url": "https://bing.com/th?id=OHR.EquusQuagga_EN-IN1397641014_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-30.jpg"
+	},
+	{
+		"title": "Highway through Xitai Jinaier Lake, Qinghai Province, China",
+		"caption": "Between the blues",
+		"subtitle": "Highway through Xitai Jinaier Lake, Qinghai Province, China",
+		"copyright": "© Kaicheng Xu/Getty Images",
+		"description": "Cutting a surreal path through the high-altitude deserts of western China, Xitai Jinaier Lake (also known as West Taijinar Lake) is a striking salt lake in the remote Qaidam Basin. A stretch of National Highway 315 runs directly across its shallow waters, creating the illusion of a road floating between two worlds. On one side, the water often appears deep blue; on the other, a softer green hue, a contrast shaped by differing mineral concentrations in the brine.\nSet more than 2,600 metres above sea level, the lake lies within a vast, arid basin where salt lakes and desert expanses dominate the landscape. Here, evaporation leaves behind mineral-rich deposits, giving the water its unusual tones. The result is a stark yet captivating environment—quiet, expansive and almost otherworldly. Driving across Xitai Jinaier Lake feels like crossing an inland sea at the edge of the world, where geology and isolation combine to create one of China's most unforgettable landscapes.",
+		"date": "2026-05-31",
+		"bing_url": "https://bing.com/th?id=OHR.Qinghai_EN-IN1637121010_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-05-31.jpg"
+	},
+	{
+		"title": "Palermo skyline, Sicily, Italy",
+		"caption": "Flavours of history",
+		"subtitle": "Palermo, Sicily, Italy",
+		"copyright": "© Sean Pavone/Getty Images",
+		"description": "Palermo, the capital of the island of Sicily in southern Italy, is a city where layers of history, art and culture meet in a vivid and sometimes chaotic harmony. Founded by the Phoenicians and later shaped by Romans, Arabs, Normans and Spaniards, it carries traces of many civilisations that passed through the Mediterranean. This rich past is visible in its architecture, from the Arab-Norman palaces and churches recognised by UNESCO to the Baroque facades that define its historic streets.\nArt and tradition blend naturally into everyday life, especially in its bustling markets like Ballarò and Vucciria, where colours, voices and scents create an unforgettable atmosphere. Palermo is also a city of flavours, known for its street food culture. From arancine and panelle to sweet cannoli, its cuisine reflects centuries of cultural exchange. Between the sea and the mountains, Palermo offers a unique rhythm, where history is not confined to museums but lives in the streets, in the food and in the people themselves.",
+		"date": "2026-06-01",
+		"bing_url": "https://bing.com/th?id=OHR.OlivaPalermo_EN-IN8542997213_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-01.jpg"
+	},
+	{
+		"title": "Minarets of Charminar, Hyderabad, Telangana",
+		"caption": "Making a state-ment",
+		"subtitle": "Telangana Day",
+		"copyright": "© RAJARSHI SENGUPTA/iStock/Getty Images",
+		"description": "At midnight, a map shifted—and a region found its rhythm. On 2 June 2014, Telangana became India's youngest state, carved from Andhra Pradesh, with Hyderabad as its capital. Telangana Day marks that moment—and the momentum since.\nHyderabad, the 'City of Pearls,' once led the global trade of Golconda diamonds and now powers India's IT and pharma sectors. From Charminar (pictured here) to Cyberabad, it blends heritage with high-tech. History runs deep, shaped by the Satavahanas, the Kakatiya dynasty and the Nizams of Hyderabad. The Ramappa Temple, a UNESCO site, showcases Kakatiya craftsmanship.\nFestivals like Bathukamma and Bonalu keep traditions blooming. The Kaleshwaram Lift Irrigation Project shows scale, while Sircilla keeps the looms busy, weaving the state into India's textile story. Top it off with Hyderabadi biryani, and Telangana proves it doesn't just state its case—it plates it.",
+		"date": "2026-06-02",
+		"bing_url": "https://bing.com/th?id=OHR.TelanganaDay2026_EN-IN2729505086_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-02.jpg"
+	},
+	{
+		"title": "Cyclist in Bardenas Reales Natural Park and Biosphere Reserve, Navarra, Spain",
+		"caption": "Where the road stops, the ride begins",
+		"subtitle": "World Bicycle Day",
+		"copyright": "© Artur Debat/Getty Images",
+		"description": "Your average route to work might not resemble the one in today's image, but it shouldn't stop you from pedalling. World Bicycle Day invites us to rethink what's possible on two wheels—whether the ride cuts through city streets or remote terrain. Observed every 3 June, the United Nations–backed day recognises cycling as a practical way to move, supporting health, lowering emissions and making mobility more accessible.\nAn adventurer shown here cycles through Bardenas Reales Natural Park and Biosphere Reserve in Navarra, Spain, a stark landscape shaped by wind and water over millions of years. Its maze of eroded cliffs, plateaus and dry channels feels closer to another planet than northern Spain. Protected as a UNESCO Biosphere Reserve, the park allows cycling on designated routes, offering a rare chance to experience a fragile environment at ground level and human speed.\nFrom daily commutes to places like this, bicycles turn travel into exploration—quiet, efficient and surprisingly bold.",
+		"date": "2026-06-03",
+		"bing_url": "https://bing.com/th?id=OHR.BardenasReales_EN-IN2901722353_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-03.jpg"
+	},
+	{
+		"title": "Snowy egret preening, central Florida, United States",
+		"caption": "Fancy feathers",
+		"subtitle": "Snowy egret preening, Florida, United States",
+		"copyright": "© Donald M. Jones/Minden Pictures",
+		"description": "Poetic name, poetic appearance. Meet the snowy egret, whose all-white plumage and bright yellow 'slippers' on black legs give it a striking look. Once nearly wiped out by demand for its delicate breeding-season feathers—soft, lacy plumes prized for fashionable hats—conservation efforts saved its plumage.\nToday's image shows a snowy egret preening in central Florida, United States, a common sight in the state's wetlands year-round. Preening keeps its feathers clean and waterproof—essential for a hunter that stalks shallow waters for fish, shrimp and insects. These wading birds are known for their active style, stirring the water with those yellow feet to startle prey.\nStanding about 60 centimetres tall with a wingspan around 90 centimetres, snowy egrets nest in colonies and return each spring to breeding grounds across the southern US. Today, their thriving presence is a reminder of the power of conservation efforts.",
+		"date": "2026-06-04",
+		"bing_url": "https://bing.com/th?id=OHR.PreeningEgret_EN-IN3047678706_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-04.jpg"
+	},
+	{
+		"title": "View from Skierffe Mountain over the Rapadalen river delta, Sarek National Park, Laponia, Lapland, Sweden",
+		"caption": "The quiet power of an unclaimed world",
+		"subtitle": "World Environment Day",
+		"copyright": "© Robert Haasmann/Getty Images",
+		"description": "If nature had a 'do not disturb' sign, it would hang over Sarek National Park, often called 'the last European wilderness.' On World Environment Day, this remote corner of Swedish Lapland reminds us what the planet looks like when humans take a step back—and let the wild take the lead.\nEstablished in 1909, Sarek is one of the continent's oldest national parks and remains untouched by modern infrastructure. There are no marked trails, no cosy cafés and definitely no shortcuts. Instead, it offers over 200 peaks, nearly 100 glaciers and valleys shaped by ice and time. It is part of the Laponian Area, a UNESCO World Heritage Site and home to the Indigenous Sámi people, whose reindeer herding traditions still thrive across these lands.\nWildlife here plays it cool—moose, lynx and wolverines keep things low-key. Even the rivers refuse to stay still, carving their own paths through the landscape. Today is about action, but Sarek makes a strong case for inaction too. Sometimes, protecting the planet means resisting the urge to tame it.",
+		"date": "2026-06-05",
+		"bing_url": "https://bing.com/th?id=OHR.WedLapland_EN-IN6549880792_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-05.jpg"
+	},
+	{
+		"title": "Natchez Trace Parkway, Tupelo, Mississippi, United States",
+		"caption": "Wander often, wonder more",
+		"subtitle": "Natchez Trace Parkway, Mississippi, United States",
+		"copyright": "© The best photo is earned/Getty Images Plus",
+		"description": "Today's image features the Natchez Trace Parkway near Tupelo, United States. Long before modern maps, bison and other large animals carved the first paths here, later followed by Native Americans and, much later, 'Kaintuck' traders walking hundreds of kilometres home after selling goods along the Mississippi. The route reflects around 10,000 years of human history and even links to Andrew Jackson, who travelled it during the War of 1812.\nNow stretching 715 kilometres, parts of the original trail still appear as a 'sunken trace,' worn down by centuries of footsteps. Along the way, you'll find ancient sites like the Pharr Mounds and even the grave of Meriwether Lewis. Designed for slow travel, with no commercial traffic, the parkway also features striking modern touches like its award-winning bridge.\nTime on trails can help lower stress, improve mood and ease stiffness from long hours of sitting. Step out, move a little and let the trail do the rest.",
+		"date": "2026-06-06",
+		"bing_url": "https://bing.com/th?id=OHR.HikingNatchez_EN-IN6692623597_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-06.jpg"
+	},
+	{
+		"title": "Ruins of Dunseverick Castle, County Antrim, Northern Ireland",
+		"caption": "The last wall standing",
+		"subtitle": "Ruins of Dunseverick Castle, Northern Ireland",
+		"copyright": "© Krzysztof Rogalski/Getty Images",
+		"description": "At Dunseverick Castle, history hangs on—literally. Wall fragments cling to a basalt stack above the Atlantic, proving that even ruins can hold their ground. Two thousand years ago, it marked the end of the Slige Midluachra, one of Ireland's five great roads, linking travellers to the royal seat at Hill of Tara. In the 5th century, Saint Patrick is said to have visited and baptised a local man, Olcán, here. Tradition holds that the Lia Fáil (Stone of Destiny), used for crowning Irish kings, was taken from this shore for Scotland.\nVikings attacked the site in the late 9th century. In 1642, Scottish army officer General Robert Munro damaged the castle, and it was later further destroyed during the Cromwellian conquest of Ireland. Yet a small tower survived until 1978, when it finally gave in to the sea.\nToday, managed by the National Trust, it's free, raw and refreshingly unpolished—just a short distance from the Giant's Causeway. A ruin, yes—but one that refuses to fade quietly.",
+		"date": "2026-06-07",
+		"bing_url": "https://bing.com/th?id=OHR.DunseverickCastle2026_EN-IN6819043109_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-07.jpg"
+	},
+	{
+		"title": "Lion's mane jellyfish swimming in the ocean",
+		"caption": "Drift with the current",
+		"subtitle": "World Oceans Day",
+		"copyright": "© Alexander Semenov Images/Shutterstock",
+		"description": "Today is World Oceans Day, so follow the lead of a creature that goes wherever the water takes it. Want to spot a lion's mane jellyfish? Look in cold northern seas. Its bell is split into eight lobes, and beneath it hang long tentacles and oral arms. As it drifts with the current, stinging cells snare plankton and small fish. For humans, the sting can be painful. Reactions vary, and even a washed-up tentacle can still hurt. The rule is simple: admire it, then leave it alone. Some lion's manes in Arctic waters have bells more than 1.8 metres across, but most sightings are smaller animals near shore after storms or strong currents.\nWorld Oceans Day is not a lecture. It is a reminder that ocean health is a chain, from plankton to predators. Cut single-use plastic, back cleaner shipping and fishing rules and support habitat protection where you live. Keep the ocean working, and the wild stays with it.",
+		"date": "2026-06-08",
+		"bing_url": "https://bing.com/th?id=OHR.Cyanea_EN-IN6969006894_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-08.jpg"
+	},
+	{
+		"title": "Vernazza, Cinque Terre, Liguria, Italy",
+		"caption": "Taste the sunset",
+		"subtitle": "Vernazza, Cinque Terre, Liguria, Italy",
+		"copyright": "© Kelly Cheng/Getty Images",
+		"description": "Vernazza is a small seaside town in Cinque Terre, in Italy's Liguria region. Built around the area's only natural harbour, it has long been tied to the sea. First recorded in 1080 as a fortified settlement and maritime base, it later became part of the Republic of Genoa's coastal defences. To this day, the village preserves its past in the ruins of Doria Castle and the watchtowers overlooking the bay. At the water's edge stands the Church of Santa Margherita d'Antiochia, first mentioned in 1318 and expanded in later centuries, with a bell tower overlooking the port. Above the houses and narrow lanes, steep terraces support vineyards and olive groves, shaped by generations of stonework in a landscape protected within Cinque Terre National Park, part of a UNESCO World Heritage Site. Picture an aperitivo here: a glass of local white wine, the harbour in view and Ligurian favourites like focaccia and basil pesto—basically a postcard you can taste.",
+		"date": "2026-06-09",
+		"bing_url": "https://bing.com/th?id=OHR.CTNPVernazza_EN-IN7086072606_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-09.jpg"
+	},
+	{
+		"title": "Hnausapollur volcanic crater lake, Fjallabak Nature Reserve, Landmannalaugar, Iceland",
+		"caption": "A splash of blue",
+		"subtitle": "Hnausapollur crater lake, Fjallabak Nature Reserve, Iceland",
+		"copyright": "© Juan Maria Coy Vergara/Getty Images",
+		"description": "From above, the lake's smooth surface contrasts sharply with the rugged ground surrounding it. Hnausapollur crater lake—also known as Bláhylur—lies in the heart of Fjallabak Nature Reserve, a remote area of Iceland's highlands shaped more by volcanic activity than by human settlement. The crater formed when magma met groundwater, triggering an explosion that carved out the circular basin visible today.\nOver time, rain, meltwater and groundwater accumulated within the basin, forming the striking lake seen in today's image. Its colour shifts with light and weather, often glowing turquoise under clear skies and appearing deeper blue or grey when clouds pass overhead. The surrounding slopes reveal distinct layers of volcanic material, recording successive eruptions that once spread across the landscape.\nFjallabak remains largely undeveloped, protected for its geology and vast open spaces. From this aerial perspective, it's easy to see how powerful natural forces shaped Hnausapollur and why Iceland's highlands continue to captivate visitors—a place where the Earth's restless energy remains visible at the surface.",
+		"date": "2026-06-10",
+		"bing_url": "https://bing.com/th?id=OHR.Hnausapollur_EN-IN7208040005_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-10.jpg"
+	},
+	{
+		"title": "Limpets exposed at low tide on the coast of Praia da Ursa, Portugal",
+		"caption": "Quiet strength",
+		"subtitle": "Limpets at low tide on the coast of Praia da Ursa, Portugal",
+		"copyright": "© Theo Bosboom/Nature Picture Library",
+		"description": "Tucked away beneath steep cliffs near Cabo da Roca, the westernmost point of mainland Europe, Praia da Ursa feels like the edge of the continent. Reached by a narrow, rugged trail, this secluded beach along Portugal's Atlantic coast is shaped largely by wind, stone and powerful waves. When the tide recedes, the shoreline briefly widens. Smooth rocks emerge, and with them, small signs of life. Limpets cling tightly to the exposed stone, holding fast where the ocean usually breaks.\nThese modest marine snails are well adapted to conditions here, using strong suction and low shells to withstand surf, shifting temperatures and long periods exposed to air. During high tide or when submerged, they graze on algae, then return to familiar spots as the sea recedes. Praia da Ursa's isolation makes these moments easy to miss and rewarding to notice. In a landscape defined by scale and force, even the smallest survivors reflect the Atlantic coast's quiet resilience.",
+		"date": "2026-06-11",
+		"bing_url": "https://bing.com/th?id=OHR.Limpets_EN-IN7322594787_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-11.jpg"
+	},
+	{
+		"title": "European bee-eater in Sierra de Grazalema Natural Park, Cádiz, Spain",
+		"caption": "A flash in flight",
+		"subtitle": "European bee-eater in Sierra de Grazalema Natural Park, Cádiz, Spain",
+		"copyright": "© Andres M. Dominguez/Nature Picture Library",
+		"description": "A streak of colour glides past a blur of wildflowers as a European bee-eater cuts through the air. Turquoise, gold and chestnut shimmer across its wings as it hunts in flight, snatching insects mid-air with swift turns. Bees and wasps are among its favoured prey, and the bird often removes the stinger before feeding—a behaviour that reduces the risk of injury.\nEuropean bee-eaters breed across southern Europe, the Mediterranean region and parts of western Asia during the warmer months. After the breeding season, most populations migrate south, with many spending the winter in sub-Saharan Africa, while some eastern groups follow routes to northeastern Africa. Pictured here in Sierra de Grazalema Natural Park in southern Spain, a mountainous area known for high rainfall and rich biodiversity, bee-eaters nest in groups, excavating tunnels in sandy banks where they raise their young in colonies. Away from the nest, they often gather briefly on perches before taking flight in coordinated bursts of colour.",
+		"date": "2026-06-12",
+		"bing_url": "https://bing.com/th?id=OHR.SpainBeeEater_EN-IN7232456385_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-12.jpg"
+	},
+	{
+		"title": "Sunset in Badlands National Park, South Dakota, United States",
+		"caption": "Layers of change",
+		"subtitle": "Badlands National Park, South Dakota, United States",
+		"copyright": "© Troy Harrison/Getty Images",
+		"description": "Layered ridges stretch across Badlands National Park in South Dakota, United States. Their bands of pink, grey and gold shift with the light as eroded peaks and valleys come into view. Wind and water continue to shape this terrain, steadily wearing away soft sedimentary rock and exposing millions of years of Earth's history in layers formed by ancient rivers, volcanic ash and periods when shallow seas covered the region.\nBeneath this rugged surface lies one of the world's richest fossil beds, preserving the remains of early mammals such as ancient horses and relatives of modern rhinoceroses that once roamed the region. The Badlands are only a window into the past. Today, bison graze the open prairie, bighorn sheep move along steep ridges and prairie dogs gather in active colonies across the grasslands.\nScenic roads and overlooks trace the contours of the land, offering sweeping views. Even now, layers of the past continue to emerge as the landscape slowly transforms.",
+		"date": "2026-06-13",
+		"bing_url": "https://bing.com/th?id=OHR.BadSunset_EN-IN7356808062_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-13.jpg"
+	},
+	{
+		"title": "Mallard duck",
+		"caption": "Ducking under water",
+		"subtitle": "Mallard duck",
+		"copyright": "© Philippe Paternolli/Getty Images",
+		"description": "At daybreak, the mallard glides over the still water like a brush across a canvas. Its shimmering plumage—emerald-green head in the male, speckled brown coat in the female—catches the first light. It can be seen from the marshes of the Camargue to the urban canals of Amsterdam, a faithful companion of Europe's aquatic landscapes.\nAn opportunist, it feeds mainly on seeds, aquatic plants and small invertebrates, sometimes dipping its head underwater with a graceful tilt. When spring arrives, the female chooses a discreet shelter, often away from the water, to brood her eggs. The ducklings, clad in golden down, gradually follow their mother, who guides them in a tender procession.\nResilient and adaptable, the mallard reminds us of both the fragility and the richness of our wetlands—those havens where life, even in the heart of the city, still softly murmurs.",
+		"date": "2026-06-14",
+		"bing_url": "https://bing.com/th?id=OHR.DuckPond_EN-IN7848254317_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-14.jpg"
+	},
+	{
+		"title": "Great Smoky Mountains National Park, Tennessee, United States",
+		"caption": "Aged to scenic perfection",
+		"subtitle": "Great Smoky Mountains National Park",
+		"copyright": "© Mint Images/Getty Images",
+		"description": "These mountains were shaped over time long before they became a protected landscape. The Great Smoky Mountains National Park in Tennessee and North Carolina, United States covers more than 2,000 square kilometres. The park takes its name from the natural smoky haze drifting over its ridgelines. Part of the Appalachian Mountains, these peaks are over 300 million years old.\nNative Americans have hunted in these mountains for around 14,000 years. Archaeologists have found Archaic-period projectile points along animal migration routes, while Woodland-period sites reveal 2,000-year-old ceramics and early farming practices.\nRecognised as the Salamander Capital of the World, the park is a biodiversity hotspot, home to around 30 salamander species, black bears, elk, over 200 bird species and thousands of plant varieties. Its forests shift with elevation, supporting a wide range of ecosystems. Kuwohi is the highest point, offering sweeping views. Meanwhile, Cades Cove and Cataloochee Valley contain preserved buildings that reflect life in the region before the park's creation.",
+		"date": "2026-06-15",
+		"bing_url": "https://bing.com/th?id=OHR.ParkEstd_EN-IN7979223128_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-15.jpg"
+	},
+	{
+		"title": "Hawksbill sea turtle pair near Seven Mile Beach, Grand Cayman, Cayman Islands",
+		"caption": "Nature's reef keepers",
+		"subtitle": "World Sea Turtle Day",
+		"copyright": "© Alex Mustard/Nature Picture Library",
+		"description": "Sea Turtle Day highlights some of the ocean's most ancient mariners—reptiles that have existed for over 100 million years. Observed each year on 16 June, it raises awareness of their ecological importance and the growing threats they face. Sea turtles play a vital role in maintaining healthy seagrass beds and coral reefs, ecosystems that support diverse marine life. Long migrations between feeding and nesting areas are central to their life cycle. Despite their resilience, all species are threatened by habitat loss, plastic pollution, climate change and accidental capture in fishing gear.\nPictured here near the Cayman Islands, a pair of hawksbill sea turtles glide through clear Caribbean waters. Known for their patterned shells and narrow, hawk-like beaks, hawksbills help maintain reef balance by feeding mainly on sponges, which prevents them from overtaking corals. Critically endangered, they are among the rarest sea turtle species—making encounters like this even more remarkable.",
+		"date": "2026-06-16",
+		"bing_url": "https://bing.com/th?id=OHR.SevenMileTurtle_EN-IN0218913418_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-16.jpg"
+	},
+	{
+		"title": "Tremola Road on the Saint Gotthard Pass in Airolo, Switzerland",
+		"caption": "Twist your way up",
+		"subtitle": "Tremola Road on the Saint Gotthard Pass in Airolo, Switzerland",
+		"copyright": "© Sandro Bisaro/Getty Images",
+		"description": "Follow the glowing ribbon of switchbacks and you'll find one of Switzerland's most legendary drives: Tremola Road, the historic southern approach to the Saint Gotthard Pass, above Airolo. Built in the early 1800s and largely shaped by a 1951 reconstruction, this route is celebrated as Switzerland's longest monument to historic road construction. Its showstopper stretch climbs about 300 metres in just 4 kilometres, curling through 24 named hairpin bends on granite cobblestones, with sturdy retaining walls edging the way. Overall, it runs about 11 kilometres and features 37 bends in total. Take it slow—every curve feels like a step back in time, trading speed for sweeping mountain scenery and big views towards the upper Leventina Valley. Whether you're driving, cycling or pulling over for photos, look for the Grand Tour of Switzerland photo spot framing those iconic zigzags.\nAdventure tip: Aim for clear, dry conditions—the cobbles are part of the thrill.",
+		"date": "2026-06-17",
+		"bing_url": "https://bing.com/th?id=OHR.TremolaRoad_EN-IN5047488667_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-17.jpg"
+	},
+	{
+		"title": "Aerial view of the ruins of Sacsayhuamán, Cusco, Peru",
+		"caption": "A rock-solid marvel",
+		"subtitle": "The ruins of Sacsayhuamán, Cusco, Peru",
+		"copyright": "© Creative-Family/Getty Images Plus",
+		"description": "Set high above Cusco in Peru, Sacsayhuamán reveals the ambition of the Inca Empire in stone. Built in the 15th century, this vast complex once formed part of the sacred capital of the Incas. From above, the layout becomes clear: terraces, open plazas and the remains of towers forming a carefully planned citadel. The largest walls, built from enormous blocks, still stand strong today. Some stones rise more than 8 metres tall and were fitted together so precisely—without mortar—that the structure has endured centuries of earthquakes.\nArchaeologists believe Sacsayhuamán served both ceremonial and strategic purposes, hosting gatherings and rituals dedicated to Inti, the Inca sun god, while also overlooking the city below. Its name comes from Quechua, often translated as 'Satisfied Falcon,' reflecting the importance of birds of prey in Andean belief. Today, the site remains a powerful reminder of Inca engineering—where design, symbolism and sheer scale continue to impress from every angle.",
+		"date": "2026-06-18",
+		"bing_url": "https://bing.com/th?id=OHR.Saqsaywaman_EN-IN9988887646_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-18.jpg"
+	},
+	{
+		"title": "La Rocchetta Lighthouse, Piombino, Tuscany, Italy",
+		"caption": "What stands at the edge?",
+		"subtitle": "La Rocchetta Lighthouse, Piombino, Tuscany, Italy",
+		"copyright": "© StevanZZ/Getty Images",
+		"description": "Perched at the far edge of Piazza Bovio in Piombino, Tuscany, Italy, is the Piombino Lighthouse. Locally, it is known as 'Faro di Piombino' or 'La Rocchetta Lighthouse.' It overlooks the point where the Tuscan coast faces the island of Elba.\nThe lighthouse was built in the 20th century on the remains of an older fortification. Despite its small size and neo-Gothic style, it plays an important role. Its light is visible offshore and helps guide vessels through the channel between Piombino and the Tuscan Archipelago.\nWhat makes it especially memorable, however, is its setting. Piazza Bovio, often described as one of Italy's most striking seaside squares, offers expansive views across the Tyrrhenian Sea and the islands of the Tuscan Archipelago. On clear days, you can see all the way to Elba, while sunset turns the headland into a natural lookout point. More than a navigational aid, the lighthouse has become one of Piombino's best-known symbols, where maritime history and the coastal landscape still meet.",
+		"date": "2026-06-19",
+		"bing_url": "https://bing.com/th?id=OHR.IsolaElba_EN-IN7931152562_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-19.jpg"
+	},
+	{
+		"title": "Arched iceberg floating off the western Antarctic Peninsula, Southern Ocean",
+		"caption": "An ocean's frozen cathedral",
+		"subtitle": "Arched iceberg, western Antarctic Peninsula, Southern Ocean",
+		"copyright": "© Steven Kazlowski/Nature Picture Library",
+		"description": "A sculpted arch of ice rises from the Southern Ocean along the Antarctic Peninsula, one of the fastest-warming regions on Earth. This formation began as compacted snow that turned into glacial ice over thousands of years. Eventually, part of a glacier or floating ice shelf fractured and broke free—a process known as calving—creating a drifting iceberg.\nIcebergs are classified by size and shape. To qualify, a mass must tower more than about 5 metres above sea level, yet nearly 90% of it remains hidden below the surface. Flat-topped 'tabular' forms are common in Antarctica, while eroded features like this arch fall into irregular, non‑tabular categories.\nThough seemingly barren, these floating giants support life. Algae cling to their undersides, feeding swarms of krill, which sustain fish, seals and whales. As ice melts, it releases nutrients that fertilise surrounding waters, turning these frozen sculptures into mobile ecosystems.",
+		"date": "2026-06-20",
+		"bing_url": "https://bing.com/th?id=OHR.ArchedIceberg_EN-IN0531378206_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-20.jpg"
+	},
+	{
+		"title": "Colourful sky and clouds reflecting over the Ganges River, Rishikesh",
+		"caption": "Beneath the solstice sun",
+		"subtitle": null,
+		"copyright": "© fbxx/iStock/Getty Images",
+		"description": "At sunrise, parks around the world become giant stretching sessions as mats roll out and millions practice balance, breathing and poses that sometimes wobble more than they flow smoothly. That is the spirit of the International Day of Yoga, celebrated every year on 21 June.",
+		"date": "2026-06-21",
+		"bing_url": "https://bing.com/th?id=OHR.InternationalDayOfYoga2026_EN-IN8379810108_UHD.jpg",
+		"url": "https://bing.npanuhin.me/IN/en/2026-06-21.jpg"
 	}
 ]
