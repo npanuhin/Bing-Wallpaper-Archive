@@ -28,39 +28,21 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: 3.14
-
-      - name: Cache Python dependencies
-        uses: actions/cache@v5
-        id: cache-python
-        with:
-          path: src/venv
-          key: ${{ runner.os }}-venv-${{ hashFiles('src/requirements.txt') }}
+          cache: 'pip'
+          cache-dependency-path: src/requirements.txt
 
       - name: Install Python dependencies
-        if: steps.cache-python.outputs.cache-hit != 'true'
         working-directory: src
-        run: |
-          python -m venv venv
-          venv/bin/pip install -r requirements.txt
-
-      - name: Add Python venv to PATH
-        working-directory: src
-        run: echo "${GITHUB_WORKSPACE}/src/venv/bin" >> "$GITHUB_PATH"
+        run: pip install -r requirements.txt
 
       - name: Install Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 24
-
-      - name: Cache Node.js dependencies
-        uses: actions/cache@v5
-        id: cache-node
-        with:
-          path: src/website/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('src/website/package-lock.json') }}
+          cache: 'npm'
+          cache-dependency-path: src/website/package-lock.json
 
       - name: Install Node.js dependencies
-        if: steps.cache-node.outputs.cache-hit != 'true'
         working-directory: src/website
         run: npm ci
 
