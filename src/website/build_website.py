@@ -43,48 +43,58 @@ def gen_api_endpoints(region_to_api: dict[str, list[ApiEntry]]):
 
     for region_id, api in region_to_api.items():
         country, lang = region_id.split('-')
-        api_json = all_json_data[region_id]
+        region_data = all_json_data[region_id]
 
-        # /{country}-{language}.json
-        write_json(api_json, mkpath(WEBSITE_ROOT, f'{region_id}.json'))
-        write_json(api_json, mkpath(WEBSITE_ROOT, f'{region_id}.min.json'), minify=True)
+        # By country: /{country}-{lang}.json
+        write_json(region_data, mkpath(WEBSITE_ROOT, f'{region_id}.json'))
+        write_json(region_data, mkpath(WEBSITE_ROOT, f'{region_id}.min.json'), minify=True)
 
-        # backward compatibility: /{country}/{language}
-        write_json(api_json, mkpath(WEBSITE_ROOT, country, f'{lang}.json'))
-        write_json(api_json, mkpath(WEBSITE_ROOT, country, f'{lang}.min.json'), minify=True)
+        # Backward compatibility: /{country}/{lang}.json
+        write_json(region_data, mkpath(WEBSITE_ROOT, country, f'{lang}.json'))
+        write_json(region_data, mkpath(WEBSITE_ROOT, country, f'{lang}.min.json'), minify=True)
 
         # By year
         years = sorted(set(entry.date.year for entry in api))
         for year in years:
-            api_year_json = [
+            year_data = [
                 entry_json
-                for entry, entry_json in zip(api, api_json)
+                for entry, entry_json in zip(api, region_data)
                 if entry.date.year == year
             ]
 
-            write_json(api_year_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.json'))
-            write_json(api_year_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.min.json'), minify=True)
+            # By year: /{country}-{lang}.{Y}.json
+            write_json(year_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.json'))
+            write_json(year_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.min.json'), minify=True)
 
-            # backward compatibility: /{country}/{language}
-            write_json(api_year_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.json'))
-            write_json(api_year_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.min.json'), minify=True)
+            # Backward compatibility: /{country}/{lang}.{Y}.json
+            write_json(year_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.json'))
+            write_json(year_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.min.json'), minify=True)
+
+            # Backward compatibility: /{country}/{lang}/{Y}.json
+            write_json(year_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.json'))
+            write_json(year_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.min.json'), minify=True)
 
         # By month
         months = sorted(set((entry.date.year, entry.date.month) for entry in api))
         for year, month in months:
-            api_month_json = [
+            month_data = [
                 entry_json
-                for entry, entry_json in zip(api, api_json)
+                for entry, entry_json in zip(api, region_data)
                 if entry.date.year == year and entry.date.month == month
             ]
             month_str = f'{month:02d}'
 
-            write_json(api_month_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.json'))
-            write_json(api_month_json, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.min.json'), minify=True)
+            # By month: /{country}-{lang}.{Y}.{M}.json
+            write_json(month_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.json'))
+            write_json(month_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.min.json'), minify=True)
 
-            # backward compatibility: /{country}/{language}
-            write_json(api_month_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.min.json'))
-            write_json(api_month_json, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.json'), minify=True)
+            # Backward compatibility: /{country}/{lang}.{Y}.{M}.json
+            write_json(month_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.json'))
+            write_json(month_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.min.json'), minify=True)
+
+            # Backward compatibility: /{country}/{lang}/{Y}.{M}.json
+            write_json(month_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.{month_str}.json'))
+            write_json(month_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.{month_str}.min.json'), minify=True)
 
 
 def gen_github_initial_image(image_content: bytes):
