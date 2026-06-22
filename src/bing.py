@@ -2,7 +2,7 @@ import dataclasses
 import datetime
 import os
 from shutil import rmtree
-from typing import Iterable
+from typing import Any, Iterable
 
 import requests
 
@@ -66,17 +66,20 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
         api_by_date[date] = new_entry
         return True
 
-    merged_data = dataclasses.asdict(old_entry)
-    changed = False
+    updates: dict[str, Any] = {}
 
-    for key, new_value in dataclasses.asdict(new_entry).items():
+    for field in dataclasses.fields(ApiEntry):
+        key = field.name
+        if key == 'date':
+            continue
+
+        new_value = getattr(new_entry, key)
         if new_value is None:
             continue
 
-        old_value = merged_data[key]
+        old_value = getattr(old_entry, key)
         if old_value is None:
-            merged_data[key] = new_value
-            changed = True
+            updates[key] = new_value
             continue
 
         if old_value == new_value:
@@ -93,13 +96,12 @@ def add_entry(api_by_date: dict[datetime.date, ApiEntry], new_entry: ApiEntry) -
         if old_value != new_value:
             # TODO: No alert if new_value.startswith(old_value)
             warn(f'Rewriting key `{key}` for {date}:\n{old_value}\nvs\n{new_value}')
-            merged_data[key] = new_value
-            changed = True
+            updates[key] = new_value
 
-    if changed:
-        api_by_date[date] = ApiEntry(**merged_data | {'date': date})
+    if updates:
+        api_by_date[date] = dataclasses.replace(old_entry, **updates)
 
-    return changed
+    return bool(updates)
 
 
 def upload_image(region: Region, date: datetime.date, bing_url: str) -> str:
