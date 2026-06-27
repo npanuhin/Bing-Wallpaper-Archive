@@ -1,11 +1,8 @@
-name: Code Quality
+name: Available regions check
+
 on:
-  push:
-    paths:
-      - '**.py'
-  pull_request:
-    paths:
-      - '**.py'
+  schedule:
+    - cron: '22 8 * * *'  # 8:22 UTC
   workflow_dispatch:
 
 permissions:
@@ -13,7 +10,7 @@ permissions:
 
 jobs:
   check:
-    name: Check Python code
+    name: Check available regions
     runs-on: ubuntu-latest
 
     steps:
@@ -31,17 +28,9 @@ jobs:
         working-directory: src
         run: pip install -r requirements.txt
 
-      - name: Check with ruff
-        working-directory: src
-        run: ruff check --output-format=github
-
-      - name: Check with pyrefly
-        working-directory: src
-        run: pyrefly check
-
-      - name: Run tests
-        working-directory: src
-        run: pytest
+      - name: Check regions
+        working-directory: src/scripts
+        run: python get_regions.py
 
       - name: Notify Telegram on failure
         if: failure()
@@ -53,4 +42,4 @@ jobs:
             --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
             --data-urlencode "parse_mode=HTML" \
             --data-urlencode "disable_web_page_preview=true" \
-            --data-urlencode "text=❌ <b>${GITHUB_WORKFLOW}</b> failed on <code>${GITHUB_REF_NAME}</code>%0A<a href=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\">View run</a>"
+            --data-urlencode "text=⚠️ <b>Bing regions outdated</b> — update src/Region.py%0A<a href=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\">View run</a>"

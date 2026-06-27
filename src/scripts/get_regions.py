@@ -55,11 +55,11 @@ from system_utils import warn
 
 # Brute-force checking all regions from the market list:
 
-def get_regions() -> list[Market]:
+def get_regions() -> set[Market]:
     page = requests.get('https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes')
     assert page.status_code == 200
 
-    soup = BeautifulSoup(page.text, 'lxml')
+    soup = BeautifulSoup(page.text, 'html.parser')
 
     # with open('page.html', 'w', encoding='utf-8') as file:
     #     file.write(soup.prettify())
@@ -68,29 +68,39 @@ def get_regions() -> list[Market]:
         item.text.strip() for item in soup.select('div.content table tbody tr td:nth-child(3)')
     )))
 
-    result = [Market('ROW')]
+    result = {Market('ROW')}
     for market in markets:
         data = requests.get(
             'https://www.bing.com/HPImageArchive.aspx',
             params={'mkt': str(market), 'setlang': market.lang, 'cc': market.country, 'format': 'js', 'idx': 0, 'n': 10}
         ).json()['images']
 
-        url = 'https://bing.com' + data[0]['urlbase']
+        for image in data:
+            url = 'https://bing.com' + image['urlbase']
+            print(market, url)
 
-        if extract_market_from_url(url) == market:
-            result.append(market)
+            extracted = extract_market_from_url(url)
+            if extracted is not None:
+                result.add(extracted)
 
     return result
 
 
-if __name__ == '__main__':
+def check_regions() -> bool:
     regions = get_regions()
-    print(list(map(str, regions)))  # Can be copied to src/Region.py and website's HTML/JS
+    print(sorted(map(str, regions)))  # Can be copied to src/Region.py and website's HTML/JS
     print()
 
-    if regions == REGIONS:
+    if regions == set(REGIONS):
         print('✅ Regions are up-to-date')
-    else:
-        warn('Regions are outdated. Please update src/Region.py')
-        print('Old regions:', REGIONS)
-        print('New regions:', regions)
+        return True
+
+    warn('Regions are outdated. Please update src/Region.py')
+    print('Old regions:', sorted(map(str, REGIONS)))
+    print('New regions:', sorted(map(str, regions)))
+    return False
+
+
+if __name__ == '__main__':
+    if not check_regions():
+        sys.exit(1)

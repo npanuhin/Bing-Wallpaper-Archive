@@ -1,5 +1,11 @@
 # Cache
 __pycache__/
+.cache/
+
+# AI-generated script artifacts
+scripts/multilang_image_diff.csv
+scripts/corrupted_images.txt
+scripts/_reupload_temp/
 
 # Generated website
 website/root/

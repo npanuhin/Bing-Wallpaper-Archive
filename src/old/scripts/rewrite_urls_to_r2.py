@@ -1,7 +1,7 @@
 import sys
 
 sys.path.append('../')
-from Region import REGIONS  # noqa: E402
+from Region import REGIONS
 
 
 # https://storage.googleapis.com/npanuhin-bing-wallpaper-archive/US/en/2010-01-01.jpg

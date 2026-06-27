@@ -10,48 +10,50 @@ from PIL import Image, ImageDraw
 import requests
 
 sys.path.append('../')
-from system_utils import mkpath, WEBSITE_PATH, WEBSITE_ROOT
+from system_utils import mkpath, PATH
 from structures import ApiEntry
 from Region import REGIONS
 from api import write_json
 
-WEBSITE_SOURCES_ROOT = mkpath(WEBSITE_PATH, 'src')
-WEBSITE_SYS_ROOT = mkpath(WEBSITE_PATH, 'root')
-WEBSITE_ASSETS_PATH = mkpath(WEBSITE_ROOT, 'assets')
+WEBSITE_SOURCES_ROOT = mkpath(PATH.WEBSITE, 'src')
+WEBSITE_SYS_ROOT = mkpath(PATH.WEBSITE, 'root')
+WEBSITE_ASSETS_PATH = mkpath(PATH.WEBSITE_ROOT, 'assets')
 
-LATEST_IMAGE_SVG_TEMPLATE = mkpath(WEBSITE_PATH, 'latest-template.svg')
+LATEST_IMAGE_SVG_TEMPLATE = mkpath(PATH.WEBSITE, 'latest-template.svg')
 
 WEBSITE_INITIAL_IMAGE_PATH = mkpath(WEBSITE_ASSETS_PATH, 'initial-image.jpg')
 
 INITIAL_IMAGE_WIDTH = 1920
 INITIAL_IMAGE_HEIGHT = 1080
 
-README_IMAGE_WEBP_PATH = mkpath(WEBSITE_ROOT, 'latest.webp')
-README_IMAGE_SVG_PATH = mkpath(WEBSITE_ROOT, 'latest.svg')
+README_IMAGE_WEBP_PATH = mkpath(PATH.WEBSITE_ROOT, 'latest.webp')
+README_IMAGE_SVG_PATH = mkpath(PATH.WEBSITE_ROOT, 'latest.svg')
 README_IMAGE_RADIUS = 30  # Based on height=1080
 
 
 def gen_api_endpoints(region_to_api: dict[str, list[ApiEntry]]):
+    root = PATH.WEBSITE_ROOT
+
     all_json_data = {
         region_id: [asdict(entry) for entry in api]
         for region_id, api in region_to_api.items()
     }
 
     # /all.json
-    write_json(all_json_data, mkpath(WEBSITE_ROOT, 'all.json'))
-    write_json(all_json_data, mkpath(WEBSITE_ROOT, 'all.min.json'), minify=True)
+    write_json(all_json_data, mkpath(root, 'all.json'))
+    write_json(all_json_data, mkpath(root, 'all.min.json'), minify=True)
 
     for region_id, api in region_to_api.items():
         country, lang = region_id.split('-')
         region_data = all_json_data[region_id]
 
         # By country: /{country}-{lang}.json
-        write_json(region_data, mkpath(WEBSITE_ROOT, f'{region_id}.json'))
-        write_json(region_data, mkpath(WEBSITE_ROOT, f'{region_id}.min.json'), minify=True)
+        write_json(region_data, mkpath(root, f'{region_id}.json'))
+        write_json(region_data, mkpath(root, f'{region_id}.min.json'), minify=True)
 
         # Backward compatibility: /{country}/{lang}.json
-        write_json(region_data, mkpath(WEBSITE_ROOT, country, f'{lang}.json'))
-        write_json(region_data, mkpath(WEBSITE_ROOT, country, f'{lang}.min.json'), minify=True)
+        write_json(region_data, mkpath(root, country, f'{lang}.json'))
+        write_json(region_data, mkpath(root, country, f'{lang}.min.json'), minify=True)
 
         # By year
         years = sorted(set(entry.date.year for entry in api))
@@ -63,16 +65,16 @@ def gen_api_endpoints(region_to_api: dict[str, list[ApiEntry]]):
             ]
 
             # By year: /{country}-{lang}.{Y}.json
-            write_json(year_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.json'))
-            write_json(year_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.min.json'), minify=True)
+            write_json(year_data, mkpath(root, f'{region_id}.{year}.json'))
+            write_json(year_data, mkpath(root, f'{region_id}.{year}.min.json'), minify=True)
 
             # Backward compatibility: /{country}/{lang}.{Y}.json
-            write_json(year_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.json'))
-            write_json(year_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.min.json'), minify=True)
+            write_json(year_data, mkpath(root, country, f'{lang}.{year}.json'))
+            write_json(year_data, mkpath(root, country, f'{lang}.{year}.min.json'), minify=True)
 
             # Backward compatibility: /{country}/{lang}/{Y}.json
-            write_json(year_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.json'))
-            write_json(year_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.min.json'), minify=True)
+            write_json(year_data, mkpath(root, country, lang, f'{year}.json'))
+            write_json(year_data, mkpath(root, country, lang, f'{year}.min.json'), minify=True)
 
         # By month
         months = sorted(set((entry.date.year, entry.date.month) for entry in api))
@@ -85,16 +87,16 @@ def gen_api_endpoints(region_to_api: dict[str, list[ApiEntry]]):
             month_str = f'{month:02d}'
 
             # By month: /{country}-{lang}.{Y}.{M}.json
-            write_json(month_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.json'))
-            write_json(month_data, mkpath(WEBSITE_ROOT, f'{region_id}.{year}.{month_str}.min.json'), minify=True)
+            write_json(month_data, mkpath(root, f'{region_id}.{year}.{month_str}.json'))
+            write_json(month_data, mkpath(root, f'{region_id}.{year}.{month_str}.min.json'), minify=True)
 
             # Backward compatibility: /{country}/{lang}.{Y}.{M}.json
-            write_json(month_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.json'))
-            write_json(month_data, mkpath(WEBSITE_ROOT, country, f'{lang}.{year}.{month_str}.min.json'), minify=True)
+            write_json(month_data, mkpath(root, country, f'{lang}.{year}.{month_str}.json'))
+            write_json(month_data, mkpath(root, country, f'{lang}.{year}.{month_str}.min.json'), minify=True)
 
             # Backward compatibility: /{country}/{lang}/{Y}.{M}.json
-            write_json(month_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.{month_str}.json'))
-            write_json(month_data, mkpath(WEBSITE_ROOT, country, lang, f'{year}.{month_str}.min.json'), minify=True)
+            write_json(month_data, mkpath(root, country, lang, f'{year}.{month_str}.json'))
+            write_json(month_data, mkpath(root, country, lang, f'{year}.{month_str}.min.json'), minify=True)
 
 
 def gen_github_initial_image(image_content: bytes):
@@ -152,7 +154,7 @@ def gen_website_initial_image(image_content: bytes):
 
 
 def update_website_html(initial_image_data: ApiEntry):
-    with open(mkpath(WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
+    with open(mkpath(PATH.WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
         html = file.read()
 
     html = (html
@@ -161,20 +163,20 @@ def update_website_html(initial_image_data: ApiEntry):
             .replace('{initial_description}', initial_image_data.description or '')
             )
 
-    with open(mkpath(WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
+    with open(mkpath(PATH.WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
         file.write(html)
 
 
 def add_headers():
     shutil.copyfile(
-        mkpath(WEBSITE_PATH, '_headers'),
+        mkpath(PATH.WEBSITE, '_headers'),
         mkpath(WEBSITE_SYS_ROOT, '_headers')
     )
 
 
 def build_website(*, dev: bool = False):
-    if not os.path.isdir(WEBSITE_ROOT):
-        sys.stderr.write(f'Error: Build directory "{WEBSITE_ROOT}" not found.\n')
+    if not os.path.isdir(PATH.WEBSITE_ROOT):
+        sys.stderr.write(f'Error: Build directory "{PATH.WEBSITE_ROOT}" not found.\n')
         sys.stderr.write('Please build the website before this script.\n')
         sys.exit(1)
 

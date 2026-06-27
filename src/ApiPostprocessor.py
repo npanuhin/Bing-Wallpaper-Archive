@@ -5,6 +5,15 @@ from structures import Api, ApiEntry
 
 
 class ApiPostprocessor:
+    """Registry and runner for API postprocessing steps.
+
+    Register a processor with
+    "@postprocessor.item_processor" or "@postprocessor.api_processor".
+
+    Run with
+    "postprocessor.process_api(api)" or "postprocessor.process_item(entry)".
+    """
+
     def __init__(self):
         self.item_processors: list[Callable[[ApiEntry], ApiEntry]] = []
         self.api_processors: list[Callable[[Api], Api]] = []

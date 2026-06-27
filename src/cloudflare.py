@@ -1,29 +1,18 @@
-from typing import Any
-
-from threading import Thread, Lock
-import requests
+from threading import Thread
 import hashlib
 import json
 import os
 
 from botocore.exceptions import ClientError
+import requests
 import boto3
 
-from system_utils import mkpath, SRC_PATH
+from system_utils import mkpath, PATH
 
+TOKEN_PATH = mkpath(PATH.SRC, 'configs/cloudflare_token.json')
 
-TOKEN_PATH = mkpath(SRC_PATH, 'configs/cloudflare_token.json')
-
-with open(mkpath(SRC_PATH, 'configs/cloudflare.json'), 'r', encoding='utf-8') as file:
+with open(mkpath(PATH.SRC, 'configs/cloudflare.json'), 'r', encoding='utf-8') as file:
     R2_CONFIG = json.load(file)
-
-
-PRINT_LOCK = Lock()
-
-
-def print_async(*args: Any, **kwargs: Any):
-    with PRINT_LOCK:
-        print(*args, **kwargs)
 
 
 class CloudflareR2:
@@ -62,31 +51,31 @@ class CloudflareR2:
 
     def upload_file(self, file_path: str, bucket_path: str, skip_exists: bool = False) -> str:
         if skip_exists and self.exists(bucket_path):
-            print_async(f'Cloudflare R2: Skipping upload of {bucket_path} because it already exists')
+            print(f'Cloudflare R2: Skipping upload of {bucket_path} because it already exists')
             return r2_url(bucket_path)
 
         self.client.upload_file(file_path, R2_CONFIG['bucket_name'], bucket_path)
-        print_async(f'Cloudflare R2: File {file_path} uploaded to {bucket_path}')
+        print(f'Cloudflare R2: File {file_path} uploaded to {bucket_path}')
 
         return r2_url(bucket_path)
 
     def download_file(self, bucket_path: str, file_path: str) -> bool:
         if not self.exists(bucket_path):
-            print_async(f'Cloudflare R2: File {bucket_path} not found')
+            print(f'Cloudflare R2: File {bucket_path} not found')
             return False
 
         self.client.download_file(R2_CONFIG['bucket_name'], bucket_path, file_path)
-        print_async(f'Cloudflare R2: File {bucket_path} downloaded to {file_path}')
+        print(f'Cloudflare R2: File {bucket_path} downloaded to {file_path}')
 
         return True
 
     def delete_file(self, bucket_path: str, check_exists: bool = True) -> bool:
         if not check_exists and not self.exists(bucket_path):
-            print_async(f'Cloudflare R2: File {bucket_path} not found')
+            print(f'Cloudflare R2: File {bucket_path} not found')
             return False
 
         self.client.delete_object(Bucket=R2_CONFIG['bucket_name'], Key=bucket_path)
-        print_async(f'Cloudflare R2: File {bucket_path} deleted')
+        print(f'Cloudflare R2: File {bucket_path} deleted')
 
         return True
 
@@ -108,7 +97,7 @@ class CloudflareR2:
             if not response.get('IsTruncated', False):
                 break
 
-        print_async(f'Cloudflare R2: Folder {folder_path} deleted')
+        print(f'Cloudflare R2: Folder {folder_path} deleted')
 
         return True
 
@@ -127,7 +116,7 @@ class CloudflareR2:
                 result = data['result']
                 return int(result['payloadSize']), int(result['objectCount'])
         except Exception as e:
-            print_async(f'Cloudflare API error: {e}')
+            print(f'Cloudflare API error: {e}')
 
         return None
 

@@ -2,9 +2,9 @@ import sys
 import os
 
 sys.path.append('../')
-from system_utils import mkpath, posixpath  # noqa: E402
-from Region import REGIONS  # noqa: E402
-from gcloud import GCloud  # noqa: E402
+from system_utils import mkpath, posixpath
+from Region import REGIONS
+from gcloud import GCloud
 
 
 def main():

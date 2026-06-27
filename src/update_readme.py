@@ -3,15 +3,10 @@ import math
 import os
 import re
 
-from system_utils import mkpath, WEBSITE_ROOT
 from Region import ROW, REGIONS
 from cloudflare import CloudflareR2
+from system_utils import mkpath, PATH
 
-LATEST_IMAGE = ROW.read_api()[-1]
-print(f'Last ROW image: {LATEST_IMAGE.date}')
-
-
-# --------------------------------------------------- Update README ----------------------------------------------------
 
 def update_html_attribute(text, tag_id, attr, value):
     pattern = rf'(id="{tag_id}" [^>]*?{attr}=").*?(")'
@@ -65,14 +60,14 @@ def get_avg_size(filename_pattern):
     normal_sizes = []
     min_sizes = []
 
-    if not os.path.isdir(WEBSITE_ROOT):
-        raise FileNotFoundError(f'Website root directory not found: {WEBSITE_ROOT}')
+    if not os.path.isdir(PATH.WEBSITE_ROOT):
+        raise FileNotFoundError(f'Website root directory not found: {PATH.WEBSITE_ROOT}')
 
-    for f in os.listdir(WEBSITE_ROOT):
-        if not os.path.isfile(mkpath(WEBSITE_ROOT, f)):
+    for f in os.listdir(PATH.WEBSITE_ROOT):
+        if not os.path.isfile(mkpath(PATH.WEBSITE_ROOT, f)):
             continue
         if re.fullmatch(filename_pattern, f):
-            size = os.path.getsize(mkpath(WEBSITE_ROOT, f))
+            size = os.path.getsize(mkpath(PATH.WEBSITE_ROOT, f))
             if '.min.' in f:
                 min_sizes.append(size)
             else:
@@ -92,6 +87,9 @@ def format_endpoint_size_cell(size_bytes, size_bytes_min, can_increase=False):
 
 
 def update_readme():
+    LATEST_IMAGE = ROW.read_api()[-1]
+    print(f'Last ROW image: {LATEST_IMAGE.date}')
+
     with open('../README.md', 'r', encoding='utf-8') as file:
         readme = file.read()
 

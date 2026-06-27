@@ -36,7 +36,7 @@ def test_gen_api_endpoints(temp_website_root):
     )
     region_to_api = {'US-en': [api_entry]}
 
-    with patch('website.build_website.WEBSITE_ROOT', str(temp_website_root)):
+    with patch('website.build_website.PATH.WEBSITE_ROOT', str(temp_website_root)):
         gen_api_endpoints(region_to_api)
 
     # Verify files existence
@@ -129,7 +129,7 @@ def test_update_website_html(temp_website_root):
         date=datetime.date(2024, 1, 1)
     )
 
-    with patch('website.build_website.WEBSITE_ROOT', str(temp_website_root)):
+    with patch('website.build_website.PATH.WEBSITE_ROOT', str(temp_website_root)):
         update_website_html(api_entry)
 
     content = index_html.read_text()
@@ -149,7 +149,7 @@ def test_add_headers(temp_website_root, tmp_path):
     sys_root.mkdir()
     headers_dst = sys_root / '_headers'
 
-    with patch('website.build_website.WEBSITE_PATH', str(dummy_website_path)), \
+    with patch('website.build_website.PATH.WEBSITE', str(dummy_website_path)), \
         patch('website.build_website.WEBSITE_SYS_ROOT', str(sys_root)):
         add_headers()
 

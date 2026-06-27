@@ -4,8 +4,7 @@ import os
 from shutil import rmtree
 from typing import Any, Iterable
 
-import requests
-
+from anticorrupt import fetch_valid_image
 from ApiPostprocessor import postprocessor
 from Region import REGIONS, Region
 from bing_utils import extract_base_url, get_uhd_url
@@ -108,8 +107,9 @@ def upload_image(region: Region, date: datetime.date, bing_url: str) -> str:
     filename = date.strftime(DATE_FORMAT) + '.jpg'
     temp_image_path = mkpath('_temp', filename)
 
+    content = fetch_valid_image(bing_url)
     with open(temp_image_path, 'wb') as file:
-        file.write(requests.get(bing_url).content)
+        file.write(content)
 
     new_url = storage.upload_file(
         temp_image_path,
@@ -126,7 +126,7 @@ def update_from_hp_image_archive(region: Region, bing_url_mapping: dict[str, str
 
     data = fetch_json(
         'https://www.bing.com/HPImageArchive.aspx',
-        params={'mkt': region, 'setlang': region.lang, 'cc': region.country, 'format': 'js', 'idx': 0, 'n': 10}
+        params={'mkt': region, 'setlang': region.lang, 'cc': region.country, 'format': 'js', 'idx': 0, 'n': 100}
     )['images']
 
     for image_data in data:

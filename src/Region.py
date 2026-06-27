@@ -4,7 +4,7 @@ import re
 
 from structures import ApiEntry, _REGIONS, _ROW
 
-from system_utils import API_PATH, mkpath
+from system_utils import PATH, mkpath
 import api
 
 
@@ -30,12 +30,15 @@ class Market:
     def __eq__(self, other):
         return isinstance(other, Market) and self.lang == other.lang and self.country == other.country
 
+    def __hash__(self):
+        return hash((self.lang, self.country))
+
 
 class Region(Market):
     def __init__(self, market_id: str):
         super().__init__(market_id)
 
-        self.root_path = mkpath(API_PATH, self.api_country)
+        self.root_path = mkpath(PATH.API, self.api_country)
         self.api_path = mkpath(self.root_path, self.api_lang + '.json')
 
         os.makedirs(self.root_path, exist_ok=True)
