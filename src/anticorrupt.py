@@ -27,18 +27,20 @@ def is_valid_image(content: bytes) -> tuple[bool, str]:
     return True, 'ok'
 
 
-def fetch_valid_image(bing_url: str) -> bytes:
+def fetch_valid_image(
+    bing_url: str, attempts: int = DOWNLOAD_ATTEMPTS, retry_sleep: float = DOWNLOAD_RETRY_SLEEP
+) -> bytes:
     last_err = ''
-    for attempt in range(1, DOWNLOAD_ATTEMPTS + 1):
+    for attempt in range(1, attempts + 1):
         try:
             r = requests.get(bing_url, timeout=REQUEST_TIMEOUT)
             r.raise_for_status()
             content = r.content
         except Exception as exc:
             last_err = f'request failed: {exc}'
-            warn(f'fetch_valid_image: {bing_url} (attempt {attempt}/{DOWNLOAD_ATTEMPTS}): {last_err}')
-            if attempt < DOWNLOAD_ATTEMPTS:
-                time.sleep(DOWNLOAD_RETRY_SLEEP)
+            warn(f'fetch_valid_image: {bing_url} (attempt {attempt}/{attempts}): {last_err}')
+            if attempt < attempts:
+                time.sleep(retry_sleep)
             continue
 
         ok, reason = is_valid_image(content)
@@ -46,8 +48,8 @@ def fetch_valid_image(bing_url: str) -> bytes:
             return content
 
         last_err = reason
-        warn(f'fetch_valid_image: bad response for {bing_url} (attempt {attempt}/{DOWNLOAD_ATTEMPTS}): {last_err}')
-        if attempt < DOWNLOAD_ATTEMPTS:
-            time.sleep(DOWNLOAD_RETRY_SLEEP)
+        warn(f'fetch_valid_image: bad response for {bing_url} (attempt {attempt}/{attempts}): {last_err}')
+        if attempt < attempts:
+            time.sleep(retry_sleep)
 
-    raise RuntimeError(f'fetch_valid_image: gave up on {bing_url} after {DOWNLOAD_ATTEMPTS} attempts: {last_err}')
+    raise RuntimeError(f'fetch_valid_image: gave up on {bing_url} after {attempts} attempts: {last_err}')

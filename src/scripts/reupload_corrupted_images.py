@@ -10,6 +10,9 @@ from system_utils import mkpath, posixpath
 LIST_PATH = mkpath(os.path.dirname(__file__), 'corrupted_images.txt')
 TEMP_DIR = mkpath(os.path.dirname(__file__), '_reupload_temp')
 
+FETCH_ATTEMPTS = 2
+FETCH_RETRY_SLEEP = 3
+
 
 def load_list():
     if not os.path.isfile(LIST_PATH):
@@ -56,7 +59,7 @@ def main():
     storage = CloudflareR2()
 
     ok = 0
-    fail = 0
+    failed = []
     for row in rows:
         country = row['country']
         lang = row['lang']
@@ -66,10 +69,10 @@ def main():
         print(f'\n=== {key} ===')
         print(f'  bing_url: {bing_url}')
         try:
-            content = fetch_valid_image(bing_url)
+            content = fetch_valid_image(bing_url, attempts=FETCH_ATTEMPTS, retry_sleep=FETCH_RETRY_SLEEP)
         except Exception as exc:
             print(f'  FAILED to fetch: {exc}')
-            fail += 1
+            failed.append(key)
             continue
 
         local_path = mkpath(TEMP_DIR, f'{country}_{lang}_{date}.jpg')
@@ -82,14 +85,13 @@ def main():
             ok += 1
         except Exception as exc:
             print(f'  FAILED to upload: {exc}')
-            fail += 1
-        finally:
-            try:
-                os.remove(local_path)
-            except OSError:
-                pass
+            failed.append(key)
 
-    print(f'\nDone. OK: {ok}  FAIL: {fail}  / total: {len(rows)}')
+    print(f'\nDone. OK: {ok}  FAILED: {len(failed)}  / total: {len(rows)}')
+    if failed:
+        print('Failed entries:')
+        for key in failed:
+            print(f'  {key}')
 
 
 if __name__ == '__main__':
