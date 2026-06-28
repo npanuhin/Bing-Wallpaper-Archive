@@ -3,10 +3,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-06-27.jpg">
+  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-07-24.jpg">
     <picture>
       <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-      <img id="last_image" title="Driftwood on Boneyard Beach, Hunting Island, South Carolina, USA" alt="Driftwood on Boneyard Beach, Hunting Island, South Carolina, USA" src="https://bing.npanuhin.me/latest.svg">
+      <img id="last_image" title="Flock of American flamingos, Isabela Island, Galápagos Islands, Ecuador" alt="Flock of American flamingos, Isabela Island, Galápagos Islands, Ecuador" src="https://bing.npanuhin.me/latest.svg">
     </picture>
     <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
   </a>
@@ -163,7 +163,7 @@ API files contain image data:
         <a href="https://bing.npanuhin.me/US-en.2024.json">US-en.2024.json</a>
       </td>
       <td align="center" id="endpoint_year_size">
-        0.34 MB  
+        0.35 MB  
       </td>
     </tr>
     <tr>
@@ -186,7 +186,7 @@ API files contain image data:
       <td>
         <b><a href="https://bing.npanuhin.me/US/en/2024-01-16.jpg">US/en/2024-01-16.jpg</a></b>
       </td>
-      <td align="center" id="endpoint_image_size"><b> 3.4 MB  </b></td>
+      <td align="center" id="endpoint_image_size"><b> 3.5 MB  </b></td>
     </tr>
   </tbody>
 </table>
