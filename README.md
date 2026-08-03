@@ -1,10 +1,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-08-02.jpg">
+  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-08-29.jpg">
     <picture>
       <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-      <img id="last_image" title="Helsinki's shoreline during blue hour, Uusimaa, Finland" alt="Helsinki's shoreline during blue hour, Uusimaa, Finland" src="https://bing.npanuhin.me/latest.svg">
+      <img id="last_image" title="Camí de Ronda, Lloret de Mar, Catalonia, Spain" alt="Camí de Ronda, Lloret de Mar, Catalonia, Spain" src="https://bing.npanuhin.me/latest.svg">
     </picture>
     <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
   </a>
@@ -137,7 +137,7 @@ API files contain information about each image:
         <a href="https://bing.npanuhin.me/all.json">all.json</a>
       </td>
       <td align="center" id="endpoint_everything_size">
-          19 MB ↑
+          20 MB ↑
       </td>
     </tr>
     <tr>
@@ -161,7 +161,7 @@ API files contain information about each image:
         <a href="https://bing.npanuhin.me/US-en.2024.json">US-en.2024.json</a>
       </td>
       <td align="center" id="endpoint_year_size">
-        0.35 MB  
+        0.36 MB  
       </td>
     </tr>
     <tr>
