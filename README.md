@@ -1,5 +1,3 @@
-<!--suppress HtmlDeprecatedAttribute -->
-
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
@@ -15,7 +13,7 @@
 
 ### Usage
 
-All information is stored in "API files". They can be obtained by sending a GET request to the following URL:
+All information is available through JSON API files at the following URL:
 
 ```d2lang
 https://bing.npanuhin.me/{country}-{language}.json
@@ -91,7 +89,7 @@ Available countries and languages:
 </table>
 
 
-API files contain image data:
+API files contain information about each image:
 ```jsonc
 // Types and descriptions:
 {
@@ -131,7 +129,7 @@ API files contain image data:
   </thead>
   <tbody>
     <tr>
-      <td>Everything</td>
+      <td>Full archive</td>
       <td>
         <code>/all.json</code>
       </td>
@@ -192,25 +190,24 @@ API files contain image data:
 </table>
 
 
-Size column contains an estimated average file size for that type. `↑` means the size will increase with time.
+The `Size` column shows the approximate average file size. `↑` means the size will increase with time.
 
 Replace `.json` with `.min.json` to get files with no indentation.
 
-If 404 error is returned, then sadly, there is no data or image.
-
+If a 404 response is returned, sadly, the requested data or image is not available.
 
 > [!TIP]
-> If you know the date, you can fetch an image directly, bypassing API.
+> If you know the date, you can fetch the image directly, bypassing API.
 
-#### Notes on the available data:
 
-Images are sorted by `date` in ascending order (oldest first, newest last).
-
-Although the `title` field is optional, de facto every image has a proper title.
+#### Notes on the API fields:
 
 The `bing_url` field contains the original image URL from Bing (Microsoft) servers. Unfortunately, it is not possible to
-retrieve images from more than a couple of years ago from these URLs (they all point to the same dummy image).
+retrieve images older than a couple of years from these URLs, as they all point to the same dummy image.
 
+<!-- Although the `title` field is optional, in practice every image has a proper title. -->
+
+Images are sorted by `date` in ascending order (oldest first, newest last).
 
 > [!NOTE]
 > You can freely access API files without any frequency or volume limitations.<br>
@@ -219,7 +216,7 @@ retrieve images from more than a couple of years ago from these URLs (they all p
 
 ### Copyright
 
-All images are property of their respective owners (Microsoft, Getty Images, etc.),
+All images are the property of their respective owners (Microsoft, Getty Images, etc.),
 see the `copyright` field for more details.
 
-Microsoft's statement regarding wallpaper downloads is: "**Use of this image is restricted to wallpaper only.**"
+Microsoft states: "**Use of this image is restricted to wallpaper only.**"
