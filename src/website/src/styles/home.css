@@ -35,7 +35,7 @@ body.shown {
 
 #slideshow_image_foreground {
 	will-change: opacity;
-	transition: opacity var(--image-fade-duration) ease-in-out;
+	transition: opacity var(--image-fade-duration) var(--image-fade-ease);
 }
 
 
@@ -71,7 +71,7 @@ body.shown {
 	opacity: 1;
 	will-change: opacity;
 	transition:
-		opacity 0.5s ease-in-out,
+		opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
 		background-color var(--transition-hover-out) ease-out;
 
 	padding: 9px 13px 9px 39px;
@@ -91,12 +91,12 @@ body.shown {
 }
 #slideshow_title_container:hover #slideshow_title {
 	transition:
-		opacity 0.5s ease-in-out,
+		opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
 		background-color var(--transition-hover-in) ease-out;
 }
 #slideshow_title_container.permanent_hover #slideshow_title {
 	transition:
-		opacity 0.5s ease-in-out,
+		opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
 		background-color 0.3s ease-out;
 }
 

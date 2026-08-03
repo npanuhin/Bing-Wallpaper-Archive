@@ -24,10 +24,10 @@ export function waitAnimation(element: HTMLElement, property: keyof CSSStyleDecl
 		}
 
 		const timeoutId = setTimeout(() => {
-			console.warn(`waitAnimation: transition for property "${propertyName}" timed out after 2s for element:`, element)
+			console.warn(`waitAnimation: transition for property "${propertyName}" timed out after 10s for element:`, element)
 			cleanup()
 			resolve()
-		}, 2000)
+		}, 10000)
 
 		element.addEventListener('transitionend', transitionEnded)
 	})

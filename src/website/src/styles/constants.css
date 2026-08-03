@@ -10,7 +10,8 @@
 	--main-color: #E2E8F0;
 	--light-color: #FFF;
 
-	--image-fade-duration: 1s;
+	--image-fade-duration: 1.2s;
+	--image-fade-ease: cubic-bezier(0.39, 0, 0.16, 1);
 	--transition-hover-in: 0.05s;
 	--transition-hover-out: 0.1s;
 
