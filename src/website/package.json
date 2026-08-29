@@ -11,13 +11,13 @@
 		"build:python": "python build_website.py"
 	},
 	"devDependencies": {
-		"@vitejs/plugin-legacy": "^8.0.2",
-		"autoprefixer": "^10.5.0",
-		"postcss": "^8.5.15",
-		"typescript": "^6.0.3",
-		"vite": "^8.0.16",
+		"@vitejs/plugin-legacy": "^8.2.3",
+		"autoprefixer": "^10.5.4",
+		"postcss": "^8.5.26",
+		"typescript": "^7.0.2",
+		"vite": "^8.2.2",
 		"vite-plugin-html-minifier": "^1.0.5",
-		"wrangler": "^4.103.0"
+		"wrangler": "^4.127.1"
 	},
 	"browserslist": [
 		",> 0.01%",
