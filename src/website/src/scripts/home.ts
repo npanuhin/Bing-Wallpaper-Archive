@@ -1,11 +1,18 @@
-import { PREVIOUS_YEAR } from './constants';
 import { curImageDescription, curImageInitial, curImageReal, curImageTitle, slideshowForeground } from './elements';
-import { apiByRegion } from './Region';
+import { apiByRegion } from './api';
 import { initTitleClick, slideshow, SLIDESHOW_REGION } from './slideshow';
 import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
-import { formatDescription } from './utils';
+import { text2html } from './utils';
 import { initScroll } from './scroll';
 import { loadFullFonts } from './fonts';
+
+export const START_DATE: Date = new Date(2021, 7, 28)  // 1080p starts on 2017-03-01, >1080p starts on 2021-08-28
+
+export const AUTOSCROLL_DELAY: number = 5000  // Delay before automatic scroll
+export const SLIDESHOW_DELAY: number = 5000  // Delay between homepage images. Does not include transition time
+
+export const TODAY: Date = new Date()
+export const PREVIOUS_YEAR: number = TODAY.getFullYear() - 1  // Previous year to avoid having only one image on January 1st
 
 // =================================================== On page load ====================================================
 
@@ -44,7 +51,7 @@ Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
 		description: initialDescription
 	};
 
-	curImageDescription.innerHTML = formatDescription(initialDescription);
+	curImageDescription.innerHTML = text2html(initialDescription);
 
 	(async () => {
 		await waitFor(() => slideshow.nextImage.complete)

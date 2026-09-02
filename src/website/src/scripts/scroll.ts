@@ -1,4 +1,4 @@
-import { AUTOSCROLL_DELAY } from './constants';
+import { AUTOSCROLL_DELAY } from './home';
 import { contentArea, header, slideshowElement, slideshowTitleContainer } from './elements';
 
 let autoScrollTimeout: any

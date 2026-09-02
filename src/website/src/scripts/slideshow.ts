@@ -1,4 +1,5 @@
-import { RegionId, SLIDESHOW_DELAY } from './constants';
+import { SLIDESHOW_DELAY } from './home';
+import { apiByRegion, ImageEntry, RegionName } from './api';
 import {
 	curImageDescription,
 	curImageReal,
@@ -8,13 +9,11 @@ import {
 	slideshowTitle,
 	slideshowTitleTexts
 } from './elements';
-import { apiByRegion } from './Region';
 import { wait, waitAnimation, waitFor } from './animation_utils';
-import { formatDescription } from './utils';
+import { text2html } from './utils';
 import { getLogicalScroll, getViewportHeight } from './scroll';
-import { ImageEntry } from './types';
 
-export const SLIDESHOW_REGION: RegionId = 'US-en'
+export const SLIDESHOW_REGION: RegionName = 'US-en'
 
 export class Slideshow {
 	curImage: HTMLImageElement = slideshowForeground
@@ -93,7 +92,7 @@ export function initTitleClick() {
 		if (slideshow.curImageData) {
 			curImageReal.src = slideshow.curImageData.url
 			curImageTitle.textContent = slideshow.curImageData.title
-			curImageDescription.innerHTML = formatDescription(slideshow.curImageData.description ?? '')
+			curImageDescription.innerHTML = text2html(slideshow.curImageData.description ?? '')
 		}
 	})
 }

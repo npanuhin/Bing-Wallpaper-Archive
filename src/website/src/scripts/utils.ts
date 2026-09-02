@@ -1,4 +1,4 @@
-export function formatDescription(text: string): string {
+export function text2html(text: string): string {
 	return text
 		.trim()
 		.split('\n')

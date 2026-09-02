@@ -1,5 +1,37 @@
-import { REGION_API_PATH, RegionId, REGIONS_LIST, START_DATE, YEAR_API_PATH } from './constants';
-import { ImageEntry } from './types';
+import { START_DATE } from './home';
+
+export const REGIONS_LIST = [
+	'BR-pt',
+	'CA-en',
+	'CA-fr',
+	'FR-fr',
+	'DE-de',
+	'IN-en',
+	'IT-it',
+	'JP-ja',
+	'CN-zh',
+	'ES-es',
+	'GB-en',
+	'US-en',
+	'ROW-en'
+] as const
+
+export type RegionName = typeof REGIONS_LIST[number]
+
+export const YEAR_API_PATH = (country: string, lang: string, year: number): string =>
+	`${country.toUpperCase()}-${lang.toLowerCase()}.${year}.json`
+
+export const REGION_API_PATH = (country: string, lang: string): string =>
+	`${country.toUpperCase()}-${lang.toLowerCase()}.json`
+
+export interface ImageEntry {
+	date: string
+	url: string
+	title: string
+	description?: string
+
+	[key: string]: any
+}
 
 export class Region {
 	lang: string
@@ -75,11 +107,11 @@ export class Region {
 	}
 }
 
-export const apiByRegion = {} as Record<RegionId, Region>
+export const apiByRegion = {} as Record<RegionName, Region>
 REGIONS_LIST.forEach(region => {
 	apiByRegion[region] = new Region(region)
 })
 
-export function isRegion(market: string): market is RegionId {
+export function isRegion(market: string): market is RegionName {
 	return (REGIONS_LIST as readonly string[]).indexOf(market) !== -1
 }
