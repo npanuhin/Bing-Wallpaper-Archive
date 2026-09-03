@@ -20,7 +20,7 @@
 		"wrangler": "^4.127.1"
 	},
 	"browserslist": [
-		",> 0.01%",
+		"> 0.01%",
 		"last 2 versions",
 		"Firefox ESR",
 		"not dead"
