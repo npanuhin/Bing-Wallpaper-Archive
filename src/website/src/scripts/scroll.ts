@@ -1,27 +1,31 @@
 import { AUTOSCROLL_DELAY } from './home';
 import { contentArea, header, slideshowElement, slideshowTitleContainer } from './elements';
 
-let autoScrollTimeout: any
+let autoScrollTimeout: ReturnType<typeof setTimeout>
 let slideshowCollapsed: boolean = false
 let lastScroll: number = getLogicalScroll()
-let slideshowExpandTimeout: any = null
+let slideshowExpandTimeout: ReturnType<typeof setTimeout> | null = null
 const SLIDESHOW_EXPAND_DELAY = 200
 
 export function getViewportHeight(): number {
 	return window.visualViewport?.height ?? window.innerHeight
 }
 
-export function getLogicalScroll() {
-	return slideshowCollapsed ? window.scrollY + getViewportHeight() : window.scrollY
+export function getLogicalScroll(
+	viewportHeight: number = getViewportHeight()
+) {
+	return slideshowCollapsed ? window.scrollY + viewportHeight : window.scrollY
 }
 
-export function updateSlideshowAutoscroll(scroll: number = getLogicalScroll()) {
+export function updateSlideshowAutoscroll(
+	viewportHeight: number = getViewportHeight(),
+	scroll: number = getLogicalScroll(viewportHeight)
+) {
 	clearTimeout(autoScrollTimeout)
 	if (slideshowCollapsed) return
-	const window_height = getViewportHeight()
-	if (scroll <= 0 || scroll >= window_height) return
+	if (scroll <= 0 || scroll >= viewportHeight) return
 
-	if (scroll * 2 < window_height) {
+	if (scroll * 2 < viewportHeight) {
 		// console.log('Autoscrolling to top')
 		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
@@ -34,7 +38,7 @@ export function updateSlideshowAutoscroll(scroll: number = getLogicalScroll()) {
 		// console.log('Autoscrolling to bottom')
 		autoScrollTimeout = setTimeout(() => {
 			window.scroll({
-				top: window_height + 1,
+				top: viewportHeight + 1,
 				behavior: 'smooth'
 			})
 		}, AUTOSCROLL_DELAY)
@@ -42,11 +46,11 @@ export function updateSlideshowAutoscroll(scroll: number = getLogicalScroll()) {
 }
 
 export function handleScroll() {
-	const windowHeight = getViewportHeight()
-	const logicalScroll = getLogicalScroll()
+	const viewportHeight = getViewportHeight()
+	const logicalScroll = getLogicalScroll(viewportHeight)
 
-	const slideshowExpandThreshold = windowHeight * 1.05  // %5 of window height after content start
-	if (logicalScroll <= lastScroll) {  // Scrolling up
+	const slideshowExpandThreshold = viewportHeight * 1.05  // %5 of window height after content start
+	if (logicalScroll <= lastScroll) {
 		// console.log('Scrolling up')
 		document.documentElement.classList.toggle('overscroll-disabled', slideshowCollapsed)
 		if (slideshowCollapsed && logicalScroll <= slideshowExpandThreshold) {
@@ -55,7 +59,7 @@ export function handleScroll() {
 				slideshowExpandTimeout = setTimeout(slideshowExpand, SLIDESHOW_EXPAND_DELAY)
 			}
 		}
-	} else if (logicalScroll > lastScroll) {  // Scrolling down
+	} else {
 		// console.log('Scrolling down')
 		document.documentElement.classList.add('overscroll-disabled')
 		if (slideshowExpandTimeout) {
@@ -70,18 +74,19 @@ export function handleScroll() {
 
 	slideshowTitleContainer.style.top = slideshowCollapsed ? '0' : 'var(--window-height)'
 
-	updateSlideshowAutoscroll(logicalScroll)
+	updateSlideshowAutoscroll(viewportHeight, logicalScroll)
 
 	// ---------- Title background ----------
 
-	slideshowTitleContainer.classList.toggle('permanent_hover', logicalScroll > windowHeight * 0.01)
-	contentArea.classList.toggle('has-shadow', logicalScroll > windowHeight * 0.01)
+	const scrolledPastTop = logicalScroll > viewportHeight * 0.01
+	slideshowTitleContainer.classList.toggle('permanent_hover', scrolledPastTop)
+	contentArea.classList.toggle('has-shadow', scrolledPastTop)
 
 	// ---------- Header shadow ----------
 
 	// const headerBottom = header.getBoundingClientRect().bottom
 	// const curImageTop = curImageReal.getBoundingClientRect().top
-	header.classList.toggle('has-shadow', logicalScroll > windowHeight + 30)  // margin-top for markets is at least 30px
+	header.classList.toggle('has-shadow', logicalScroll > viewportHeight + 30)  // margin-top for markets is at least 30px
 
 	lastScroll = logicalScroll
 }

@@ -76,13 +76,12 @@ export const slideshow = new Slideshow()
 
 export function initTitleClick() {
 	slideshowTitle.addEventListener('click', (e) => {
+		e.preventDefault()
+
 		const selection = window.getSelection()
 		if (selection && !selection.isCollapsed && selection.anchorNode && slideshowTitle.contains(selection.anchorNode)) {
-			e.preventDefault()
 			return
 		}
-
-		e.preventDefault()
 
 		window.scroll({
 			top: getViewportHeight(),
