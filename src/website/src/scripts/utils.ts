@@ -1,9 +1,9 @@
 export function text2html(text: string): string {
-	return text
-		.trim()
-		.split('\n')
-		.map(p => p.trim())
-		.filter(p => p.length > 0)
-		.map(paragraph => `<p>${paragraph}</p>`)
-		.join('')
+    return text
+        .trim()
+        .split('\n')
+        .map(p => p.trim())
+        .filter(p => p.length > 0)
+        .map(paragraph => `<p>${paragraph}</p>`)
+        .join('')
 }
