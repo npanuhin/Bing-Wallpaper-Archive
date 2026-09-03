@@ -310,6 +310,46 @@ body.shown {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+#footer {
+	text-align: center;
+	padding: 40px 10% 30px 10%;
+	box-sizing: border-box;
+}
+
+#footer a, #footer a * {
+	color: var(--darker-color);
+	transition: color var(--transition-hover-out) ease-out;
+}
+
+#footer a {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+
+	padding: 10px 14px;
+	margin: -10px -14px;
+	font-size: 15px;
+}
+
+#footer a:hover, #footer a:hover * {
+	color: var(--main-color);
+	transition: color var(--transition-hover-in) ease-out;
+}
+
+/*noinspection CssUnknownTarget*/
+#footer_icon {
+	display: inline-block;
+	flex-shrink: 0;
+	width: 25px;
+	height: 25px;
+
+	background-color: currentColor;
+
+	mask: url('/icons/GitHub.svg') no-repeat center / contain;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 @media (max-width: 1400px) {
 	#markets {
 		grid-template-columns: repeat(4, 1fr);
