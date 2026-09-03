@@ -1,3 +1,7 @@
+html.overscroll-disabled {
+	overscroll-behavior-y: none;
+}
+
 body {
 	opacity: 0;
 }

@@ -48,6 +48,7 @@ export function handleScroll() {
 	const slideshowExpandThreshold = windowHeight * 1.05  // %5 of window height after content start
 	if (logicalScroll <= lastScroll) {  // Scrolling up
 		// console.log('Scrolling up')
+		document.documentElement.classList.toggle('overscroll-disabled', slideshowCollapsed)
 		if (slideshowCollapsed && logicalScroll <= slideshowExpandThreshold) {
 			if (!slideshowExpandTimeout) {
 				// console.log('Requesting slideshow expand')
@@ -56,6 +57,7 @@ export function handleScroll() {
 		}
 	} else if (logicalScroll > lastScroll) {  // Scrolling down
 		// console.log('Scrolling down')
+		document.documentElement.classList.add('overscroll-disabled')
 		if (slideshowExpandTimeout) {
 			clearTimeout(slideshowExpandTimeout)
 			slideshowExpandTimeout = null
