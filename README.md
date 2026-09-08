@@ -1,10 +1,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-09-07.jpg">
+  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-09-12.jpg">
     <picture>
       <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-      <img id="last_image" title="Old Town Hall, Bamberg, Germany" alt="Old Town Hall, Bamberg, Germany" src="https://bing.npanuhin.me/latest.svg">
+      <img id="last_image" title="California sea lions hunting a sardine bait ball, offshore Mexico, Pacific Ocean" alt="California sea lions hunting a sardine bait ball, offshore Mexico, Pacific Ocean" src="https://bing.npanuhin.me/latest.svg">
     </picture>
     <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
   </a>
@@ -149,7 +149,7 @@ API files contain information about each image:
         <a href="https://bing.npanuhin.me/US-en.json">US-en.json</a>
       </td>
       <td align="center" id="endpoint_country_size">
-         1.5 MB ↑
+         1.6 MB ↑
       </td>
     </tr>
     <tr>
@@ -161,7 +161,7 @@ API files contain information about each image:
         <a href="https://bing.npanuhin.me/US-en.2024.json">US-en.2024.json</a>
       </td>
       <td align="center" id="endpoint_year_size">
-        0.36 MB  
+        0.37 MB  
       </td>
     </tr>
     <tr>
