@@ -2,7 +2,6 @@ from hashlib import sha256
 
 from PIL import Image
 
-
 CHUNK_SIZE = 2 ** 20 * 10  # 10 MB
 
 

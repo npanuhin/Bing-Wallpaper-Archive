@@ -1,11 +1,10 @@
-from urllib.parse import urlparse, parse_qs
 import os
 import re
+from urllib.parse import urlparse, parse_qs
 
-from structures import ApiEntry, _REGIONS, _ROW
-
-from system_utils import PATH, mkpath
 import api
+from structures import ApiEntry, _REGIONS, _ROW
+from system_utils import PATH, mkpath
 
 
 class Market:

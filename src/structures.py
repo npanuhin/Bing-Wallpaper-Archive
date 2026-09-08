@@ -1,5 +1,6 @@
-from dataclasses import dataclass, asdict
 import datetime
+from dataclasses import dataclass, asdict
+
 
 # -------------------------------------------------------- Api ---------------------------------------------------------
 
@@ -13,6 +14,7 @@ class ApiEntry:
     date: datetime.date
     bing_url: str | None = None
     url: str
+
 
 type Api = list[ApiEntry]
 
@@ -38,7 +40,6 @@ _REGIONS = [
 ]
 
 _ROW = 'ROW'
-
 
 if __name__ == '__main__':
     print(asdict(ApiEntry(

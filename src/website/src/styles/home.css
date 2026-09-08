@@ -1,386 +1,386 @@
 html.overscroll-disabled {
-	overscroll-behavior-y: none;
+    overscroll-behavior-y: none;
 }
 
 body {
-	opacity: 0;
+    opacity: 0;
 }
 
 /* Everything is hidden and changes instantly while loading */
 body:not(.shown) * {
-	transition: none !important;
+    transition: none !important;
 }
 
 body.shown {
-	opacity: 1;
-	transition: opacity 0.2s ease-in 0.2s;
+    opacity: 1;
+    transition: opacity 0.2s ease-in 0.2s;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #slideshow {
-	position: relative;
-	width: 100%;
-	height: var(--window-height);
+    position: relative;
+    width: 100%;
+    height: var(--window-height);
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #slideshow_image_background, #slideshow_image_foreground {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	/*height: var(--window-height);*/
-	height: 100lvh;  /* ! */
-	object-fit: cover;
-	border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /*height: var(--window-height);*/
+    height: 100lvh; /* ! */
+    object-fit: cover;
+    border: none;
 }
 
 #slideshow_image_foreground {
-	will-change: opacity;
-	transition: opacity var(--image-fade-duration) var(--image-fade-ease);
+    will-change: opacity;
+    transition: opacity var(--image-fade-duration) var(--image-fade-ease);
 }
 
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #slideshow_title_container {
-	position: absolute;
-	top: var(--window-height);
-	right: 0;
-	transform: translateY(-100%);
-	z-index: 5;
-	clip-path: inset(-100px 0 0 -100px);
-	pointer-events: none;
+    position: absolute;
+    top: var(--window-height);
+    right: 0;
+    transform: translateY(-100%);
+    z-index: 5;
+    clip-path: inset(-100px 0 0 -100px);
+    pointer-events: none;
 
-	transition: filter var(--transition-hover-out) ease-out;
+    transition: filter var(--transition-hover-out) ease-out;
 }
 
 #slideshow_title_container:hover {
-	filter: var(--drop-shadow-elevation-low-up);
-	transition: filter var(--transition-hover-in) ease-out;
+    filter: var(--drop-shadow-elevation-low-up);
+    transition: filter var(--transition-hover-in) ease-out;
 }
 
 #slideshow_title_container.permanent_hover {
-	filter: var(--drop-shadow-elevation-medium-up);
-	transition: filter 0.3s ease-out;
+    filter: var(--drop-shadow-elevation-medium-up);
+    transition: filter 0.3s ease-out;
 }
 
 #slideshow_title {
-	display: block;
-	pointer-events: auto;
+    display: block;
+    pointer-events: auto;
 
-	background-color: rgba(16, 16, 16, 0.5);
-	opacity: 1;
-	will-change: opacity;
-	transition:
-		opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
-		background-color var(--transition-hover-out) ease-out;
+    background-color: rgba(16, 16, 16, 0.5);
+    opacity: 1;
+    will-change: opacity;
+    transition:
+        opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
+        background-color var(--transition-hover-out) ease-out;
 
-	padding: 9px 13px 9px 39px;
-	text-decoration: none;
+    padding: 9px 13px 9px 39px;
+    text-decoration: none;
 
-	mask-image:
-		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 30" preserveAspectRatio="none"><path d="M45 30H0q19 0 22-15T40 0Z" fill="black"/></svg>'),
-		linear-gradient(to right, transparent 40px, black 40px);
-	mask-size: 45px 100%, 100% 100%;
-	mask-position: left, left;
-	mask-repeat: no-repeat, no-repeat;
+    mask-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 30" preserveAspectRatio="none"><path d="M45 30H0q19 0 22-15T40 0Z" fill="black"/></svg>'),
+        linear-gradient(to right, transparent 40px, black 40px);
+    mask-size: 45px 100%, 100% 100%;
+    mask-position: left, left;
+    mask-repeat: no-repeat, no-repeat;
 }
 
 #slideshow_title_container:hover #slideshow_title,
 #slideshow_title_container.permanent_hover #slideshow_title {
-	background-color: var(--background-color-secondary);
+    background-color: var(--background-color-secondary);
 }
 #slideshow_title_container:hover #slideshow_title {
-	transition:
-		opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
-		background-color var(--transition-hover-in) ease-out;
+    transition:
+        opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
+        background-color var(--transition-hover-in) ease-out;
 }
 #slideshow_title_container.permanent_hover #slideshow_title {
-	transition:
-		opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
-		background-color 0.3s ease-out;
+    transition:
+        opacity calc(var(--image-fade-duration) / 2.5) ease-in-out,
+        background-color 0.3s ease-out;
 }
 
 #slideshow_title > span {
-	display: block;
-	padding: 0;
-	color: var(--light-color);
-	font-size: 17px;
+    display: block;
+    padding: 0;
+    color: var(--light-color);
+    font-size: 17px;
 }
 
 #slideshow_title.fullwidth {
-	padding-left: 13px;
-	mask-image: none;
+    padding-left: 13px;
+    mask-image: none;
 }
 
 #slideshow_title.fullwidth > span {
-	text-align: center;
+    text-align: center;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #timer {
-	display: none;
+    display: none;
 }
 
 /* 
 #timer {
-	position: fixed;
-	width: 40px;
+    position: fixed;
+    width: 40px;
 
-	transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 
 #timer_path {
-	fill: none;
-	stroke: #ddd;
-	stroke-width: 16px;
-	stroke-linecap: round;
+    fill: none;
+    stroke: #ddd;
+    stroke-width: 16px;
+    stroke-linecap: round;
 
-	stroke-dasharray: 100;
+    stroke-dasharray: 100;
 
-	stroke-dashoffset: 100;
-	opacity: 0;
+    stroke-dashoffset: 100;
+    opacity: 0;
 
-	filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, .3));
+    filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, .3));
 }
 
 @keyframes animate-stroke {
-	0% {
-		opacity: 0;
-		stroke-dashoffset: 100;
-	}
-	5% {
-		opacity: 0.6;
-	}
-	95% {
-		opacity: 0.6;
-	}
-	100% {
-		stroke-dashoffset: 0;
-		opacity: 0;
-	}
+    0% {
+        opacity: 0;
+        stroke-dashoffset: 100;
+    }
+    5% {
+        opacity: 0.6;
+    }
+    95% {
+        opacity: 0.6;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
 }
 
 #timer_path.play {
-	opacity: 1;
-	animation: animate-stroke 3s linear forwards;
-	transition: 0.5s opacity ease-in-out;
+    opacity: 1;
+    animation: animate-stroke 3s linear forwards;
+    transition: 0.5s opacity ease-in-out;
 } */
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #content {
-	position: relative;
-	background-color: var(--background-color);
+    position: relative;
+    background-color: var(--background-color);
 
-	/*TODO: if screen height is too small */
-	/*min-height: calc(var(--window-height) * 5);*/
-	min-height: calc(var(--window-height) * 1 + 1vh);
+    /*TODO: if screen height is too small */
+    /*min-height: calc(var(--window-height) * 5);*/
+    min-height: calc(var(--window-height) * 1 + 1vh);
 
-	transition: box-shadow 0.3s ease-out;
+    transition: box-shadow 0.3s ease-out;
 }
 
 #content.has-shadow {
-	box-shadow: var(--shadow-elevation-medium-up);
+    box-shadow: var(--shadow-elevation-medium-up);
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #header {
-	position: sticky;
-	top: 0;
-	/* width: 100%; */
-	background-color: var(--background-color-secondary);
+    position: sticky;
+    top: 0;
+    /* width: 100%; */
+    background-color: var(--background-color-secondary);
 
-	margin-bottom: 30px;
-	padding: 15px 10%;
-	box-sizing: border-box;
+    margin-bottom: 30px;
+    padding: 15px 10%;
+    box-sizing: border-box;
 
-	text-align: center;
+    text-align: center;
 
-	z-index: 10;
+    z-index: 10;
 
-	transition: box-shadow 0.3s ease-out;
+    transition: box-shadow 0.3s ease-out;
 }
 
 #header.has-shadow {
-	box-shadow: var(--shadow-elevation-low);
+    box-shadow: var(--shadow-elevation-low);
 }
 
 #header h1 {
-	display: inline-block;
+    display: inline-block;
 
-	text-align: center;
-	color: var(--light-color);
-	font-size: 32px;
-	line-height: 1.4em;
+    text-align: center;
+    color: var(--light-color);
+    font-size: 32px;
+    line-height: 1.4em;
 }
 
 #markets {
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	box-sizing: border-box;
-	padding: 30px 10% 30px 10%;
-	gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    box-sizing: border-box;
+    padding: 30px 10% 30px 10%;
+    gap: 10px;
 }
 
 .market {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 15px;
-	background-color: var(--background-color-secondary);
-	color: var(--light-color);
-	text-decoration: none;
-	text-align: center;
-	border-radius: 10px;
-	transition:
-		background-color var(--transition-hover-out) ease-out,
-		box-shadow var(--transition-hover-out) ease-out;
-	font-size: 16px;
-	box-shadow: 0 0 0 0 var(--background-color-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: var(--background-color-secondary);
+    color: var(--light-color);
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    transition:
+        background-color var(--transition-hover-out) ease-out,
+        box-shadow var(--transition-hover-out) ease-out;
+    font-size: 16px;
+    box-shadow: 0 0 0 0 var(--background-color-light);
 }
 
 .market:hover {
-	background-color: var(--background-color-light);
-	box-shadow: 0 0 0 3px var(--background-color-light);
-	transition:
-		background-color var(--transition-hover-in) ease-out,
-		box-shadow var(--transition-hover-in) ease-out;
+    background-color: var(--background-color-light);
+    box-shadow: 0 0 0 3px var(--background-color-light);
+    transition:
+        background-color var(--transition-hover-in) ease-out,
+        box-shadow var(--transition-hover-in) ease-out;
 }
 
 .market-row {
-	grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
 #content_inner {
-	display: block;
-	padding: 30px 10% 50px 10%;
-	box-sizing: border-box;
+    display: block;
+    padding: 30px 10% 50px 10%;
+    box-sizing: border-box;
 }
 
-#markets, #content_inner {  /* #header */
-	margin: 0 auto;
-	max-width: 1400px;
-	transition: padding 0.3s ease-out;
+#markets, #content_inner { /* #header */
+    margin: 0 auto;
+    max-width: 1400px;
+    transition: padding 0.3s ease-out;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #cur_image {
-	margin: 0;
-	display: grid;
+    margin: 0;
+    display: grid;
 }
 
 #cur_image_info {
-	margin: 40px 0 0 0;
+    margin: 40px 0 0 0;
 }
 
 #cur_image > img {
-	grid-area: 1 / 1;
-	width: 100%;
-	border-radius: 20px;
-	transition: opacity var(--image-fade-duration) ease-in-out;
+    grid-area: 1 / 1;
+    width: 100%;
+    border-radius: 20px;
+    transition: opacity var(--image-fade-duration) ease-in-out;
 }
 
 #cur_image_title {
-	margin: 5px 0 15px 0;
+    margin: 5px 0 15px 0;
 
-	color: var(--main-color);
-	font-size: 25px;
-	text-align: center;
+    color: var(--main-color);
+    font-size: 25px;
+    text-align: center;
 }
 
 #cur_image_description p {
-	margin-bottom: 0.75em;
+    margin-bottom: 0.75em;
 
-	font-size: 15.5px;
-	line-height: 21px;
-	text-align: justify;
-	color: var(--main-color);
+    font-size: 15.5px;
+    line-height: 21px;
+    text-align: justify;
+    color: var(--main-color);
 }
 
 #cur_image_description p:last-child {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 #footer {
-	text-align: center;
-	padding: 40px 10% 30px 10%;
-	box-sizing: border-box;
+    text-align: center;
+    padding: 40px 10% 30px 10%;
+    box-sizing: border-box;
 }
 
 #footer a, #footer a * {
-	color: var(--darker-color);
-	transition: color var(--transition-hover-out) ease-out;
+    color: var(--darker-color);
+    transition: color var(--transition-hover-out) ease-out;
 }
 
 #footer a {
-	display: inline-flex;
-	align-items: center;
-	gap: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 
-	padding: 10px 14px;
-	margin: -10px -14px;
-	font-size: 15px;
+    padding: 10px 14px;
+    margin: -10px -14px;
+    font-size: 15px;
 }
 
 #footer a:hover, #footer a:hover * {
-	color: var(--main-color);
-	transition: color var(--transition-hover-in) ease-out;
+    color: var(--main-color);
+    transition: color var(--transition-hover-in) ease-out;
 }
 
 /*noinspection CssUnknownTarget*/
 #footer_icon {
-	display: inline-block;
-	flex-shrink: 0;
-	width: 25px;
-	height: 25px;
+    display: inline-block;
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
 
-	background-color: currentColor;
+    background-color: currentColor;
 
-	mask: url('/icons/GitHub.svg') no-repeat center / contain;
+    mask: url('/icons/GitHub.svg') no-repeat center / contain;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 @media (max-width: 1400px) {
-	#markets {
-		grid-template-columns: repeat(4, 1fr);
-	}
+    #markets {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media (max-width: 1150px) {
-	#markets {
-		grid-template-columns: repeat(3, 1fr);
-	}
+    #markets {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 800px) {
-	#markets {
-		grid-template-columns: repeat(2, 1fr);
-	}
+    #markets {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-	#markets, #content_inner, #header {
-		padding-left: 5%;
-		padding-right: 5%;
-	}
+    #markets, #content_inner, #header {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
 
 @media (max-width: 450px) {
-	#markets {
-		grid-template-columns: repeat(1, 1fr);
-	}
+    #markets {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 @media (orientation: portrait) {
-	#cur_image_description p {
-		text-align: initial;
-	}
+    #cur_image_description p {
+        text-align: initial;
+    }
 }

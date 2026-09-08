@@ -1,10 +1,10 @@
-from unittest.mock import patch
-from io import BytesIO
 import datetime
 import json
+from io import BytesIO
+from unittest.mock import patch
 
-from PIL import Image
 import pytest
+from PIL import Image
 
 from structures import ApiEntry
 from website.build_website import (

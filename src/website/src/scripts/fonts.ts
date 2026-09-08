@@ -1,5 +1,5 @@
 const fullFonts = [
-    { name: 'Mi Sans', path: 'MiSans/MiSans-Regular', weight: '400', style: 'normal', display: 'swap' },
+    {name: 'Mi Sans', path: 'MiSans/MiSans-Regular', weight: '400', style: 'normal', display: 'swap'},
 ] as const
 
 export async function loadFullFonts() {

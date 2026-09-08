@@ -2,43 +2,43 @@
 
 /*noinspection CssUnknownTarget*/
 @font-face {
-	font-family: 'Mi Sans';
-	src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2'),
-		 url('/fonts/MiSans Latin/MiSansLatin-Regular.woff')  format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+    font-family: 'Mi Sans';
+    src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2'),
+         url('/fonts/MiSans Latin/MiSansLatin-Regular.woff')  format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 /* --- SegoeUI --- */
 
 /*noinspection CssUnknownTarget*/
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2'),
-		 url('/fonts/Segoe UI/SegoeUI-Regular.woff')  format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+    font-family: 'Segoe UI';
+    src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2'),
+         url('/fonts/Segoe UI/SegoeUI-Regular.woff')  format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 * {
-	font-family: inherit;
-	font-style: inherit;
-	font-weight: inherit;
-	letter-spacing: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
 }
 
 html {
-	font-family: Inter, "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
-	font-style: normal;
-	font-weight: 400;
-	letter-spacing: -0.006em;
+    font-family: Inter, "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.006em;
 }
 
 .font-title {
-	font-family: "Mi Sans", Inter, "Segoe UI", Arial, Helvetica, sans-serif;
-	letter-spacing: 0;
+    font-family: "Mi Sans", Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+    letter-spacing: 0;
 }

@@ -1,28 +1,29 @@
 {
-	"name": "bing-wallpaper-archive",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"deploy": "npm run build && wrangler deploy",
-		"build": "npm run build:vite -- --emptyOutDir && npm run build:python",
-        "dev": "npm run build:vite && npm run build:python -- --dev",
-
-		"build:vite": "vite build",
-		"build:python": "python build_website.py"
-	},
-	"devDependencies": {
-		"@vitejs/plugin-legacy": "^8.2.3",
-		"autoprefixer": "^10.5.4",
-		"postcss": "^8.5.26",
-		"typescript": "^7.0.2",
-		"vite": "^8.2.2",
-		"vite-plugin-html-minifier": "^1.0.5",
-		"wrangler": "^4.127.1"
-	},
-	"browserslist": [
-		"> 0.01%",
-		"last 2 versions",
-		"Firefox ESR",
-		"not dead"
-	]
+  "name": "Bing-Wallpaper-Archive",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:vite": "vite build",
+    "build:python": "python build_website.py",
+    "build": "npm run build:vite -- --emptyOutDir && npm run build:python",
+    "dev": "npm run build:vite && npm run build:python -- --dev",
+    "deploy": "npm run build && wrangler deploy",
+    "update": "npx npm-check-updates -u && npm install"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^8.2.3",
+    "autoprefixer": "^10.5.5",
+    "postcss": "^8.5.28",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-html-minifier": "^1.0.5",
+    "wrangler": "^4.129.1"
+  },
+  "browserslist": [
+    "> 0.01%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ]
 }

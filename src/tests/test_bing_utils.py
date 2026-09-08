@@ -1,7 +1,7 @@
 import pytest
 
-from bing_utils import extract_base_url, get_uhd_url
 from Region import Region
+from bing_utils import extract_base_url, get_uhd_url
 
 
 def test_extract_base_url():

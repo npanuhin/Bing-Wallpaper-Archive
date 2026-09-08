@@ -1,8 +1,8 @@
+import builtins
+import os
 from pathlib import Path
 from threading import Lock
 from typing import Any, NoReturn
-import builtins
-import os
 
 import requests
 

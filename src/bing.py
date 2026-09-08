@@ -4,9 +4,9 @@ import os
 from shutil import rmtree
 from typing import Any, Iterable
 
-from anticorrupt import fetch_valid_image
 from ApiPostprocessor import postprocessor
 from Region import REGIONS, Region
+from anticorrupt import fetch_valid_image
 from bing_utils import extract_base_url, get_uhd_url
 from cloudflare import CloudflareR2
 from structures import ApiEntry, DATE_FORMAT

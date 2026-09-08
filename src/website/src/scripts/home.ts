@@ -20,7 +20,7 @@ const domReady = new Promise<void>(resolve => {
     if (document.readyState === 'interactive' || document.readyState === 'complete') {
         return resolve()
     }
-    document.addEventListener('DOMContentLoaded', () => resolve(), { once: true })
+    document.addEventListener('DOMContentLoaded', () => resolve(), {once: true})
 })
 
 const initialImageLoad = new Promise<void>(resolve => {
@@ -29,8 +29,8 @@ const initialImageLoad = new Promise<void>(resolve => {
     if (slideshowForeground.complete) {
         onImageReady()
     } else {
-        slideshowForeground.addEventListener('load', onImageReady, { once: true })
-        slideshowForeground.addEventListener('error', onImageReady, { once: true })
+        slideshowForeground.addEventListener('load', onImageReady, {once: true})
+        slideshowForeground.addEventListener('error', onImageReady, {once: true})
     }
 })
 

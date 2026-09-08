@@ -1,6 +1,6 @@
+import sys
 from collections import Counter
 from datetime import timedelta
-import sys
 
 sys.path.append('../')
 from Region import REGIONS

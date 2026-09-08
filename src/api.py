@@ -1,7 +1,7 @@
-from dataclasses import asdict
 import datetime
 import json
 import os
+from dataclasses import asdict
 
 from structures import ApiEntry, DATE_FORMAT
 

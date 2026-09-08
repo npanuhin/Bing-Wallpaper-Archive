@@ -43,7 +43,7 @@ Roughly in order of ~~ease of implementation~~ importance:
 - [x] Rewrite website
 - [ ] Website: hold current image when hovering over title
 - [x] Website: Maybe show the latest image as the first one + preload it sooner than JS script would do it
-- [ ] Website: fade-in not just body but all elements  (??? body is better?)
+- [ ] Website: fade-in not just body but all elements (??? body is better?)
 - [x] ~~Add protection for GCloud (because 5s per image \~= 500'000 images per month if somebody decides to leave the
   page open for so long xd)~~ Switched to Cloudflare R2
 - [ ] On the previous note: still add a fail-safe functionality to disable the slideshow after N hours (24?)

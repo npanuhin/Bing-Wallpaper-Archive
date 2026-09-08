@@ -1,5 +1,5 @@
-from threading import Thread
 import sys
+from threading import Thread
 
 import requests
 

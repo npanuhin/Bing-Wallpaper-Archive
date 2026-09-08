@@ -97,7 +97,7 @@ function slideshowExpand() {  // When scrolling up
         const newScroll = window.scrollY + getViewportHeight()
         slideshowElement.style.marginTop = '0'
         slideshowTitleContainer.style.top = 'var(--window-height)'
-        window.scrollTo({ left: 0, top: newScroll, behavior: 'instant' })
+        window.scrollTo({left: 0, top: newScroll, behavior: 'instant'})
         // handleScroll()
         slideshowCollapsed = false
     })
@@ -109,25 +109,25 @@ function slideshowCollapse() {  // When scrolling down
         const newScroll = window.scrollY - getViewportHeight()
         slideshowElement.style.marginTop = 'calc(var(--window-height) * -1)'
         slideshowTitleContainer.style.top = '0'
-        window.scrollTo({ left: 0, top: newScroll, behavior: 'instant' })
+        window.scrollTo({left: 0, top: newScroll, behavior: 'instant'})
         // handleScroll()
         slideshowCollapsed = true
     })
 }
 
 export function initScroll() {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll, { passive: true })
-    window.visualViewport?.addEventListener('resize', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, {passive: true})
+    window.addEventListener('resize', handleScroll, {passive: true})
+    window.visualViewport?.addEventListener('resize', handleScroll, {passive: true})
 
-    window.addEventListener('touchstart', () => updateSlideshowAutoscroll(), { passive: true })
-    window.addEventListener('touchmove', () => updateSlideshowAutoscroll(), { passive: true })
-    window.addEventListener('mousedown', () => updateSlideshowAutoscroll(), { passive: true })
+    window.addEventListener('touchstart', () => updateSlideshowAutoscroll(), {passive: true})
+    window.addEventListener('touchmove', () => updateSlideshowAutoscroll(), {passive: true})
+    window.addEventListener('mousedown', () => updateSlideshowAutoscroll(), {passive: true})
     window.addEventListener('mousemove', (mouseEvent: MouseEvent) => {
         if (mouseEvent.buttons > 0) {
             updateSlideshowAutoscroll()
         }
-    }, { passive: true })
+    }, {passive: true})
 
     handleScroll()
 }

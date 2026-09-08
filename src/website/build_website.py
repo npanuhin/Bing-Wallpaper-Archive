@@ -1,13 +1,13 @@
+import argparse
+import base64
+import os
+import shutil
+import sys
 from dataclasses import asdict
 from io import BytesIO
-import argparse
-import shutil
-import base64
-import sys
-import os
 
-from PIL import Image, ImageDraw
 import requests
+from PIL import Image, ImageDraw
 
 sys.path.append('../')
 from system_utils import mkpath, PATH

@@ -1,11 +1,11 @@
-from threading import Thread
 import hashlib
 import json
 import os
+from threading import Thread
 
-from botocore.exceptions import ClientError
-import requests
 import boto3
+import requests
+from botocore.exceptions import ClientError
 
 from system_utils import mkpath, PATH
 
