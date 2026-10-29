@@ -1,7 +1,7 @@
 import pytest
 
 from Region import Region
-from bing_utils import extract_base_url, get_uhd_url
+from bing_utils import extract_base_url, extract_image_slug, get_uhd_url
 
 
 def test_extract_base_url():
@@ -14,6 +14,19 @@ def test_extract_base_url():
 
     with pytest.raises(ValueError):
         extract_base_url('invalid_url')
+
+
+def test_extract_image_slug():
+    assert extract_image_slug(
+        'https://bing.com/th?id=OHR.PondCypress_ES-ES1413599118_UHD.jpg'
+    ) == 'OHR.PondCypress_ES-ES'
+    assert extract_image_slug(
+        'https://bing.com/th?id=OHR.PondCypress_ES-ES5888685254_UHD.jpg'
+    ) == 'OHR.PondCypress_ES-ES'
+    assert extract_image_slug(
+        '/th?id=OHR.MountainDayChina_EN-US0394775210_1920x1080.webp'
+    ) == 'OHR.MountainDayChina_EN-US'
+    assert extract_image_slug('https://example.com/invalid') is None
 
 
 def test_get_uhd_url():

@@ -5,6 +5,7 @@ from io import BytesIO
 import requests
 from PIL import Image
 
+from bing_utils import extract_image_slug
 from system_utils import warn
 
 MIN_IMAGE_BYTES = 200_000  # 0.2 MB
@@ -12,6 +13,13 @@ MIN_IMAGE_WIDTH = 1920
 DOWNLOAD_ATTEMPTS = 4
 DOWNLOAD_RETRY_SLEEP = 60
 REQUEST_TIMEOUT = 60
+
+# Bing sometimes serves corrupted low-res thumbnails or page captures with search bar for specific UHD URLs.
+IMAGE_SLUG_OVERRIDES: dict[str, str] = {
+    'OHR.PondCypress_ES-ES': (
+        'https://bing.com/th?id=OHR.PondCypress_EN-US0123444779_UHD.jpg'
+    ),
+}
 
 
 def is_valid_image(content: bytes) -> tuple[bool, str]:
@@ -30,15 +38,20 @@ def is_valid_image(content: bytes) -> tuple[bool, str]:
 def fetch_valid_image(
     bing_url: str, attempts: int = DOWNLOAD_ATTEMPTS, retry_sleep: float = DOWNLOAD_RETRY_SLEEP
 ) -> bytes:
+    slug = extract_image_slug(bing_url)
+    download_url = IMAGE_SLUG_OVERRIDES.get(slug, bing_url) if slug else bing_url
+    if download_url != bing_url:
+        warn(f'fetch_valid_image: overriding download URL for slug {slug!r}:\n  {bing_url}\n  -> {download_url}')
+
     last_err = ''
     for attempt in range(1, attempts + 1):
         try:
-            r = requests.get(bing_url, timeout=REQUEST_TIMEOUT)
+            r = requests.get(download_url, timeout=REQUEST_TIMEOUT)
             r.raise_for_status()
             content = r.content
         except Exception as exc:
             last_err = f'request failed: {exc}'
-            warn(f'fetch_valid_image: {bing_url} (attempt {attempt}/{attempts}): {last_err}')
+            warn(f'fetch_valid_image: {download_url} (attempt {attempt}/{attempts}): {last_err}')
             if attempt < attempts:
                 time.sleep(retry_sleep)
             continue
@@ -48,8 +61,8 @@ def fetch_valid_image(
             return content
 
         last_err = reason
-        warn(f'fetch_valid_image: bad response for {bing_url} (attempt {attempt}/{attempts}): {last_err}')
+        warn(f'fetch_valid_image: bad response for {download_url} (attempt {attempt}/{attempts}): {last_err}')
         if attempt < attempts:
             time.sleep(retry_sleep)
 
-    raise RuntimeError(f'fetch_valid_image: gave up on {bing_url} after {attempts} attempts: {last_err}')
+    raise RuntimeError(f'fetch_valid_image: gave up on {download_url} after {attempts} attempts: {last_err}')
