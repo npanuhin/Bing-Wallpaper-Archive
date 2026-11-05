@@ -15,12 +15,12 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
-          python-version: 3.14
+          python-version: 3.15
           cache: 'pip'
           cache-dependency-path: src/requirements.txt
 
@@ -38,8 +38,11 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
+          TEXT="⚠️ <b>Bing regions outdated</b> — update src/Region.py
+          <a href=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\">View run</a>"
+
           curl -fsS -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
             --data-urlencode "parse_mode=HTML" \
             --data-urlencode "disable_web_page_preview=true" \
-            --data-urlencode "text=⚠️ <b>Bing regions outdated</b> — update src/Region.py%0A<a href=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\">View run</a>"
+            --data-urlencode "text=${TEXT}"

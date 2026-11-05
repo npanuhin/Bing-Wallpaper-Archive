@@ -2,6 +2,9 @@
 exclude = ["old/"]
 line-length = 120
 
+[tool.ruff.format]
+quote-style = "single"
+
 [tool.ruff.lint]
 ignore = [
     "D1",

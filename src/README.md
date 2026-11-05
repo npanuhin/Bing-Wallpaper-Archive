@@ -1,3 +1,9 @@
+## Code Quality
+
+```sh
+ruff check && pyrefly check && pytest
+```
+
 ## Cloudflare tokens
 
 Tokens and IDs should be placed into the <code><a href="configs">configs</a>/cloudflare_token.json</code> file:
@@ -17,8 +23,7 @@ Alternatively, you can set environment variables `CLOUDFLARE_ACCOUNT_ID`, `CLOUD
 
 (in no particular order)
 
-> Microsoft does not embed any watermarks in Bing pictures except for the 1920x1200 format when it is available (not
-> systematic)
+> Microsoft does not embed any watermarks in Bing pictures except for the 1920x1200 format when it is available (not systematic)
 
 ### TODO
 

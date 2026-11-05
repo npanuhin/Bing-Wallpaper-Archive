@@ -13,12 +13,12 @@
   },
   "devDependencies": {
     "@vitejs/plugin-legacy": "^8.2.3",
-    "autoprefixer": "^10.5.5",
-    "postcss": "^8.5.28",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
     "typescript": "^7.0.2",
-    "vite": "^8.2.2",
+    "vite": "^8.3.5",
     "vite-plugin-html-minifier": "^1.0.5",
-    "wrangler": "^4.129.1"
+    "wrangler": "^4.157.0"
   },
   "browserslist": [
     "> 0.01%",
