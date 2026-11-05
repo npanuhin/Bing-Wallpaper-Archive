@@ -2,7 +2,8 @@ import os
 import sys
 from collections import defaultdict, Counter
 from dataclasses import dataclass
-from typing import Any, Callable, Iterable, TypeVar
+from collections.abc import Callable, Iterable
+from typing import Any, TypeVar
 
 sys.path.append('../')
 from Region import REGIONS, Region

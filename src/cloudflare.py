@@ -27,7 +27,7 @@ class CloudflareR2:
         self.api_token = token_source.get('CLOUDFLARE_R2_API_TOKEN')
 
         if self.account_id is None or access_key_id is None or self.api_token is None:
-            raise Exception('Cloudflare token not found, please read src/README')
+            raise ValueError('Cloudflare token not found, please read src/README')
 
         secret_access_key = hashlib.sha256(self.api_token.encode('utf-8')).hexdigest()
 

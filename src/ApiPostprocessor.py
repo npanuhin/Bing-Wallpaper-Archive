@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 from Region import REGIONS
 from structures import Api, ApiEntry

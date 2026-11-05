@@ -2,7 +2,8 @@ import dataclasses
 import datetime
 import os
 from shutil import rmtree
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 from ApiPostprocessor import postprocessor
 from Region import REGIONS, Region

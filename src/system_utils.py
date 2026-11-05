@@ -46,8 +46,11 @@ def error(message: str) -> NoReturn:
     raise RuntimeError(message)
 
 
-def fetch_json(url: str, *args, **kwargs):
-    r = requests.get(url, *args, **kwargs)
+DEFAULT_REQUEST_TIMEOUT = 30
+
+
+def fetch_json(url: str, *args: Any, timeout: float = DEFAULT_REQUEST_TIMEOUT, **kwargs: Any) -> Any:
+    r = requests.get(url, *args, timeout=timeout, **kwargs)
     try:
         return r.json()
     except Exception:
