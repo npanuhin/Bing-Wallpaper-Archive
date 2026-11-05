@@ -1,10 +1,10 @@
 <h1 align="center">Bing Wallpaper Archive</h1>
 
 <div align="center">
-  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-11-04.jpg">
+  <a id="last_image_link" href="https://bing.npanuhin.me/ROW/en/2026-11-06.jpg">
     <picture>
       <source srcset="https://bing.npanuhin.me/latest.webp" type="image/webp">
-      <img id="last_image" title="People rowing among colourful bald cypress, Xuancheng, Anhui, China" alt="People rowing among colourful bald cypress, Xuancheng, Anhui, China" src="https://bing.npanuhin.me/latest.svg">
+      <img id="last_image" title="Bamboo forest, Pīpīwai Trail, Haleakalā National Park, Maui, Hawaii, USA" alt="Bamboo forest, Pīpīwai Trail, Haleakalā National Park, Maui, Hawaii, USA" src="https://bing.npanuhin.me/latest.svg">
     </picture>
     <!-- <img id="last_image_badge" alt="Last image: 2025-10-19" src="https://img.shields.io/badge/Last_image-2025--10--19-informational?style=flat"> -->
   </a>
