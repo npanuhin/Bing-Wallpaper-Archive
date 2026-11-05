@@ -11,6 +11,7 @@ from website.build_website import (
     gen_api_endpoints, gen_github_initial_image,
     gen_website_initial_image, update_website_html, add_headers
 )
+from website.statuspage_generator import compute_date_segments, generate_status_page
 
 
 @pytest.fixture
@@ -120,7 +121,7 @@ def test_gen_website_initial_image(temp_website_root):
 
 def test_update_website_html(temp_website_root):
     index_html = temp_website_root / 'index.html'
-    index_html.write_text('Title: {initial_title}, URL: {initial_image_url}, Desc: {initial_description}')
+    index_html.write_text('Title: {{ initial_title }}, URL: {{ initial_image_url }}, Desc: {{ initial_description }}')
 
     api_entry = ApiEntry(
         title='New Title',
@@ -155,3 +156,44 @@ def test_add_headers(temp_website_root, tmp_path):
 
     assert headers_dst.exists()
     assert headers_dst.read_text() == 'Header-Content'
+
+
+def test_compute_date_segments():
+    entries = [
+        ApiEntry(date=datetime.date(2024, 1, 1), url='https://example.com/1.jpg'),
+        ApiEntry(date=datetime.date(2024, 1, 2), url='https://example.com/2.jpg'),
+        ApiEntry(date=datetime.date(2024, 1, 3), url=''),
+        ApiEntry(date=datetime.date(2024, 1, 5), url='https://example.com/5.jpg'),
+    ]
+    segments = compute_date_segments(entries)
+    assert len(segments) == 3
+    assert segments[0] == (datetime.date(2024, 1, 1), datetime.date(2024, 1, 2), 'image', 2)
+    assert segments[1] == (datetime.date(2024, 1, 3), datetime.date(2024, 1, 3), 'no_image', 1)
+    assert segments[2] == (datetime.date(2024, 1, 5), datetime.date(2024, 1, 5), 'image', 1)
+
+
+def test_generate_status_page(temp_website_root, tmp_path):
+    template = temp_website_root / 'status.html'
+    template.write_text(
+        '<html><body>{{ total_images }} {% for r in regions %}{{ r.id }}{% endfor %}</body></html>',
+        encoding='utf-8'
+    )
+
+    api_entry = ApiEntry(
+        title='Sample',
+        date=datetime.date(2024, 1, 1),
+        url='https://example.com/sample.jpg'
+    )
+    region_to_api = {'US-en': [api_entry]}
+
+    generate_status_page(region_to_api, website_root=str(temp_website_root))
+
+    assert template.exists()
+    content = template.read_text(encoding='utf-8')
+    assert 'US-en' in content
+    assert '1' in content
+
+    status_index = temp_website_root / 'status' / 'index.html'
+    assert status_index.exists()
+    assert status_index.read_text(encoding='utf-8') == content
+

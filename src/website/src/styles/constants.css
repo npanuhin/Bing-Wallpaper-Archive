@@ -1,4 +1,3 @@
-/*noinspection CssNonIntegerLengthInPixels*/
 :root {
     --color-background-black: rgb(16, 16, 16);
 
@@ -11,10 +10,16 @@
     --main-color: #E2E8F0;
     --light-color: #FFF;
 
+    --status-track: #263344;
+    --status-has-image: #38BDF8;
+    --status-no-image: #F59E0B;
+
     --image-fade-duration: 1.2s;
     --image-fade-ease: cubic-bezier(0.39, 0, 0.16, 1);
-    --transition-hover-in: 0.03s;
-    --transition-hover-out: 0.1s;
+
+    --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 0.12s var(--ease-snappy);
+    --transition-normal: 0.2s var(--ease-snappy);
 
     --html-color: var(--background-color);
 

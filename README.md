@@ -220,3 +220,9 @@ All images are the property of their respective owners (Microsoft, Getty Images,
 see the `copyright` field for more details.
 
 Microsoft states: "**Use of this image is restricted to wallpaper only.**"
+
+<h4 align="center">
+  <a href="https://bing.npanuhin.me/status">
+    <img src="src/assets/status-text.svg" height="18" alt="Status">
+  </a>
+</h4>

@@ -7,8 +7,7 @@ export async function loadFullFonts() {
         const fontPromises = fullFonts.map(fontInfo => {
             const fontFace = new FontFace(
                 fontInfo.name,
-                `url(fonts/${fontInfo.path}.woff2) format('woff2'),
-				 url(fonts/${fontInfo.path}.woff) format('woff')`,
+                `url(fonts/${fontInfo.path}.woff2) format('woff2')`,
                 {
                     weight: fontInfo.weight,
                     style: fontInfo.style,

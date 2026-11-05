@@ -1,44 +1,134 @@
-/* --- Mi Sans --- */
+/* --- Inter --- */
 
-/*noinspection CssUnknownTarget*/
 @font-face {
-    font-family: 'Mi Sans';
-    src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2'),
-         url('/fonts/MiSans Latin/MiSansLatin-Regular.woff')  format('woff');
+    font-family: 'Inter';
+    src: url('/fonts/Inter/Inter-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter/Inter-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter/Inter-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter/Inter-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+}
+
+/* --- Inter Display --- */
+
+@font-face {
+    font-family: 'Inter Display';
+    src: url('/fonts/Inter/InterDisplay-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Inter Display';
+    src: url('/fonts/Inter/InterDisplay-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Inter Display';
+    src: url('/fonts/Inter/InterDisplay-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Inter Display';
+    src: url('/fonts/Inter/InterDisplay-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+}
+
+/* --- Mi Sans --- */
+
+@font-face {
+    font-family: 'Mi Sans';
+    src: url('/fonts/MiSans Latin/MiSansLatin-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
 }
 
 /* --- SegoeUI --- */
 
-/*noinspection CssUnknownTarget*/
 @font-face {
     font-family: 'Segoe UI';
-    src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2'),
-         url('/fonts/Segoe UI/SegoeUI-Regular.woff')  format('woff');
+    src: url('/fonts/Segoe UI/SegoeUI-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
+}
+
+/* --- JetBrains Mono --- */
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrains Mono/JetBrainsMonoNL-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrains Mono/JetBrainsMonoNL-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrains Mono/JetBrainsMonoNL-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrains Mono/JetBrainsMonoNL-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-* {
-    font-family: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    letter-spacing: inherit;
+:root {
+    --font-text: "Inter", "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+    --font-title: "Inter Display", "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+    --font-heading: "Mi Sans", "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
+    --font-mono: "JetBrains Mono", Consolas, Monaco, monospace;
 }
 
-html {
-    font-family: Inter, "Mi Sans", "Segoe UI", Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.006em;
-}
-
-.font-title {
-    font-family: "Mi Sans", Inter, "Segoe UI", Arial, Helvetica, sans-serif;
-    letter-spacing: 0;
+body {
+    font-family: var(--font-text);
 }

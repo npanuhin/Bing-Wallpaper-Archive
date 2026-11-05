@@ -6,6 +6,7 @@ import sys
 from dataclasses import asdict
 from io import BytesIO
 
+from jinja2 import Environment
 import requests
 from PIL import Image, ImageDraw
 
@@ -14,6 +15,7 @@ from system_utils import mkpath, PATH
 from structures import ApiEntry
 from Region import REGIONS
 from api import write_json
+from website.statuspage_generator import generate_status_page
 
 WEBSITE_SOURCES_ROOT = mkpath(PATH.WEBSITE, 'src')
 WEBSITE_SYS_ROOT = mkpath(PATH.WEBSITE, 'root')
@@ -154,17 +156,19 @@ def gen_website_initial_image(image_content: bytes):
 
 
 def update_website_html(initial_image_data: ApiEntry):
-    with open(mkpath(PATH.WEBSITE_ROOT, 'index.html'), 'r', encoding='utf-8') as file:
+    index_html_path = mkpath(PATH.WEBSITE_ROOT, 'index.html')
+    with open(index_html_path, 'r', encoding='utf-8') as file:
         html = file.read()
 
-    html = (html
-            .replace('{initial_title}', initial_image_data.title or '')
-            .replace('{initial_image_url}', initial_image_data.url or '')
-            .replace('{initial_description}', initial_image_data.description or '')
-            )
+    template = Environment(autoescape=False).from_string(html)
+    rendered_html = template.render(
+        initial_title=initial_image_data.title or '',
+        initial_image_url=initial_image_data.url or '',
+        initial_description=initial_image_data.description or '',
+    )
 
-    with open(mkpath(PATH.WEBSITE_ROOT, 'index.html'), 'w', encoding='utf-8') as file:
-        file.write(html)
+    with open(index_html_path, 'w', encoding='utf-8') as file:
+        file.write(rendered_html)
 
 
 def add_headers():
@@ -201,6 +205,9 @@ def build_website(*, dev: bool = False):
 
     print('Updating website HTML...')
     update_website_html(initial_image_data)
+
+    print('Generating status page...')
+    generate_status_page(region_to_api)
 
     print('Adding headers...')
     add_headers()

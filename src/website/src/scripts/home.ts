@@ -5,6 +5,7 @@ import { wait, waitAnimation, waitFor, waitFrame } from './animation_utils';
 import { text2html } from './utils';
 import { initScroll } from './scroll';
 import { loadFullFonts } from './fonts';
+import { waitForPageReady } from './page_ready';
 
 export const START_DATE: Date = new Date(2021, 7, 28)  // 1080p starts on 2017-03-01, >1080p starts on 2021-08-28
 
@@ -15,13 +16,6 @@ export const TODAY: Date = new Date()
 export const PREVIOUS_YEAR: number = TODAY.getFullYear() - 1  // Previous year to avoid having only one image on January 1st
 
 // =================================================== On page load ====================================================
-
-const domReady = new Promise<void>(resolve => {
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-        return resolve()
-    }
-    document.addEventListener('DOMContentLoaded', () => resolve(), {once: true})
-})
 
 const initialImageLoad = new Promise<void>(resolve => {
     const onImageReady = () => void waitFrame().then(resolve)
@@ -34,9 +28,10 @@ const initialImageLoad = new Promise<void>(resolve => {
     }
 })
 
-Promise.all([domReady, document.fonts.ready, initialImageLoad]).then(() => {
-    console.log('DOM, fonts, and initial image are ready. Showing website...')
-    document.body.classList.add('shown')
+waitForPageReady(initialImageLoad);
+
+initialImageLoad.then(() => {
+    console.log('Initial image is ready. Showing website...')
 
     const highResHomepageUrl = slideshowForeground.dataset.realImage!
     slideshow.queueImage(highResHomepageUrl)

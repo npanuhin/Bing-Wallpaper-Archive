@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:vite": "vite build",
+    "build:vite": "node build_pages.js",
     "build:python": "python build_website.py",
     "build": "npm run build:vite -- --emptyOutDir && npm run build:python",
-    "dev": "npm run build:vite && npm run build:python -- --dev",
+    "dev": "node dev.js",
     "deploy": "npm run build && wrangler deploy",
     "update": "npx npm-check-updates -u && npm install"
   },

@@ -1,29 +1,18 @@
 <!DOCTYPE html>
-<!--suppress HtmlUnknownTarget, HtmlRequiredAltAttribute -->
-<html lang="en">
+<html lang="en" style="background-color: #10161f; color: #e2e8f0;">
 
 <head>
-  <link
-      as="font"
-      crossorigin
-      href="/fonts/MiSans Latin/MiSansLatin-Regular.woff2"
-      rel="preload"
-      type="font/woff2">
-  <link
-      as="font"
-      crossorigin
-      href="/fonts/Segoe UI/SegoeUI-Regular.woff2"
-      rel="preload"
-      type="font/woff2">
-
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="dark" name="color-scheme">
+  <meta content="#10161f" name="theme-color">
   <meta
       content="Explore the Bing Wallpaper Archive, a complete collection of daily Bing wallpapers from around the world"
       name="description">
   <link href="styles/defaults.css" rel="stylesheet">
   <link href="styles/constants.css" rel="stylesheet">
   <link href="styles/fonts.css" rel="stylesheet">
+  <link href="styles/footer.css" rel="stylesheet">
   <link href="styles/home.css" rel="stylesheet">
   <title>Bing Wallpaper Archive</title>
 </head>
@@ -33,7 +22,7 @@
 <div id="slideshow">
   <!-- Images change is done by switching opacity on/off on background2 -->
   <img id="slideshow_image_background">
-  <img alt="{initial_title}" data-real-image="{initial_image_url}" id="slideshow_image_foreground"
+  <img alt="{{ initial_title }}" data-real-image="{{ initial_image_url }}" id="slideshow_image_foreground"
        src="assets/initial-image.jpg">
 
   <!--<svg id="timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">-->
@@ -42,14 +31,14 @@
 </div>
 
 <div id="slideshow_title_container">
-  <a draggable="false" href="{initial_image_url}" id="slideshow_title" rel="noopener" target="_blank">
-    <span class="font-title">{initial_title}</span>
+  <a draggable="false" href="{{ initial_image_url }}" id="slideshow_title" rel="noopener" target="_blank">
+    <span>{{ initial_title }}</span>
   </a>
 </div>
 
 <div id="content">
   <div id="header">
-    <h1 class="font-title">Bing Wallpaper Archive</h1>
+    <h1>Bing Wallpaper Archive</h1>
   </div>
 
   <!--	<div id="markets" class="font-mi-sans">-->
@@ -71,24 +60,31 @@
   <div id="content_inner">
 
     <div id="cur_image">
-      <img alt="{initial_title}" id="cur_image_real">
-      <img alt="{initial_title}" id="cur_image_initial" src="assets/initial-image.jpg">
+      <img alt="{{ initial_title }}" id="cur_image_real">
+      <img alt="{{ initial_title }}" id="cur_image_initial" src="assets/initial-image.jpg">
     </div>
 
     <div id="cur_image_info">
-      <h2 class="font-title" id="cur_image_title">{initial_title}</h2>
-      <div id="cur_image_description">{initial_description}</div>
+      <h2 id="cur_image_title">{{ initial_title }}</h2>
+      <div id="cur_image_description">{{ initial_description }}</div>
     </div>
   </div>
 
   <footer id="footer">
     <a
         draggable="false"
+        href="/status"
+    >
+      <inline-svg class="footer-icon" src="public/icons/status.svg"></inline-svg>
+      <span>Status&nbsp;(β)</span>
+    </a>
+    <a
+        draggable="false"
         href="https://github.com/npanuhin/Bing-Wallpaper-Archive"
         rel="noopener"
         target="_blank"
     >
-      <span id="footer_icon"></span>
+      <inline-svg class="footer-icon" src="public/icons/GitHub.svg"></inline-svg>
       <span>npanuhin/Bing-Wallpaper-Archive</span>
     </a>
   </footer>
