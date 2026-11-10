@@ -25,3 +25,6 @@ project-excludes = ["old/"]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+markers = [
+    "live: marks tests as live network tests against the deployed website"
+]

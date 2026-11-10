@@ -63,15 +63,15 @@ def get_avg_size(filename_pattern):
     if not os.path.isdir(PATH.WEBSITE_ROOT):
         raise FileNotFoundError(f'Website root directory not found: {PATH.WEBSITE_ROOT}')
 
-    for f in os.listdir(PATH.WEBSITE_ROOT):
-        if not os.path.isfile(mkpath(PATH.WEBSITE_ROOT, f)):
-            continue
-        if re.fullmatch(filename_pattern, f):
-            size = os.path.getsize(mkpath(PATH.WEBSITE_ROOT, f))
-            if '.min.' in f:
-                min_sizes.append(size)
-            else:
-                normal_sizes.append(size)
+    for root, _, files in os.walk(PATH.WEBSITE_ROOT):
+        for f in files:
+            rel_path = os.path.relpath(mkpath(root, f), PATH.WEBSITE_ROOT).replace('\\', '/')
+            if re.fullmatch(filename_pattern, rel_path) or re.fullmatch(filename_pattern, f):
+                size = os.path.getsize(mkpath(root, f))
+                if '.min.' in f:
+                    min_sizes.append(size)
+                else:
+                    normal_sizes.append(size)
 
     avg_normal = sum(normal_sizes) / len(normal_sizes) if normal_sizes else 0
     avg_min = sum(min_sizes) / len(min_sizes) if min_sizes else 0
@@ -110,15 +110,15 @@ def update_readme():
     readme = update_html_text(readme, 'endpoint_everything_size',
                               format_endpoint_size_cell(size_all, size_all_min, can_increase=True))
 
-    size_country, size_country_min = get_avg_size(r'[A-Z]{2}-[a-z]{2}\.json')
+    size_country, size_country_min = get_avg_size(r'(?:[A-Z]{2}-[a-z]{2}|[A-Z]{2}/[a-z]{2})\.json')
     readme = update_html_text(readme, 'endpoint_country_size',
                               format_endpoint_size_cell(size_country, size_country_min, can_increase=True))
 
-    size_year, size_year_min = get_avg_size(r'[A-Z]{2}-[a-z]{2}\.\d{4}\.json')
+    size_year, size_year_min = get_avg_size(r'(?:[A-Z]{2}-[a-z]{2}|[A-Z]{2}/[a-z]{2})\.\d{4}\.json')
     readme = update_html_text(readme, 'endpoint_year_size',
                               format_endpoint_size_cell(size_year, size_year_min, can_increase=False))
 
-    size_month, size_month_min = get_avg_size(r'[A-Z]{2}-[a-z]{2}\.\d{4}\.\d{2}\.json')
+    size_month, size_month_min = get_avg_size(r'(?:[A-Z]{2}-[a-z]{2}|[A-Z]{2}/[a-z]{2})\.\d{4}\.\d{2}\.json')
     readme = update_html_text(readme, 'endpoint_month_size',
                               format_endpoint_size_cell(size_month, size_month_min, can_increase=False))
 
