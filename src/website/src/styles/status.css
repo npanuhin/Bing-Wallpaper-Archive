@@ -8,6 +8,16 @@ body {
     flex-direction: column;
 }
 
+:root {
+    --top-bar-height: 75px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --top-bar-height: 56px;
+    }
+}
+
 /* ------------------------------------------- Sticky Top Bar ------------------------------------------------------- */
 
 #status_top_bar {
@@ -41,12 +51,10 @@ body {
     justify-content: center;
     width: 75px;
     height: 100%;
-    color: var(--main-color);
+    color: var(--darker-color);
     text-decoration: none;
     background-color: transparent;
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
+    transition: color var(--transition-fast);
     flex-shrink: 0;
     z-index: 2;
     position: relative;
@@ -58,21 +66,12 @@ body {
     display: block;
     color: inherit;
     stroke: currentColor;
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
-.status-top-back-button:hover {
+.status-top-back-button:hover,
+.status-top-back-button:active {
     color: var(--light-color);
-}
-
-.status-top-back-button:hover .status-top-back-icon {
-    transform: scale(1.08);
-}
-
-.status-top-back-button:active .status-top-back-icon {
-    transform: scale(0.92);
 }
 
 .status-top-title {
@@ -114,7 +113,6 @@ body {
 }
 
 .metric-card,
-.status-legend,
 .region-card {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -156,7 +154,7 @@ body {
     display: inline-block;
     margin-left: 14px;
     font-family: var(--font-text);
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 400;
     color: var(--main-color);
     line-height: 1;
@@ -173,7 +171,7 @@ body {
 
 .metric-unit-main {
     font-family: var(--font-text);
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 400;
     color: var(--main-color);
     line-height: 1;
@@ -216,13 +214,14 @@ body {
 
 .status-legend {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 28px;
     flex-wrap: wrap;
-    background-color: rgba(29, 38, 51, 0.55);
-    border-radius: 10px;
-    padding: 12px 18px;
-    margin-bottom: 24px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 28px;
 }
 
 .legend-item {
@@ -262,8 +261,14 @@ body {
 /* -------------------------------------------- Timeline Ruler ------------------------------------------------------ */
 
 .timeline-axis-card {
-    background-color: transparent;
-    padding: 0 20px 4px 20px;
+    position: sticky;
+    top: var(--top-bar-height, 75px);
+    z-index: 90;
+    background-color: var(--background-color);
+    padding: 10px 20px 0 20px;
+    margin-top: -6px;
+    margin-bottom: 0;
+    box-sizing: border-box;
 }
 
 .timeline-axis {
@@ -302,12 +307,18 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 12px;
 }
 
 .region-card {
     background-color: var(--background-color-secondary);
     border-radius: 12px;
     padding: 14px 18px;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.region-card:focus {
+    outline: none;
 }
 
 .region-row-header {
@@ -385,8 +396,8 @@ body {
     font-weight: 600;
     padding: 2px 8px;
     border-radius: 10px;
-    background-color: rgba(56, 189, 248, 0.12);
-    color: #38bdf8;
+    background-color: color-mix(in srgb, var(--status-has-image) 12%, transparent);
+    color: var(--status-has-image);
 }
 
 /* -------------------------------------------- SVG Progress Bar ---------------------------------------------------- */
@@ -412,22 +423,137 @@ body {
 
 .status-segment-image {
     fill: var(--status-has-image);
-    cursor: pointer;
+    cursor: default;
     transition: filter var(--transition-fast);
 }
 
-.status-segment-image:hover {
-    filter: brightness(1.22);
+.status-segment-image:hover,
+.status-segment-image.highlighted {
+    filter: brightness(1.25);
 }
 
 .status-segment-no-image {
     fill: var(--status-no-image);
-    cursor: pointer;
+    cursor: default;
     transition: filter var(--transition-fast);
 }
 
-.status-segment-no-image:hover {
-    filter: brightness(1.22);
+.status-segment-no-image:hover,
+.status-segment-no-image.highlighted {
+    filter: brightness(1.3);
+}
+
+.status-segment-empty {
+    fill: var(--status-track);
+    cursor: default;
+    transition: filter var(--transition-fast);
+}
+
+.status-segment-empty:hover,
+.status-segment-empty.highlighted {
+    filter: brightness(1.55);
+}
+
+/* ------------------------------------- Region Timeline Dates ------------------------------------------------------- */
+
+.region-timeline-dates {
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+    min-height: 30px;
+    pointer-events: auto;
+}
+
+.timeline-date-item {
+    position: absolute;
+    top: 4px;
+    z-index: 2;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: text;
+    user-select: text;
+    white-space: nowrap;
+}
+
+.timeline-date-stem {
+    position: absolute;
+    width: 1px;
+    pointer-events: none;
+    transition: background-color var(--transition-fast);
+}
+
+.timeline-date-chip {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    white-space: nowrap;
+    user-select: text;
+}
+
+.date-chip-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.2px;
+    user-select: text;
+    transition: color var(--transition-fast);
+}
+
+.timeline-date-item.kind-image .timeline-date-stem {
+    background-color: color-mix(in srgb, var(--status-has-image) 45%, transparent);
+}
+
+.timeline-date-item.kind-image .date-chip-text {
+    color: var(--status-has-image);
+}
+
+.timeline-date-item.kind-image:hover .date-chip-text {
+    color: var(--light-color);
+}
+
+.timeline-date-item.kind-image:hover .timeline-date-stem {
+    background-color: var(--status-has-image);
+}
+
+.timeline-date-item.kind-no-image .timeline-date-stem {
+    background-color: rgba(245, 158, 11, 0.45);
+}
+
+.timeline-date-item.kind-no-image .date-chip-text {
+    color: var(--status-no-image);
+}
+
+.timeline-date-item.kind-no-image:hover .date-chip-text,
+.timeline-date-item.kind-no-image.highlighted .date-chip-text {
+    color: #fde68a;
+}
+
+.timeline-date-item.kind-no-image:hover .timeline-date-stem,
+.timeline-date-item.kind-no-image.highlighted .timeline-date-stem {
+    background-color: var(--status-no-image);
+}
+
+.timeline-date-item.kind-empty .timeline-date-stem {
+    background-color: rgba(137, 143, 150, 0.4);
+}
+
+.timeline-date-item.kind-empty .date-chip-text {
+    color: var(--darker-color);
+}
+
+.timeline-date-item.kind-empty:hover .date-chip-text,
+.timeline-date-item.kind-empty.highlighted .date-chip-text {
+    color: var(--light-color);
+}
+
+.timeline-date-item.kind-empty:hover .timeline-date-stem,
+.timeline-date-item.kind-empty.highlighted .timeline-date-stem {
+    background-color: var(--light-color);
 }
 
 /* --------------------------------------------- Responsive --------------------------------------------------------- */

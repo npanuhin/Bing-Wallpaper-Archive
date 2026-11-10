@@ -54,7 +54,7 @@
       </div>
       <div class="metric-card">
         <div class="metric-value">
-          <span class="metric-number">{{ total_regions }}</span><span class="copy-space"> </span><span class="metric-unit metric-unit-stacked"><span>countries </span><span>and </span><span>languages</span></span>
+          <span class="metric-number">{{ total_regions }}</span><span class="copy-space"> </span><span class="metric-unit">regions</span>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@
 
     <div class="regions-container">
       {% for region in regions %}
-      <div class="region-card">
+      <div class="region-card" tabindex="0">
         <div class="region-row-header">
           <div class="region-meta">
             <span class="region-flag">{{ region.flag }}</span>
@@ -99,19 +99,30 @@
               <strong>{{ region.total_items_formatted|safe }}</strong> images
               {%- endif -%}
             </span>
-            <span class="region-dates">{{ region.date_range_str }}</span>
           </div>
         </div>
         <div class="status-bar-wrapper">
           <svg class="status-bar-svg" width="100%" height="16" viewBox="0 0 {{ total_days }} 16" preserveAspectRatio="none" role="img">
             <rect class="status-track" x="0" y="0" width="{{ total_days }}" height="16" />
             {% for segment in region.segments %}
-            <rect class="status-segment-{{ segment.kind }}" x="{{ segment.x }}" y="0" width="{{ segment.w }}" height="16">
+            <rect class="status-segment-{{ segment.kind }}" data-seg-id="{{ segment.id }}" x="{{ segment.x }}" y="0" width="{{ segment.w }}" height="16">
               <title>{{ segment.label }}</title>
             </rect>
             {% endfor %}
           </svg>
         </div>
+        {% if region.date_items %}
+        <div class="region-timeline-dates">
+          {% for item in region.date_items %}
+          <div class="timeline-date-item kind-{{ item.kind }}" data-seg-id="{{ item.seg_id }}" data-pct="{{ item.pct }}" data-type="{{ item.type }}" title="{{ item.title }}">
+            <div class="timeline-date-stem"></div>
+            <div class="timeline-date-chip">
+              <span class="date-chip-text">{{ item.date }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>

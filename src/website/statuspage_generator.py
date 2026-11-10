@@ -102,14 +102,9 @@ def build_status_template_context(
         if rid not in all_region_ids:
             all_region_ids.append(rid)
 
-    total_gigabytes: int | None = None
-    try:
-        storage = CloudflareR2()
-        usage = storage.get_bucket_usage()
-        if usage is not None:
-            total_gigabytes = int(usage[0] // (1024 ** 3))
-    except Exception as e:
-        print(f'Warning: Could not fetch R2 bucket usage: {e}')
+    storage = CloudflareR2()
+    usage = storage.get_bucket_usage()
+    total_gigabytes = int(usage[0] // (1024 ** 3))
 
     ticks: list[dict[str, float | str]] = []
     current_year = global_min.year
@@ -141,24 +136,80 @@ def build_status_template_context(
             d_min = min(api_dates).strftime('%Y-%m-%d')
             d_max = max(api_dates).strftime('%Y-%m-%d')
             date_range_str = f'{d_min} – {d_max}'
+            last = max(api_dates)
+            if last >= today - datetime.timedelta(days=1):
+                region_max = last
+            else:
+                region_max = today
         else:
             date_range_str = 'No data'
+            region_max = today
+
+        # Compute full contiguous segments spanning global_min to region_max (including empty gaps)
+        all_segments: list[tuple[datetime.date, datetime.date, str, int]] = []
+        curr = global_min
+        for seg_start, seg_end, seg_kind, count in raw_segments:
+            if seg_start > curr:
+                empty_end = seg_start - datetime.timedelta(days=1)
+                empty_cnt = (empty_end - curr).days + 1
+                all_segments.append((curr, empty_end, 'empty', empty_cnt))
+            all_segments.append((seg_start, seg_end, seg_kind, count))
+            curr = seg_end + datetime.timedelta(days=1)
+        if curr <= region_max:
+            all_segments.append((curr, region_max, 'empty', (region_max - curr).days + 1))
 
         formatted_segments: list[dict[str, int | str]] = []
-        for seg_start, seg_end, seg_kind, count in raw_segments:
+        date_items: list[dict[str, object]] = []
+
+        for seg_idx, (seg_start, seg_end, seg_kind, count) in enumerate(all_segments):
             x = (seg_start - global_min).days
             w = (seg_end - seg_start).days + 1
+            start_str = seg_start.strftime('%Y-%m-%d')
+            end_str = seg_end.strftime('%Y-%m-%d')
+            seg_id = f'{rid}-seg-{seg_idx}'
+
             if seg_kind == 'image':
-                label = (
-                    f'{seg_start.strftime("%Y-%m-%d")} to {seg_end.strftime("%Y-%m-%d")} '
-                    f'· {format_number(count)} images'
-                )
+                kind_title = 'Images available'
+                label = f'{start_str} to {end_str} · {format_number(count)} images'
+            elif seg_kind == 'no_image':
+                kind_title = 'Metadata only'
+                label = f'{start_str} to {end_str} · {format_number(count)} metadata only (no image)'
             else:
-                label = (
-                    f'{seg_start.strftime("%Y-%m-%d")} to {seg_end.strftime("%Y-%m-%d")} '
-                    f'· {format_number(count)} metadata only (no image)'
-                )
-            formatted_segments.append({'kind': seg_kind, 'x': x, 'w': w, 'label': label})
+                kind_title = 'No archive data'
+                label = f'{start_str} to {end_str} · {format_number(count)} days no archive data'
+
+            formatted_segments.append({'id': seg_id, 'kind': seg_kind, 'x': x, 'w': w, 'label': label})
+
+            if seg_kind in ('no_image', 'empty'):
+                if seg_start == seg_end:
+                    pct = round(((x + 0.5) / total_days) * 100.0, 3)
+                    date_items.append({
+                        'date': start_str,
+                        'pct': pct,
+                        'kind': seg_kind,
+                        'type': 'single',
+                        'title': f'{start_str} · {kind_title}',
+                        'seg_id': seg_id,
+                    })
+                else:
+                    pct_start = round((x / total_days) * 100.0, 3)
+                    pct_end = round(((x + w) / total_days) * 100.0, 3)
+                    date_items.append({
+                        'date': start_str,
+                        'pct': pct_start,
+                        'kind': seg_kind,
+                        'type': 'start',
+                        'title': f'{start_str} (start of {kind_title})',
+                        'seg_id': seg_id,
+                    })
+                    date_items.append({
+                        'date': end_str,
+                        'pct': pct_end,
+                        'kind': seg_kind,
+                        'type': 'end',
+                        'title': f'{end_str} (end of {kind_title})',
+                        'seg_id': seg_id,
+                    })
 
         region_records.append({
             'id': rid,
@@ -171,6 +222,7 @@ def build_status_template_context(
             'total_items_formatted': format_number(total_items, html=True),
             'date_range_str': date_range_str,
             'segments': formatted_segments,
+            'date_items': date_items,
         })
 
     return {

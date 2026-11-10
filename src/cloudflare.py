@@ -101,24 +101,21 @@ class CloudflareR2:
 
         return True
 
-    def get_bucket_usage(self) -> tuple[int, int] | None:
+    def get_bucket_usage(self) -> tuple[int, int]:
         if not self.api_token or not self.account_id:
-            return None
+            raise ValueError('Cloudflare API token or account ID is not configured')
 
         url = f'https://api.cloudflare.com/client/v4/accounts/{self.account_id}/r2/buckets/{R2_CONFIG["bucket_name"]}/usage'
         headers = {'Authorization': f'Bearer {self.api_token}'}
 
-        try:
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()
-            data = response.json()
-            if data.get('success'):
-                result = data['result']
-                return int(result['payloadSize']), int(result['objectCount'])
-        except Exception as e:
-            print(f'Cloudflare API error: {e}')
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        if not data.get('success'):
+            raise RuntimeError(f'Cloudflare API returned unsuccessful response: {data.get("errors")}')
 
-        return None
+        result = data['result']
+        return int(result['payloadSize']), int(result['objectCount'])
 
     def get_stats(self, prefix: str = '') -> tuple[int, int]:
         total_size = 0

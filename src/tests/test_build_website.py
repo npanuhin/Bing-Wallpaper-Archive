@@ -1,6 +1,7 @@
 import datetime
 import json
 from io import BytesIO
+from typing import Any, cast
 from unittest.mock import patch
 
 import pytest
@@ -11,7 +12,11 @@ from website.build_website import (
     gen_api_endpoints, gen_github_initial_image,
     gen_website_initial_image, update_website_html, add_headers
 )
-from website.statuspage_generator import compute_date_segments, generate_status_page
+from website.statuspage_generator import (
+    compute_date_segments,
+    build_status_template_context,
+    generate_status_page,
+)
 
 
 @pytest.fixture
@@ -196,4 +201,54 @@ def test_generate_status_page(temp_website_root, tmp_path):
     status_index = temp_website_root / 'status' / 'index.html'
     assert status_index.exists()
     assert status_index.read_text(encoding='utf-8') == content
+
+
+def test_status_template_context_date_items():
+    entries = [
+        ApiEntry(date=datetime.date(2024, 1, 2), url='https://example.com/2.jpg'),
+        ApiEntry(date=datetime.date(2024, 1, 3), url='https://example.com/3.jpg'),
+        ApiEntry(date=datetime.date(2024, 1, 5), url=''),  # metadata only
+    ]
+
+    # Case 1: last >= today - 1 day (last is 2024-01-05, today is 2024-01-06).
+    # Region max is 2024-01-05, so no trailing empty gap.
+    ctx = build_status_template_context({'US-en': entries}, today=datetime.date(2024, 1, 6))
+    regions = cast(list[dict[str, Any]], ctx['regions'])
+    region = regions[0]
+
+    # Segments should cover:
+    # 1. 2024-01-02 .. 2024-01-03 (image)
+    # 2. 2024-01-04 .. 2024-01-04 (empty gap, 1 day)
+    # 3. 2024-01-05 .. 2024-01-05 (no_image, 1 day)
+    assert len(region['segments']) == 3
+    assert region['segments'][0]['kind'] == 'image'
+    assert region['segments'][1]['kind'] == 'empty'
+    assert region['segments'][2]['kind'] == 'no_image'
+
+    # Date items (only for no_image and empty):
+    date_items = region['date_items']
+    assert len(date_items) == 2
+    assert date_items[0]['date'] == '2024-01-04'
+    assert date_items[0]['type'] == 'single'
+    assert date_items[0]['kind'] == 'empty'
+
+    assert date_items[1]['date'] == '2024-01-05'
+    assert date_items[1]['type'] == 'single'
+    assert date_items[1]['kind'] == 'no_image'
+
+    # Case 2: last < today - 1 day (last is 2024-01-05, today is 2024-01-08).
+    # Region max is today (2024-01-08), so trailing empty gap 2024-01-06 .. 2024-01-08 is added.
+    ctx2 = build_status_template_context({'US-en': entries}, today=datetime.date(2024, 1, 8))
+    regions2 = cast(list[dict[str, Any]], ctx2['regions'])
+    region2 = regions2[0]
+    assert len(region2['segments']) == 4
+    assert region2['segments'][3]['kind'] == 'empty'
+    # Trailing empty gap has start and end dates
+    date_items2 = region2['date_items']
+    assert len(date_items2) == 4
+    assert date_items2[2]['date'] == '2024-01-06'
+    assert date_items2[2]['type'] == 'start'
+    assert date_items2[3]['date'] == '2024-01-08'
+    assert date_items2[3]['type'] == 'end'
+
 

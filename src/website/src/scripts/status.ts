@@ -8,6 +8,11 @@ function setupStickyHeaderShadow(): void {
         return;
     }
 
+    const updateHeaderHeight = (): void => {
+        const height = topBar.offsetHeight;
+        document.documentElement.style.setProperty('--top-bar-height', `${height}px`);
+    };
+
     const updateShadow = (): void => {
         const topBarBottom = topBar.getBoundingClientRect().bottom;
         const contentTop = firstContentBlock.getBoundingClientRect().top;
@@ -15,7 +20,12 @@ function setupStickyHeaderShadow(): void {
     };
 
     window.addEventListener('scroll', updateShadow, { passive: true });
-    window.addEventListener('resize', updateShadow, { passive: true });
+    window.addEventListener('resize', () => {
+        updateHeaderHeight();
+        updateShadow();
+    }, { passive: true });
+
+    updateHeaderHeight();
     updateShadow();
 }
 
@@ -98,6 +108,159 @@ function setupTimelineRulerDensity(): void {
     updateDensity();
 }
 
+function setupTimelineDateLabels(): void {
+    const containers = Array.from(document.querySelectorAll<HTMLElement>('.region-timeline-dates'));
+    if (containers.length === 0) {
+        return;
+    }
+
+    const layoutContainer = (container: HTMLElement): void => {
+        const items = Array.from(container.querySelectorAll<HTMLElement>('.timeline-date-item'));
+        if (items.length === 0) {
+            return;
+        }
+
+        const containerWidth = container.getBoundingClientRect().width;
+        if (containerWidth === 0) {
+            return;
+        }
+
+        const minGap = 4;
+        const rowHeight = 22;
+        const rows: { left: number; right: number }[][] = [];
+
+        items.sort((a, b) => {
+            const pctA = parseFloat(a.dataset.pct || '0');
+            const pctB = parseFloat(b.dataset.pct || '0');
+            return pctA - pctB;
+        });
+
+        for (const item of items) {
+            const pct = parseFloat(item.dataset.pct || '0');
+            const itemType = item.dataset.type || 'single';
+            const itemWidth = item.offsetWidth || 56;
+
+            const targetX = containerWidth * (pct / 100);
+
+            let leftEdge: number;
+            if (itemType === 'start') {
+                leftEdge = targetX + 2;
+            } else if (itemType === 'end') {
+                leftEdge = targetX - itemWidth - 2;
+            } else {
+                leftEdge = targetX - itemWidth / 2;
+            }
+
+            leftEdge = Math.max(0, Math.min(containerWidth - itemWidth, leftEdge));
+            const rightEdge = leftEdge + itemWidth;
+
+            let targetRow = 0;
+            while (targetRow < rows.length) {
+                const collides = rows[targetRow].some((placed) => {
+                    return !(rightEdge + minGap <= placed.left || leftEdge >= placed.right + minGap);
+                });
+                if (!collides) {
+                    break;
+                }
+                targetRow++;
+            }
+
+            if (targetRow === rows.length) {
+                rows.push([]);
+            }
+            rows[targetRow].push({ left: leftEdge, right: rightEdge });
+
+            const stemGap = 4;
+            const topY = targetRow * rowHeight + 11;
+            item.style.left = `${leftEdge}px`;
+            item.style.top = `${topY}px`;
+
+            const stem = item.querySelector<HTMLElement>('.timeline-date-stem');
+            if (stem) {
+                const stemX = Math.max(0, Math.min(itemWidth - 1, targetX - leftEdge));
+                stem.style.left = `${stemX}px`;
+                stem.style.top = `${-topY}px`;
+                stem.style.height = `${topY - stemGap}px`;
+            }
+        }
+
+        const totalHeight = rows.length * rowHeight + 15;
+        container.style.height = `${totalHeight}px`;
+    };
+
+    const updateAll = (): void => {
+        for (const container of containers) {
+            layoutContainer(container);
+        }
+    };
+
+    if ('fonts' in document) {
+        document.fonts.ready.then(() => {
+            updateAll();
+        });
+    }
+
+    const regionsContainer = document.querySelector<HTMLElement>('.regions-container');
+    if (regionsContainer) {
+        const resizeObserver = new ResizeObserver(() => {
+            updateAll();
+        });
+        resizeObserver.observe(regionsContainer);
+    }
+
+    updateAll();
+}
+
+function setupSegmentHighlighting(): void {
+    const container = document.querySelector<HTMLElement>('.regions-container');
+    if (!container) {
+        return;
+    }
+
+    let activeHighlighted: Element[] = [];
+
+    const clearHighlight = (): void => {
+        for (const el of activeHighlighted) {
+            el.classList.remove('highlighted');
+        }
+        activeHighlighted = [];
+    };
+
+    container.addEventListener('mouseover', (event) => {
+        const target = (event.target as HTMLElement).closest('[data-seg-id]');
+        if (!target) {
+            clearHighlight();
+            return;
+        }
+
+        const segId = target.getAttribute('data-seg-id');
+        if (!segId) {
+            return;
+        }
+
+        const card = target.closest('.region-card');
+        if (!card) {
+            return;
+        }
+
+        clearHighlight();
+        const matches = Array.from(card.querySelectorAll(`[data-seg-id="${segId}"]`));
+        for (const el of matches) {
+            el.classList.add('highlighted');
+        }
+        activeHighlighted = matches;
+    });
+
+    container.addEventListener('mouseout', (event) => {
+        const related = event.relatedTarget as HTMLElement | null;
+        if (!related || !related.closest('[data-seg-id]')) {
+            clearHighlight();
+        }
+    });
+}
+
 setupStickyHeaderShadow();
 setupTimelineRulerDensity();
+setupTimelineDateLabels();
+setupSegmentHighlighting();
 waitForPageReady();
