@@ -9,11 +9,29 @@ const __dirname = path.dirname(__filename);
 const SRC_DIR = path.join(__dirname, 'src');
 
 function findHtmlPages() {
-    return fs
-        .readdirSync(SRC_DIR)
-        .filter((file) => file.endsWith('.html'))
-        .sort((a, b) => (a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b)))
-        .map((file) => path.join('src', file));
+    const pages = [];
+
+    function scan(dir) {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+            const fullPath = path.join(dir, entry.name);
+            if (entry.isDirectory()) {
+                scan(fullPath);
+            } else if (entry.isFile() && entry.name.endsWith('.html')) {
+                const relPath = path.relative(__dirname, fullPath);
+                pages.push(relPath);
+            }
+        }
+    }
+
+    scan(SRC_DIR);
+
+    return pages.sort((a, b) => {
+        const aIsRoot = a === path.join('src', 'index.html');
+        const bIsRoot = b === path.join('src', 'index.html');
+        if (aIsRoot) return -1;
+        if (bIsRoot) return 1;
+        return a.localeCompare(b);
+    });
 }
 
 export async function buildPages({ emptyOutDir = true } = {}) {

@@ -90,7 +90,7 @@ def test_gen_github_initial_image(temp_website_root, tmp_path):
     image_content = img_byte_arr.getvalue()
 
     # Create dummy template
-    template_path = tmp_path / 'latest-template.svg'
+    template_path = tmp_path / 'latest.template.svg'
     template_path.write_text('<svg>{width}x{height} - {image_url}</svg>')
 
     webp_path = temp_website_root / 'latest.webp'
@@ -178,7 +178,9 @@ def test_compute_date_segments():
 
 
 def test_generate_status_page(temp_website_root, tmp_path):
-    template = temp_website_root / 'status.html'
+    status_dir = temp_website_root / 'status'
+    status_dir.mkdir(parents=True, exist_ok=True)
+    template = status_dir / 'index.html'
     template.write_text(
         '<html><body>{{ total_images }} {% for r in regions %}{{ r.id }}{% endfor %}</body></html>',
         encoding='utf-8'

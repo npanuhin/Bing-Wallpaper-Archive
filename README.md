@@ -225,4 +225,8 @@ Microsoft states: "**Use of this image is restricted to wallpaper only.**"
   <a href="https://bing.npanuhin.me/status">
     <img src="src/assets/status-text.svg" height="18" alt="Status">
   </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://bing.npanuhin.me/download">
+    <img src="src/assets/download-text.svg" height="18" alt="Download">
+  </a>
 </h4>

@@ -25,5 +25,8 @@
     "last 2 versions",
     "Firefox ESR",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "@zip.js/zip.js": "^2.24.0"
+  }
 }

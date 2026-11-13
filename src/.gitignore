@@ -9,6 +9,7 @@ scripts/_reupload_temp/
 
 # Generated website
 website/root/
+website/cache/
 
 # Node.js
 website/node_modules/

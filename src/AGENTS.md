@@ -13,6 +13,10 @@ Rules for any AI assistant working in this repository.
 - After making any change to Python code, the AI must run both `ruff check` and `pyrefly check` from the `src/` directory and ensure both pass with zero errors before reporting the task as done.
 - If either reports errors, fix them and rerun until clean.
 
+## Architecture and compatibility
+
+- Do not implement backward compatibility unless explicitly asked by the user. Keep implementations clean and current.
+
 ## Cloudflare and R2
 
 - Never run code that interacts with Cloudflare in any way, including any read or write operation against Cloudflare R2.

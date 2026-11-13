@@ -1,11 +1,11 @@
-import datetime
 import math
 import os
 import re
 
-from Region import ROW, REGIONS
+from Region import ROW
 from cloudflare import CloudflareR2
 from system_utils import mkpath, PATH
+from image_stats import calculate_average_image_size
 
 
 def update_html_attribute(text, tag_id, attr, value):
@@ -124,30 +124,7 @@ def update_readme():
 
     # Update image size (approximate)
     storage = CloudflareR2()
-
-    current_year = datetime.date.today().year
-    years_to_check = [current_year, current_year - 1]
-
-    total_image_size = 0
-    image_count = 0
-
-    print(f'Calculating average image size for years: {years_to_check}...')
-    for region in REGIONS:
-        for year in years_to_check:
-            prefix = f'{region.api_country}/{region.api_lang}/{year}-'
-            size, count = storage.get_stats(prefix)
-            total_image_size += size
-            image_count += count
-
-    if image_count == 0:
-        # Fallback to total usage if no recent images found (e.g. beginning of year or error)
-        usage = storage.get_bucket_usage()
-        total_image_size, image_count = usage or (0, 0)
-        print('Using total bucket usage as fallback')
-
-    print(f'Total recent images size: {format_endpoint_size(total_image_size)}')
-    print(f'Recent images count: {image_count}')
-    size_image = total_image_size / image_count if image_count > 0 else 0
+    size_image = calculate_average_image_size(storage)
     print(f'Average recent file size: {format_endpoint_size(size_image)}')
 
     readme = update_html_text(readme, 'endpoint_image_size',

@@ -16,12 +16,13 @@ from structures import ApiEntry
 from Region import REGIONS
 from api import write_json
 from website.statuspage_generator import generate_status_page
+from image_stats import calculate_average_image_size
 
 WEBSITE_SOURCES_ROOT = mkpath(PATH.WEBSITE, 'src')
 WEBSITE_SYS_ROOT = mkpath(PATH.WEBSITE, 'root')
 WEBSITE_ASSETS_PATH = mkpath(PATH.WEBSITE_ROOT, 'assets')
 
-LATEST_IMAGE_SVG_TEMPLATE = mkpath(PATH.WEBSITE, 'latest-template.svg')
+LATEST_IMAGE_SVG_TEMPLATE = mkpath(PATH.WEBSITE, 'latest.template.svg')
 
 WEBSITE_INITIAL_IMAGE_PATH = mkpath(WEBSITE_ASSETS_PATH, 'initial-image.jpg')
 
@@ -171,6 +172,25 @@ def update_website_html(initial_image_data: ApiEntry):
         file.write(rendered_html)
 
 
+def update_download_html(*, dev: bool = False):
+    download_html_path = mkpath(PATH.WEBSITE_ROOT, 'download', 'index.html')
+    if not os.path.isfile(download_html_path):
+        return
+
+    avg_size_bytes = round(calculate_average_image_size(use_cache_only=dev))
+
+    with open(download_html_path, 'r', encoding='utf-8') as file:
+        html = file.read()
+
+    template = Environment(autoescape=False).from_string(html)
+    rendered_html = template.render(
+        avg_image_size_bytes=avg_size_bytes,
+    )
+
+    with open(download_html_path, 'w', encoding='utf-8') as file:
+        file.write(rendered_html)
+
+
 def add_headers():
     shutil.copyfile(
         mkpath(PATH.WEBSITE, '_headers'),
@@ -205,6 +225,7 @@ def build_website(*, dev: bool = False):
 
     print('Updating website HTML...')
     update_website_html(initial_image_data)
+    update_download_html(dev=dev)
 
     print('Generating status page...')
     generate_status_page(region_to_api)

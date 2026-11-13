@@ -11,7 +11,10 @@
     --light-color: #FFF;
 
     --status-track: #263344;
-    --status-has-image: #4A8FE7;
+    --accent-color: #2b6bee;
+    --accent-color-hover: #1d4ed8;
+    --accent-color-glow: color-mix(in srgb, var(--accent-color) 35%, transparent);
+    --status-has-image: var(--accent-color);
     --status-no-image: #F59E0B;
 
     --image-fade-duration: 1.2s;
