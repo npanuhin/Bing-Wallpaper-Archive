@@ -1,3 +1,4 @@
+import datetime
 import hashlib
 import json
 import os
@@ -116,6 +117,102 @@ class CloudflareR2:
 
         result = data['result']
         return int(result['payloadSize']), int(result['objectCount'])
+
+    def get_monthly_operations(self) -> tuple[int, int]:
+        """
+        Return (class_a_operations, class_b_operations) for the current monthly period
+        matching the exact query and date filters used by the Cloudflare Dashboard.
+        """
+        if not self.api_token or not self.account_id:
+            raise ValueError('Cloudflare API token or account ID is not configured')
+
+        today = datetime.date.today()
+        # Cloudflare dashboard anchors the monthly cycle from the last day of previous month
+        # to encompass the billing cycle window / local timezone boundaries (e.g. 2026-10-31 for Nov).
+        first_of_month = today.replace(day=1)
+        start_date = (first_of_month - datetime.timedelta(days=1)).isoformat()
+        end_date = today.isoformat()
+
+        query = """
+        query getR2Storage(
+          $accountTag: string,
+          $classAOpsFilterStandard: AccountR2OperationsAdaptiveGroupsFilter_InputObject,
+          $classBOpsFilterStandard: AccountR2OperationsAdaptiveGroupsFilter_InputObject
+        ) {
+          viewer {
+            accounts(filter: {accountTag: $accountTag}) {
+              classAOpsStandard: r2OperationsAdaptiveGroups(limit: 10000, filter: $classAOpsFilterStandard) {
+                sum {
+                  requests
+                }
+              }
+              classBOpsStandard: r2OperationsAdaptiveGroups(limit: 10000, filter: $classBOpsFilterStandard) {
+                sum {
+                  requests
+                }
+              }
+            }
+          }
+        }
+        """
+
+        payload = {
+            'query': query,
+            'variables': {
+                'accountTag': self.account_id,
+                'classAOpsFilterStandard': {
+                    'actionType_in': [
+                        'ListBuckets', 'PutBucket', 'ListObjects', 'PutObject', 'CopyObject',
+                        'CompleteMultipartUpload', 'CreateMultipartUpload', 'UploadPart',
+                        'UploadPartCopy', 'PutBucketEncryption', 'ListMultipartUploads',
+                        'PutBucketCors', 'PutBucketLifecycleConfiguration', 'ListParts',
+                        'PutBucketStorageClass', 'LifecycleStorageTierTransition'
+                    ],
+                    'bucketName': R2_CONFIG['bucket_name'],
+                    'storageClass': 'Standard',
+                    'actionStatus_in': ['success', 'userError'],
+                    'AND': [{'date_leq': end_date, 'date_geq': start_date}]
+                },
+                'classBOpsFilterStandard': {
+                    'actionType_in': [
+                        'HeadBucket', 'HeadObject', 'GetObject', 'ReportUsageSummary',
+                        'GetBucketEncryption', 'GetBucketLocation',
+                        'GetBucketLifecycleConfiguration', 'GetBucketCors'
+                    ],
+                    'bucketName': R2_CONFIG['bucket_name'],
+                    'storageClass': 'Standard',
+                    'actionStatus_in': ['success', 'userError'],
+                    'AND': [{'date_leq': end_date, 'date_geq': start_date}]
+                }
+            }
+        }
+
+        headers = {
+            'Authorization': f'Bearer {self.api_token}',
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.post(
+            'https://api.cloudflare.com/client/v4/graphql',
+            json=payload,
+            headers=headers,
+            timeout=15
+        )
+        response.raise_for_status()
+        res_data = response.json()
+
+        if res_data.get('errors'):
+            raise RuntimeError(f'Cloudflare GraphQL API errors: {res_data["errors"]}')
+
+        accounts = res_data.get('data', {}).get('viewer', {}).get('accounts', [])
+        if not accounts:
+            return 0, 0
+
+        acc = accounts[0]
+        class_a_count = sum(x.get('sum', {}).get('requests', 0) for x in acc.get('classAOpsStandard', []))
+        class_b_count = sum(x.get('sum', {}).get('requests', 0) for x in acc.get('classBOpsStandard', []))
+
+        return class_a_count, class_b_count
 
     def get_stats(self, prefix: str = '') -> tuple[int, int]:
         total_size = 0

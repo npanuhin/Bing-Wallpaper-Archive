@@ -101,9 +101,47 @@ def build_status_template_context(
         if rid not in all_region_ids:
             all_region_ids.append(rid)
 
-    storage = CloudflareR2()
-    usage = storage.get_bucket_usage()
-    total_gigabytes = int(usage[0] // (1024 ** 3))
+    total_gigabytes: int | None = None
+    r2_operations: dict[str, object] | None = None
+    try:
+        storage = CloudflareR2()
+        usage = storage.get_bucket_usage()
+        if usage is not None:
+            total_gigabytes = int(usage[0] // (1024 ** 3))
+
+        ops = storage.get_monthly_operations()
+        if ops is not None:
+            class_a_limit = 1_000_000
+            class_b_limit = 10_000_000
+            class_a_used, class_b_used = ops
+            class_a_pct = min(100.0, (class_a_used / class_a_limit) * 100.0)
+            class_b_pct = min(100.0, (class_b_used / class_b_limit) * 100.0)
+
+            def format_count(n: int) -> str:
+                if n >= 1_000_000:
+                    return f'{n / 1_000_000:.2f}M'
+                if n >= 1_000:
+                    return f'{n / 1_000:.2f}k'
+                return str(n)
+
+            now = datetime.datetime.now(datetime.timezone.utc)
+            month_name = now.strftime('%B %Y')
+
+            r2_operations = {
+                'month_name': month_name,
+                'class_a_used': format_count(class_a_used),
+                'class_a_raw': class_a_used,
+                'class_a_limit': '1M',
+                'class_a_pct': round(class_a_pct, 2),
+                'class_a_pct_str': f'{class_a_pct:.2f}%' if class_a_pct < 0.01 else f'{class_a_pct:.1f}%',
+                'class_b_used': format_count(class_b_used),
+                'class_b_raw': class_b_used,
+                'class_b_limit': '10M',
+                'class_b_pct': round(class_b_pct, 2),
+                'class_b_pct_str': f'{class_b_pct:.2f}%' if class_b_pct < 0.01 else f'{class_b_pct:.1f}%',
+            }
+    except Exception as e:
+        print(f'Warning: Could not fetch R2 usage or operations: {e}')
 
     ticks: list[dict[str, float | str]] = []
     current_year = global_min.year
@@ -228,6 +266,7 @@ def build_status_template_context(
         'total_days': total_days,
         'total_images': format_number(total_images, html=True),
         'total_gigabytes': total_gigabytes,
+        'r2_operations': r2_operations,
         'span_years': span_years,
         'total_regions': total_regions,
         'ticks': ticks,
