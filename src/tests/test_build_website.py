@@ -2,7 +2,7 @@ import datetime
 import json
 from io import BytesIO
 from typing import Any, cast
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 from PIL import Image
@@ -177,7 +177,12 @@ def test_compute_date_segments():
     assert segments[2] == (datetime.date(2024, 1, 5), datetime.date(2024, 1, 5), 'image', 1)
 
 
-def test_generate_status_page(temp_website_root, tmp_path):
+@patch('website.statuspage_generator.CloudflareR2')
+def test_generate_status_page(mock_cloudflare, temp_website_root, tmp_path):
+    mock_instance = MagicMock()
+    mock_instance.get_bucket_usage.return_value = (50 * 1024 ** 3, 1000)
+    mock_cloudflare.return_value = mock_instance
+
     status_dir = temp_website_root / 'status'
     status_dir.mkdir(parents=True, exist_ok=True)
     template = status_dir / 'index.html'
@@ -205,7 +210,12 @@ def test_generate_status_page(temp_website_root, tmp_path):
     assert status_index.read_text(encoding='utf-8') == content
 
 
-def test_status_template_context_date_items():
+@patch('website.statuspage_generator.CloudflareR2')
+def test_status_template_context_date_items(mock_cloudflare):
+    mock_instance = MagicMock()
+    mock_instance.get_bucket_usage.return_value = (50 * 1024 ** 3, 1000)
+    mock_cloudflare.return_value = mock_instance
+
     entries = [
         ApiEntry(date=datetime.date(2024, 1, 2), url='https://example.com/2.jpg'),
         ApiEntry(date=datetime.date(2024, 1, 3), url='https://example.com/3.jpg'),
